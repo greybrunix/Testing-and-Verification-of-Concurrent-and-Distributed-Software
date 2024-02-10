@@ -1,0 +1,44 @@
+
+
+def Lock tid:
+	choosing tid = True;
+	ticket tid = max ticket + 1;
+	choosing tid = False;
+	var j = 0;
+	while j < (N - 1):
+		while choosing j:
+			pass;
+		while (ticket j != 0) and (
+			(ticket j < ticket tid) or
+			((ticket j == ticket tid) and
+			 (j < tid))):
+			pass;
+		j += 1;
+def Unlock tid:
+	ticket tid = 0;
+
+def Thread tid:
+	var m = 1;
+	while m <= I:
+		Lock tid
+		counter += 1;
+		Unlock tid;
+		m+=1;
+	print counter
+
+sequential choosing,ticket,counter
+var t = []
+choosing = []
+ticket = []
+I=2;N=2
+global counter;
+counter = 0
+var i = 0;
+while i < N:
+	choosing[i] = False;
+	ticket[i] = 0;
+	i+=1
+i=0
+while i < N:
+	spawn Thread i;
+	i+=1

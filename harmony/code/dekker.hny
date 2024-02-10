@@ -1,0 +1,26 @@
+#critical reached?
+sequential wants, turn, counter
+wants = [False, False]
+turn = 0
+global counter;
+counter = 0
+def dekk(p_q):
+	# while True:
+	while choose( {False, True} ):
+	# non critical
+		wants[p_q] = True # declare interest 
+		# can enter critical section
+		while wants[1 - p_q]: # does another process have interest?
+			if turn == (1 - p_q): # is it it's turn?
+				wants[p_q] = False
+				await turn == p_q # waiting for turn
+				wants[p_q] = True
+		# enter critical section
+		# critical
+		counter+=1
+		# leaving critical
+		turn = 1 - p_q
+		wants[p_q] = False
+		# post protocol
+spawn dekk(0)
+spawn dekk(1)
