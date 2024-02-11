@@ -1,12 +1,16 @@
 #critical reached?
+crit=0
 sequential wants, turn, counter
 wants = [False, False]
 turn = 0
 global counter;
 counter = 0
+I=10
+
 def dekk(p_q):
 	# while True:
-	while choose( {False, True} ):
+	var i = 0
+	while i < I:
 	# non critical
 		wants[p_q] = True # declare interest 
 		# can enter critical section
@@ -16,11 +20,14 @@ def dekk(p_q):
 				await turn == p_q # waiting for turn
 				wants[p_q] = True
 		# enter critical section
+		atomically crit +=1
 		# critical
 		counter+=1
 		# leaving critical
+		atomically crit -=1
 		turn = 1 - p_q
 		wants[p_q] = False
 		# post protocol
+		i+=1
 spawn dekk(0)
 spawn dekk(1)

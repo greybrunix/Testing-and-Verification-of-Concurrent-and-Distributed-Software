@@ -1,0 +1,187 @@
+%\documentclass[compress,svgnames,handout,13.7pt]{beamer}
+\documentclass[compress,svgnames,13.7pt]{beamer}
+\mode<presentation>
+%\usepackage[portuguese]{babel}
+\usepackage{tikz}
+\usepackage{makeidx,verbatim}
+\usepackage{latexsym,amsfonts,amsmath,amssymb,amsthm}
+\usepackage{curves}
+\usepackage{enumerate}
+\usepackage{moreverb}
+\usepackage{cases}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{epsfig}
+\usepackage{graphics}
+\usepackage{float}
+\usepackage{color}
+%%\usepackage[latin1]{inputenc}
+\usepackage{stmaryrd}
+\usepackage{amstext}
+\usepackage{xspace}
+\usepackage[mathcal]{euscript}
+\usepackage{rotating}
+\usepackage{mathrsfs}
+%\usepackage{pgf,pgfnodes,pgfheaps}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usetikzlibrary{arrows,automata,backgrounds}
+
+\usecolortheme{seahorse}
+\usecolortheme{rose}
+%\usefonttheme[onlylarge]{structuresmallcapsserif}
+\setbeamerfont{frametitle}{family=\rmfamily,size=\footnotesize}
+\setbeamercolor{title}{fg=blue!80!black}%,bg=blue!20!white}
+\setbeamercolor{frametitle}{fg=blue!80!black}%,bg=blue!20!white}
+\setbeamercolor{institute}{fg=blue!80!black}
+\setbeamertemplate{miniframes}[tick]
+\setbeamercovered{still covered={\opaqueness<1->{4}},
+	again covered={\opaqueness<1->{4}}}
+\setbeamerfont{small}{size=\small} \setbeamerfont{tiny}{size=\tiny}
+\setbeamercolor{caixa}{fg=black,bg=blue!10!white}
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{footline}
+    {\leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}
+        [
+        wd=\paperwidth,
+        ht=2.75ex,
+        dp=.5ex,
+        right,
+        rightskip=1em
+        ]
+        {mycolor}%
+    \usebeamercolor[fg]{navigation symbols}
+    \insertslidenavigationsymbol%
+    \insertframenavigationsymbol%
+    \insertsubsectionnavigationsymbol%
+    \insertsectionnavigationsymbol%
+    \insertdocnavigationsymbol%
+    \insertbackfindforwardnavigationsymbol%
+    \end{beamercolorbox}%
+    }%
+    \vskip0.5pt
+ }{}
+
+\def\N{{\mathbb N}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr\mathsurround=0pt$-$}}}
+\def\proof{\noindent{\bf\blue Proof}\ }
+			
+\def\red{\color[rgb]{0.8,0,0}}
+\def\lightred{\color[rgb]{1,0.5,0.5}}
+\def\green{\color[rgb]{0,0.5,0}}
+\def\lightgreen{\color[rgb]{0.5,1,0.5}}
+\def\blue{\color[rgb]{0,0,0.7}}
+\def\darkredblue{\color[rgb]{0.4,0,0.4}}
+\def\lightgray{\color[rgb]{0.7,0.7,0.7}}
+\def\mystep#1#2{\uncover<#1->{{\color<#1>[rgb]{0,0,1}{#2}}}}
+\definecolor{azul}{rgb}{0,0,.7}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\tikzset{->,
+    >=stealth',
+    node distance=3cm,
+    every state/.style={thick, fill=gray!10},
+    initial text=$ $,
+}
+
+\lstdefinestyle{mystyle}{backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+
+\renewcommand\qedsymbol{QED}
+
+\newcommand{\mycomment}[1]{}
+
+\title[Demo]
+{Harmony Programming Language\\A Demo}
+\author[G01]{%
+\begin{tabular}{c}
+Bruno Gi\~ao\\
+\textit{A96544}
+\end{tabular}
+\and
+\begin{tabular}{c}
+Jo\~ao Pereira\\
+\textit{A00000}
+\end{tabular}
+\and
+\begin{tabular}{c}
+Maria Rodrigues\\
+\textit{A00000}
+\end{tabular}
+}
+
+\institute[DI@UM+DMAT@UM]{Departamento de Informática \and Departamento de Matemática}
+\date{\today}
+
+
+
+
+\usetheme{CambridgeUS}
+\setbeamercovered{transparent}
+%\setbeamercovered{invisible}
+\begin{document}
+
+
+% Title Page
+\thispagestyle{empty}
+\frame{\titlepage}
+
+
+% Table of Contents
+\begin{frame}{Contents}
+\tableofcontents
+\end{frame}
+
+
+\section{Introduction}
+
+\subsection{Harmony Language}
+% SLIDE 0
+\begin{frame} {Lorem Ipsum}
+    \begin{enumerate}
+        \item{Lorem Ipsum}
+    \pause\item{
+            Lorem Ipsum}
+    \end{enumerate}
+\end{frame}
+% SLIDE 1
+
+\section{Conclusion}
+\begin{frame}{Final Remarks}
+    \begin{enumerate}
+        \item{Lorem Ipsum}
+  \pause\item{Lorem Ipsum}
+  \pause\begin{enumerate}
+      \item{Lorem Ipsum}
+        \end{enumerate}
+    \end{enumerate}
+\end{frame}
+\begin{frame}
+    \huge{\textbf{TEXT!}}
+\end{frame}
+\end{document}

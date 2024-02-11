@@ -1,0 +1,4870 @@
+<html>
+<head>
+  <meta charset='UTF-8'></meta>
+  <style>
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:200px;
+  overflow:auto;  
+}
+#table-wrapper table {
+  width:100%;
+}
+#table-wrapper table * {
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+table td, table th {
+    border: 1px solid black;
+}
+
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <td colspan='2'>
+<table border='1'>
+  <thead>
+    <tr>
+      <th colspan='4' style='color:red;'>
+        Issue: No issues
+      </th>
+    </tr>
+</table>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+  <tr>
+    <td colspan='2'>
+      <h3 style='color:blue;'>
+        <div id='coderow'>
+        </div>
+      </h3>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+  <tr>
+    <td valign='top'>
+<div id='table-wrapper'>
+  <div id='table-scroll'>
+    <table border='1'>
+      <tbody>
+        <tr id='P0'>
+          <td align='right'>
+            <a name='P0'>0</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='start of method __init__' id='C0'>
+              Frame __init__()
+            </span>
+          </td>
+        </tr>
+        <tr id='P1'>
+          <td align='right'>
+            <a name='P1'>1</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C1'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P2'>
+          <td align='right'>
+            <a name='P2'>2</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable crit' id='C2'>
+              Store crit
+            </span>
+          </td>
+        </tr>
+        <tr id='P3'>
+          <td align='right'>
+            <a name='P3'>3</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?wants' id='C3'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P4'>
+          <td align='right'>
+            <a name='P4'>4</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='sequential consistency for variable on top of stack' id='C4'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P5'>
+          <td align='right'>
+            <a name='P5'>5</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?turn' id='C5'>
+              Push ?turn
+            </span>
+          </td>
+        </tr>
+        <tr id='P6'>
+          <td align='right'>
+            <a name='P6'>6</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='sequential consistency for variable on top of stack' id='C6'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P7'>
+          <td align='right'>
+            <a name='P7'>7</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?counter' id='C7'>
+              Push ?counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P8'>
+          <td align='right'>
+            <a name='P8'>8</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='sequential consistency for variable on top of stack' id='C8'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P9'>
+          <td align='right'>
+            <a name='P9'>9</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='building a tuple: push constant ()' id='C9'>
+              Push ()
+            </span>
+          </td>
+        </tr>
+        <tr id='P10'>
+          <td align='right'>
+            <a name='P10'>10</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C10'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P11'>
+          <td align='right'>
+            <a name='P11'>11</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying ListAdd' id='C11'>
+              2-ary ListAdd
+            </span>
+          </td>
+        </tr>
+        <tr id='P12'>
+          <td align='right'>
+            <a name='P12'>12</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C12'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P13'>
+          <td align='right'>
+            <a name='P13'>13</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying ListAdd' id='C13'>
+              2-ary ListAdd
+            </span>
+          </td>
+        </tr>
+        <tr id='P14'>
+          <td align='right'>
+            <a name='P14'>14</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable wants' id='C14'>
+              Store wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P15'>
+          <td align='right'>
+            <a name='P15'>15</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C15'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P16'>
+          <td align='right'>
+            <a name='P16'>16</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable turn' id='C16'>
+              Store turn
+            </span>
+          </td>
+        </tr>
+        <tr id='P17'>
+          <td align='right'>
+            <a name='P17'>17</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C17'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P18'>
+          <td align='right'>
+            <a name='P18'>18</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable counter' id='C18'>
+              Store counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P19'>
+          <td align='right'>
+            <a name='P19'>19</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 10' id='C19'>
+              Push 10
+            </span>
+          </td>
+        </tr>
+        <tr id='P20'>
+          <td align='right'>
+            <a name='P20'>20</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable I' id='C20'>
+              Store I
+            </span>
+          </td>
+        </tr>
+        <tr id='P21'>
+          <td align='right'>
+            <a name='P21'>21</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='jump over method definition: set program counter to 98' id='C21'>
+              Jump 98
+            </span>
+          </td>
+        </tr>
+        <tr id='P22'>
+          <td align='right'>
+            <a name='P22'>22</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='start of method dekk' id='C22'>
+              Frame dekk(p_q)
+            </span>
+          </td>
+        </tr>
+        <tr id='P23'>
+          <td align='right'>
+            <a name='P23'>23</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C23'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P24'>
+          <td align='right'>
+            <a name='P24'>24</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store in i' id='C24'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P25'>
+          <td align='right'>
+            <a name='P25'>25</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C25'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P26'>
+          <td align='right'>
+            <a name='P26'>26</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable I' id='C26'>
+              Load I
+            </span>
+          </td>
+        </tr>
+        <tr id='P27'>
+          <td align='right'>
+            <a name='P27'>27</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying <' id='C27'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P28'>
+          <td align='right'>
+            <a name='P28'>28</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 95 if the value is False' id='C28'>
+              JumpCond False 95
+            </span>
+          </td>
+        </tr>
+        <tr id='P29'>
+          <td align='right'>
+            <a name='P29'>29</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?wants' id='C29'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P30'>
+          <td align='right'>
+            <a name='P30'>30</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of p_q' id='C30'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P31'>
+          <td align='right'>
+            <a name='P31'>31</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C31'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P32'>
+          <td align='right'>
+            <a name='P32'>32</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant True' id='C32'>
+              Push True
+            </span>
+          </td>
+        </tr>
+        <tr id='P33'>
+          <td align='right'>
+            <a name='P33'>33</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C33'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P34'>
+          <td align='right'>
+            <a name='P34'>34</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?wants' id='C34'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P35'>
+          <td align='right'>
+            <a name='P35'>35</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C35'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P36'>
+          <td align='right'>
+            <a name='P36'>36</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of p_q' id='C36'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P37'>
+          <td align='right'>
+            <a name='P37'>37</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying -' id='C37'>
+              2-ary -
+            </span>
+          </td>
+        </tr>
+        <tr id='P38'>
+          <td align='right'>
+            <a name='P38'>38</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C38'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P39'>
+          <td align='right'>
+            <a name='P39'>39</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop an address and push the value at the address' id='C39'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P40'>
+          <td align='right'>
+            <a name='P40'>40</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 64 if the value is False' id='C40'>
+              JumpCond False 64
+            </span>
+          </td>
+        </tr>
+        <tr id='P41'>
+          <td align='right'>
+            <a name='P41'>41</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push value of shared variable turn' id='C41'>
+              Load turn
+            </span>
+          </td>
+        </tr>
+        <tr id='P42'>
+          <td align='right'>
+            <a name='P42'>42</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 1' id='C42'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P43'>
+          <td align='right'>
+            <a name='P43'>43</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of p_q' id='C43'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P44'>
+          <td align='right'>
+            <a name='P44'>44</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying -' id='C44'>
+              2-ary -
+            </span>
+          </td>
+        </tr>
+        <tr id='P45'>
+          <td align='right'>
+            <a name='P45'>45</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying ==' id='C45'>
+              2-ary ==
+            </span>
+          </td>
+        </tr>
+        <tr id='P46'>
+          <td align='right'>
+            <a name='P46'>46</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 34 if the value is False' id='C46'>
+              JumpCond False 34
+            </span>
+          </td>
+        </tr>
+        <tr id='P47'>
+          <td align='right'>
+            <a name='P47'>47</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?wants' id='C47'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P48'>
+          <td align='right'>
+            <a name='P48'>48</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of p_q' id='C48'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P49'>
+          <td align='right'>
+            <a name='P49'>49</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C49'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P50'>
+          <td align='right'>
+            <a name='P50'>50</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C50'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P51'>
+          <td align='right'>
+            <a name='P51'>51</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C51'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P52'>
+          <td align='right'>
+            <a name='P52'>52</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable turn' id='C52'>
+              Load turn
+            </span>
+          </td>
+        </tr>
+        <tr id='P53'>
+          <td align='right'>
+            <a name='P53'>53</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of p_q' id='C53'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P54'>
+          <td align='right'>
+            <a name='P54'>54</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying ==' id='C54'>
+              2-ary ==
+            </span>
+          </td>
+        </tr>
+        <tr id='P55'>
+          <td align='right'>
+            <a name='P55'>55</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 52 if the value is False' id='C55'>
+              JumpCond False 52
+            </span>
+          </td>
+        </tr>
+        <tr id='P56'>
+          <td align='right'>
+            <a name='P56'>56</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 58' id='C56'>
+              Jump 58
+            </span>
+          </td>
+        </tr>
+        <tr id='P57'>
+          <td align='right'>
+            <a name='P57'>57</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='set program counter to 52' id='C57'>
+              Jump 52
+            </span>
+          </td>
+        </tr>
+        <tr id='P58'>
+          <td align='right'>
+            <a name='P58'>58</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?wants' id='C58'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P59'>
+          <td align='right'>
+            <a name='P59'>59</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of p_q' id='C59'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P60'>
+          <td align='right'>
+            <a name='P60'>60</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C60'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P61'>
+          <td align='right'>
+            <a name='P61'>61</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant True' id='C61'>
+              Push True
+            </span>
+          </td>
+        </tr>
+        <tr id='P62'>
+          <td align='right'>
+            <a name='P62'>62</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and an address and store the value at the address' id='C62'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P63'>
+          <td align='right'>
+            <a name='P63'>63</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='set program counter to 34' id='C63'>
+              Jump 34
+            </span>
+          </td>
+        </tr>
+        <tr id='P64'>
+          <td align='right'>
+            <a name='P64'>64</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='increment atomic counter of context; thread runs uninterrupted if larger than 0' id='C64'>
+              AtomicInc(eager)
+            </span>
+          </td>
+        </tr>
+        <tr id='P65'>
+          <td align='right'>
+            <a name='P65'>65</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push value of shared variable crit' id='C65'>
+              Load crit
+            </span>
+          </td>
+        </tr>
+        <tr id='P66'>
+          <td align='right'>
+            <a name='P66'>66</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 1' id='C66'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P67'>
+          <td align='right'>
+            <a name='P67'>67</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying +' id='C67'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P68'>
+          <td align='right'>
+            <a name='P68'>68</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable crit' id='C68'>
+              Store crit
+            </span>
+          </td>
+        </tr>
+        <tr id='P69'>
+          <td align='right'>
+            <a name='P69'>69</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='decrement atomic counter of context' id='C69'>
+              AtomicDec
+            </span>
+          </td>
+        </tr>
+        <tr id='P70'>
+          <td align='right'>
+            <a name='P70'>70</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable counter' id='C70'>
+              Load counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P71'>
+          <td align='right'>
+            <a name='P71'>71</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C71'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P72'>
+          <td align='right'>
+            <a name='P72'>72</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C72'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P73'>
+          <td align='right'>
+            <a name='P73'>73</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store it in shared variable counter' id='C73'>
+              Store counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P74'>
+          <td align='right'>
+            <a name='P74'>74</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='increment atomic counter of context; thread runs uninterrupted if larger than 0' id='C74'>
+              AtomicInc(eager)
+            </span>
+          </td>
+        </tr>
+        <tr id='P75'>
+          <td align='right'>
+            <a name='P75'>75</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push value of shared variable crit' id='C75'>
+              Load crit
+            </span>
+          </td>
+        </tr>
+        <tr id='P76'>
+          <td align='right'>
+            <a name='P76'>76</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 1' id='C76'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P77'>
+          <td align='right'>
+            <a name='P77'>77</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying -' id='C77'>
+              2-ary -
+            </span>
+          </td>
+        </tr>
+        <tr id='P78'>
+          <td align='right'>
+            <a name='P78'>78</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable crit' id='C78'>
+              Store crit
+            </span>
+          </td>
+        </tr>
+        <tr id='P79'>
+          <td align='right'>
+            <a name='P79'>79</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='decrement atomic counter of context' id='C79'>
+              AtomicDec
+            </span>
+          </td>
+        </tr>
+        <tr id='P80'>
+          <td align='right'>
+            <a name='P80'>80</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 1' id='C80'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P81'>
+          <td align='right'>
+            <a name='P81'>81</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of p_q' id='C81'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P82'>
+          <td align='right'>
+            <a name='P82'>82</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying -' id='C82'>
+              2-ary -
+            </span>
+          </td>
+        </tr>
+        <tr id='P83'>
+          <td align='right'>
+            <a name='P83'>83</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store it in shared variable turn' id='C83'>
+              Store turn
+            </span>
+          </td>
+        </tr>
+        <tr id='P84'>
+          <td align='right'>
+            <a name='P84'>84</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?wants' id='C84'>
+              Push ?wants
+            </span>
+          </td>
+        </tr>
+        <tr id='P85'>
+          <td align='right'>
+            <a name='P85'>85</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of p_q' id='C85'>
+              LoadVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P86'>
+          <td align='right'>
+            <a name='P86'>86</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C86'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P87'>
+          <td align='right'>
+            <a name='P87'>87</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant False' id='C87'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P88'>
+          <td align='right'>
+            <a name='P88'>88</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and an address and store the value at the address' id='C88'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P89'>
+          <td align='right'>
+            <a name='P89'>89</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C89'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P90'>
+          <td align='right'>
+            <a name='P90'>90</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable i' id='C90'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P91'>
+          <td align='right'>
+            <a name='P91'>91</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C91'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P92'>
+          <td align='right'>
+            <a name='P92'>92</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C92'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P93'>
+          <td align='right'>
+            <a name='P93'>93</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in i' id='C93'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P94'>
+          <td align='right'>
+            <a name='P94'>94</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 25' id='C94'>
+              Jump 25
+            </span>
+          </td>
+        </tr>
+        <tr id='P95'>
+          <td align='right'>
+            <a name='P95'>95</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable i' id='C95'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P96'>
+          <td align='right'>
+            <a name='P96'>96</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable p_q' id='C96'>
+              DelVar p_q
+            </span>
+          </td>
+        </tr>
+        <tr id='P97'>
+          <td align='right'>
+            <a name='P97'>97</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='restore caller method state and push result' id='C97'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P98'>
+          <td align='right'>
+            <a name='P98'>98</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?PC(22)' id='C98'>
+              Push ?PC(22)
+            </span>
+          </td>
+        </tr>
+        <tr id='P99'>
+          <td align='right'>
+            <a name='P99'>99</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C99'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P100'>
+          <td align='right'>
+            <a name='P100'>100</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C100'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P101'>
+          <td align='right'>
+            <a name='P101'>101</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant {:}' id='C101'>
+              Push {:}
+            </span>
+          </td>
+        </tr>
+        <tr id='P102'>
+          <td align='right'>
+            <a name='P102'>102</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop thread-local state, argument, and pc and spawn a new thread' id='C102'>
+              Spawn
+            </span>
+          </td>
+        </tr>
+        <tr id='P103'>
+          <td align='right'>
+            <a name='P103'>103</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?PC(22)' id='C103'>
+              Push ?PC(22)
+            </span>
+          </td>
+        </tr>
+        <tr id='P104'>
+          <td align='right'>
+            <a name='P104'>104</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 1' id='C104'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P105'>
+          <td align='right'>
+            <a name='P105'>105</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C105'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P106'>
+          <td align='right'>
+            <a name='P106'>106</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant {:}' id='C106'>
+              Push {:}
+            </span>
+          </td>
+        </tr>
+        <tr id='P107'>
+          <td align='right'>
+            <a name='P107'>107</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop thread-local state, argument, and pc and spawn a new thread' id='C107'>
+              Spawn
+            </span>
+          </td>
+        </tr>
+        <tr id='P108'>
+          <td align='right'>
+            <a name='P108'>108</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='restore caller method state and push result' id='C108'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P109'>
+          <td align='right'>
+            <a name='P109'>109</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable result' id='C109'>
+              DelVar result
+            </span>
+          </td>
+        </tr>
+      </body>
+    </table>
+  </div>
+</div>
+    </td>
+    <td valign='top'>
+      <img src='dekker.png' alt='DFA image'>
+    </td>
+  </tr>
+</table>
+<script>
+var nthreads = 0;
+var nmegasteps = 0;
+var vardir = [
+  []
+];
+var state =
+{
+  "nstates": 19353,
+  "issue": "No issues",
+  "hvm": {
+    "modules": {
+        "__main__": {
+            "file": "dekker.hny",
+            "lines": [
+                "#critical reached?",
+                "crit=0",
+                "sequential wants, turn, counter",
+                "wants = [False, False]",
+                "turn = 0",
+                "global counter;",
+                "counter = 0",
+                "I=10",
+                "def dekk(p_q):",
+                "	# while True:",
+                "	var i = 0",
+                "	while i < I:",
+                "	# non critical",
+                "		wants[p_q] = True # declare interest ",
+                "		# can enter critical section",
+                "		while wants[1 - p_q]: # does another process have interest?",
+                "			if turn == (1 - p_q): # is it it's turn?",
+                "				wants[p_q] = False",
+                "				await turn == p_q # waiting for turn",
+                "				wants[p_q] = True",
+                "		# enter critical section",
+                "		atomically crit +=1",
+                "		# critical",
+                "		counter+=1",
+                "		# leaving critical",
+                "		atomically crit -=1",
+                "		turn = 1 - p_q",
+                "		wants[p_q] = False",
+                "		# post protocol",
+                "		i+=1",
+                "spawn dekk(0)",
+                "spawn dekk(1)"
+              ],
+            "identifiers": {
+                "dekk": "constant",
+                "i": "local-var",
+                "wants": "global",
+                "this": "local-var",
+                "turn": "global",
+                "p_q": "local-const",
+                "counter": "global",
+                "___": "___",
+                "I": "global",
+                "crit": "global"
+              }
+          }
+      },
+    "labels": {
+        "__end__": 110
+      },
+    "pretty": [
+        [
+            "Frame __init__()",
+            "start of method __init__"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store crit",
+            "pop a value and store it in shared variable crit"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?turn",
+            "push constant ?turn"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?counter",
+            "push constant ?counter"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ()",
+            "building a tuple: push constant ()"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Store wants",
+            "pop a value and store it in shared variable wants"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store counter",
+            "pop a value and store it in shared variable counter"
+          ],
+        [
+            "Push 10",
+            "push constant 10"
+          ],
+        [
+            "Store I",
+            "pop a value and store it in shared variable I"
+          ],
+        [
+            "Jump 98",
+            "jump over method definition: set program counter to 98"
+          ],
+        [
+            "Frame dekk(p_q)",
+            "start of method dekk"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "Load I",
+            "push value of shared variable I"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "JumpCond False 95",
+            "pop a value and jump to 95 if the value is False"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "JumpCond False 64",
+            "pop a value and jump to 64 if the value is False"
+          ],
+        [
+            "Load turn",
+            "push value of shared variable turn"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "JumpCond False 34",
+            "pop a value and jump to 34 if the value is False"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Load turn",
+            "push value of shared variable turn"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "JumpCond False 52",
+            "pop a value and jump to 52 if the value is False"
+          ],
+        [
+            "Jump 58",
+            "set program counter to 58"
+          ],
+        [
+            "Jump 52",
+            "set program counter to 52"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Jump 34",
+            "set program counter to 34"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load crit",
+            "push value of shared variable crit"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store crit",
+            "pop a value and store it in shared variable crit"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Load counter",
+            "push value of shared variable counter"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store counter",
+            "pop a value and store it in shared variable counter"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load crit",
+            "push value of shared variable crit"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store crit",
+            "pop a value and store it in shared variable crit"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Push ?wants",
+            "push constant ?wants"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "Jump 25",
+            "set program counter to 25"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Push ?PC(22)",
+            "push constant ?PC(22)"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "Push ?PC(22)",
+            "push constant ?PC(22)"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "DelVar result",
+            "delete method variable result"
+          ]
+      ],
+    "locs": [
+        {
+            "module": "__main__",
+            "endline": 33,
+            "stmt": [
+                2,
+                1,
+                33,
+                7
+              ],
+            "line": 2,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 6,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 5,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 16,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 31,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 22,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 31,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 31,
+            "column": 25
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                31
+              ],
+            "line": 3,
+            "endcolumn": 31,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 14,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 21,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                1,
+                4,
+                22
+              ],
+            "line": 4,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                8
+              ],
+            "line": 5,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                8
+              ],
+            "line": 5,
+            "endcolumn": 6,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                1,
+                7,
+                11
+              ],
+            "line": 7,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                1,
+                7,
+                11
+              ],
+            "line": 7,
+            "endcolumn": 9,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                4
+              ],
+            "line": 8,
+            "endcolumn": 4,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                4
+              ],
+            "line": 8,
+            "endcolumn": 2,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                14
+              ],
+            "line": 9,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                14
+              ],
+            "line": 9,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                11,
+                2,
+                11,
+                10
+              ],
+            "line": 11,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                11,
+                2,
+                11,
+                10
+              ],
+            "line": 11,
+            "endcolumn": 10,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                2,
+                12,
+                13
+              ],
+            "line": 12,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                2,
+                12,
+                13
+              ],
+            "line": 12,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                2,
+                12,
+                13
+              ],
+            "line": 12,
+            "endcolumn": 12,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                2,
+                12,
+                13
+              ],
+            "line": 12,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                3,
+                14,
+                19
+              ],
+            "line": 14,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                3,
+                14,
+                19
+              ],
+            "line": 14,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                3,
+                14,
+                19
+              ],
+            "line": 14,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                3,
+                14,
+                19
+              ],
+            "line": 14,
+            "endcolumn": 19,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                3,
+                14,
+                19
+              ],
+            "line": 14,
+            "endcolumn": 14,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 22,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 15,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 21,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 21,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 22,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 22,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 10,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 16,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 22,
+            "column": 20
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 22,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                4,
+                17,
+                24
+              ],
+            "line": 17,
+            "endcolumn": 5,
+            "column": 4
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                5,
+                18,
+                22
+              ],
+            "line": 18,
+            "endcolumn": 9,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                5,
+                18,
+                22
+              ],
+            "line": 18,
+            "endcolumn": 13,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                5,
+                18,
+                22
+              ],
+            "line": 18,
+            "endcolumn": 14,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                5,
+                18,
+                22
+              ],
+            "line": 18,
+            "endcolumn": 22,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                5,
+                18,
+                22
+              ],
+            "line": 18,
+            "endcolumn": 16,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 14,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 21,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 21,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 21,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 21,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                5,
+                19,
+                21
+              ],
+            "line": 19,
+            "endcolumn": 21,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                5,
+                20,
+                21
+              ],
+            "line": 20,
+            "endcolumn": 9,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                5,
+                20,
+                21
+              ],
+            "line": 20,
+            "endcolumn": 13,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                5,
+                20,
+                21
+              ],
+            "line": 20,
+            "endcolumn": 14,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                5,
+                20,
+                21
+              ],
+            "line": 20,
+            "endcolumn": 21,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                5,
+                20,
+                21
+              ],
+            "line": 20,
+            "endcolumn": 16,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                3,
+                16,
+                23
+              ],
+            "line": 16,
+            "endcolumn": 23,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 21,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 20,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                14,
+                22,
+                21
+              ],
+            "line": 22,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 11,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 21,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 20,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 26,
+            "stmt": [
+                26,
+                14,
+                26,
+                21
+              ],
+            "line": 26,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                3,
+                27,
+                16
+              ],
+            "line": 27,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                3,
+                27,
+                16
+              ],
+            "line": 27,
+            "endcolumn": 16,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                3,
+                27,
+                16
+              ],
+            "line": 27,
+            "endcolumn": 16,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                3,
+                27,
+                16
+              ],
+            "line": 27,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                3,
+                28,
+                20
+              ],
+            "line": 28,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                3,
+                28,
+                20
+              ],
+            "line": 28,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                3,
+                28,
+                20
+              ],
+            "line": 28,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                3,
+                28,
+                20
+              ],
+            "line": 28,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                3,
+                28,
+                20
+              ],
+            "line": 28,
+            "endcolumn": 14,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                6
+              ],
+            "line": 30,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                6
+              ],
+            "line": 30,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                6
+              ],
+            "line": 30,
+            "endcolumn": 6,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                6
+              ],
+            "line": 30,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                6
+              ],
+            "line": 30,
+            "endcolumn": 5,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                2,
+                12,
+                13
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                14
+              ],
+            "line": 9,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                14
+              ],
+            "line": 9,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                14
+              ],
+            "line": 9,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                13
+              ],
+            "line": 31,
+            "endcolumn": 10,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                13
+              ],
+            "line": 31,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                13
+              ],
+            "line": 31,
+            "endcolumn": 13,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                13
+              ],
+            "line": 31,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                13
+              ],
+            "line": 31,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                1,
+                32,
+                13
+              ],
+            "line": 32,
+            "endcolumn": 10,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                1,
+                32,
+                13
+              ],
+            "line": 32,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                1,
+                32,
+                13
+              ],
+            "line": 32,
+            "endcolumn": 13,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                1,
+                32,
+                13
+              ],
+            "line": 32,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                1,
+                32,
+                13
+              ],
+            "line": 32,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 33,
+            "stmt": [
+                2,
+                1,
+                33,
+                7
+              ],
+            "line": 2,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 33,
+            "stmt": [
+                2,
+                1,
+                33,
+                7
+              ],
+            "line": 2,
+            "endcolumn": 7,
+            "column": 1
+          }
+      ],
+    "code": [
+        {
+            "args": "()",
+            "name": "__init__",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "crit"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "turn"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "counter"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "wants"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 10
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "I"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "98",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "dekk",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "I"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "95",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "pc": "64",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "34",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "52",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "58",
+            "op": "Jump"
+          },
+        {
+            "pc": "52",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "pc": "34",
+            "op": "Jump"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "crit"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "crit"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "crit"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "crit"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "wants"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "pc": "25",
+            "op": "Jump"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "22"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "22"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": "result",
+            "op": "DelVar"
+          }
+      ]
+  },
+  "symbols": {
+
+  },
+  "nodes": [
+    {
+      "idx": 0,
+      "component": 17704,
+      "transitions": [
+
+      ],
+      "type": "initial"
+    }
+  ],
+  "profile": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    68,
+    68,
+    68,
+    488,
+    1328,
+    1328,
+    1328,
+    1202,
+    1202,
+    1202,
+    1202,
+    1202,
+    2375,
+    2375,
+    2375,
+    2375,
+    2375,
+    1202,
+    1202,
+    1166,
+    1166,
+    1166,
+    1166,
+    1166,
+    1166,
+    563,
+    563,
+    563,
+    563,
+    925,
+    1133,
+    1133,
+    1133,
+    1133,
+    570,
+    0,
+    570,
+    570,
+    570,
+    570,
+    570,
+    570,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    762,
+    420,
+    420,
+    420,
+    420,
+    420,
+    420,
+    420,
+    126,
+    126,
+    126,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0
+  ]
+}
+
+;
+var boxSize = 10;
+var timeWidth = 40;
+var currentTime = 0;
+var totalTime = 0;
+var microsteps = [];
+var megasteps = []
+var threads = [];
+var curMegaStep = 0;
+var mestable = document.getElementById("mestable");
+var threadtable = document.getElementById("threadtable");
+var coderow = document.getElementById("coderow");
+// var hvmrow = document.getElementById("hvmrow");
+var container = document.getElementById('table-scroll');
+var currOffset = 0;
+var currCloc = null;
+
+// printing contexts
+var contexts = {};
+var ctxGen = 0;
+
+function json_string_list(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "[ " + result + " ]";
+}
+
+function json_string_tuple(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "(" + result + ")";
+}
+
+function json_string_set(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "{ " + result + " }";
+}
+
+function json_string_dict(obj) {
+  if (obj.length == 0) {
+    return "{:}"
+  }
+
+  var islist = true;
+  for (var i = 0; i < obj.length; i++) {
+    if (obj[i].key.type != "int" || obj[i].key.value != i.toString()) {
+      islist = false;
+      break;
+    }
+  }
+
+  var result = "";
+  if (islist) {
+    for (var i = 0; i < obj.length; i++) {
+      if (i != 0) {
+        result += ", ";
+      }
+      result += json_string(obj[i].value);
+    }
+    if (obj.length == 1) {
+      result += ",";
+    }
+    return "[" + result + "]";
+  }
+
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    var kv = obj[i];
+    var k = json_string(kv.key);
+    var v = json_string(kv.value);
+    result += k + ": " + v;
+  }
+  return "{ " + result + " }";
+}
+
+function json_string_address(func, args) {
+  var result = "?";
+  var index = 0;
+  if (func.type == "pc") {
+    if (func.value == -1 || func.value == -2) {
+      result += args[0].value;
+      index = 1;
+    }
+    else if (func.value == -3) {
+      result += "this." + args[0].value;
+      index = 1;
+    }
+    else {
+      result += json_string(func);
+    }
+  }
+  else {
+    result += json_string(func);
+  }
+  for (var i = index; i < args.length; i++) {
+    result += "[" + json_string(args[i]) + "]";
+  }
+  return result;
+}
+
+function json_string_context(obj) {
+  // TODO.  Is JSON.stringify deterministic (same context --> same string)?
+  var key = JSON.stringify(obj);
+  if (!(key in contexts)) {
+    contexts[key] = ++ctxGen;
+  }
+  var output = '<span title="CONTEXT\n';
+  if ("id" in obj) {
+    output += "id: " + json_string(obj["id"]) + "\n";
+  }
+  output += "pc: " + json_string(obj["pc"]) + "\n";
+  output += "vars: " + stringify_vars(obj["vars"]) + "\n";
+  var atomic = "atomic" in obj && obj["atomic"]["value"] == "True";
+  var stopped = "stopped" in obj && obj["stopped"]["value"] == "True";
+  if (atomic || stopped) {
+    output += "mode:"
+    if (atomic) output += " atomic";
+    if (stopped) output += " stopped";
+    output += "\n";
+  }
+  output += "sp: " + json_string(obj["sp"]);
+  return output + '" style="color:blue">C' + contexts[key] + '</span>';
+
+  // var pc = json_string(obj.pc);
+  // return "CTX(" + pc + ")";
+}
+
+function json_string(obj) {
+  switch (obj.type) {
+  case "bool": case "int":
+    return obj.value;
+  case "atom":
+    return '"' + obj.value + '"';
+  case "set":
+    return json_string_set(obj.value);
+  case "list":
+    return json_string_list(obj.value);
+  case "dict":
+    return json_string_dict(obj.value);
+  case "pc":
+    return "PC(" + obj.value + ")"
+  case "address":
+    if ("func" in obj) {
+      return json_string_address(obj.func, obj.args);
+    }
+    return "None";
+  case "context":
+    return json_string_context(obj.value);
+  default:
+    return JSON.stringify(obj);
+  }
+}
+
+var noloc = { file: "", line: "", code: "" };
+
+function getCode(pc) {
+  var loc = state.hvm.locs[pc];
+  var module = state.hvm.modules[loc.module];
+  loc.file = module.file;
+  loc.code = module.lines[loc.line - 1];
+  return loc;
+//  var locs = state.locations;
+//  while (pc >= 0) {
+//    s = "" + pc;
+//    if (locs.hasOwnProperty(s)) {
+//      return locs[s];
+//    }
+//    pc--;
+//  }
+//  return noloc;
+}
+
+function drawTimeLine(mes) {
+  var c = mes.canvas.getContext("2d");
+  c.beginPath();
+  c.clearRect(0, 0, mes.canvas.width, mes.canvas.height);
+  var t = mes.startTime;
+  var yboxes = Math.floor((mes.nsteps + timeWidth - 1) / timeWidth);
+  var nsteps = mes.nsteps;
+  for (var y = 0; y < yboxes; y++) {
+    var xboxes = nsteps > timeWidth ? timeWidth : nsteps;
+    for (var x = 0; x < xboxes; x++) {
+      c.fillStyle = t < currentTime ? "orange" : "white";
+      c.fillRect(x * boxSize, y * boxSize, boxSize, boxSize);
+      c.rect(x * boxSize, y * boxSize, boxSize, boxSize);
+      c.stroke();
+      t += 1;
+    }
+    nsteps -= xboxes;
+  }
+  mes.nextstep.innerHTML = "";
+  return t;
+}
+
+function updateStatus(mes) {
+  for (var i = 0; i < mes.contexts.length; i++) {
+    var c = mes.contexts[i];
+    if (c.tid == mes.tid) {
+      if (c.mode == "terminated") {
+        mes.nextstep.innerHTML = "terminated"
+      }
+      else if (c.hasOwnProperty("next")) {
+        switch (c.next.type) {
+        case "Continue":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "stopped in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line;
+          break;
+        case "Store":
+          mes.nextstep.innerHTML = "about to store " + json_string(c.next.value) + " in variable " + c.next.var;
+          break;
+        case "Load":
+          mes.nextstep.innerHTML = "about to load variable " + c.next.var;
+          break;
+        case "Assert":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "assertion failed in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line + ":" + loc.code;
+          mes.nextstep.style.color = "red";
+          break;
+        case "AtomicInc":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "about to execute in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line + ":" + loc.code;
+          break;
+        case "Print":
+          mes.nextstep.innerHTML = "about to print " + json_string(c.next.value);
+          break;
+        default:
+           mes.nextstep.innerHTML = "about to " + state.hvm.pretty[c.pc][1];
+        }
+      }
+      break;
+    }
+  }
+}
+
+function currentMegaStep() {
+  if (currentTime == totalTime) {
+    return microsteps[currentTime - 1].mesidx;
+  }
+  return microsteps[currentTime].mesidx;
+}
+
+function stringify_vars(obj) {
+  var result = "";
+  for (var k in obj) {
+    if (false && k == "result" && obj[k].type == "address" && !("func" in obj)) {
+      continue;
+    }
+    if (result != "") {
+      result += ", ";
+    }
+    result += k + ": " + json_string(obj[k]);
+  }
+  return result;
+}
+
+function convert_var(obj) {
+  if (obj.type != "dict") {
+    return json_string(obj);
+  }
+  if (obj.value.length == 0) {
+    return "";
+  }
+  var result = {};
+  for (var i = 0; i < obj.value.length; i++) {
+    var kv = obj.value[i];
+    var k = json_string(kv.key);      // TODO.  convert_var???
+    result[k] = convert_var(kv.value);
+  }
+  return result;
+}
+
+function convert_vars(obj) {
+  var result = {};
+  for (var k in obj) {
+    result[k] = convert_var(obj[k]);
+  }
+  return result;
+}
+
+function method_call(m, arg) {
+  var result = "";
+  if (m.type == "atom") {
+    result += m.value;
+  }
+  else {
+    result += json_string(m);
+  }
+  if (arg.type == "list") {
+    result += json_string_tuple(arg.value);
+  }
+  else {
+    result += "(" + json_string(arg) + ")";
+  }
+  return result;
+}
+
+function stackTrace(tid, trace, failure) {
+  var table = threads[tid].tracetable;
+  table.innerHTML = "";
+  if (trace.length == 0) {
+    var row = table.insertRow();
+    var mcell = row.insertCell();
+    mcell.innerHTML = threads[tid].name;
+  }
+  for (var i = 0; i < trace.length; i++) {
+    var row = table.insertRow();
+
+    var mcell = row.insertCell();
+    // mcell.innerHTML = trace[i].method;
+    mcell.innerHTML = method_call(trace[i].method_name, trace[i].method_arg);
+    switch (trace[i].calltype) {
+    case "process":
+        mcell.style.color = "blue";
+        break;
+    case "normal":
+        mcell.style.color = "black";
+        break;
+    case "interrupt":
+        mcell.style.color = "orange";
+        break;
+    default:
+        mcell.style.color = "red";
+    }
+
+    var vcell = row.insertCell();
+    // var vtext = document.createTextNode(stringify_vars(trace[i].vars));
+    var vtext = document.createElement("div");
+    vtext.innerHTML = stringify_vars(trace[i].vars);
+    vcell.appendChild(vtext);
+  }
+  if (false && failure != null) {
+    var row = table.insertRow();
+    var fcell = row.insertCell();
+    fcell.innerHTML = failure;
+    fcell.colSpan = 2;
+    fcell.style.color = "red";
+  }
+}
+
+function addToLog(step, entry) {
+  var table = megasteps[step].log;
+  var row = table.insertRow();
+  var mcell = row.insertCell();
+  mcell.innerHTML = entry;
+}
+
+function handleClick(e, mesIdx) {
+  var x = Math.floor(e.offsetX / boxSize);
+  var y = Math.floor(e.offsetY / boxSize);
+  currentTime = megasteps[mesIdx].startTime + y*timeWidth + x + 1;
+  run_microsteps();
+}
+
+function handleKeyPress(e) {
+  switch (e.key) {
+    case '0':
+      currentTime = 0;
+      run_microsteps();
+      break;
+    case 'ArrowLeft':
+      if (currentTime > 0) {
+        currentTime -= 1;
+      }
+      run_microsteps();
+      break;
+    case 'ArrowRight':
+      if (currentTime < totalTime) {
+        currentTime += 1;
+      }
+      run_microsteps();
+      break;
+    case 'ArrowUp':
+      var mesidx = currentMegaStep();
+      var mes = megasteps[mesidx];
+      if (currentTime == mes.startTime && mesidx > 0) {
+          mes = megasteps[mesidx - 1];
+      }
+      currentTime = mes.startTime;
+      run_microsteps();
+      break;
+    case 'ArrowDown':
+      var mesidx = currentMegaStep();
+      var mes = megasteps[mesidx];
+      currentTime = mes.startTime + mes.nsteps;
+      if (currentTime > totalTime) {
+        currentTime = totalTime;
+      }
+      run_microsteps();
+      break;
+    case 'Enter':
+      if (currentTime < totalTime) {
+        var cloc = getCode(microsteps[currentTime].pc);
+        while (++currentTime < totalTime) {
+          var nloc = getCode(microsteps[currentTime].pc);
+          if (nloc.file != cloc.file || nloc.line != cloc.line || nloc.code != cloc.code) {
+            break;
+          }
+        }
+        run_microsteps();
+      }
+      break;
+    default:
+      // alert("unknown key " + e.code);
+  }
+}
+
+function init_microstep(masidx, misidx) {
+  var mas = state.macrosteps[masidx];
+  var mis = mas.microsteps[misidx];
+  var tid = mas.tid;
+  var t = microsteps.length;
+  megasteps[curMegaStep].contexts = mas.contexts;
+  if (t > 0 && microsteps[t - 1].tid != tid) {
+    curMegaStep++;
+    megasteps[curMegaStep].startTime = t;
+    megasteps[curMegaStep].tid = tid;
+  }
+  var mes = megasteps[curMegaStep];
+  mes.nsteps++;
+  microsteps[t] = {
+    mesidx: curMegaStep,
+    masidx: masidx,
+    misidx: misidx,
+    tid: parseInt(tid),
+    pc: parseInt(mis.pc),
+    // invfails: misidx == mas.microsteps.length - 1 ? mas.invfails : [],
+    contexts: mas.contexts,
+    hvm: mis.code,
+    explain2: mis.explain2
+  };
+  if (misidx != 0) {
+    previous = microsteps[t-1];
+  }
+  else {
+    ctx = mas.context;
+    previous = { mode: ctx.mode, };
+    if (ctx.hasOwnProperty("atomic")) {
+      previous.atomic = ctx["atomic"];
+    }
+    else {
+      previous.atomic = 0;
+    }
+    if (ctx.hasOwnProperty("readonly")) {
+      previous.readonly = ctx["readonly"];
+    }
+    else {
+      previous.readonly = 0;
+    }
+    if (ctx.hasOwnProperty("interruptlevel")) {
+      previous.interruptlevel = ctx["interruptlevel"];
+    }
+    else {
+      previous.interruptlevel = 0;
+    }
+    if (ctx.hasOwnProperty("trace")) {
+      previous.trace = ctx.trace;
+    }
+    else {
+      previous.trace = [];
+    }
+    if (ctx.hasOwnProperty("fp")) {
+      previous.fp = ctx.fp;
+    }
+    else {
+      previous.fp = 0;
+    }
+    if (ctx.hasOwnProperty("stack")) {
+      previous.stack = ctx.stack.map(x => json_string(x));
+    }
+    else {
+      previous.stack = [];
+    }
+    if (mas.hasOwnProperty("shared")) {
+      previous.shared = convert_vars(mas.shared);
+    }
+    else {
+      previous.shared = {};
+    }
+  }
+
+  if (mis.hasOwnProperty("npc")) {
+    microsteps[t].npc = mis.npc;
+  }
+  else {
+    microsteps[t].npc = mis.pc;
+  }
+
+  microsteps[t].code = getCode(microsteps[t].npc);
+
+  microsteps[t].cloc = document.getElementById('C' + microsteps[t].npc);
+  var npc = microsteps[t].npc - 4;
+  if (npc < 0) {
+    npc = 0;
+  }
+  microsteps[t].offset = document.getElementById('P' + npc);
+
+  if (mis.hasOwnProperty("mode")) {
+    microsteps[t].mode = mis.mode;
+  }
+  else {
+    microsteps[t].mode = previous.mode;
+  }
+
+  if (mis.hasOwnProperty("atomic")) {
+    microsteps[t].atomic = mis["atomic"];
+  }
+  else {
+    microsteps[t].atomic = previous.atomic;
+  }
+
+  if (mis.hasOwnProperty("readonly")) {
+    microsteps[t].readonly = mis["readonly"];
+  }
+  else {
+    microsteps[t].readonly = previous.readonly;
+  }
+
+  if (mis.hasOwnProperty("interruptlevel")) {
+    microsteps[t].interruptlevel = mis["interruptlevel"];
+  }
+  else {
+    microsteps[t].interruptlevel = previous.interruptlevel;
+  }
+
+  if (mis.hasOwnProperty("choose")) {
+    microsteps[t].choose = "chose " + json_string(mis["choose"]);
+  }
+  else {
+    microsteps[t].choose = null;
+  }
+  if (mis.hasOwnProperty("print")) {
+    microsteps[t].print = json_string(mis["print"]);
+  }
+  else {
+    microsteps[t].print = null;
+  }
+
+  if (mis.hasOwnProperty("failure")) {
+    microsteps[t].failure = mis.failure;
+    microsteps[t].cloc = null;
+  }
+  else {
+    microsteps[t].failure = null;
+  }
+
+  if (mis.hasOwnProperty("trace")) {
+    microsteps[t].trace = mis.trace;
+  }
+  else {
+    microsteps[t].trace = previous.trace;
+  }
+
+  // Update local variables
+  var trl = microsteps[t].trace.length; 
+  if (trl > 0 && mis.hasOwnProperty("local")) {
+    // deep copy first
+    microsteps[t].trace = JSON.parse(JSON.stringify(microsteps[t].trace));
+    microsteps[t].trace[trl - 1].vars = mis.local;
+  }
+
+  if (mis.hasOwnProperty("shared")) {
+    microsteps[t].shared = convert_vars(mis.shared);
+  }
+  else {
+    microsteps[t].shared = previous.shared;
+  }
+
+  if (mis.hasOwnProperty("fp")) {
+    microsteps[t].fp = mis.fp;
+  }
+  else {
+    microsteps[t].fp = previous.fp;
+  }
+  if (mis.hasOwnProperty("pop")) {
+    var n = parseInt(mis.pop);
+    microsteps[t].stack = previous.stack.slice(0,
+                              previous.stack.length - n);
+  }
+  else {
+    microsteps[t].stack = previous.stack;
+  }
+  if (mis.hasOwnProperty("push")) {
+    var vals = mis.push.map(x => json_string(x));
+    microsteps[t].stack = microsteps[t].stack.concat(vals);
+  }
+}
+
+function init_macrostep(i) {
+  var mas = state.macrosteps[i];
+  for (var j = 0; j < mas.microsteps.length; j++) {
+    init_microstep(i, j);
+  }
+  for (var ctx = 0; ctx < mas.contexts.length; ctx++) {
+    var tid = parseInt(mas.contexts[ctx].tid);
+    threads[tid].name = mas.contexts[ctx].name;
+  }
+}
+
+function dict_convert(d) {
+  if (typeof d === "string") {
+    return d;
+  }
+  result = "";
+  for (var k in d) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += dict_convert(k) + ":" + dict_convert(d[k]);;
+  }
+  return "{" + result + "}";
+}
+
+function get_shared(shared, path) {
+  if (!shared.hasOwnProperty(path[0])) {
+    return "";
+  }
+  if (path.length == 1) {
+    return dict_convert(shared[path[0]]);
+  }
+  return get_shared(shared[path[0]], path.slice(1));
+}
+
+function get_status(ctx) {
+  var status = ctx.mode;
+  if (status != "terminated") {
+    if (ctx.atomic > 0) {
+      status += " atomic";
+    }
+    if (ctx.readonly > 0) {
+      status += " read-only";
+    }
+    if (ctx.interruptlevel > 0) {
+      status += " interrupts-disabled";
+    }
+  }
+  return status;
+}
+
+function escapeHTML(s) {
+  return s
+     .replace(/&/g, "&amp;")
+     .replace(/</g, "&lt;")
+     .replace(/>/g, "&gt;")
+     .replace(/"/g, "&quot;")
+     .replace(/'/g, "&#039;");
+}
+
+function explain_expand(e) {
+    var s = e.text;
+    var result = "";
+    var arg = 0;
+    for (var i = 0; i < s.length; i++) {
+      if (s[i] == '#') {
+        i++;
+        if (i == s.length) {
+          break;
+        }
+        if (s[i] == '#') {
+          result += '#';
+        }
+        else if (s[i] == '+') {
+          result += json_string(e.args[arg++]);
+        }
+        else if (s[i] == '@') {
+          var addr = json_string(e.args[arg++]);
+          result += addr.slice(1);
+        }
+        else {
+          result += json_string(e.args[parseInt(s[i])]);
+        }
+      }
+      else {
+        result += s[i];
+      }
+    }
+    return result;
+}
+
+function run_microstep(t) {
+  var mis = microsteps[t];
+  var mes = megasteps[mis.mesidx];
+  var mesrow = mestable.rows[mis.mesidx];
+  mesrow.cells[3].innerHTML = mis.npc;
+
+  for (var i = 0; i < vardir.length; i++) {
+    mesrow.cells[i + 4].innerHTML = get_shared(mis.shared, vardir[i]);
+  }
+
+  if (mis.failure != null) {
+    stackTrace(mis.tid, mis.trace, mis.failure);
+  }
+  else if (mis.print != null) {
+    stackTrace(mis.tid, mis.trace, "print " + mis.print);
+    addToLog(mis.mesidx, mis.print);
+  }
+  else {
+    stackTrace(mis.tid, mis.trace, mis.choose);
+  }
+
+  for (var ctx = 0; ctx < mis.contexts.length; ctx++) {
+    var cv = mis.contexts[ctx];
+    var tid = parseInt(cv.tid);
+    threads[tid].name = cv.name;
+    threadtable.rows[tid].cells[1].innerHTML = get_status(cv);
+    threadtable.rows[tid].cells[3].innerHTML = cv.stack.slice(cv.fp).map(x => json_string(x));
+  }
+  if (t != mes.startTime + mes.nsteps - 1) {
+    threadtable.rows[mis.tid].cells[1].innerHTML = get_status(mis);
+  }
+  threadtable.rows[mis.tid].cells[3].innerHTML = mis.stack.slice(mis.fp);
+
+//  if (mis.invfails.length > 0) {
+//    var inv = mis.invfails[0];
+//    code = getCode(inv.pc);
+//    coderow.style.color = "red";
+//    coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(code.code) + " (" + inv.reason + ")";
+//    mis.cloc = null;
+//  }
+//  else
+    {
+    coderow.style.color = "blue";
+    if (t+1 < microsteps.length) {
+      var nmis = microsteps[t+1];
+      code = getCode(nmis.pc);
+      var l1 = parseInt(code.line);
+      var l2 = parseInt(code.endline);
+      if (l1 == l2 && l1 == code.stmt[0] && l2 == code.stmt[2]) {
+        var c1 = parseInt(code.column) - 1;
+        var c2 = parseInt(code.endcolumn);
+        var s1 = code.code.slice(0, c1);
+        var s2 = code.code.slice(c1, c2);
+        var s3 = code.code.slice(c2);
+        coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(s1) + "<span style='color:green'>" + escapeHTML(s2) + "</span>" + escapeHTML(s3);
+      }
+      else {
+        coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(code.code);
+      }
+    }
+  }
+
+  if (mis.failure != null) {
+    mes.nextstep.innerHTML = '<span style="color:red">' + mis.failure + '</span>';
+  }
+  else if (t+1 < microsteps.length) {
+    var nmis = microsteps[t+1];
+    if (nmis.tid == mis.tid) {
+        mes.nextstep.innerHTML = "next: " + explain_expand(nmis.explain2);
+    }
+    else {
+        updateStatus(mes);
+    }
+
+    // hvmrow.innerHTML = "T" + nmis.tid + "/" + nmis.pc + ": " + nmis.hvm + " (" + explain_expand(nmis.explain2) + ")"
+    currCloc = document.getElementById('C' + nmis.pc);
+    currOffset = document.getElementById('P' + nmis.pc);
+  }
+  else {
+    currCloc = null;
+    currOffset = mis.offset;
+    updateStatus(mes);
+  }
+}
+
+function run_microsteps() {
+  coderow.innerHTML = "";
+  // hvmrow.innerHTML = "";
+  if (currCloc != null) {
+    currCloc.style.color = "black";
+  }
+  currCloc = document.getElementById('C0');
+  currOffset = document.getElementById('P0');
+  for (var i = 0; i < nmegasteps; i++) {
+    mestable.rows[i].cells[3].innerHTML = "";
+    for (var j = 0; j < vardir.length; j++) {
+      mestable.rows[i].cells[j + 4].innerHTML = "";
+    }
+    megasteps[i].log.innerHTML = "";
+  }
+  for (var tid = 0; tid < nthreads; tid++) {
+    threadtable.rows[tid].cells[1].innerHTML = "init";
+    stackTrace(tid, [], null);
+    threadtable.rows[tid].cells[3].innerHTML = threads[tid].stack;
+  }
+
+  for (var i = 0; i < nmegasteps; i++) {
+    drawTimeLine(megasteps[i]);
+  }
+  for (var t = 0; t < currentTime; t++) {
+    run_microstep(t);
+  }
+  if (currentTime < microsteps.length && (currentTime == 0 ||
+            microsteps[currentTime - 1].tid != microsteps[currentTime].tid)) {
+    var mis = microsteps[currentTime];
+    var mes = megasteps[mis.mesidx];
+    mes.nextstep.innerHTML = "next: " + explain_expand(mis.explain2);
+    var mesrow = mestable.rows[mis.mesidx];
+    mesrow.cells[3].innerHTML = mis.pc;
+
+    if (mis.mesidx > 0) {
+      var oldrow = mestable.rows[mis.mesidx - 1];
+      for (var i = 0; i < vardir.length; i++) {
+        mesrow.cells[i + 4].innerHTML = oldrow.cells[i + 4].innerHTML;
+      }
+    }
+  }
+  container.scrollTop = currOffset.offsetTop;
+
+  if (currCloc != null) {
+    currCloc.style.color = "red";
+  }
+
+  var curmes = currentTime < totalTime ? microsteps[currentTime].mesidx : -1;
+  for (var mes = 0; mes < nmegasteps; mes++) {
+    var row = document.getElementById("mes" + mes);
+    if (mes == curmes) {
+      row.style = 'background-color: #A5FF33;';
+    }
+    else {
+      row.style = 'background-color: white;';
+    }
+  }
+
+  var curtid = currentTime < totalTime ? microsteps[currentTime].tid : -1;
+  for (var tid = 0; tid < nthreads; tid++) {
+    var row = document.getElementById("thread" + tid);
+    if (tid == curtid) {
+      row.style = 'background-color: #A5FF33;';
+    }
+    else {
+      row.style = 'background-color: white;';
+    }
+  }
+}
+
+// Initialization starts here
+
+for (var tid = 0; tid < nthreads; tid++) {
+  threads[tid] = {
+    name: "T" + tid,
+    status: "normal",
+    stack: [],
+    stacktrace: [],
+    tracetable: document.getElementById("threadinfo" + tid)
+  };
+}
+threads[0].stack = [ "()" ]
+for (let i = 0; i < nmegasteps; i++) {
+  var canvas = document.getElementById("timeline" + i);
+  var nextstep = document.getElementById("nextstep" + i); 
+  megasteps[i] = {
+    canvas: canvas,
+    nextstep: nextstep,
+    startTime: 0,
+    nsteps: 0,
+    contexts: [],
+    tid: 0,
+    log: document.getElementById("log" + i)
+  };
+  canvas.addEventListener('mousedown', function(e){handleClick(e, i)});
+}
+for (var j = 0; j < state.macrosteps.length; j++) {
+  init_macrostep(j);
+}
+
+currentTime = totalTime = microsteps.length;
+run_microsteps();
+document.addEventListener('keydown', handleKeyPress);
+
+</script>
+</body>
+</html>
