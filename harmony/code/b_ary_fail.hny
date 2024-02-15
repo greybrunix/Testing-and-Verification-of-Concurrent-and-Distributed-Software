@@ -1,6 +1,8 @@
 #critical reached?
 #invariant reached_crit in {0, 1} # safety
-
+in_cs = 0
+#invariant   #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
+invariant  (in_cs in { 0, 1 }) and (any [entering tid for tid in [0,1]] => one_entered [0,1])
 sequential turn, lockTaken, flags
 turn = 0
 lockTaken = False
@@ -11,7 +13,9 @@ def fail0 p_q:
 		# non crit
 		#entering crit
 		#crit
-		counter += 1
+		atomically in_cs += 1
+		atomically in_cs -= 1
+
 		#leave crit
 def fail1 p_q:
 	while choose {False, True}:
@@ -19,7 +23,8 @@ def fail1 p_q:
 		await not lockTaken
 		lockTaken = True
 		#cs
-		counter += 1
+		atomically in_cs += 1
+		atomically in_cs -= 1
 		#leaving cs
 		lockTaken = False
 def fail2 p_q:
@@ -28,7 +33,8 @@ def fail2 p_q:
 		turn = 1 - p_q
 		await turn == p_q
 		# critical
-		counter += 1
+		atomically in_cs += 1
+		atomically in_cs -= 1
 		# leaving critical
 		# post protocol
 def fail3 p_q:
@@ -37,7 +43,8 @@ def fail3 p_q:
 		flags p_q = True
 		await not flags (1 - p_q)
 		#crit
-		counter += 1
+		atomically in_cs += 1
+		atomically in_cs -= 1
 		#leaving
 		flags p_q = False
 def fail4 p_q:
@@ -45,7 +52,24 @@ def fail4 p_q:
 		while not (turn == p_q):
 			pass
 		#cs
-		counter += 1
+		atomically in_cs += 1
+		atomically in_cs -= 1
+		#counter += 1
 		turn = 1 - p_q
-spawn fail4 0;
-spawn fail4 1;
+
+def entering tid returns tst1:
+    tst1 = (turn != tid)
+
+def one_entered tids returns tst2:
+    var i = 0
+    tst2 = False
+    while (i < len(tids)) and (not tst2):
+        if cs i:
+            tst2 = True
+        i += 1
+
+def cs tid returns tst3:
+    tst3 =  turn == tid
+
+spawn fail2 0;
+spawn fail2 1;

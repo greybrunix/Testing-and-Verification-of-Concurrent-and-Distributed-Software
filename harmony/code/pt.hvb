@@ -1,0 +1,890 @@
+Issue: Safety violation
+
+Modules:
+  __main__: pt.hny
+
+================================================
+Running thread T0: __init__()
+mode:  runnable atomic
+stack: ['[]']
+state id: 1
+================================================
+
+Step 1:
+  program counter:   0
+  hvm code:          Frame __init__()
+  explanation:       pop argument () and run method "__init__"
+  module:            __main__
+  start statement:   line=1 column=1
+  end statement:     line=36 column=7
+  source code:       in_cs = 0
+  call trace:        __init__()
+  stack:             [{:}]
+
+Step 2:
+  program counter:   1
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=1 column=1
+  end statement:     line=1 column=9
+  source code:       in_cs = 0
+                             ^
+  stack:             [{:}, 0]
+
+Step 3:
+  program counter:   2
+  hvm code:          Store in_cs
+  explanation:       pop value (0) and store into variable in_cs
+  source code:       in_cs = 0
+                     ^^^^^^^
+  shared variables:  { in_cs: 0 }
+  stack:             [{:}]
+
+Step 4:
+  program counter:   3
+  hvm code:          Jump 15
+  explanation:       jump over invariant definition: set program counter to 15
+  start statement:   line=2 column=1
+  end statement:     line=2 column=33
+  source code:       invariant not (in_cs in { 0, 1 }) 
+                     ^^^^^^^^^
+
+Step 5:
+  program counter:   15
+  hvm code:          Invariant 4
+  explanation:       test invariant
+  source code:       invariant not (in_cs in { 0, 1 }) 
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 6:
+  program counter:   16
+  hvm code:          Jump 52
+  explanation:       jump over invariant definition: set program counter to 52
+  start statement:   line=3 column=1
+  end statement:     line=3 column=72
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                     ^^^^^^^^^
+
+Step 7:
+  program counter:   52
+  hvm code:          Invariant 17
+  explanation:       test invariant
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 8:
+  program counter:   53
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=4 column=1
+  end statement:     line=4 column=22
+  source code:       sequential flags, turn
+                                ^^^^^
+  stack:             [{:}, ?flags]
+
+Step 9:
+  program counter:   54
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential flags, turn
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 10:
+  program counter:   55
+  hvm code:          Push ?turn
+  explanation:       push constant ?turn
+  source code:       sequential flags, turn
+                                       ^^^^
+  stack:             [{:}, ?turn]
+
+Step 11:
+  program counter:   56
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential flags, turn
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 12:
+  program counter:   57
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=5 column=1
+  end statement:     line=5 column=24
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 13:
+  program counter:   58
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = ( False, False )
+                               ^^^^^
+  stack:             [{:}, [], False]
+
+Step 14:
+  program counter:   59
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, []); insert first value into the second; push result ([False])
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, [ False ]]
+
+Step 15:
+  program counter:   60
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = ( False, False )
+                                      ^^^^^
+  stack:             [{:}, [ False ], False]
+
+Step 16:
+  program counter:   61
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, [False]); insert first value into the second; push result ([False, False])
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, [ False, False ]]
+
+Step 17:
+  program counter:   62
+  hvm code:          Store flags
+  explanation:       pop value ([False, False]) and store into variable flags
+  source code:       flags = ( False, False )
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ], in_cs: 0 }
+  stack:             [{:}]
+
+Step 18:
+  program counter:   63
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=6 column=1
+  end statement:     line=6 column=23
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, {}]
+
+Step 19:
+  program counter:   64
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       turn  = choose { 0, 1 }
+                                      ^
+  stack:             [{:}, {}, 0]
+
+Step 20:
+  program counter:   65
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (0, {}); insert first value into the second; push result ({ 0 })
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, { 0 }]
+
+Step 21:
+  program counter:   66
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       turn  = choose { 0, 1 }
+                                         ^
+  stack:             [{:}, { 0 }, 1]
+
+Step 22:
+  program counter:   67
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (1, { 0 }); insert first value into the second; push result ({ 0, 1 })
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, { 0, 1 }]
+
+Step 23:
+  program counter:   68
+  hvm code:          Choose
+  explanation:       replace top of stack ({ 0, 1 }) with choice (1)
+  source code:       turn  = choose { 0, 1 }
+                             ^^^^^^^^^^^^^^^
+  call trace:        __init__()
+  stack:             [{:}, 1]
+
+Step 24:
+  program counter:   69
+  hvm code:          Store turn
+  explanation:       pop value (1) and store into variable turn
+  source code:       turn  = choose { 0, 1 }
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ], in_cs: 0, turn: 1 }
+  stack:             [{:}]
+
+Step 25:
+  program counter:   70
+  hvm code:          Jump 195
+  explanation:       jump over method definition: set program counter to 195
+  start statement:   line=7 column=1
+  end statement:     line=7 column=16
+  source code:       def thread self:
+                     ^^^
+
+Step 26:
+  program counter:   195
+  hvm code:          Push ?PC(71)
+  explanation:       push constant ?PC(71)
+  start statement:   line=34 column=1
+  end statement:     line=34 column=14
+  source code:       spawn thread 0
+                           ^^^^^^
+  stack:             [{:}, ?PC(71)]
+
+Step 27:
+  program counter:   196
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       spawn thread 0
+                                  ^
+  stack:             [{:}, ?PC(71), 0]
+
+Step 28:
+  program counter:   197
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?PC(71)); push result (?PC(71)[0])
+  source code:       spawn thread 0
+                           ^^^^^^^^
+  stack:             [{:}, ?PC(71)[0]]
+
+Step 29:
+  program counter:   198
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn thread 0
+                     ^^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(71)[0], {:}]
+
+Step 30:
+  program counter:   199
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (0), and pc (71: "thread"), and spawn thread
+  start expression:  line=34 column=1
+  end expression:    line=34 column=14
+  stack:             [{:}]
+
+Step 31:
+  program counter:   200
+  hvm code:          Push ?PC(71)
+  explanation:       push constant ?PC(71)
+  start statement:   line=35 column=1
+  end statement:     line=35 column=14
+  source code:       spawn thread 1
+                           ^^^^^^
+  stack:             [{:}, ?PC(71)]
+
+Step 32:
+  program counter:   201
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       spawn thread 1
+                                  ^
+  stack:             [{:}, ?PC(71), 1]
+
+Step 33:
+  program counter:   202
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?PC(71)); push result (?PC(71)[1])
+  source code:       spawn thread 1
+                           ^^^^^^^^
+  stack:             [{:}, ?PC(71)[1]]
+
+Step 34:
+  program counter:   203
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn thread 1
+                     ^^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(71)[1], {:}]
+
+Step 35:
+  program counter:   204
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (1), and pc (71: "thread"), and spawn thread
+  start expression:  line=35 column=1
+  end expression:    line=35 column=14
+  stack:             [{:}]
+
+Step 36:
+  program counter:   205
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=1 column=1
+  end statement:     line=36 column=7
+  source code:       in_cs = 0
+  new mode:          terminated
+  stack:             [None]
+
+================================================
+Running thread T3: invariant()
+mode:  runnable atomic readonly
+stack: ['[]']
+other threads:
+  T0: pc=205 terminated atomic __init__()
+  T1: pc=71 runnable thread(0)
+    about to run method thread with argument 0
+  T2: pc=71 runnable thread(1)
+    about to run method thread with argument 1
+shared variables:
+  flags: [ False, False ]
+  in_cs: 0
+  turn: 1
+state id: 3
+================================================
+
+Step 37:
+  program counter:   17
+  hvm code:          Frame invariant()
+  explanation:       pop argument () and run method "invariant"
+  start statement:   line=3 column=1
+  end statement:     line=3 column=72
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  call trace:        invariant()
+  stack:             [{:}]
+
+Step 38:
+  program counter:   18
+  hvm code:          Push ()
+  explanation:       initialize accumulator for list comprehension: push constant ()
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 39:
+  program counter:   19
+  hvm code:          StoreVar $accu18
+  explanation:       pop value ([]) and store locally in variable \"$accu18\"
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { $accu18: [] }
+  stack:             [{:}]
+
+Step 40:
+  program counter:   20
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                  ^^^
+  stack:             [{:}, []]
+
+Step 41:
+  program counter:   21
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                  ^
+  stack:             [{:}, [], 0]
+
+Step 42:
+  program counter:   22
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (0, []); insert first value into the second; push result ([0])
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                  ^^^
+  stack:             [{:}, [ 0 ]]
+
+Step 43:
+  program counter:   23
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                    ^
+  stack:             [{:}, [ 0 ], 1]
+
+Step 44:
+  program counter:   24
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (1, [0]); insert first value into the second; push result ([0, 1])
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                  ^^^
+  stack:             [{:}, [ 0, 1 ]]
+
+Step 45:
+  program counter:   25
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 0]
+
+Step 46:
+  program counter:   26
+  hvm code:          Cut(tid)
+  explanation:       pop index (0) and value ([0, 1]); assign value (0) to tid; push new index (1) and True
+  start expression:  line=3 column=21
+  end expression:    line=3 column=28
+  method variables:  { $accu18: [], tid: 0 }
+  stack:             [{:}, [ 0, 1 ], 1, True]
+
+Step 47:
+  program counter:   27
+  hvm code:          JumpCond False 36
+  explanation:       pop value (True), compare to False, and jump to 36 if the same
+  start expression:  line=3 column=21
+  end expression:    line=3 column=28
+  stack:             [{:}, [ 0, 1 ], 1]
+
+Step 48:
+  program counter:   28
+  hvm code:          LoadVar $accu18
+  explanation:       push value ([]) of variable "$accu18"
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, []]
+
+Step 49:
+  program counter:   29
+  hvm code:          DelVar $accu18
+  explanation:       delete method variable $accu18
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { tid: 0 }
+
+Step 50:
+  program counter:   30
+  hvm code:          LoadVar tid
+  explanation:       push value (0) of variable "tid"
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                  ^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], 0]
+
+Step 51:
+  program counter:   31
+  hvm code:          DelVar tid
+  explanation:       delete method variable tid
+  start expression:  line=3 column=30
+  end expression:    line=3 column=32
+  method variables:  { }
+
+Step 52:
+  program counter:   32
+  hvm code:          Apply PC(125)
+  explanation:       pop an argument (0) and call method (125: "entering")
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^
+  call trace:        invariant() --> entering(0)
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, 0]
+
+Step 53:
+  program counter:   125
+  hvm code:          Frame entering(tid)
+  explanation:       pop argument (0), assign to tid, and run method "entering"
+  start statement:   line=19 column=1
+  end statement:     line=19 column=30
+  source code:       def entering tid returns tst1:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  method variables:  { tid: 0 }
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}]
+
+Step 54:
+  program counter:   126
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=20 column=5
+  end statement:     line=20 column=42
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, ?flags]
+
+Step 55:
+  program counter:   127
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                   ^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, ?flags, 1]
+
+Step 56:
+  program counter:   128
+  hvm code:          LoadVar tid
+  explanation:       push value (0) of variable "tid"
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                     ^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, ?flags, 1, 0]
+
+Step 57:
+  program counter:   129
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                   ^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, ?flags, 1]
+
+Step 58:
+  program counter:   130
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?flags); push result (?flags[1])
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, ?flags[1]]
+
+Step 59:
+  program counter:   131
+  hvm code:          Load
+  explanation:       pop address (?flags[1]) and push value (False)
+  start expression:  line=20 column=12
+  end expression:    line=20 column=24
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, False]
+
+Step 60:
+  program counter:   132
+  hvm code:          JumpCond False 138
+  explanation:       pop value (False), compare to False, and jump to 138 if the same
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}]
+
+Step 61:
+  program counter:   138
+  hvm code:          DelVar tid
+  explanation:       delete method variable tid
+  start expression:  line=20 column=12
+  end expression:    line=20 column=42
+  method variables:  { }
+
+Step 62:
+  program counter:   139
+  hvm code:          Push False
+  explanation:       push constant False
+  start expression:  line=20 column=12
+  end expression:    line=20 column=42
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}, False]
+
+Step 63:
+  program counter:   140
+  hvm code:          StoreVar tst1
+  explanation:       pop value (False) and store locally in variable \"tst1\"
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                     ^^^^^^
+  method variables:  { tst1: False }
+  stack:             [{:}, [ 0, 1 ], 1, [], [], 514, {:}]
+
+Step 64:
+  program counter:   141
+  hvm code:          ReturnOp(tst1)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=19 column=1
+  end statement:     line=19 column=30
+  source code:       def entering tid returns tst1:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  method variables:  { }
+  call trace:        invariant()
+  stack:             [{:}, [ 0, 1 ], 1, [], False]
+
+Step 65:
+  program counter:   33
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, []); insert first value into the second; push result ([False])
+  start statement:   line=3 column=1
+  end statement:     line=3 column=72
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 1, [ False ]]
+
+Step 66:
+  program counter:   34
+  hvm code:          StoreVar $accu18
+  explanation:       pop value ([False]) and store locally in variable \"$accu18\"
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { $accu18: [ False ] }
+  stack:             [{:}, [ 0, 1 ], 1]
+
+Step 67:
+  program counter:   35
+  hvm code:          Jump 26
+  explanation:       set program counter to 26
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                     ^
+
+Step 68:
+  program counter:   26
+  hvm code:          Cut(tid)
+  explanation:       pop index (1) and value ([0, 1]); assign value (1) to tid; push new index (2) and True
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^
+  method variables:  { $accu18: [ False ], tid: 1 }
+  stack:             [{:}, [ 0, 1 ], 2, True]
+
+Step 69:
+  program counter:   27
+  hvm code:          JumpCond False 36
+  explanation:       pop value (True), compare to False, and jump to 36 if the same
+  start expression:  line=3 column=21
+  end expression:    line=3 column=28
+  stack:             [{:}, [ 0, 1 ], 2]
+
+Step 70:
+  program counter:   28
+  hvm code:          LoadVar $accu18
+  explanation:       push value ([False]) of variable "$accu18"
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ]]
+
+Step 71:
+  program counter:   29
+  hvm code:          DelVar $accu18
+  explanation:       delete method variable $accu18
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { tid: 1 }
+
+Step 72:
+  program counter:   30
+  hvm code:          LoadVar tid
+  explanation:       push value (1) of variable "tid"
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                  ^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], 1]
+
+Step 73:
+  program counter:   31
+  hvm code:          DelVar tid
+  explanation:       delete method variable tid
+  start expression:  line=3 column=30
+  end expression:    line=3 column=32
+  method variables:  { }
+
+Step 74:
+  program counter:   32
+  hvm code:          Apply PC(125)
+  explanation:       pop an argument (1) and call method (125: "entering")
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^
+  call trace:        invariant() --> entering(1)
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, 1]
+
+Step 75:
+  program counter:   125
+  hvm code:          Frame entering(tid)
+  explanation:       pop argument (1), assign to tid, and run method "entering"
+  start statement:   line=19 column=1
+  end statement:     line=19 column=30
+  source code:       def entering tid returns tst1:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  method variables:  { tid: 1 }
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}]
+
+Step 76:
+  program counter:   126
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=20 column=5
+  end statement:     line=20 column=42
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, ?flags]
+
+Step 77:
+  program counter:   127
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                   ^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, ?flags, 1]
+
+Step 78:
+  program counter:   128
+  hvm code:          LoadVar tid
+  explanation:       push value (1) of variable "tid"
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                     ^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, ?flags, 1, 1]
+
+Step 79:
+  program counter:   129
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                                   ^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, ?flags, 0]
+
+Step 80:
+  program counter:   130
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?flags); push result (?flags[0])
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, ?flags[0]]
+
+Step 81:
+  program counter:   131
+  hvm code:          Load
+  explanation:       pop address (?flags[0]) and push value (False)
+  start expression:  line=20 column=12
+  end expression:    line=20 column=24
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, False]
+
+Step 82:
+  program counter:   132
+  hvm code:          JumpCond False 138
+  explanation:       pop value (False), compare to False, and jump to 138 if the same
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}]
+
+Step 83:
+  program counter:   138
+  hvm code:          DelVar tid
+  explanation:       delete method variable tid
+  start expression:  line=20 column=12
+  end expression:    line=20 column=42
+  method variables:  { }
+
+Step 84:
+  program counter:   139
+  hvm code:          Push False
+  explanation:       push constant False
+  start expression:  line=20 column=12
+  end expression:    line=20 column=42
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}, False]
+
+Step 85:
+  program counter:   140
+  hvm code:          StoreVar tst1
+  explanation:       pop value (False) and store locally in variable \"tst1\"
+  source code:       tst1 = flags (1-tid) and (turn != tid)
+                     ^^^^^^
+  method variables:  { tst1: False }
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], [], 514, {:}]
+
+Step 86:
+  program counter:   141
+  hvm code:          ReturnOp(tst1)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=19 column=1
+  end statement:     line=19 column=30
+  source code:       def entering tid returns tst1:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  method variables:  { }
+  call trace:        invariant()
+  stack:             [{:}, [ 0, 1 ], 2, [ False ], False]
+
+Step 87:
+  program counter:   33
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, [False]); insert first value into the second; push result ([False, False])
+  start statement:   line=3 column=1
+  end statement:     line=3 column=72
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, [ 0, 1 ], 2, [ False, False ]]
+
+Step 88:
+  program counter:   34
+  hvm code:          StoreVar $accu18
+  explanation:       pop value ([False, False]) and store locally in variable \"$accu18\"
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { $accu18: [ False, False ] }
+  stack:             [{:}, [ 0, 1 ], 2]
+
+Step 89:
+  program counter:   35
+  hvm code:          Jump 26
+  explanation:       set program counter to 26
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                                                     ^
+
+Step 90:
+  program counter:   26
+  hvm code:          Cut(tid)
+  explanation:       pop index (2) and value ([0, 1]); out of range -> push False
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^
+  stack:             [{:}, False]
+
+Step 91:
+  program counter:   27
+  hvm code:          JumpCond False 36
+  explanation:       pop value (False), compare to False, and jump to 36 if the same
+  start expression:  line=3 column=21
+  end expression:    line=3 column=28
+  stack:             [{:}]
+
+Step 92:
+  program counter:   36
+  hvm code:          DelVar tid
+  explanation:       delete method variable tid
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 93:
+  program counter:   37
+  hvm code:          LoadVar $accu18
+  explanation:       push value ([False, False]) of variable "$accu18"
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  stack:             [{:}, [ False, False ]]
+
+Step 94:
+  program counter:   38
+  hvm code:          DelVar $accu18
+  explanation:       delete method variable $accu18
+  start expression:  line=3 column=21
+  end expression:    line=3 column=49
+  method variables:  { }
+
+Step 95:
+  program counter:   39
+  hvm code:          1-ary any
+  explanation:       pop a value ([False, False]); check if any value is True; push result (False)
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, False]
+
+Step 96:
+  program counter:   40
+  hvm code:          JumpCond False 48
+  explanation:       pop value (False), compare to False, and jump to 48 if the same
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 97:
+  program counter:   48
+  hvm code:          Push True
+  explanation:       push constant True
+  start expression:  line=3 column=16
+  end expression:    line=3 column=71
+  stack:             [{:}, True]
+
+Step 98:
+  program counter:   49
+  hvm code:          1-ary not
+  explanation:       pop a value (True); logical not; push result (False)
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}, False]
+
+Step 99:
+  program counter:   50
+  hvm code:          Assert
+  explanation:       pop a value (False) and raise exception
+  source code:       invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  new mode:          failed
+  stack:             [{:}]
+  operation failed:  Harmony assertion failed
+
+================================================
+Final state
+================================================
+Threads:
+  T0: pc=205 terminated atomic __init__()
+  T1: pc=71 runnable thread(0)
+    about to run method thread with argument 0
+  T2: pc=71 runnable thread(1)
+    about to run method thread with argument 1
+  T3: pc=50 failed atomic readonly invariant()
+Variables:
+  flags: [ False, False ]
+  in_cs: 0
+  turn: 1

@@ -1,0 +1,4 @@
+digraph {
+  rankdir = "LR"
+  s0 [label="initial",style=filled,peripheries=2,fillcolor="#66cc33"]
+}
