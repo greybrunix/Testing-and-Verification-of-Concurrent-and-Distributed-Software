@@ -1,5 +1,4 @@
 
-
 def Lock tid:
 	choosing tid = True;
 	ticket tid = max ticket + 1;

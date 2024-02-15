@@ -1,5 +1,4 @@
 #critical reached?
-#finally  # safety
 #invariant reached_crit in {0, 1} # safety
 
 sequential turn, lockTaken, flags
@@ -7,20 +6,14 @@ turn = 0
 lockTaken = False
 flags = [False, False]
 counter = 0
-# safety -> no two critical sections at one time
-# liveness -> if process in wants is 1 -> eventually will reach critical section
-# fairness -> all processes eventually reaches the critical section
-def fail0 p_q: # trivially allows two processes in critical section
+def fail0 p_q:
 	while choose {False, True}:
 		# non crit
 		#entering crit
 		#crit
 		counter += 1
 		#leave crit
-def fail1 p_q: # may allow two processes in critical section, note
-		# T2 chooses true
-		# T1 chooses true and sets the lock to true, entes cs
-		# T2 chooses true and enters cs
+def fail1 p_q:
 	while choose {False, True}:
 		# Enter cs
 		await not lockTaken
@@ -29,7 +22,7 @@ def fail1 p_q: # may allow two processes in critical section, note
 		counter += 1
 		#leaving cs
 		lockTaken = False
-def fail2 p_q: # this implementation reaches a final state with a blocked process
+def fail2 p_q:
 	while choose {False, True}:
 		# enter critical
 		turn = 1 - p_q
@@ -38,7 +31,7 @@ def fail2 p_q: # this implementation reaches a final state with a blocked proces
 		counter += 1
 		# leaving critical
 		# post protocol
-def fail3 p_q: # both block eternally
+def fail3 p_q:
 	while choose {False, True}:
 		#entering critical
 		flags p_q = True

@@ -1,33 +1,37 @@
+import fork
 #critical reached?
 crit=0
 sequential wants, turn, counter
-wants = [False, False]
+wants = (False, False)
 turn = 0
 global counter;
 counter = 0
 I=10
 
-def dekk(p_q):
+def dekk p_q:
 	# while True:
 	var i = 0
 	while i < I:
 	# non critical
-		wants[p_q] = True # declare interest 
+		wants p_q = True
 		# can enter critical section
-		while wants[1 - p_q]: # does another process have interest?
-			if turn == (1 - p_q): # is it it's turn?
-				wants[p_q] = False
-				await turn == p_q # waiting for turn
-				wants[p_q] = True
+		while wants (1 - p_q):
+			if turn == (1 - p_q):
+				wants p_q = False
+				await turn == p_q
+				wants p_q = True
 		# enter critical section
 		atomically crit +=1
 		# critical
-		counter+=1
+		#counter+=1
 		# leaving critical
 		atomically crit -=1
 		turn = 1 - p_q
-		wants[p_q] = False
+		wants p_q = False
 		# post protocol
 		i+=1
-spawn dekk(0)
-spawn dekk(1)
+
+y = fork.fork dekk 0
+x = fork.fork dekk 1
+fork.join(x)
+fork.join(y)
