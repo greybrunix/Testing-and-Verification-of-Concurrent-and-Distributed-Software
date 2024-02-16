@@ -1,11 +1,8 @@
-import fork
 #critical reached?
 crit=0
 sequential wants, turn, counter
 wants = (False, False)
 turn = 0
-global counter;
-counter = 0
 I=10
 
 def dekk p_q:
@@ -23,7 +20,6 @@ def dekk p_q:
 		# enter critical section
 		atomically crit +=1
 		# critical
-		#counter+=1
 		# leaving critical
 		atomically crit -=1
 		turn = 1 - p_q
@@ -31,7 +27,5 @@ def dekk p_q:
 		# post protocol
 		i+=1
 
-y = fork.fork dekk 0
-x = fork.fork dekk 1
-fork.join(x)
-fork.join(y)
+spawn dekk 0
+spawn dekk 1
