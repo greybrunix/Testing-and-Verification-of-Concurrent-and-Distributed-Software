@@ -200,99 +200,99 @@ Step 21:
 
 Step 22:
   program counter:   21
-  hvm code:          Jump 189
-  explanation:       jump over method definition: set program counter to 189
+  hvm code:          Jump 191
+  explanation:       jump over method definition: set program counter to 191
   start statement:   line=11 column=1
   end statement:     line=11 column=14
   source code:       def fail0 p_q:
                      ^^^
 
 Step 23:
-  program counter:   189
-  hvm code:          Push ?PC(79)
-  explanation:       push constant ?PC(79)
+  program counter:   191
+  hvm code:          Push ?PC(159)
+  explanation:       push constant ?PC(159)
   start statement:   line=60 column=1
   end statement:     line=60 column=13
-  source code:       spawn fail2 0;
+  source code:       spawn fail4 0;
                            ^^^^^
-  stack:             [{:}, ?PC(79)]
+  stack:             [{:}, ?PC(159)]
 
 Step 24:
-  program counter:   190
+  program counter:   192
   hvm code:          Push 0
   explanation:       push constant 0
-  source code:       spawn fail2 0;
+  source code:       spawn fail4 0;
                                  ^
-  stack:             [{:}, ?PC(79), 0]
+  stack:             [{:}, ?PC(159), 0]
 
 Step 25:
-  program counter:   191
+  program counter:   193
   hvm code:          2-ary AddArg
-  explanation:       pop 2 values (0, ?PC(79)); push result (?PC(79)[0])
-  source code:       spawn fail2 0;
+  explanation:       pop 2 values (0, ?PC(159)); push result (?PC(159)[0])
+  source code:       spawn fail4 0;
                            ^^^^^^^
-  stack:             [{:}, ?PC(79)[0]]
+  stack:             [{:}, ?PC(159)[0]]
 
 Step 26:
-  program counter:   192
+  program counter:   194
   hvm code:          Push {:}
   explanation:       push constant {:}
-  source code:       spawn fail2 0;
+  source code:       spawn fail4 0;
                      ^^^^^^^^^^^^^
-  stack:             [{:}, ?PC(79)[0], {:}]
+  stack:             [{:}, ?PC(159)[0], {:}]
 
 Step 27:
-  program counter:   193
+  program counter:   195
   hvm code:          Spawn
-  explanation:       pop local state ({:}), arg (0), and pc (79: "fail2"), and spawn thread
+  explanation:       pop local state ({:}), arg (0), and pc (159: "fail4"), and spawn thread
   start expression:  line=60 column=1
   end expression:    line=60 column=13
   stack:             [{:}]
 
 Step 28:
-  program counter:   194
-  hvm code:          Push ?PC(79)
-  explanation:       push constant ?PC(79)
+  program counter:   196
+  hvm code:          Push ?PC(159)
+  explanation:       push constant ?PC(159)
   start statement:   line=61 column=1
   end statement:     line=61 column=13
-  source code:       spawn fail2 1;
+  source code:       spawn fail4 1;
                            ^^^^^
-  stack:             [{:}, ?PC(79)]
+  stack:             [{:}, ?PC(159)]
 
 Step 29:
-  program counter:   195
+  program counter:   197
   hvm code:          Push 1
   explanation:       push constant 1
-  source code:       spawn fail2 1;
+  source code:       spawn fail4 1;
                                  ^
-  stack:             [{:}, ?PC(79), 1]
+  stack:             [{:}, ?PC(159), 1]
 
 Step 30:
-  program counter:   196
+  program counter:   198
   hvm code:          2-ary AddArg
-  explanation:       pop 2 values (1, ?PC(79)); push result (?PC(79)[1])
-  source code:       spawn fail2 1;
+  explanation:       pop 2 values (1, ?PC(159)); push result (?PC(159)[1])
+  source code:       spawn fail4 1;
                            ^^^^^^^
-  stack:             [{:}, ?PC(79)[1]]
+  stack:             [{:}, ?PC(159)[1]]
 
 Step 31:
-  program counter:   197
+  program counter:   199
   hvm code:          Push {:}
   explanation:       push constant {:}
-  source code:       spawn fail2 1;
+  source code:       spawn fail4 1;
                      ^^^^^^^^^^^^^
-  stack:             [{:}, ?PC(79)[1], {:}]
+  stack:             [{:}, ?PC(159)[1], {:}]
 
 Step 32:
-  program counter:   198
+  program counter:   200
   hvm code:          Spawn
-  explanation:       pop local state ({:}), arg (1), and pc (79: "fail2"), and spawn thread
+  explanation:       pop local state ({:}), arg (1), and pc (159: "fail4"), and spawn thread
   start expression:  line=61 column=1
   end expression:    line=61 column=13
   stack:             [{:}]
 
 Step 33:
-  program counter:   199
+  program counter:   201
   hvm code:          ReturnOp(result. None)
   explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
   start statement:   line=3 column=1
@@ -302,46 +302,46 @@ Step 33:
   stack:             [None]
 
 ================================================
-Running thread T1: fail2(0)
+Running thread T2: fail4(1)
 mode:  runnable
-stack: ['0']
+stack: ['1']
 other threads:
-  T0: pc=199 terminated atomic __init__()
-  T2: pc=79 runnable fail2(1)
-    about to run method fail2 with argument 1
+  T0: pc=201 terminated atomic __init__()
+  T1: pc=159 runnable fail4(0)
+    about to run method fail4 with argument 0
 shared variables:
   counter: 0
   flags: [ False, False ]
   in_cs: 0
   lockTaken: False
   turn: 0
-state id: 2
+state id: 3
 ================================================
 
 Step 34:
-  program counter:   79
-  hvm code:          Frame fail2(p_q)
-  explanation:       pop argument (0), assign to p_q, and run method "fail2"
-  start statement:   line=30 column=1
-  end statement:     line=30 column=14
-  source code:       def fail2 p_q:
+  program counter:   159
+  hvm code:          Frame fail4(p_q)
+  explanation:       pop argument (1), assign to p_q, and run method "fail4"
+  start statement:   line=50 column=1
+  end statement:     line=50 column=14
+  source code:       def fail4 p_q:
                      ^^^^^^^^^^^^^^
-  method variables:  { p_q: 0 }
-  call trace:        fail2(0)
+  method variables:  { p_q: 1 }
+  call trace:        fail4(1)
   stack:             [{:}]
 
 Step 35:
-  program counter:   80
+  program counter:   160
   hvm code:          Push {}
   explanation:       push constant {}
-  start statement:   line=31 column=2
-  end statement:     line=31 column=28
+  start statement:   line=51 column=2
+  end statement:     line=51 column=28
   source code:       	while choose {False, True}:
                                     ^^^^^^^^^^^
   stack:             [{:}, {}]
 
 Step 36:
-  program counter:   81
+  program counter:   161
   hvm code:          Push False
   explanation:       push constant False
   source code:       	while choose {False, True}:
@@ -349,7 +349,7 @@ Step 36:
   stack:             [{:}, {}, False]
 
 Step 37:
-  program counter:   82
+  program counter:   162
   hvm code:          2-ary SetAdd
   explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
   source code:       	while choose {False, True}:
@@ -357,7 +357,7 @@ Step 37:
   stack:             [{:}, { False }]
 
 Step 38:
-  program counter:   83
+  program counter:   163
   hvm code:          Push True
   explanation:       push constant True
   source code:       	while choose {False, True}:
@@ -365,7 +365,7 @@ Step 38:
   stack:             [{:}, { False }, True]
 
 Step 39:
-  program counter:   84
+  program counter:   164
   hvm code:          2-ary SetAdd
   explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
   source code:       	while choose {False, True}:
@@ -373,173 +373,371 @@ Step 39:
   stack:             [{:}, { False, True }]
 
 Step 40:
-  program counter:   85
+  program counter:   165
   hvm code:          Choose
-  explanation:       replace top of stack ({ False, True }) with choice (True)
+  explanation:       replace top of stack ({ False, True }) with choice (False)
   source code:       	while choose {False, True}:
                             ^^^^^^^^^^^^^^^^^^^^
-  call trace:        fail2(0)
-  stack:             [{:}, True]
+  call trace:        fail4(1)
+  stack:             [{:}, False]
 
 Step 41:
-  program counter:   86
-  hvm code:          JumpCond False 110
-  explanation:       pop value (True), compare to False, and jump to 110 if the same
+  program counter:   166
+  hvm code:          JumpCond False 189
+  explanation:       pop value (False), compare to False, and jump to 189 if the same
   source code:       	while choose {False, True}:
                       ^^^^^
   stack:             [{:}]
 
 Step 42:
-  program counter:   87
-  hvm code:          Push 1
-  explanation:       push constant 1
-  start statement:   line=33 column=3
-  end statement:     line=33 column=16
-  source code:       		turn = 1 - p_q
-                              ^
-  stack:             [{:}, 1]
+  program counter:   189
+  hvm code:          DelVar p_q
+  explanation:       delete method variable p_q
+  start statement:   line=50 column=1
+  end statement:     line=50 column=14
+  source code:       def fail4 p_q:
+                     ^^^^^^^^^^^^^^
+  method variables:  { }
 
 Step 43:
-  program counter:   88
-  hvm code:          LoadVar p_q
-  explanation:       push value (0) of variable "p_q"
-  source code:       		turn = 1 - p_q
-                                  ^^^
-  stack:             [{:}, 1, 0]
-
-Step 44:
-  program counter:   89
-  hvm code:          2-ary -
-  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
-  source code:       		turn = 1 - p_q
-                              ^^^^^^^
-  stack:             [{:}, 1]
-
-Step 45:
-  program counter:   90
-  hvm code:          Store turn
-  explanation:       pop value (1) and store into variable turn
-  source code:       		turn = 1 - p_q
-                       ^^^^^^
-  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 0, lockTaken: False, turn: 1 }
-  call trace:        fail2(0)
-  stack:             [{:}]
+  program counter:   190
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start expression:  line=50 column=1
+  end expression:    line=50 column=14
+  new mode:          terminated
+  stack:             [None]
 
 ================================================
-Running thread T2: fail2(1)
+Running thread T1: fail4(0)
 mode:  runnable
-stack: ['1']
+stack: ['0']
 other threads:
-  T0: pc=199 terminated atomic __init__()
-  T1: pc=91 blocked fail2(0)
-    about to load variable turn
+  T0: pc=201 terminated atomic __init__()
+  T2: pc=190 terminated fail4(1)
 shared variables:
   counter: 0
   flags: [ False, False ]
   in_cs: 0
   lockTaken: False
-  turn: 1
-state id: 16
+  turn: 0
+state id: 11
 ================================================
 
-Step 46:
-  program counter:   79
-  hvm code:          Frame fail2(p_q)
-  explanation:       pop argument (1), assign to p_q, and run method "fail2"
-  start statement:   line=30 column=1
-  end statement:     line=30 column=14
-  source code:       def fail2 p_q:
-                     ^^^^^^^^^^^^^^
-  method variables:  { p_q: 1 }
-  call trace:        fail2(1)
+Step 44:
+  program counter:   159
+  hvm code:          Frame fail4(p_q)
+  explanation:       pop argument (0), assign to p_q, and run method "fail4"
+  start expression:  line=50 column=1
+  end expression:    line=50 column=14
+  method variables:  { p_q: 0 }
+  call trace:        fail4(0)
   stack:             [{:}]
 
-Step 47:
-  program counter:   80
+Step 45:
+  program counter:   160
   hvm code:          Push {}
   explanation:       push constant {}
-  start statement:   line=31 column=2
-  end statement:     line=31 column=28
+  start statement:   line=51 column=2
+  end statement:     line=51 column=28
   source code:       	while choose {False, True}:
                                     ^^^^^^^^^^^
   stack:             [{:}, {}]
 
-Step 48:
-  program counter:   81
+Step 46:
+  program counter:   161
   hvm code:          Push False
   explanation:       push constant False
   source code:       	while choose {False, True}:
                                     ^^^^^
   stack:             [{:}, {}, False]
 
-Step 49:
-  program counter:   82
+Step 47:
+  program counter:   162
   hvm code:          2-ary SetAdd
   explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
   source code:       	while choose {False, True}:
                                     ^^^^^^^^^^^
   stack:             [{:}, { False }]
 
-Step 50:
-  program counter:   83
+Step 48:
+  program counter:   163
   hvm code:          Push True
   explanation:       push constant True
   source code:       	while choose {False, True}:
                                            ^^^^
   stack:             [{:}, { False }, True]
 
-Step 51:
-  program counter:   84
+Step 49:
+  program counter:   164
   hvm code:          2-ary SetAdd
   explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
   source code:       	while choose {False, True}:
                                     ^^^^^^^^^^^
   stack:             [{:}, { False, True }]
 
-Step 52:
-  program counter:   85
+Step 50:
+  program counter:   165
   hvm code:          Choose
-  explanation:       replace top of stack ({ False, True }) with choice (False)
+  explanation:       replace top of stack ({ False, True }) with choice (True)
   source code:       	while choose {False, True}:
                             ^^^^^^^^^^^^^^^^^^^^
-  call trace:        fail2(1)
-  stack:             [{:}, False]
+  call trace:        fail4(0)
+  stack:             [{:}, True]
 
-Step 53:
-  program counter:   86
-  hvm code:          JumpCond False 110
-  explanation:       pop value (False), compare to False, and jump to 110 if the same
+Step 51:
+  program counter:   166
+  hvm code:          JumpCond False 189
+  explanation:       pop value (True), compare to False, and jump to 189 if the same
   source code:       	while choose {False, True}:
                       ^^^^^
   stack:             [{:}]
 
+Step 52:
+  program counter:   167
+  hvm code:          Load turn
+  explanation:       push value (0) of variable turn
+  start statement:   line=52 column=3
+  end statement:     line=52 column=26
+  source code:       		while not (turn == p_q):
+                                  ^^^^
+  call trace:        fail4(0)
+  stack:             [{:}, 0]
+
+Step 53:
+  program counter:   168
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		while not (turn == p_q):
+                                          ^^^
+  stack:             [{:}, 0, 0]
+
 Step 54:
-  program counter:   110
-  hvm code:          DelVar p_q
-  explanation:       delete method variable p_q
-  start statement:   line=30 column=1
-  end statement:     line=30 column=14
-  source code:       def fail2 p_q:
-                     ^^^^^^^^^^^^^^
-  method variables:  { }
+  program counter:   169
+  hvm code:          2-ary ==
+  explanation:       pop 2 values (0, 0); check if both values are the same; push result (True)
+  source code:       		while not (turn == p_q):
+                                  ^^^^^^^^^^^
+  stack:             [{:}, True]
 
 Step 55:
-  program counter:   111
-  hvm code:          ReturnOp(result. None)
-  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
-  start expression:  line=30 column=1
-  end expression:    line=30 column=14
-  new mode:          terminated
-  stack:             [None]
+  program counter:   170
+  hvm code:          JumpCond True 172
+  explanation:       pop value (True), compare to True, and jump to 172 if the same
+  source code:       		while not (turn == p_q):
+                       ^^^^^
+  stack:             [{:}]
+
+Step 56:
+  program counter:   172
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=55 column=14
+  end statement:     line=55 column=23
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  call trace:        fail4(0)
+
+Step 57:
+  program counter:   173
+  hvm code:          Load in_cs
+  explanation:       push value (0) of variable in_cs
+  start expression:  line=55 column=14
+  end expression:    line=55 column=23
+  stack:             [{:}, 0]
+
+Step 58:
+  program counter:   174
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically in_cs += 1
+                                           ^
+  stack:             [{:}, 0, 1]
+
+Step 59:
+  program counter:   175
+  hvm code:          2-ary +
+  explanation:       pop 2 values (1, 0); add the integers; push result (1)
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  stack:             [{:}, 1]
+
+Step 60:
+  program counter:   176
+  hvm code:          Store in_cs
+  explanation:       pop value (1) and store into variable in_cs
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 1, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 61:
+  program counter:   177
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+
+Step 62:
+  program counter:   178
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=56 column=14
+  end statement:     line=56 column=23
+  source code:       		atomically in_cs -= 1
+                                  ^^^^^^^^^^
+  call trace:        fail4(0)
+
+Step 63:
+  program counter:   179
+  hvm code:          Load in_cs
+  explanation:       push value (1) of variable in_cs
+  start expression:  line=56 column=14
+  end expression:    line=56 column=23
+  stack:             [{:}, 1]
+
+Step 64:
+  program counter:   180
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically in_cs -= 1
+                                           ^
+  stack:             [{:}, 1, 1]
+
+Step 65:
+  program counter:   181
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		atomically in_cs -= 1
+                                  ^^^^^^^^^^
+  stack:             [{:}, 0]
+
+Step 66:
+  program counter:   182
+  hvm code:          Store in_cs
+  explanation:       pop value (0) and store into variable in_cs
+  source code:       		atomically in_cs -= 1
+                                  ^^^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 0, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 67:
+  program counter:   183
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically in_cs -= 1
+                                  ^^^^^^^^^^
+
+Step 68:
+  program counter:   184
+  hvm code:          Push 1
+  explanation:       push constant 1
+  start statement:   line=58 column=3
+  end statement:     line=58 column=16
+  source code:       		turn = 1 - p_q
+                              ^
+  stack:             [{:}, 1]
+
+Step 69:
+  program counter:   185
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		turn = 1 - p_q
+                                  ^^^
+  stack:             [{:}, 1, 0]
+
+Step 70:
+  program counter:   186
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       		turn = 1 - p_q
+                              ^^^^^^^
+  stack:             [{:}, 1]
+
+Step 71:
+  program counter:   187
+  hvm code:          Store turn
+  explanation:       pop value (1) and store into variable turn
+  source code:       		turn = 1 - p_q
+                       ^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 0, lockTaken: False, turn: 1 }
+  call trace:        fail4(0)
+  stack:             [{:}]
+
+Step 72:
+  program counter:   188
+  hvm code:          Jump 160
+  explanation:       set program counter to 160
+  start statement:   line=51 column=2
+  end statement:     line=51 column=28
+  source code:       	while choose {False, True}:
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 73:
+  program counter:   160
+  hvm code:          Push {}
+  explanation:       push constant {}
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 74:
+  program counter:   161
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True}:
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 75:
+  program counter:   162
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 76:
+  program counter:   163
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True}:
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 77:
+  program counter:   164
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 78:
+  program counter:   165
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True}:
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        fail4(0)
+  stack:             [{:}, True]
+
+Step 79:
+  program counter:   166
+  hvm code:          JumpCond False 189
+  explanation:       pop value (True), compare to False, and jump to 189 if the same
+  source code:       	while choose {False, True}:
+                      ^^^^^
+  stack:             [{:}]
 
 ================================================
 Final state
 ================================================
 Threads:
-  T0: pc=199 terminated atomic __init__()
-  T1: pc=91 blocked fail2(0)
+  T0: pc=201 terminated atomic __init__()
+  T1: pc=167 blocked fail4(0)
     about to load variable turn
-  T2: pc=111 terminated fail2(1)
+  T2: pc=190 terminated fail4(1)
 Variables:
   counter: 0
   flags: [ False, False ]

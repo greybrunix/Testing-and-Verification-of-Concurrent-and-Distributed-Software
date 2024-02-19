@@ -1,5 +1,5 @@
 {
-  "nstates": 30,
+  "nstates": 45,
   "issue": "Non-terminating state",
   "hvm": {
     "modules": {
@@ -48,7 +48,7 @@
                 "def fail3 p_q:",
                 "	while choose {False, True}:",
                 "		#entering critical",
-                "		flags p_q = True",
+                "		flags (1 - p_q) = True",
                 "		await not flags (1 - p_q)",
                 "		#crit",
                 "		atomically in_cs += 1",
@@ -65,8 +65,8 @@
                 "		#counter += 1",
                 "		turn = 1 - p_q",
                 "",
-                "spawn fail2 0;",
-                "spawn fail2 1;"
+                "spawn fail4 0;",
+                "spawn fail4 1;"
               ],
             "identifiers": {
                 "lockTaken": "global",
@@ -86,7 +86,7 @@
           }
       },
     "labels": {
-        "__end__": 201
+        "__end__": 203
       },
     "pretty": [
         [
@@ -174,8 +174,8 @@
             "pop a value and store it in shared variable counter"
           ],
         [
-            "Jump 189",
-            "jump over method definition: set program counter to 189"
+            "Jump 191",
+            "jump over method definition: set program counter to 191"
           ],
         [
             "Frame fail0(p_q)",
@@ -270,8 +270,8 @@
             "restore caller method state and push result"
           ],
         [
-            "Jump 189",
-            "jump over method definition: set program counter to 189"
+            "Jump 191",
+            "jump over method definition: set program counter to 191"
           ],
         [
             "Frame fail1(p_q)",
@@ -402,8 +402,8 @@
             "restore caller method state and push result"
           ],
         [
-            "Jump 189",
-            "jump over method definition: set program counter to 189"
+            "Jump 191",
+            "jump over method definition: set program counter to 191"
           ],
         [
             "Frame fail2(p_q)",
@@ -538,8 +538,8 @@
             "restore caller method state and push result"
           ],
         [
-            "Jump 189",
-            "jump over method definition: set program counter to 189"
+            "Jump 191",
+            "jump over method definition: set program counter to 191"
           ],
         [
             "Frame fail3(p_q)",
@@ -570,16 +570,24 @@
             "pop a set value and push one of its elements"
           ],
         [
-            "JumpCond False 154",
-            "pop a value and jump to 154 if the value is False"
+            "JumpCond False 156",
+            "pop a value and jump to 156 if the value is False"
           ],
         [
             "Push ?flags",
             "push constant ?flags"
           ],
         [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
             "LoadVar p_q",
             "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
           ],
         [
             "2-ary AddArg",
@@ -622,16 +630,16 @@
             "pop 1 value and push the result of applying not"
           ],
         [
-            "JumpCond False 126",
-            "pop a value and jump to 126 if the value is False"
+            "JumpCond False 128",
+            "pop a value and jump to 128 if the value is False"
           ],
         [
-            "Jump 136",
-            "set program counter to 136"
+            "Jump 138",
+            "set program counter to 138"
           ],
         [
-            "Jump 126",
-            "set program counter to 126"
+            "Jump 128",
+            "set program counter to 128"
           ],
         [
             "AtomicInc(eager)",
@@ -714,8 +722,8 @@
             "restore caller method state and push result"
           ],
         [
-            "Jump 189",
-            "jump over method definition: set program counter to 189"
+            "Jump 191",
+            "jump over method definition: set program counter to 191"
           ],
         [
             "Frame fail4(p_q)",
@@ -746,8 +754,8 @@
             "pop a set value and push one of its elements"
           ],
         [
-            "JumpCond False 187",
-            "pop a value and jump to 187 if the value is False"
+            "JumpCond False 189",
+            "pop a value and jump to 189 if the value is False"
           ],
         [
             "Load turn",
@@ -762,12 +770,12 @@
             "pop 2 values and push the result of applying =="
           ],
         [
-            "JumpCond True 170",
-            "pop a value and jump to 170 if the value is True"
+            "JumpCond True 172",
+            "pop a value and jump to 172 if the value is True"
           ],
         [
-            "Jump 165",
-            "set program counter to 165"
+            "Jump 167",
+            "set program counter to 167"
           ],
         [
             "AtomicInc(eager)",
@@ -834,8 +842,8 @@
             "pop a value and store it in shared variable turn"
           ],
         [
-            "Jump 158",
-            "set program counter to 158"
+            "Jump 160",
+            "set program counter to 160"
           ],
         [
             "DelVar p_q",
@@ -846,8 +854,8 @@
             "restore caller method state and push result"
           ],
         [
-            "Push ?PC(79)",
-            "push constant ?PC(79)"
+            "Push ?PC(159)",
+            "push constant ?PC(159)"
           ],
         [
             "Push 0",
@@ -866,8 +874,8 @@
             "pop thread-local state, argument, and pc and spawn a new thread"
           ],
         [
-            "Push ?PC(79)",
-            "push constant ?PC(79)"
+            "Push ?PC(159)",
+            "push constant ?PC(159)"
           ],
         [
             "Push 1",
@@ -2475,7 +2483,7 @@
                 43,
                 3,
                 43,
-                18
+                24
               ],
             "line": 43,
             "endcolumn": 7,
@@ -2488,11 +2496,11 @@
                 43,
                 3,
                 43,
-                18
+                24
               ],
             "line": 43,
-            "endcolumn": 11,
-            "column": 9
+            "endcolumn": 10,
+            "column": 10
           },
         {
             "module": "__main__",
@@ -2501,10 +2509,36 @@
                 43,
                 3,
                 43,
-                18
+                24
               ],
             "line": 43,
-            "endcolumn": 11,
+            "endcolumn": 16,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                24
+              ],
+            "line": 43,
+            "endcolumn": 16,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                24
+              ],
+            "line": 43,
+            "endcolumn": 17,
             "column": 3
           },
         {
@@ -2514,11 +2548,11 @@
                 43,
                 3,
                 43,
-                18
+                24
               ],
             "line": 43,
-            "endcolumn": 18,
-            "column": 15
+            "endcolumn": 24,
+            "column": 21
           },
         {
             "module": "__main__",
@@ -2527,10 +2561,10 @@
                 43,
                 3,
                 43,
-                18
+                24
               ],
             "line": 43,
-            "endcolumn": 13,
+            "endcolumn": 19,
             "column": 3
           },
         {
@@ -3679,7 +3713,7 @@
             "op": "Store"
           },
         {
-            "pc": "189",
+            "pc": "191",
             "op": "Jump"
           },
         {
@@ -3821,7 +3855,7 @@
             "op": "Return"
           },
         {
-            "pc": "189",
+            "pc": "191",
             "op": "Jump"
           },
         {
@@ -4025,7 +4059,7 @@
             "op": "Return"
           },
         {
-            "pc": "189",
+            "pc": "191",
             "op": "Jump"
           },
         {
@@ -4226,7 +4260,7 @@
             "op": "Return"
           },
         {
-            "pc": "189",
+            "pc": "191",
             "op": "Jump"
           },
         {
@@ -4271,7 +4305,7 @@
             "op": "Choose"
           },
         {
-            "pc": "154",
+            "pc": "156",
             "cond": {
                 "type": "bool",
                 "value": "False"
@@ -4295,8 +4329,20 @@
             "op": "Push"
           },
         {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
             "value": "p_q",
             "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
           },
         {
             "arity": 2,
@@ -4359,7 +4405,7 @@
             "op": "Nary"
           },
         {
-            "pc": "126",
+            "pc": "128",
             "cond": {
                 "type": "bool",
                 "value": "False"
@@ -4367,11 +4413,11 @@
             "op": "JumpCond"
           },
         {
-            "pc": "136",
+            "pc": "138",
             "op": "Jump"
           },
         {
-            "pc": "126",
+            "pc": "128",
             "op": "Jump"
           },
         {
@@ -4499,7 +4545,7 @@
             "op": "Return"
           },
         {
-            "pc": "189",
+            "pc": "191",
             "op": "Jump"
           },
         {
@@ -4544,7 +4590,7 @@
             "op": "Choose"
           },
         {
-            "pc": "187",
+            "pc": "189",
             "cond": {
                 "type": "bool",
                 "value": "False"
@@ -4570,7 +4616,7 @@
             "op": "Nary"
           },
         {
-            "pc": "170",
+            "pc": "172",
             "cond": {
                 "type": "bool",
                 "value": "True"
@@ -4578,7 +4624,7 @@
             "op": "JumpCond"
           },
         {
-            "pc": "165",
+            "pc": "167",
             "op": "Jump"
           },
         {
@@ -4681,7 +4727,7 @@
             "op": "Store"
           },
         {
-            "pc": "158",
+            "pc": "160",
             "op": "Jump"
           },
         {
@@ -4703,7 +4749,7 @@
                   ],
                 "func": {
                     "type": "pc",
-                    "value": "79"
+                    "value": "159"
                   }
               },
             "op": "Push"
@@ -4741,7 +4787,7 @@
                   ],
                 "func": {
                     "type": "pc",
-                    "value": "79"
+                    "value": "159"
                   }
               },
             "op": "Push"
@@ -4792,7 +4838,7 @@
       "name": "__init__()",
       "context": {
         "tid": "0",
-        "hvalue": "60f99daee2da",
+        "hvalue": "61e28bae5c5a",
         "fp": "1",
         "id": "0",
         "name": "__init__()",
@@ -5022,137 +5068,137 @@
         },
 
         {
-          "code": "Jump 189",
-          "explain": "jump over method definition: set program counter to 189",
-          "explain2": { "text": "jump over method definition: set program counter to 189", "args": [] },
-          "npc": "189",
+          "code": "Jump 191",
+          "explain": "jump over method definition: set program counter to 191",
+          "explain2": { "text": "jump over method definition: set program counter to 191", "args": [] },
+          "npc": "191",
           "push": [ ],
           "pc": "21"
         },
 
         {
-          "code": "Push ?PC(79)",
-          "explain": "push constant ?PC(79)",
-          "explain2": { "text": "push constant ?PC(79)", "args": [] },
-          "npc": "190",
-          "push": [ { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [ ] } ],
-          "pc": "189"
+          "code": "Push ?PC(159)",
+          "explain": "push constant ?PC(159)",
+          "explain2": { "text": "push constant ?PC(159)", "args": [] },
+          "npc": "192",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [ ] } ],
+          "pc": "191"
         },
 
         {
           "code": "Push 0",
           "explain": "push constant 0",
           "explain2": { "text": "push constant 0", "args": [] },
-          "npc": "191",
+          "npc": "193",
           "push": [ { "type": "int", "value": "0" } ],
-          "pc": "190"
+          "pc": "192"
         },
 
         {
           "code": "2-ary AddArg",
-          "explain": "pop 2 values (0, ?PC(79)); push result (?PC(79)[0])",
-          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [{ "type": "int", "value": "0" } ] } ] },
-          "npc": "192",
+          "explain": "pop 2 values (0, ?PC(159)); push result (?PC(159)[0])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [{ "type": "int", "value": "0" } ] } ] },
+          "npc": "194",
           "pop": "2",
-          "push": [ { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [{ "type": "int", "value": "0" } ] } ],
-          "pc": "191"
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [{ "type": "int", "value": "0" } ] } ],
+          "pc": "193"
         },
 
         {
           "code": "Push {:}",
           "explain": "push constant {:}",
           "explain2": { "text": "push constant {:}", "args": [] },
-          "npc": "193",
+          "npc": "195",
           "push": [ { "type": "dict", "value": [] } ],
-          "pc": "192"
+          "pc": "194"
         },
 
         {
           "code": "Spawn",
-          "explain": "pop local state ({:}), arg (0), and pc (79: \"fail2\"), and spawn thread",
-          "explain2": { "text": "pop local state (#+), arg (#+), and pc (79: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "0" }, { "type": "atom", "value": "fail2" } ] },
-          "npc": "194",
+          "explain": "pop local state ({:}), arg (0), and pc (159: \"fail4\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (159: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "0" }, { "type": "atom", "value": "fail4" } ] },
+          "npc": "196",
           "pop": "2",
           "push": [ ],
-          "pc": "193"
+          "pc": "195"
         },
 
         {
-          "code": "Push ?PC(79)",
-          "explain": "push constant ?PC(79)",
-          "explain2": { "text": "push constant ?PC(79)", "args": [] },
-          "npc": "195",
-          "push": [ { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [ ] } ],
-          "pc": "194"
+          "code": "Push ?PC(159)",
+          "explain": "push constant ?PC(159)",
+          "explain2": { "text": "push constant ?PC(159)", "args": [] },
+          "npc": "197",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [ ] } ],
+          "pc": "196"
         },
 
         {
           "code": "Push 1",
           "explain": "push constant 1",
           "explain2": { "text": "push constant 1", "args": [] },
-          "npc": "196",
+          "npc": "198",
           "push": [ { "type": "int", "value": "1" } ],
-          "pc": "195"
+          "pc": "197"
         },
 
         {
           "code": "2-ary AddArg",
-          "explain": "pop 2 values (1, ?PC(79)); push result (?PC(79)[1])",
-          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [{ "type": "int", "value": "1" } ] } ] },
-          "npc": "197",
+          "explain": "pop 2 values (1, ?PC(159)); push result (?PC(159)[1])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [{ "type": "int", "value": "1" } ] } ] },
+          "npc": "199",
           "pop": "2",
-          "push": [ { "type": "address", "func": { "type": "pc", "value": "79" }, "args": [{ "type": "int", "value": "1" } ] } ],
-          "pc": "196"
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "159" }, "args": [{ "type": "int", "value": "1" } ] } ],
+          "pc": "198"
         },
 
         {
           "code": "Push {:}",
           "explain": "push constant {:}",
           "explain2": { "text": "push constant {:}", "args": [] },
-          "npc": "198",
+          "npc": "200",
           "push": [ { "type": "dict", "value": [] } ],
-          "pc": "197"
+          "pc": "199"
         },
 
         {
           "code": "Spawn",
-          "explain": "pop local state ({:}), arg (1), and pc (79: \"fail2\"), and spawn thread",
-          "explain2": { "text": "pop local state (#+), arg (#+), and pc (79: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "1" }, { "type": "atom", "value": "fail2" } ] },
-          "npc": "199",
+          "explain": "pop local state ({:}), arg (1), and pc (159: \"fail4\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (159: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "1" }, { "type": "atom", "value": "fail4" } ] },
+          "npc": "201",
           "pop": "2",
           "push": [ ],
-          "pc": "198"
+          "pc": "200"
         },
 
         {
           "code": "ReturnOp(result. None)",
           "explain": "pop caller's method variables and pc and push result (%+), or terminate if no caller",
           "explain2": { "text": "pop caller's method variables and pc and push result (%+), or terminate if no caller", "args": [ { "type": "address" } ] },
-          "npc": "199",
+          "npc": "201",
           "mode": "terminated",
           "pop": "1",
           "push": [ { "type": "address" } ],
-          "pc": "199"
+          "pc": "201"
         }
 
       ],
       "ctxbag": {
-          "7c7b9e80022a": "1",
-          "7c7b9e80027a": "1"
+          "7ba6e500022a": "1",
+          "7ba6e500027a": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7c7b9e8002aa",
+          "hvalue": "7ba6e50002aa",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
           "entry": "0",
-          "pc": "199",
+          "pc": "201",
           "sp": "1",
           "stack": [{ "type": "address" }],
           "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
 "method_arg": { "type": "list", "value": [] },
 "method": "__init__()","calltype": "process","vars":{ },"sp": 0}
           ],
@@ -5161,531 +5207,145 @@
         },
         {
           "tid": "1",
-          "hvalue": "7c7b9e80022a",
+          "hvalue": "7ba6e500022a",
           "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "79",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "159",
           "sp": "1",
           "stack": [{ "type": "int", "value": "0" }],
           "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ },"sp": 0}
+"method": "fail4(0)","calltype": "process","vars":{ },"sp": 0}
           ],
-          "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "0" } },
           "mode": "runnable"
         },
         {
           "tid": "2",
-          "hvalue": "7c7b9e80027a",
+          "hvalue": "7ba6e500027a",
           "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "79",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "159",
           "sp": "1",
           "stack": [{ "type": "int", "value": "1" }],
           "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
           ],
-          "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "1" } },
+          "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "1" } },
           "mode": "runnable"
         }
       ]
     },
     {
-      "id": "2",
-      "tid": "1",
-      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
-      "name": "fail2(0)",
-      "context": {
-        "tid": "1",
-        "hvalue": "7c7b9e80022a",
-        "fp": "1",
-        "name": "fail2(0)",
-        "entry": "79",
-        "pc": "79",
-        "sp": "1",
-        "stack": [{ "type": "int", "value": "0" }],
-        "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ },"sp": 0}
-        ],
-        "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "0" } },
-        "mode": "runnable"
-      },
-      "microsteps": [
-        {
-          "code": "Frame fail2(p_q)",
-          "explain": "pop argument (0), assign to p_q, and run method \"fail2\"",
-          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "fail2" } ] },
-          "npc": "80",
-          "fp": "1",
-          "trace": [
-{"pc": "80","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "local": { "p_q": { "type": "int", "value": "0" } },
-          "pop": "1",
-          "push": [ { "type": "dict", "value": [] } ],
-          "pc": "79"
-        },
-
-        {
-          "code": "Push {}",
-          "explain": "push constant {}",
-          "explain2": { "text": "push constant {}", "args": [] },
-          "npc": "81",
-          "push": [ { "type": "set", "value": [] } ],
-          "pc": "80"
-        },
-
-        {
-          "code": "Push False",
-          "explain": "push constant False",
-          "explain2": { "text": "push constant False", "args": [] },
-          "npc": "82",
-          "push": [ { "type": "bool", "value": "False" } ],
-          "pc": "81"
-        },
-
-        {
-          "code": "2-ary SetAdd",
-          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
-          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
-          "npc": "83",
-          "pop": "2",
-          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
-          "pc": "82"
-        },
-
-        {
-          "code": "Push True",
-          "explain": "push constant True",
-          "explain2": { "text": "push constant True", "args": [] },
-          "npc": "84",
-          "push": [ { "type": "bool", "value": "True" } ],
-          "pc": "83"
-        },
-
-        {
-          "code": "2-ary SetAdd",
-          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
-          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
-          "npc": "85",
-          "pop": "2",
-          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
-          "pc": "84"
-        }
-
-      ],
-      "ctxbag": {
-          "7c7b9100005a": "1",
-          "7c7b9e80027a": "1"
-      },
-      "contexts": [
-        {
-          "tid": "0",
-          "hvalue": "7c7b9e8002aa",
-          "fp": "1",
-          "id": "0",
-          "name": "__init__()",
-          "entry": "0",
-          "pc": "199",
-          "sp": "1",
-          "stack": [{ "type": "address" }],
-          "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
-"method_arg": { "type": "list", "value": [] },
-"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "atomic": "1",
-          "mode": "terminated"
-        },
-        {
-          "tid": "1",
-          "hvalue": "7c7b9100005a",
-          "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "85",
-          "sp": "2",
-          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
-          "trace": [
-{"pc": "85","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
-          "mode": "choosing"
-        },
-        {
-          "tid": "2",
-          "hvalue": "7c7b9e80027a",
-          "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "79",
-          "sp": "1",
-          "stack": [{ "type": "int", "value": "1" }],
-          "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "1" } },
-          "mode": "runnable"
-        }
-      ]
-    },
-    {
-      "id": "5",
-      "tid": "1",
-      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
-      "name": "fail2(0)",
-      "choice": { "type": "bool", "value": "True" },
-      "context": {
-        "tid": "1",
-        "hvalue": "7c7b9100005a",
-        "fp": "1",
-        "name": "fail2(0)",
-        "entry": "79",
-        "pc": "85",
-        "sp": "2",
-        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
-        "trace": [
-{"pc": "85","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-        ],
-        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
-        "mode": "runnable"
-      },
-      "microsteps": [
-        {
-          "code": "Choose",
-          "explain": "replace top of stack ({ False, True }) with choice (True)",
-          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
-          "choose": { "type": "bool", "value": "True" },
-          "npc": "86",
-          "fp": "1",
-          "trace": [
-{"pc": "86","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "pop": "1",
-          "push": [ { "type": "bool", "value": "True" } ],
-          "pc": "85"
-        },
-
-        {
-          "code": "JumpCond False 110",
-          "explain": "pop value (True), compare to False, and jump to 110 if the same",
-          "explain2": { "text": "pop value (#+), compare to #+, and jump to 110 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
-          "npc": "87",
-          "pop": "1",
-          "push": [ ],
-          "pc": "86"
-        },
-
-        {
-          "code": "Push 1",
-          "explain": "push constant 1",
-          "explain2": { "text": "push constant 1", "args": [] },
-          "npc": "88",
-          "push": [ { "type": "int", "value": "1" } ],
-          "pc": "87"
-        },
-
-        {
-          "code": "LoadVar p_q",
-          "explain": "push value (0) of variable \"p_q\"",
-          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "p_q" } ] },
-          "npc": "89",
-          "push": [ { "type": "int", "value": "0" } ],
-          "pc": "88"
-        },
-
-        {
-          "code": "2-ary -",
-          "explain": "pop 2 values (0, 1); the second integer minus the first; push result (1)",
-          "explain2": { "text": "pop 2 values (#+, #+); the second integer minus the first; push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "int", "value": "1" }, { "type": "int", "value": "1" } ] },
-          "npc": "90",
-          "pop": "1",
-          "push": [ ],
-          "pc": "89"
-        }
-
-      ],
-      "ctxbag": {
-          "7c7b9100010a": "1",
-          "7c7b9e80027a": "1"
-      },
-      "contexts": [
-        {
-          "tid": "0",
-          "hvalue": "7c7b9e8002aa",
-          "fp": "1",
-          "id": "0",
-          "name": "__init__()",
-          "entry": "0",
-          "pc": "199",
-          "sp": "1",
-          "stack": [{ "type": "address" }],
-          "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
-"method_arg": { "type": "list", "value": [] },
-"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "atomic": "1",
-          "mode": "terminated"
-        },
-        {
-          "tid": "1",
-          "hvalue": "7c7b9100010a",
-          "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "90",
-          "sp": "2",
-          "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "1" }],
-          "trace": [
-{"pc": "90","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "1" } },
-          "mode": "runnable"
-        },
-        {
-          "tid": "2",
-          "hvalue": "7c7b9e80027a",
-          "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "79",
-          "sp": "1",
-          "stack": [{ "type": "int", "value": "1" }],
-          "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "1" } },
-          "mode": "runnable"
-        }
-      ]
-    },
-    {
-      "id": "9",
-      "tid": "1",
-      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
-      "name": "fail2(0)",
-      "context": {
-        "tid": "1",
-        "hvalue": "7c7b9100010a",
-        "fp": "1",
-        "name": "fail2(0)",
-        "entry": "79",
-        "pc": "90",
-        "sp": "2",
-        "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "1" }],
-        "trace": [
-{"pc": "90","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-        ],
-        "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "1" } },
-        "mode": "runnable"
-      },
-      "microsteps": [
-        {
-          "code": "Store turn",
-          "explain": "pop value (1) and store into variable turn",
-          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ] },
-          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "1" } },
-          "npc": "91",
-          "fp": "1",
-          "trace": [
-{"pc": "91","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "pop": "1",
-          "push": [ ],
-          "pc": "90"
-        }
-
-      ],
-      "ctxbag": {
-          "7c7b910001ca": "1",
-          "7c7b9e80027a": "1"
-      },
-      "contexts": [
-        {
-          "tid": "0",
-          "hvalue": "7c7b9e8002aa",
-          "fp": "1",
-          "id": "0",
-          "name": "__init__()",
-          "entry": "0",
-          "pc": "199",
-          "sp": "1",
-          "stack": [{ "type": "address" }],
-          "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
-"method_arg": { "type": "list", "value": [] },
-"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "atomic": "1",
-          "mode": "terminated"
-        },
-        {
-          "tid": "1",
-          "hvalue": "7c7b910001ca",
-          "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "91",
-          "sp": "1",
-          "stack": [{ "type": "dict", "value": [] }],
-          "trace": [
-{"pc": "91","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
-          ],
-          "next": { "type": "Load", "var": "turn" },
-          "mode": "blocked"
-        },
-        {
-          "tid": "2",
-          "hvalue": "7c7b9e80027a",
-          "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "79",
-          "sp": "1",
-          "stack": [{ "type": "int", "value": "1" }],
-          "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
-"method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
-          ],
-          "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "1" } },
-          "mode": "runnable"
-        }
-      ]
-    },
-    {
-      "id": "16",
+      "id": "3",
       "tid": "2",
-      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "1" } },
-      "name": "fail2(1)",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(1)",
       "context": {
         "tid": "2",
-        "hvalue": "7c7b9e80027a",
+        "hvalue": "7ba6e500027a",
         "fp": "1",
-        "name": "fail2(1)",
-        "entry": "79",
-        "pc": "79",
+        "name": "fail4(1)",
+        "entry": "159",
+        "pc": "159",
         "sp": "1",
         "stack": [{ "type": "int", "value": "1" }],
         "trace": [
-{"pc": "79","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
         ],
-        "next": { "type": "Frame", "name": "fail2", "args": "p_q", "value": { "type": "int", "value": "1" } },
+        "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "1" } },
         "mode": "runnable"
       },
       "microsteps": [
         {
-          "code": "Frame fail2(p_q)",
-          "explain": "pop argument (1), assign to p_q, and run method \"fail2\"",
-          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "fail2" } ] },
-          "npc": "80",
+          "code": "Frame fail4(p_q)",
+          "explain": "pop argument (1), assign to p_q, and run method \"fail4\"",
+          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "fail4" } ] },
+          "npc": "160",
           "fp": "1",
           "trace": [
-{"pc": "80","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "160","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
           ],
           "local": { "p_q": { "type": "int", "value": "1" } },
           "pop": "1",
           "push": [ { "type": "dict", "value": [] } ],
-          "pc": "79"
+          "pc": "159"
         },
 
         {
           "code": "Push {}",
           "explain": "push constant {}",
           "explain2": { "text": "push constant {}", "args": [] },
-          "npc": "81",
+          "npc": "161",
           "push": [ { "type": "set", "value": [] } ],
-          "pc": "80"
+          "pc": "160"
         },
 
         {
           "code": "Push False",
           "explain": "push constant False",
           "explain2": { "text": "push constant False", "args": [] },
-          "npc": "82",
+          "npc": "162",
           "push": [ { "type": "bool", "value": "False" } ],
-          "pc": "81"
+          "pc": "161"
         },
 
         {
           "code": "2-ary SetAdd",
           "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
           "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
-          "npc": "83",
+          "npc": "163",
           "pop": "2",
           "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
-          "pc": "82"
+          "pc": "162"
         },
 
         {
           "code": "Push True",
           "explain": "push constant True",
           "explain2": { "text": "push constant True", "args": [] },
-          "npc": "84",
+          "npc": "164",
           "push": [ { "type": "bool", "value": "True" } ],
-          "pc": "83"
+          "pc": "163"
         },
 
         {
           "code": "2-ary SetAdd",
           "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
           "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
-          "npc": "85",
+          "npc": "165",
           "pop": "2",
           "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
-          "pc": "84"
+          "pc": "164"
         }
 
       ],
       "ctxbag": {
-          "7c7b910000aa": "1",
-          "7c7b910001ca": "1"
+          "7ba6e500022a": "1",
+          "7ba6e500036a": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7c7b9e8002aa",
+          "hvalue": "7ba6e50002aa",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
           "entry": "0",
-          "pc": "199",
+          "pc": "201",
           "sp": "1",
           "stack": [{ "type": "address" }],
           "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
 "method_arg": { "type": "list", "value": [] },
 "method": "__init__()","calltype": "process","vars":{ },"sp": 0}
           ],
@@ -5694,34 +5354,34 @@
         },
         {
           "tid": "1",
-          "hvalue": "7c7b910001ca",
+          "hvalue": "7ba6e500022a",
           "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "91",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "159",
           "sp": "1",
-          "stack": [{ "type": "dict", "value": [] }],
+          "stack": [{ "type": "int", "value": "0" }],
           "trace": [
-{"pc": "91","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+"method": "fail4(0)","calltype": "process","vars":{ },"sp": 0}
           ],
-          "next": { "type": "Load", "var": "turn" },
-          "mode": "blocked"
+          "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
         },
         {
           "tid": "2",
-          "hvalue": "7c7b910000aa",
+          "hvalue": "7ba6e500036a",
           "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "85",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "165",
           "sp": "2",
           "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
           "trace": [
-{"pc": "85","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
           ],
           "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
           "mode": "choosing"
@@ -5729,24 +5389,24 @@
       ]
     },
     {
-      "id": "21",
+      "id": "6",
       "tid": "2",
-      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "1" } },
-      "name": "fail2(1)",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(1)",
       "choice": { "type": "bool", "value": "False" },
       "context": {
         "tid": "2",
-        "hvalue": "7c7b910000aa",
+        "hvalue": "7ba6e500036a",
         "fp": "1",
-        "name": "fail2(1)",
-        "entry": "79",
-        "pc": "85",
+        "name": "fail4(1)",
+        "entry": "159",
+        "pc": "165",
         "sp": "2",
         "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
         "trace": [
-{"pc": "85","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
         ],
         "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
         "mode": "runnable"
@@ -5757,66 +5417,66 @@
           "explain": "replace top of stack ({ False, True }) with choice (False)",
           "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "False" } ] },
           "choose": { "type": "bool", "value": "False" },
-          "npc": "86",
+          "npc": "166",
           "fp": "1",
           "trace": [
-{"pc": "86","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "166","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
           ],
           "pop": "1",
           "push": [ { "type": "bool", "value": "False" } ],
-          "pc": "85"
+          "pc": "165"
         },
 
         {
-          "code": "JumpCond False 110",
-          "explain": "pop value (False), compare to False, and jump to 110 if the same",
-          "explain2": { "text": "pop value (#+), compare to #+, and jump to 110 if the same", "args": [ { "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] },
-          "npc": "110",
+          "code": "JumpCond False 189",
+          "explain": "pop value (False), compare to False, and jump to 189 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 189 if the same", "args": [ { "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] },
+          "npc": "189",
           "pop": "1",
           "push": [ ],
-          "pc": "86"
+          "pc": "166"
         },
 
         {
           "code": "DelVar p_q",
           "explain": "delete method variable p_q",
           "explain2": { "text": "delete method variable p_q", "args": [] },
-          "npc": "111",
+          "npc": "190",
           "local": { },
           "push": [ ],
-          "pc": "110"
+          "pc": "189"
         },
 
         {
           "code": "ReturnOp(result. None)",
           "explain": "pop caller's method variables and pc and push result (%+), or terminate if no caller",
           "explain2": { "text": "pop caller's method variables and pc and push result (%+), or terminate if no caller", "args": [ { "type": "address" } ] },
-          "npc": "111",
+          "npc": "190",
           "mode": "terminated",
           "pop": "1",
           "push": [ { "type": "address" } ],
-          "pc": "111"
+          "pc": "190"
         }
 
       ],
       "ctxbag": {
-          "7c7b910001ca": "1"
+          "7ba6e500022a": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7c7b9e8002aa",
+          "hvalue": "7ba6e50002aa",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
           "entry": "0",
-          "pc": "199",
+          "pc": "201",
           "sp": "1",
           "stack": [{ "type": "address" }],
           "trace": [
-{"pc": "199","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
 "method_arg": { "type": "list", "value": [] },
 "method": "__init__()","calltype": "process","vars":{ },"sp": 0}
           ],
@@ -5825,34 +5485,996 @@
         },
         {
           "tid": "1",
-          "hvalue": "7c7b910001ca",
+          "hvalue": "7ba6e500022a",
           "fp": "1",
-          "name": "fail2(0)",
-          "entry": "79",
-          "pc": "91",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "159",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e500022a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "159",
+        "sp": "1",
+        "stack": [{ "type": "int", "value": "0" }],
+        "trace": [
+{"pc": "159","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Frame", "name": "fail4", "args": "p_q", "value": { "type": "int", "value": "0" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame fail4(p_q)",
+          "explain": "pop argument (0), assign to p_q, and run method \"fail4\"",
+          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "fail4" } ] },
+          "npc": "160",
+          "fp": "1",
+          "trace": [
+{"pc": "160","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "local": { "p_q": { "type": "int", "value": "0" } },
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "159"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "161",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "160"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "162",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "161"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "163",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "162"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "164",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "163"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "165",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "164"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e500031a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e500031a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "165",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "choice": { "type": "bool", "value": "True" },
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e500031a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "165",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (True)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
+          "choose": { "type": "bool", "value": "True" },
+          "npc": "166",
+          "fp": "1",
+          "trace": [
+{"pc": "166","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "165"
+        },
+
+        {
+          "code": "JumpCond False 189",
+          "explain": "pop value (True), compare to False, and jump to 189 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 189 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
+          "npc": "167",
+          "pop": "1",
+          "push": [ ],
+          "pc": "166"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e740004a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e740004a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "167",
           "sp": "1",
           "stack": [{ "type": "dict", "value": [] }],
           "trace": [
-{"pc": "91","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "167","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "0" },
-"method": "fail2(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "Load", "var": "turn" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e740004a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "167",
+        "sp": "1",
+        "stack": [{ "type": "dict", "value": [] }],
+        "trace": [
+{"pc": "167","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "Load", "var": "turn" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Load turn",
+          "explain": "push value (0) of variable turn",
+          "explain2": { "text": "push value (#+) of variable turn", "args": [ { "type": "int", "value": "0" } ] },
+          "npc": "168",
+          "fp": "1",
+          "trace": [
+{"pc": "168","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "167"
+        },
+
+        {
+          "code": "LoadVar p_q",
+          "explain": "push value (0) of variable \"p_q\"",
+          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "p_q" } ] },
+          "npc": "169",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "168"
+        },
+
+        {
+          "code": "2-ary ==",
+          "explain": "pop 2 values (0, 0); check if both values are the same; push result (True)",
+          "explain2": { "text": "pop 2 values (#+, #+); check if both values are the same; push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "int", "value": "0" }, { "type": "bool", "value": "True" } ] },
+          "npc": "170",
+          "pop": "2",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "169"
+        },
+
+        {
+          "code": "JumpCond True 172",
+          "explain": "pop value (True), compare to True, and jump to 172 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 172 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "True" } ] },
+          "npc": "172",
+          "pop": "1",
+          "push": [ ],
+          "pc": "170"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e74000aa": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e74000aa",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "172",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "172","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e74000aa",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "172",
+        "sp": "1",
+        "stack": [{ "type": "dict", "value": [] }],
+        "trace": [
+{"pc": "172","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "AtomicInc" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "AtomicInc(eager)",
+          "explain": "increment atomic counter from 0 to 1: becomes atomic",
+          "explain2": { "text": "increment atomic counter from 0 to 1: becomes atomic", "args": [ ] },
+          "npc": "173",
+          "fp": "1",
+          "trace": [
+{"pc": "173","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "atomic": "1",
+          "push": [ ],
+          "pc": "172"
+        },
+
+        {
+          "code": "Load in_cs",
+          "explain": "push value (0) of variable in_cs",
+          "explain2": { "text": "push value (#+) of variable in_cs", "args": [ { "type": "int", "value": "0" } ] },
+          "npc": "174",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "173"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "175",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "174"
+        },
+
+        {
+          "code": "2-ary +",
+          "explain": "pop 2 values (1, 0); add the integers; push result (1)",
+          "explain2": { "text": "pop 2 values (#+, #+); add the integers; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] },
+          "npc": "176",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "175"
+        },
+
+        {
+          "code": "Store in_cs",
+          "explain": "pop value (1) and store into variable in_cs",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "in_cs" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "177",
+          "pop": "1",
+          "push": [ ],
+          "pc": "176"
+        },
+
+        {
+          "code": "AtomicDec",
+          "explain": "decrement atomic counter from 1 to 0: no longer atomic",
+          "explain2": { "text": "decrement atomic counter from 1 to 0: no longer atomic", "args": [ ] },
+          "npc": "178",
+          "atomic": "0",
+          "push": [ ],
+          "pc": "177"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e080007a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e080007a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "178",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "178","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e080007a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "178",
+        "sp": "1",
+        "stack": [{ "type": "dict", "value": [] }],
+        "trace": [
+{"pc": "178","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "AtomicInc" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "AtomicInc(eager)",
+          "explain": "increment atomic counter from 0 to 1: becomes atomic",
+          "explain2": { "text": "increment atomic counter from 0 to 1: becomes atomic", "args": [ ] },
+          "npc": "179",
+          "fp": "1",
+          "trace": [
+{"pc": "179","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "atomic": "1",
+          "push": [ ],
+          "pc": "178"
+        },
+
+        {
+          "code": "Load in_cs",
+          "explain": "push value (1) of variable in_cs",
+          "explain2": { "text": "push value (#+) of variable in_cs", "args": [ { "type": "int", "value": "1" } ] },
+          "npc": "180",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "179"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "181",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "180"
+        },
+
+        {
+          "code": "2-ary -",
+          "explain": "pop 2 values (1, 1); the second integer minus the first; push result (0)",
+          "explain2": { "text": "pop 2 values (#+, #+); the second integer minus the first; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "1" }, { "type": "int", "value": "0" } ] },
+          "npc": "182",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "181"
+        },
+
+        {
+          "code": "Store in_cs",
+          "explain": "pop value (0) and store into variable in_cs",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "in_cs" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "183",
+          "pop": "1",
+          "push": [ ],
+          "pc": "182"
+        },
+
+        {
+          "code": "AtomicDec",
+          "explain": "decrement atomic counter from 1 to 0: no longer atomic",
+          "explain2": { "text": "decrement atomic counter from 1 to 0: no longer atomic", "args": [ ] },
+          "npc": "184",
+          "atomic": "0",
+          "push": [ ],
+          "pc": "183"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "185",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "184"
+        },
+
+        {
+          "code": "LoadVar p_q",
+          "explain": "push value (0) of variable \"p_q\"",
+          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "p_q" } ] },
+          "npc": "186",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "185"
+        },
+
+        {
+          "code": "2-ary -",
+          "explain": "pop 2 values (0, 1); the second integer minus the first; push result (1)",
+          "explain2": { "text": "pop 2 values (#+, #+); the second integer minus the first; push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "int", "value": "1" }, { "type": "int", "value": "1" } ] },
+          "npc": "187",
+          "pop": "1",
+          "push": [ ],
+          "pc": "186"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e500039a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e500039a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "187",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "1" }],
+          "trace": [
+{"pc": "187","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "1" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail4(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e500039a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "187",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "1" }],
+        "trace": [
+{"pc": "187","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "1" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Store turn",
+          "explain": "pop value (1) and store into variable turn",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "1" } },
+          "npc": "188",
+          "fp": "1",
+          "trace": [
+{"pc": "188","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ ],
+          "pc": "187"
+        },
+
+        {
+          "code": "Jump 160",
+          "explain": "set program counter to 160",
+          "explain2": { "text": "set program counter to 160", "args": [] },
+          "npc": "160",
+          "push": [ ],
+          "pc": "188"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "161",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "160"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "162",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "161"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "163",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "162"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "164",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "163"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "165",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "164"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e500031a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e500031a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "165",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7ba6e740001a",
+          "fp": "1",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "1" } },
+      "name": "fail4(0)",
+      "choice": { "type": "bool", "value": "True" },
+      "context": {
+        "tid": "1",
+        "hvalue": "7ba6e500031a",
+        "fp": "1",
+        "name": "fail4(0)",
+        "entry": "159",
+        "pc": "165",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "165","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (True)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
+          "choose": { "type": "bool", "value": "True" },
+          "npc": "166",
+          "fp": "1",
+          "trace": [
+{"pc": "166","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "165"
+        },
+
+        {
+          "code": "JumpCond False 189",
+          "explain": "pop value (True), compare to False, and jump to 189 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 189 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
+          "npc": "167",
+          "pop": "1",
+          "push": [ ],
+          "pc": "166"
+        }
+
+      ],
+      "ctxbag": {
+          "7ba6e740004a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7ba6e50002aa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "201",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "201","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7ba6e740004a",
+          "fp": "1",
+          "name": "fail4(0)",
+          "entry": "159",
+          "pc": "167",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "167","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail4(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
           ],
           "next": { "type": "Load", "var": "turn" },
           "mode": "blocked"
         },
         {
           "tid": "2",
-          "hvalue": "7c7b910000da",
+          "hvalue": "7ba6e740001a",
           "fp": "1",
-          "name": "fail2(1)",
-          "entry": "79",
-          "pc": "111",
+          "name": "fail4(1)",
+          "entry": "159",
+          "pc": "190",
           "sp": "1",
           "stack": [{ "type": "address" }],
           "trace": [
-{"pc": "111","xpc": "79","method_name": { "type": "atom", "value": "fail2" },
+{"pc": "190","xpc": "159","method_name": { "type": "atom", "value": "fail4" },
 "method_arg": { "type": "int", "value": "1" },
-"method": "fail2(1)","calltype": "process","vars":{ },"sp": 0}
+"method": "fail4(1)","calltype": "process","vars":{ },"sp": 0}
           ],
           "mode": "terminated"
         }

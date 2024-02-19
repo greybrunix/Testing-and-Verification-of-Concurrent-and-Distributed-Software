@@ -10,19 +10,29 @@ Harmony
 How does the model checker work?
 
 > What it does 
-           > check for data races
-           > check for non terminating states in the NFA
-           > check for infinite loops
-           > check for active blocks
-           > Provides a Counter Example if one exists
+           > Check for data races
+           > Check for non terminating states in the NFA
+           > Check for infinite loops
+           > Check for active blocks
+           > Provides a counterexample if one exists
+           > Generates a html file, interactable if it finds a counterexample
+           > Python-like syntax
+           > Executable
 
 > What it doesn't do
+        > Model checker
            > Prove an algorithms safety and liveness properties
+           > Does not prove tautologies
+           > Propositions must be strong
+           > Does not permit propositions 
+           > As it is a SMT solver, it does not support temporal operators
+        > Trace
+           > Does not allow properties over NDA machines
 
 > What can we do?
            > Let's use some SMT theory
            > We know that Gamma |= b iff Gamma /\ ¬b |= absurd is unsatisfiable
-	   > Let's, then, formalize safety and liveness properties this way
+           > Let's, then, formalize safety and liveness properties this way
 
 Safety
 
@@ -47,9 +57,8 @@ SMT solvers cannot solve temporal operators like always(□) or eventually(◊)
 but we may be able to, somehow, convert this proposition into a First Order Logic
 Then we can use Harmony to prove the property applies to our mutex algorithms
 
-Peterson Algorithm (without) fairness property checking
 
-@pt.png
+@peterson.png
 
 Alternative for Liveness Proof
 

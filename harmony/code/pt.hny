@@ -33,3 +33,4 @@ def cs tid returns tst3:
 
 spawn thread 0
 spawn thread 1
+
