@@ -2,7 +2,7 @@
 #invariant reached_crit in {0, 1} # safety
 in_cs = 0
 #invariant   #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
-invariant  (in_cs in { 0, 1 }) and (any [entering tid for tid in [0,1]] => one_entered [0,1])
+#invariant  (in_cs in { 0, 1 }) and (any [entering tid for tid in [0,1]] => one_entered [0,1])
 sequential turn, lockTaken, flags
 turn = 0
 lockTaken = False
@@ -56,20 +56,6 @@ def fail4 p_q:
 		atomically in_cs -= 1
 		#counter += 1
 		turn = 1 - p_q
-
-def entering tid returns tst1:
-    tst1 = (turn != tid)
-
-def one_entered tids returns tst2:
-    var i = 0
-    tst2 = False
-    while (i < len(tids)) and (not tst2):
-        if cs i:
-            tst2 = True
-        i += 1
-
-def cs tid returns tst3:
-    tst3 =  turn == tid
 
 spawn fail2 0;
 spawn fail2 1;

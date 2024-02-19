@@ -1,0 +1,7236 @@
+<html>
+<head>
+  <meta charset='UTF-8'></meta>
+  <style>
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:200px;
+  overflow:auto;  
+}
+#table-wrapper table {
+  width:100%;
+}
+#table-wrapper table * {
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+table td, table th {
+    border: 1px solid black;
+}
+
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <td colspan='2'>
+<table border='1'>
+  <thead>
+    <tr>
+      <th colspan='4' style='color:red;'>
+        Issue: No issues
+      </th>
+    </tr>
+</table>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+  <tr>
+    <td colspan='2'>
+      <h3 style='color:blue;'>
+        <div id='coderow'>
+        </div>
+      </h3>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+  <tr>
+    <td valign='top'>
+<div id='table-wrapper'>
+  <div id='table-scroll'>
+    <table border='1'>
+      <tbody>
+        <tr id='P0'>
+          <td align='right'>
+            <a name='P0'>0</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='start of method __init__' id='C0'>
+              Frame __init__()
+            </span>
+          </td>
+        </tr>
+        <tr id='P1'>
+          <td align='right'>
+            <a name='P1'>1</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='jump over method definition: set program counter to 118' id='C1'>
+              Jump 118
+            </span>
+          </td>
+        </tr>
+        <tr id='P2'>
+          <td align='right'>
+            <a name='P2'>2</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='start of method Lock' id='C2'>
+              Frame Lock(tid)
+            </span>
+          </td>
+        </tr>
+        <tr id='P3'>
+          <td align='right'>
+            <a name='P3'>3</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?choosing' id='C3'>
+              Push ?choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P4'>
+          <td align='right'>
+            <a name='P4'>4</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of tid' id='C4'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P5'>
+          <td align='right'>
+            <a name='P5'>5</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C5'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P6'>
+          <td align='right'>
+            <a name='P6'>6</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant True' id='C6'>
+              Push True
+            </span>
+          </td>
+        </tr>
+        <tr id='P7'>
+          <td align='right'>
+            <a name='P7'>7</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C7'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P8'>
+          <td align='right'>
+            <a name='P8'>8</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C8'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P9'>
+          <td align='right'>
+            <a name='P9'>9</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C9'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P10'>
+          <td align='right'>
+            <a name='P10'>10</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C10'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P11'>
+          <td align='right'>
+            <a name='P11'>11</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push value of shared variable ticket' id='C11'>
+              Load ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P12'>
+          <td align='right'>
+            <a name='P12'>12</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 1 value and push the result of applying max' id='C12'>
+              1-ary max
+            </span>
+          </td>
+        </tr>
+        <tr id='P13'>
+          <td align='right'>
+            <a name='P13'>13</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C13'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P14'>
+          <td align='right'>
+            <a name='P14'>14</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C14'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P15'>
+          <td align='right'>
+            <a name='P15'>15</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C15'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P16'>
+          <td align='right'>
+            <a name='P16'>16</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?choosing' id='C16'>
+              Push ?choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P17'>
+          <td align='right'>
+            <a name='P17'>17</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C17'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P18'>
+          <td align='right'>
+            <a name='P18'>18</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C18'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P19'>
+          <td align='right'>
+            <a name='P19'>19</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant False' id='C19'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P20'>
+          <td align='right'>
+            <a name='P20'>20</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and an address and store the value at the address' id='C20'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P21'>
+          <td align='right'>
+            <a name='P21'>21</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C21'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P22'>
+          <td align='right'>
+            <a name='P22'>22</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store in j' id='C22'>
+              StoreVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P23'>
+          <td align='right'>
+            <a name='P23'>23</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of j' id='C23'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P24'>
+          <td align='right'>
+            <a name='P24'>24</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable N' id='C24'>
+              Load N
+            </span>
+          </td>
+        </tr>
+        <tr id='P25'>
+          <td align='right'>
+            <a name='P25'>25</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C25'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P26'>
+          <td align='right'>
+            <a name='P26'>26</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying -' id='C26'>
+              2-ary -
+            </span>
+          </td>
+        </tr>
+        <tr id='P27'>
+          <td align='right'>
+            <a name='P27'>27</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying <' id='C27'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P28'>
+          <td align='right'>
+            <a name='P28'>28</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 79 if the value is False' id='C28'>
+              JumpCond False 79
+            </span>
+          </td>
+        </tr>
+        <tr id='P29'>
+          <td align='right'>
+            <a name='P29'>29</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?choosing' id='C29'>
+              Push ?choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P30'>
+          <td align='right'>
+            <a name='P30'>30</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of j' id='C30'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P31'>
+          <td align='right'>
+            <a name='P31'>31</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C31'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P32'>
+          <td align='right'>
+            <a name='P32'>32</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop an address and push the value at the address' id='C32'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P33'>
+          <td align='right'>
+            <a name='P33'>33</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 35 if the value is False' id='C33'>
+              JumpCond False 35
+            </span>
+          </td>
+        </tr>
+        <tr id='P34'>
+          <td align='right'>
+            <a name='P34'>34</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 29' id='C34'>
+              Jump 29
+            </span>
+          </td>
+        </tr>
+        <tr id='P35'>
+          <td align='right'>
+            <a name='P35'>35</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?ticket' id='C35'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P36'>
+          <td align='right'>
+            <a name='P36'>36</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of j' id='C36'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P37'>
+          <td align='right'>
+            <a name='P37'>37</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C37'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P38'>
+          <td align='right'>
+            <a name='P38'>38</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop an address and push the value at the address' id='C38'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P39'>
+          <td align='right'>
+            <a name='P39'>39</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C39'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P40'>
+          <td align='right'>
+            <a name='P40'>40</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying !=' id='C40'>
+              2-ary !=
+            </span>
+          </td>
+        </tr>
+        <tr id='P41'>
+          <td align='right'>
+            <a name='P41'>41</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 70 if the value is False' id='C41'>
+              JumpCond False 70
+            </span>
+          </td>
+        </tr>
+        <tr id='P42'>
+          <td align='right'>
+            <a name='P42'>42</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C42'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P43'>
+          <td align='right'>
+            <a name='P43'>43</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of j' id='C43'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P44'>
+          <td align='right'>
+            <a name='P44'>44</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C44'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P45'>
+          <td align='right'>
+            <a name='P45'>45</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop an address and push the value at the address' id='C45'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P46'>
+          <td align='right'>
+            <a name='P46'>46</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C46'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P47'>
+          <td align='right'>
+            <a name='P47'>47</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C47'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P48'>
+          <td align='right'>
+            <a name='P48'>48</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C48'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P49'>
+          <td align='right'>
+            <a name='P49'>49</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop an address and push the value at the address' id='C49'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P50'>
+          <td align='right'>
+            <a name='P50'>50</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying <' id='C50'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P51'>
+          <td align='right'>
+            <a name='P51'>51</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 68 if the value is True' id='C51'>
+              JumpCond True 68
+            </span>
+          </td>
+        </tr>
+        <tr id='P52'>
+          <td align='right'>
+            <a name='P52'>52</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C52'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P53'>
+          <td align='right'>
+            <a name='P53'>53</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of j' id='C53'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P54'>
+          <td align='right'>
+            <a name='P54'>54</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C54'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P55'>
+          <td align='right'>
+            <a name='P55'>55</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop an address and push the value at the address' id='C55'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P56'>
+          <td align='right'>
+            <a name='P56'>56</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C56'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P57'>
+          <td align='right'>
+            <a name='P57'>57</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C57'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P58'>
+          <td align='right'>
+            <a name='P58'>58</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C58'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P59'>
+          <td align='right'>
+            <a name='P59'>59</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop an address and push the value at the address' id='C59'>
+              Load
+            </span>
+          </td>
+        </tr>
+        <tr id='P60'>
+          <td align='right'>
+            <a name='P60'>60</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying ==' id='C60'>
+              2-ary ==
+            </span>
+          </td>
+        </tr>
+        <tr id='P61'>
+          <td align='right'>
+            <a name='P61'>61</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 66 if the value is False' id='C61'>
+              JumpCond False 66
+            </span>
+          </td>
+        </tr>
+        <tr id='P62'>
+          <td align='right'>
+            <a name='P62'>62</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of j' id='C62'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P63'>
+          <td align='right'>
+            <a name='P63'>63</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C63'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P64'>
+          <td align='right'>
+            <a name='P64'>64</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying <' id='C64'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P65'>
+          <td align='right'>
+            <a name='P65'>65</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='set program counter to 71' id='C65'>
+              Jump 71
+            </span>
+          </td>
+        </tr>
+        <tr id='P66'>
+          <td align='right'>
+            <a name='P66'>66</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C66'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P67'>
+          <td align='right'>
+            <a name='P67'>67</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='set program counter to 71' id='C67'>
+              Jump 71
+            </span>
+          </td>
+        </tr>
+        <tr id='P68'>
+          <td align='right'>
+            <a name='P68'>68</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant True' id='C68'>
+              Push True
+            </span>
+          </td>
+        </tr>
+        <tr id='P69'>
+          <td align='right'>
+            <a name='P69'>69</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='set program counter to 71' id='C69'>
+              Jump 71
+            </span>
+          </td>
+        </tr>
+        <tr id='P70'>
+          <td align='right'>
+            <a name='P70'>70</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C70'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P71'>
+          <td align='right'>
+            <a name='P71'>71</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 73 if the value is False' id='C71'>
+              JumpCond False 73
+            </span>
+          </td>
+        </tr>
+        <tr id='P72'>
+          <td align='right'>
+            <a name='P72'>72</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 35' id='C72'>
+              Jump 35
+            </span>
+          </td>
+        </tr>
+        <tr id='P73'>
+          <td align='right'>
+            <a name='P73'>73</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of j' id='C73'>
+              LoadVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P74'>
+          <td align='right'>
+            <a name='P74'>74</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable j' id='C74'>
+              DelVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P75'>
+          <td align='right'>
+            <a name='P75'>75</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C75'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P76'>
+          <td align='right'>
+            <a name='P76'>76</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C76'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P77'>
+          <td align='right'>
+            <a name='P77'>77</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in j' id='C77'>
+              StoreVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P78'>
+          <td align='right'>
+            <a name='P78'>78</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 23' id='C78'>
+              Jump 23
+            </span>
+          </td>
+        </tr>
+        <tr id='P79'>
+          <td align='right'>
+            <a name='P79'>79</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable j' id='C79'>
+              DelVar j
+            </span>
+          </td>
+        </tr>
+        <tr id='P80'>
+          <td align='right'>
+            <a name='P80'>80</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable tid' id='C80'>
+              DelVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P81'>
+          <td align='right'>
+            <a name='P81'>81</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='restore caller method state and push result' id='C81'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P82'>
+          <td align='right'>
+            <a name='P82'>82</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='jump over method definition: set program counter to 118' id='C82'>
+              Jump 118
+            </span>
+          </td>
+        </tr>
+        <tr id='P83'>
+          <td align='right'>
+            <a name='P83'>83</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='start of method Unlock' id='C83'>
+              Frame Unlock(tid)
+            </span>
+          </td>
+        </tr>
+        <tr id='P84'>
+          <td align='right'>
+            <a name='P84'>84</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C84'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P85'>
+          <td align='right'>
+            <a name='P85'>85</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C85'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P86'>
+          <td align='right'>
+            <a name='P86'>86</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable tid' id='C86'>
+              DelVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P87'>
+          <td align='right'>
+            <a name='P87'>87</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C87'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P88'>
+          <td align='right'>
+            <a name='P88'>88</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 0' id='C88'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P89'>
+          <td align='right'>
+            <a name='P89'>89</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C89'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P90'>
+          <td align='right'>
+            <a name='P90'>90</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='restore caller method state and push result' id='C90'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P91'>
+          <td align='right'>
+            <a name='P91'>91</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='jump over method definition: set program counter to 118' id='C91'>
+              Jump 118
+            </span>
+          </td>
+        </tr>
+        <tr id='P92'>
+          <td align='right'>
+            <a name='P92'>92</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='start of method Thread' id='C92'>
+              Frame Thread(tid)
+            </span>
+          </td>
+        </tr>
+        <tr id='P93'>
+          <td align='right'>
+            <a name='P93'>93</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C93'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P94'>
+          <td align='right'>
+            <a name='P94'>94</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store in m' id='C94'>
+              StoreVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P95'>
+          <td align='right'>
+            <a name='P95'>95</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of m' id='C95'>
+              LoadVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P96'>
+          <td align='right'>
+            <a name='P96'>96</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable I' id='C96'>
+              Load I
+            </span>
+          </td>
+        </tr>
+        <tr id='P97'>
+          <td align='right'>
+            <a name='P97'>97</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying <=' id='C97'>
+              2-ary <=
+            </span>
+          </td>
+        </tr>
+        <tr id='P98'>
+          <td align='right'>
+            <a name='P98'>98</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 115 if the value is False' id='C98'>
+              JumpCond False 115
+            </span>
+          </td>
+        </tr>
+        <tr id='P99'>
+          <td align='right'>
+            <a name='P99'>99</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of tid' id='C99'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P100'>
+          <td align='right'>
+            <a name='P100'>100</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='call method PC(2)' id='C100'>
+              Apply PC(2)
+            </span>
+          </td>
+        </tr>
+        <tr id='P101'>
+          <td align='right'>
+            <a name='P101'>101</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='discard the top value on the stack' id='C101'>
+              Pop
+            </span>
+          </td>
+        </tr>
+        <tr id='P102'>
+          <td align='right'>
+            <a name='P102'>102</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable counter' id='C102'>
+              Load counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P103'>
+          <td align='right'>
+            <a name='P103'>103</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C103'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P104'>
+          <td align='right'>
+            <a name='P104'>104</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C104'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P105'>
+          <td align='right'>
+            <a name='P105'>105</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store it in shared variable counter' id='C105'>
+              Store counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P106'>
+          <td align='right'>
+            <a name='P106'>106</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of tid' id='C106'>
+              LoadVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P107'>
+          <td align='right'>
+            <a name='P107'>107</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='call method PC(83)' id='C107'>
+              Apply PC(83)
+            </span>
+          </td>
+        </tr>
+        <tr id='P108'>
+          <td align='right'>
+            <a name='P108'>108</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='discard the top value on the stack' id='C108'>
+              Pop
+            </span>
+          </td>
+        </tr>
+        <tr id='P109'>
+          <td align='right'>
+            <a name='P109'>109</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of m' id='C109'>
+              LoadVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P110'>
+          <td align='right'>
+            <a name='P110'>110</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable m' id='C110'>
+              DelVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P111'>
+          <td align='right'>
+            <a name='P111'>111</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C111'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P112'>
+          <td align='right'>
+            <a name='P112'>112</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C112'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P113'>
+          <td align='right'>
+            <a name='P113'>113</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in m' id='C113'>
+              StoreVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P114'>
+          <td align='right'>
+            <a name='P114'>114</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 95' id='C114'>
+              Jump 95
+            </span>
+          </td>
+        </tr>
+        <tr id='P115'>
+          <td align='right'>
+            <a name='P115'>115</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable m' id='C115'>
+              DelVar m
+            </span>
+          </td>
+        </tr>
+        <tr id='P116'>
+          <td align='right'>
+            <a name='P116'>116</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable tid' id='C116'>
+              DelVar tid
+            </span>
+          </td>
+        </tr>
+        <tr id='P117'>
+          <td align='right'>
+            <a name='P117'>117</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='restore caller method state and push result' id='C117'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P118'>
+          <td align='right'>
+            <a name='P118'>118</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?choosing' id='C118'>
+              Push ?choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P119'>
+          <td align='right'>
+            <a name='P119'>119</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='sequential consistency for variable on top of stack' id='C119'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P120'>
+          <td align='right'>
+            <a name='P120'>120</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C120'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P121'>
+          <td align='right'>
+            <a name='P121'>121</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='sequential consistency for variable on top of stack' id='C121'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P122'>
+          <td align='right'>
+            <a name='P122'>122</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?counter' id='C122'>
+              Push ?counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P123'>
+          <td align='right'>
+            <a name='P123'>123</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='sequential consistency for variable on top of stack' id='C123'>
+              Sequential
+            </span>
+          </td>
+        </tr>
+        <tr id='P124'>
+          <td align='right'>
+            <a name='P124'>124</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ()' id='C124'>
+              Push ()
+            </span>
+          </td>
+        </tr>
+        <tr id='P125'>
+          <td align='right'>
+            <a name='P125'>125</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in t' id='C125'>
+              StoreVar t
+            </span>
+          </td>
+        </tr>
+        <tr id='P126'>
+          <td align='right'>
+            <a name='P126'>126</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable t' id='C126'>
+              DelVar t
+            </span>
+          </td>
+        </tr>
+        <tr id='P127'>
+          <td align='right'>
+            <a name='P127'>127</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ()' id='C127'>
+              Push ()
+            </span>
+          </td>
+        </tr>
+        <tr id='P128'>
+          <td align='right'>
+            <a name='P128'>128</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable choosing' id='C128'>
+              Store choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P129'>
+          <td align='right'>
+            <a name='P129'>129</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ()' id='C129'>
+              Push ()
+            </span>
+          </td>
+        </tr>
+        <tr id='P130'>
+          <td align='right'>
+            <a name='P130'>130</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable ticket' id='C130'>
+              Store ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P131'>
+          <td align='right'>
+            <a name='P131'>131</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 2' id='C131'>
+              Push 2
+            </span>
+          </td>
+        </tr>
+        <tr id='P132'>
+          <td align='right'>
+            <a name='P132'>132</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable I' id='C132'>
+              Store I
+            </span>
+          </td>
+        </tr>
+        <tr id='P133'>
+          <td align='right'>
+            <a name='P133'>133</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 2' id='C133'>
+              Push 2
+            </span>
+          </td>
+        </tr>
+        <tr id='P134'>
+          <td align='right'>
+            <a name='P134'>134</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable N' id='C134'>
+              Store N
+            </span>
+          </td>
+        </tr>
+        <tr id='P135'>
+          <td align='right'>
+            <a name='P135'>135</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C135'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P136'>
+          <td align='right'>
+            <a name='P136'>136</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store it in shared variable counter' id='C136'>
+              Store counter
+            </span>
+          </td>
+        </tr>
+        <tr id='P137'>
+          <td align='right'>
+            <a name='P137'>137</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C137'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P138'>
+          <td align='right'>
+            <a name='P138'>138</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and store in i' id='C138'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P139'>
+          <td align='right'>
+            <a name='P139'>139</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C139'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P140'>
+          <td align='right'>
+            <a name='P140'>140</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push value of shared variable N' id='C140'>
+              Load N
+            </span>
+          </td>
+        </tr>
+        <tr id='P141'>
+          <td align='right'>
+            <a name='P141'>141</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying <' id='C141'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P142'>
+          <td align='right'>
+            <a name='P142'>142</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and jump to 159 if the value is False' id='C142'>
+              JumpCond False 159
+            </span>
+          </td>
+        </tr>
+        <tr id='P143'>
+          <td align='right'>
+            <a name='P143'>143</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant ?choosing' id='C143'>
+              Push ?choosing
+            </span>
+          </td>
+        </tr>
+        <tr id='P144'>
+          <td align='right'>
+            <a name='P144'>144</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of i' id='C144'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P145'>
+          <td align='right'>
+            <a name='P145'>145</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C145'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P146'>
+          <td align='right'>
+            <a name='P146'>146</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant False' id='C146'>
+              Push False
+            </span>
+          </td>
+        </tr>
+        <tr id='P147'>
+          <td align='right'>
+            <a name='P147'>147</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and an address and store the value at the address' id='C147'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P148'>
+          <td align='right'>
+            <a name='P148'>148</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?ticket' id='C148'>
+              Push ?ticket
+            </span>
+          </td>
+        </tr>
+        <tr id='P149'>
+          <td align='right'>
+            <a name='P149'>149</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C149'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P150'>
+          <td align='right'>
+            <a name='P150'>150</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C150'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P151'>
+          <td align='right'>
+            <a name='P151'>151</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 0' id='C151'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P152'>
+          <td align='right'>
+            <a name='P152'>152</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop a value and an address and store the value at the address' id='C152'>
+              Store
+            </span>
+          </td>
+        </tr>
+        <tr id='P153'>
+          <td align='right'>
+            <a name='P153'>153</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C153'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P154'>
+          <td align='right'>
+            <a name='P154'>154</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable i' id='C154'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P155'>
+          <td align='right'>
+            <a name='P155'>155</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C155'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P156'>
+          <td align='right'>
+            <a name='P156'>156</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C156'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P157'>
+          <td align='right'>
+            <a name='P157'>157</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in i' id='C157'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P158'>
+          <td align='right'>
+            <a name='P158'>158</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 139' id='C158'>
+              Jump 139
+            </span>
+          </td>
+        </tr>
+        <tr id='P159'>
+          <td align='right'>
+            <a name='P159'>159</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable i' id='C159'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P160'>
+          <td align='right'>
+            <a name='P160'>160</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant 0' id='C160'>
+              Push 0
+            </span>
+          </td>
+        </tr>
+        <tr id='P161'>
+          <td align='right'>
+            <a name='P161'>161</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in i' id='C161'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P162'>
+          <td align='right'>
+            <a name='P162'>162</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push the value of i' id='C162'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P163'>
+          <td align='right'>
+            <a name='P163'>163</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push value of shared variable N' id='C163'>
+              Load N
+            </span>
+          </td>
+        </tr>
+        <tr id='P164'>
+          <td align='right'>
+            <a name='P164'>164</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying <' id='C164'>
+              2-ary <
+            </span>
+          </td>
+        </tr>
+        <tr id='P165'>
+          <td align='right'>
+            <a name='P165'>165</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and jump to 177 if the value is False' id='C165'>
+              JumpCond False 177
+            </span>
+          </td>
+        </tr>
+        <tr id='P166'>
+          <td align='right'>
+            <a name='P166'>166</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='push constant ?PC(92)' id='C166'>
+              Push ?PC(92)
+            </span>
+          </td>
+        </tr>
+        <tr id='P167'>
+          <td align='right'>
+            <a name='P167'>167</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C167'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P168'>
+          <td align='right'>
+            <a name='P168'>168</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying AddArg' id='C168'>
+              2-ary AddArg
+            </span>
+          </td>
+        </tr>
+        <tr id='P169'>
+          <td align='right'>
+            <a name='P169'>169</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant {:}' id='C169'>
+              Push {:}
+            </span>
+          </td>
+        </tr>
+        <tr id='P170'>
+          <td align='right'>
+            <a name='P170'>170</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop thread-local state, argument, and pc and spawn a new thread' id='C170'>
+              Spawn
+            </span>
+          </td>
+        </tr>
+        <tr id='P171'>
+          <td align='right'>
+            <a name='P171'>171</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push the value of i' id='C171'>
+              LoadVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P172'>
+          <td align='right'>
+            <a name='P172'>172</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='delete method variable i' id='C172'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P173'>
+          <td align='right'>
+            <a name='P173'>173</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='push constant 1' id='C173'>
+              Push 1
+            </span>
+          </td>
+        </tr>
+        <tr id='P174'>
+          <td align='right'>
+            <a name='P174'>174</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='pop 2 values and push the result of applying +' id='C174'>
+              2-ary +
+            </span>
+          </td>
+        </tr>
+        <tr id='P175'>
+          <td align='right'>
+            <a name='P175'>175</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='pop a value and store in i' id='C175'>
+              StoreVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P176'>
+          <td align='right'>
+            <a name='P176'>176</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='set program counter to 162' id='C176'>
+              Jump 162
+            </span>
+          </td>
+        </tr>
+        <tr id='P177'>
+          <td align='right'>
+            <a name='P177'>177</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable i' id='C177'>
+              DelVar i
+            </span>
+          </td>
+        </tr>
+        <tr id='P178'>
+          <td align='right'>
+            <a name='P178'>178</a>&nbsp;
+          </td>
+          <td style='background-color: #E6E6E6;'>
+            <span title='restore caller method state and push result' id='C178'>
+              ReturnOp(result. None)
+            </span>
+          </td>
+        </tr>
+        <tr id='P179'>
+          <td align='right'>
+            <a name='P179'>179</a>&nbsp;
+          </td>
+          <td style='background-color: white;'>
+            <span title='delete method variable result' id='C179'>
+              DelVar result
+            </span>
+          </td>
+        </tr>
+      </body>
+    </table>
+  </div>
+</div>
+    </td>
+    <td valign='top'>
+      <img src='lamport.png' alt='DFA image'>
+    </td>
+  </tr>
+</table>
+<script>
+var nthreads = 0;
+var nmegasteps = 0;
+var vardir = [
+  []
+];
+var state =
+{
+  "nstates": 4825,
+  "issue": "No issues",
+  "hvm": {
+    "modules": {
+        "__main__": {
+            "file": "lamport.hny",
+            "lines": [
+                "",
+                "def Lock tid:",
+                "	choosing tid = True;",
+                "	ticket tid = max ticket + 1;",
+                "	choosing tid = False;",
+                "	var j = 0;",
+                "	while j < (N - 1):",
+                "		while choosing j:",
+                "			pass;",
+                "		while (ticket j != 0) and (",
+                "			(ticket j < ticket tid) or",
+                "			((ticket j == ticket tid) and",
+                "			 (j < tid))):",
+                "			pass;",
+                "		j += 1;",
+                "def Unlock tid:",
+                "	ticket tid = 0;",
+                "",
+                "def Thread tid:",
+                "	var m = 1;",
+                "	while m <= I:",
+                "		Lock tid",
+                "		counter += 1;",
+                "		Unlock tid;",
+                "		m+=1;",
+                "",
+                "sequential choosing,ticket,counter",
+                "var t = []",
+                "choosing = []",
+                "ticket = []",
+                "I=2;N=2",
+                "global counter;",
+                "counter = 0",
+                "var i = 0;",
+                "while i < N:",
+                "	choosing[i] = False;",
+                "	ticket[i] = 0;",
+                "	i+=1",
+                "i=0",
+                "while i < N:",
+                "	spawn Thread i;",
+                "	i+=1"
+              ],
+            "identifiers": {
+                "tid": "local-const",
+                "i": "local-var",
+                "m": "local-var",
+                "t": "local-var",
+                "Thread": "constant",
+                "this": "local-var",
+                "Lock": "constant",
+                "j": "local-var",
+                "choosing": "global",
+                "counter": "global",
+                "___": "___",
+                "I": "global",
+                "N": "global",
+                "ticket": "global",
+                "Unlock": "constant"
+              }
+          }
+      },
+    "labels": {
+        "__end__": 180
+      },
+    "pretty": [
+        [
+            "Frame __init__()",
+            "start of method __init__"
+          ],
+        [
+            "Jump 118",
+            "jump over method definition: set program counter to 118"
+          ],
+        [
+            "Frame Lock(tid)",
+            "start of method Lock"
+          ],
+        [
+            "Push ?choosing",
+            "push constant ?choosing"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load ticket",
+            "push value of shared variable ticket"
+          ],
+        [
+            "1-ary max",
+            "pop 1 value and push the result of applying max"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push ?choosing",
+            "push constant ?choosing"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "StoreVar j",
+            "pop a value and store in j"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "Load N",
+            "push value of shared variable N"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "JumpCond False 79",
+            "pop a value and jump to 79 if the value is False"
+          ],
+        [
+            "Push ?choosing",
+            "push constant ?choosing"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "JumpCond False 35",
+            "pop a value and jump to 35 if the value is False"
+          ],
+        [
+            "Jump 29",
+            "set program counter to 29"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary !=",
+            "pop 2 values and push the result of applying !="
+          ],
+        [
+            "JumpCond False 70",
+            "pop a value and jump to 70 if the value is False"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "JumpCond True 68",
+            "pop a value and jump to 68 if the value is True"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "JumpCond False 66",
+            "pop a value and jump to 66 if the value is False"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "Jump 71",
+            "set program counter to 71"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Jump 71",
+            "set program counter to 71"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Jump 71",
+            "set program counter to 71"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "JumpCond False 73",
+            "pop a value and jump to 73 if the value is False"
+          ],
+        [
+            "Jump 35",
+            "set program counter to 35"
+          ],
+        [
+            "LoadVar j",
+            "push the value of j"
+          ],
+        [
+            "DelVar j",
+            "delete method variable j"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "StoreVar j",
+            "pop a value and store in j"
+          ],
+        [
+            "Jump 23",
+            "set program counter to 23"
+          ],
+        [
+            "DelVar j",
+            "delete method variable j"
+          ],
+        [
+            "DelVar tid",
+            "delete method variable tid"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 118",
+            "jump over method definition: set program counter to 118"
+          ],
+        [
+            "Frame Unlock(tid)",
+            "start of method Unlock"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "DelVar tid",
+            "delete method variable tid"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 118",
+            "jump over method definition: set program counter to 118"
+          ],
+        [
+            "Frame Thread(tid)",
+            "start of method Thread"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "StoreVar m",
+            "pop a value and store in m"
+          ],
+        [
+            "LoadVar m",
+            "push the value of m"
+          ],
+        [
+            "Load I",
+            "push value of shared variable I"
+          ],
+        [
+            "2-ary <=",
+            "pop 2 values and push the result of applying <="
+          ],
+        [
+            "JumpCond False 115",
+            "pop a value and jump to 115 if the value is False"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "Apply PC(2)",
+            "call method PC(2)"
+          ],
+        [
+            "Pop",
+            "discard the top value on the stack"
+          ],
+        [
+            "Load counter",
+            "push value of shared variable counter"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store counter",
+            "pop a value and store it in shared variable counter"
+          ],
+        [
+            "LoadVar tid",
+            "push the value of tid"
+          ],
+        [
+            "Apply PC(83)",
+            "call method PC(83)"
+          ],
+        [
+            "Pop",
+            "discard the top value on the stack"
+          ],
+        [
+            "LoadVar m",
+            "push the value of m"
+          ],
+        [
+            "DelVar m",
+            "delete method variable m"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "StoreVar m",
+            "pop a value and store in m"
+          ],
+        [
+            "Jump 95",
+            "set program counter to 95"
+          ],
+        [
+            "DelVar m",
+            "delete method variable m"
+          ],
+        [
+            "DelVar tid",
+            "delete method variable tid"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Push ?choosing",
+            "push constant ?choosing"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?counter",
+            "push constant ?counter"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ()",
+            "push constant ()"
+          ],
+        [
+            "StoreVar t",
+            "pop a value and store in t"
+          ],
+        [
+            "DelVar t",
+            "delete method variable t"
+          ],
+        [
+            "Push ()",
+            "push constant ()"
+          ],
+        [
+            "Store choosing",
+            "pop a value and store it in shared variable choosing"
+          ],
+        [
+            "Push ()",
+            "push constant ()"
+          ],
+        [
+            "Store ticket",
+            "pop a value and store it in shared variable ticket"
+          ],
+        [
+            "Push 2",
+            "push constant 2"
+          ],
+        [
+            "Store I",
+            "pop a value and store it in shared variable I"
+          ],
+        [
+            "Push 2",
+            "push constant 2"
+          ],
+        [
+            "Store N",
+            "pop a value and store it in shared variable N"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store counter",
+            "pop a value and store it in shared variable counter"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "Load N",
+            "push value of shared variable N"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "JumpCond False 159",
+            "pop a value and jump to 159 if the value is False"
+          ],
+        [
+            "Push ?choosing",
+            "push constant ?choosing"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push ?ticket",
+            "push constant ?ticket"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "Jump 139",
+            "set program counter to 139"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "Load N",
+            "push value of shared variable N"
+          ],
+        [
+            "2-ary <",
+            "pop 2 values and push the result of applying <"
+          ],
+        [
+            "JumpCond False 177",
+            "pop a value and jump to 177 if the value is False"
+          ],
+        [
+            "Push ?PC(92)",
+            "push constant ?PC(92)"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "LoadVar i",
+            "push the value of i"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "StoreVar i",
+            "pop a value and store in i"
+          ],
+        [
+            "Jump 162",
+            "set program counter to 162"
+          ],
+        [
+            "DelVar i",
+            "delete method variable i"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "DelVar result",
+            "delete method variable result"
+          ]
+      ],
+    "locs": [
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                2,
+                1,
+                43,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 6,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                13
+              ],
+            "line": 2,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                13
+              ],
+            "line": 2,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                2,
+                3,
+                20
+              ],
+            "line": 3,
+            "endcolumn": 9,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                2,
+                3,
+                20
+              ],
+            "line": 3,
+            "endcolumn": 13,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                2,
+                3,
+                20
+              ],
+            "line": 3,
+            "endcolumn": 13,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                2,
+                3,
+                20
+              ],
+            "line": 3,
+            "endcolumn": 20,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                2,
+                3,
+                20
+              ],
+            "line": 3,
+            "endcolumn": 15,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 7,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 11,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 24,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 24,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 28,
+            "column": 28
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 28,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 4,
+            "stmt": [
+                4,
+                2,
+                4,
+                28
+              ],
+            "line": 4,
+            "endcolumn": 13,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                2,
+                5,
+                21
+              ],
+            "line": 5,
+            "endcolumn": 9,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                2,
+                5,
+                21
+              ],
+            "line": 5,
+            "endcolumn": 13,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                2,
+                5,
+                21
+              ],
+            "line": 5,
+            "endcolumn": 13,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                2,
+                5,
+                21
+              ],
+            "line": 5,
+            "endcolumn": 21,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                2,
+                5,
+                21
+              ],
+            "line": 5,
+            "endcolumn": 15,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                2,
+                6,
+                10
+              ],
+            "line": 6,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                2,
+                6,
+                10
+              ],
+            "line": 6,
+            "endcolumn": 10,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 13,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 17,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 17,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 18,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 18,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 18,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 18,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 18,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                3,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 19,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 17,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 17,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 17,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 17,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 22,
+            "column": 22
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 22,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 15,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 12,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 12,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 12,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 25,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 25,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 25,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 25,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 25,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 14,
+            "column": 4
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 27,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 27,
+            "column": 25
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 27,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 27,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 27,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 13,
+            "endcolumn": 6,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 13,
+            "endcolumn": 12,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 13,
+            "endcolumn": 12,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 32,
+            "column": 30
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 12,
+            "endcolumn": 13,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 29,
+            "column": 28
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 11,
+            "endcolumn": 14,
+            "column": 4
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 27,
+            "column": 25
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 15,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                10,
+                3,
+                13,
+                16
+              ],
+            "line": 10,
+            "endcolumn": 16,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 15,
+            "stmt": [
+                15,
+                3,
+                15,
+                8
+              ],
+            "line": 15,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 15,
+            "stmt": [
+                15,
+                3,
+                15,
+                8
+              ],
+            "line": 15,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 15,
+            "stmt": [
+                15,
+                3,
+                15,
+                8
+              ],
+            "line": 15,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 15,
+            "stmt": [
+                15,
+                3,
+                15,
+                8
+              ],
+            "line": 15,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 15,
+            "stmt": [
+                15,
+                3,
+                15,
+                8
+              ],
+            "line": 15,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                2,
+                7,
+                19
+              ],
+            "line": 7,
+            "endcolumn": 19,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                13
+              ],
+            "line": 2,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                13
+              ],
+            "line": 2,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                13
+              ],
+            "line": 2,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                15
+              ],
+            "line": 16,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                15
+              ],
+            "line": 16,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 7,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 11,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 15,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                2,
+                17,
+                15
+              ],
+            "line": 17,
+            "endcolumn": 13,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                15
+              ],
+            "line": 16,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                1,
+                19,
+                15
+              ],
+            "line": 19,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                1,
+                19,
+                15
+              ],
+            "line": 19,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                2,
+                20,
+                10
+              ],
+            "line": 20,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 20,
+            "stmt": [
+                20,
+                2,
+                20,
+                10
+              ],
+            "line": 20,
+            "endcolumn": 10,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                2,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                2,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 13,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                2,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 13,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                2,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                3,
+                22,
+                10
+              ],
+            "line": 22,
+            "endcolumn": 10,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                3,
+                22,
+                10
+              ],
+            "line": 22,
+            "endcolumn": 10,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                3,
+                22,
+                10
+              ],
+            "line": 22,
+            "endcolumn": 10,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 23,
+            "stmt": [
+                23,
+                3,
+                23,
+                14
+              ],
+            "line": 23,
+            "endcolumn": 14,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 23,
+            "stmt": [
+                23,
+                3,
+                23,
+                14
+              ],
+            "line": 23,
+            "endcolumn": 14,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 23,
+            "stmt": [
+                23,
+                3,
+                23,
+                14
+              ],
+            "line": 23,
+            "endcolumn": 14,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 23,
+            "stmt": [
+                23,
+                3,
+                23,
+                14
+              ],
+            "line": 23,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                12
+              ],
+            "line": 24,
+            "endcolumn": 12,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                6
+              ],
+            "line": 25,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                6
+              ],
+            "line": 25,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                6
+              ],
+            "line": 25,
+            "endcolumn": 6,
+            "column": 6
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                6
+              ],
+            "line": 25,
+            "endcolumn": 6,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                6
+              ],
+            "line": 25,
+            "endcolumn": 5,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                2,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 14,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                1,
+                19,
+                15
+              ],
+            "line": 19,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                1,
+                19,
+                15
+              ],
+            "line": 19,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 19,
+            "stmt": [
+                19,
+                1,
+                19,
+                15
+              ],
+            "line": 19,
+            "endcolumn": 15,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 19,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 34,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 26,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 34,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 34,
+            "column": 28
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                1,
+                27,
+                34
+              ],
+            "line": 27,
+            "endcolumn": 34,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                1,
+                28,
+                10
+              ],
+            "line": 28,
+            "endcolumn": 10,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                1,
+                28,
+                10
+              ],
+            "line": 28,
+            "endcolumn": 10,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 29,
+            "stmt": [
+                29,
+                1,
+                29,
+                13
+              ],
+            "line": 29,
+            "endcolumn": 13,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 29,
+            "stmt": [
+                29,
+                1,
+                29,
+                13
+              ],
+            "line": 29,
+            "endcolumn": 13,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 29,
+            "stmt": [
+                29,
+                1,
+                29,
+                13
+              ],
+            "line": 29,
+            "endcolumn": 10,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                1,
+                30,
+                11
+              ],
+            "line": 30,
+            "endcolumn": 11,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                1,
+                30,
+                11
+              ],
+            "line": 30,
+            "endcolumn": 8,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                3
+              ],
+            "line": 31,
+            "endcolumn": 3,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                3
+              ],
+            "line": 31,
+            "endcolumn": 2,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                5,
+                31,
+                7
+              ],
+            "line": 31,
+            "endcolumn": 7,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                5,
+                31,
+                7
+              ],
+            "line": 31,
+            "endcolumn": 6,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 33,
+            "stmt": [
+                33,
+                1,
+                33,
+                11
+              ],
+            "line": 33,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 33,
+            "stmt": [
+                33,
+                1,
+                33,
+                11
+              ],
+            "line": 33,
+            "endcolumn": 9,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                1,
+                34,
+                9
+              ],
+            "line": 34,
+            "endcolumn": 9,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                1,
+                34,
+                9
+              ],
+            "line": 34,
+            "endcolumn": 9,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                1,
+                35,
+                12
+              ],
+            "line": 35,
+            "endcolumn": 7,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                1,
+                35,
+                12
+              ],
+            "line": 35,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                1,
+                35,
+                12
+              ],
+            "line": 35,
+            "endcolumn": 11,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                1,
+                35,
+                12
+              ],
+            "line": 35,
+            "endcolumn": 5,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 36,
+            "stmt": [
+                36,
+                2,
+                36,
+                20
+              ],
+            "line": 36,
+            "endcolumn": 9,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 36,
+            "stmt": [
+                36,
+                2,
+                36,
+                20
+              ],
+            "line": 36,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 36,
+            "stmt": [
+                36,
+                2,
+                36,
+                20
+              ],
+            "line": 36,
+            "endcolumn": 12,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 36,
+            "stmt": [
+                36,
+                2,
+                36,
+                20
+              ],
+            "line": 36,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 36,
+            "stmt": [
+                36,
+                2,
+                36,
+                20
+              ],
+            "line": 36,
+            "endcolumn": 14,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                2,
+                37,
+                14
+              ],
+            "line": 37,
+            "endcolumn": 7,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                2,
+                37,
+                14
+              ],
+            "line": 37,
+            "endcolumn": 9,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                2,
+                37,
+                14
+              ],
+            "line": 37,
+            "endcolumn": 10,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                2,
+                37,
+                14
+              ],
+            "line": 37,
+            "endcolumn": 14,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                2,
+                37,
+                14
+              ],
+            "line": 37,
+            "endcolumn": 12,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                2,
+                38,
+                5
+              ],
+            "line": 38,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                2,
+                38,
+                5
+              ],
+            "line": 38,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                2,
+                38,
+                5
+              ],
+            "line": 38,
+            "endcolumn": 5,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                2,
+                38,
+                5
+              ],
+            "line": 38,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                2,
+                38,
+                5
+              ],
+            "line": 38,
+            "endcolumn": 4,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                1,
+                35,
+                12
+              ],
+            "line": 35,
+            "endcolumn": 12,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 39,
+            "stmt": [
+                39,
+                1,
+                39,
+                3
+              ],
+            "line": 39,
+            "endcolumn": 3,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 39,
+            "stmt": [
+                39,
+                1,
+                39,
+                3
+              ],
+            "line": 39,
+            "endcolumn": 3,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 39,
+            "stmt": [
+                39,
+                1,
+                39,
+                3
+              ],
+            "line": 39,
+            "endcolumn": 2,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 40,
+            "stmt": [
+                40,
+                1,
+                40,
+                12
+              ],
+            "line": 40,
+            "endcolumn": 7,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 40,
+            "stmt": [
+                40,
+                1,
+                40,
+                12
+              ],
+            "line": 40,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 40,
+            "stmt": [
+                40,
+                1,
+                40,
+                12
+              ],
+            "line": 40,
+            "endcolumn": 11,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 40,
+            "stmt": [
+                40,
+                1,
+                40,
+                12
+              ],
+            "line": 40,
+            "endcolumn": 5,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                2,
+                41,
+                15
+              ],
+            "line": 41,
+            "endcolumn": 13,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                2,
+                41,
+                15
+              ],
+            "line": 41,
+            "endcolumn": 15,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                2,
+                41,
+                15
+              ],
+            "line": 41,
+            "endcolumn": 15,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                2,
+                41,
+                15
+              ],
+            "line": 41,
+            "endcolumn": 15,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                2,
+                41,
+                15
+              ],
+            "line": 41,
+            "endcolumn": 15,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                5
+              ],
+            "line": 42,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                5
+              ],
+            "line": 42,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                5
+              ],
+            "line": 42,
+            "endcolumn": 5,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                5
+              ],
+            "line": 42,
+            "endcolumn": 5,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                5
+              ],
+            "line": 42,
+            "endcolumn": 4,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 40,
+            "stmt": [
+                40,
+                1,
+                40,
+                12
+              ],
+            "line": 40,
+            "endcolumn": 12,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                2,
+                1,
+                43,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 6,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                2,
+                1,
+                43,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 6,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                2,
+                1,
+                43,
+                6
+              ],
+            "line": 2,
+            "endcolumn": 6,
+            "column": 1
+          }
+      ],
+    "code": [
+        {
+            "args": "()",
+            "name": "__init__",
+            "op": "Frame"
+          },
+        {
+            "pc": "118",
+            "op": "Jump"
+          },
+        {
+            "args": "tid",
+            "name": "Lock",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "choosing"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "ticket"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 1,
+            "value": "max",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "choosing"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": "j",
+            "op": "StoreVar"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "N"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "79",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "choosing"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "pc": "35",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "29",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "!=",
+            "op": "Nary"
+          },
+        {
+            "pc": "70",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "68",
+            "cond": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "66",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "71",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "pc": "71",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "pc": "71",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "pc": "73",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "35",
+            "op": "Jump"
+          },
+        {
+            "value": "j",
+            "op": "LoadVar"
+          },
+        {
+            "value": "j",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": "j",
+            "op": "StoreVar"
+          },
+        {
+            "pc": "23",
+            "op": "Jump"
+          },
+        {
+            "value": "j",
+            "op": "DelVar"
+          },
+        {
+            "value": "tid",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "118",
+            "op": "Jump"
+          },
+        {
+            "args": "tid",
+            "name": "Unlock",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "value": "tid",
+            "op": "DelVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "118",
+            "op": "Jump"
+          },
+        {
+            "args": "tid",
+            "name": "Thread",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "m",
+            "op": "StoreVar"
+          },
+        {
+            "value": "m",
+            "op": "LoadVar"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "I"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "<=",
+            "op": "Nary"
+          },
+        {
+            "pc": "115",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "value": {
+                "type": "pc",
+                "value": "2"
+              },
+            "op": "Apply"
+          },
+        {
+            "op": "Pop"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": "tid",
+            "op": "LoadVar"
+          },
+        {
+            "value": {
+                "type": "pc",
+                "value": "83"
+              },
+            "op": "Apply"
+          },
+        {
+            "op": "Pop"
+          },
+        {
+            "value": "m",
+            "op": "LoadVar"
+          },
+        {
+            "value": "m",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": "m",
+            "op": "StoreVar"
+          },
+        {
+            "pc": "95",
+            "op": "Jump"
+          },
+        {
+            "value": "m",
+            "op": "DelVar"
+          },
+        {
+            "value": "tid",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "choosing"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "counter"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": "t",
+            "op": "StoreVar"
+          },
+        {
+            "value": "t",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "choosing"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "ticket"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 2
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "I"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 2
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "N"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "N"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "159",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "choosing"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "ticket"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "pc": "139",
+            "op": "Jump"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "N"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 2,
+            "value": "<",
+            "op": "Nary"
+          },
+        {
+            "pc": "177",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "92"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "value": "i",
+            "op": "LoadVar"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": "i",
+            "op": "StoreVar"
+          },
+        {
+            "pc": "162",
+            "op": "Jump"
+          },
+        {
+            "value": "i",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": "result",
+            "op": "DelVar"
+          }
+      ]
+  },
+  "symbols": {
+
+  },
+  "nodes": [
+    {
+      "idx": 0,
+      "component": 4350,
+      "transitions": [
+
+      ],
+      "type": "initial"
+    }
+  ],
+  "profile": [
+    1,
+    1,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    125,
+    125,
+    125,
+    125,
+    125,
+    153,
+    153,
+    153,
+    300,
+    274,
+    274,
+    274,
+    274,
+    274,
+    184,
+    184,
+    184,
+    154,
+    154,
+    30,
+    218,
+    218,
+    218,
+    140,
+    140,
+    140,
+    140,
+    117,
+    117,
+    117,
+    136,
+    136,
+    136,
+    136,
+    202,
+    202,
+    202,
+    126,
+    126,
+    126,
+    113,
+    113,
+    113,
+    113,
+    142,
+    142,
+    142,
+    92,
+    92,
+    92,
+    92,
+    50,
+    50,
+    76,
+    76,
+    23,
+    241,
+    94,
+    147,
+    147,
+    147,
+    147,
+    147,
+    147,
+    120,
+    120,
+    120,
+    0,
+    171,
+    171,
+    171,
+    171,
+    171,
+    171,
+    134,
+    134,
+    0,
+    20,
+    20,
+    20,
+    154,
+    112,
+    112,
+    112,
+    58,
+    58,
+    120,
+    120,
+    120,
+    120,
+    171,
+    171,
+    171,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    54,
+    54,
+    54,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    0
+  ]
+}
+
+;
+var boxSize = 10;
+var timeWidth = 40;
+var currentTime = 0;
+var totalTime = 0;
+var microsteps = [];
+var megasteps = []
+var threads = [];
+var curMegaStep = 0;
+var mestable = document.getElementById("mestable");
+var threadtable = document.getElementById("threadtable");
+var coderow = document.getElementById("coderow");
+// var hvmrow = document.getElementById("hvmrow");
+var container = document.getElementById('table-scroll');
+var currOffset = 0;
+var currCloc = null;
+
+// printing contexts
+var contexts = {};
+var ctxGen = 0;
+
+function json_string_list(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "[ " + result + " ]";
+}
+
+function json_string_tuple(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "(" + result + ")";
+}
+
+function json_string_set(obj) {
+  var result = "";
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += json_string(obj[i]);
+  }
+  return "{ " + result + " }";
+}
+
+function json_string_dict(obj) {
+  if (obj.length == 0) {
+    return "{:}"
+  }
+
+  var islist = true;
+  for (var i = 0; i < obj.length; i++) {
+    if (obj[i].key.type != "int" || obj[i].key.value != i.toString()) {
+      islist = false;
+      break;
+    }
+  }
+
+  var result = "";
+  if (islist) {
+    for (var i = 0; i < obj.length; i++) {
+      if (i != 0) {
+        result += ", ";
+      }
+      result += json_string(obj[i].value);
+    }
+    if (obj.length == 1) {
+      result += ",";
+    }
+    return "[" + result + "]";
+  }
+
+  for (var i = 0; i < obj.length; i++) {
+    if (result != "") {
+      result += ", ";
+    }
+    var kv = obj[i];
+    var k = json_string(kv.key);
+    var v = json_string(kv.value);
+    result += k + ": " + v;
+  }
+  return "{ " + result + " }";
+}
+
+function json_string_address(func, args) {
+  var result = "?";
+  var index = 0;
+  if (func.type == "pc") {
+    if (func.value == -1 || func.value == -2) {
+      result += args[0].value;
+      index = 1;
+    }
+    else if (func.value == -3) {
+      result += "this." + args[0].value;
+      index = 1;
+    }
+    else {
+      result += json_string(func);
+    }
+  }
+  else {
+    result += json_string(func);
+  }
+  for (var i = index; i < args.length; i++) {
+    result += "[" + json_string(args[i]) + "]";
+  }
+  return result;
+}
+
+function json_string_context(obj) {
+  // TODO.  Is JSON.stringify deterministic (same context --> same string)?
+  var key = JSON.stringify(obj);
+  if (!(key in contexts)) {
+    contexts[key] = ++ctxGen;
+  }
+  var output = '<span title="CONTEXT\n';
+  if ("id" in obj) {
+    output += "id: " + json_string(obj["id"]) + "\n";
+  }
+  output += "pc: " + json_string(obj["pc"]) + "\n";
+  output += "vars: " + stringify_vars(obj["vars"]) + "\n";
+  var atomic = "atomic" in obj && obj["atomic"]["value"] == "True";
+  var stopped = "stopped" in obj && obj["stopped"]["value"] == "True";
+  if (atomic || stopped) {
+    output += "mode:"
+    if (atomic) output += " atomic";
+    if (stopped) output += " stopped";
+    output += "\n";
+  }
+  output += "sp: " + json_string(obj["sp"]);
+  return output + '" style="color:blue">C' + contexts[key] + '</span>';
+
+  // var pc = json_string(obj.pc);
+  // return "CTX(" + pc + ")";
+}
+
+function json_string(obj) {
+  switch (obj.type) {
+  case "bool": case "int":
+    return obj.value;
+  case "atom":
+    return '"' + obj.value + '"';
+  case "set":
+    return json_string_set(obj.value);
+  case "list":
+    return json_string_list(obj.value);
+  case "dict":
+    return json_string_dict(obj.value);
+  case "pc":
+    return "PC(" + obj.value + ")"
+  case "address":
+    if ("func" in obj) {
+      return json_string_address(obj.func, obj.args);
+    }
+    return "None";
+  case "context":
+    return json_string_context(obj.value);
+  default:
+    return JSON.stringify(obj);
+  }
+}
+
+var noloc = { file: "", line: "", code: "" };
+
+function getCode(pc) {
+  var loc = state.hvm.locs[pc];
+  var module = state.hvm.modules[loc.module];
+  loc.file = module.file;
+  loc.code = module.lines[loc.line - 1];
+  return loc;
+//  var locs = state.locations;
+//  while (pc >= 0) {
+//    s = "" + pc;
+//    if (locs.hasOwnProperty(s)) {
+//      return locs[s];
+//    }
+//    pc--;
+//  }
+//  return noloc;
+}
+
+function drawTimeLine(mes) {
+  var c = mes.canvas.getContext("2d");
+  c.beginPath();
+  c.clearRect(0, 0, mes.canvas.width, mes.canvas.height);
+  var t = mes.startTime;
+  var yboxes = Math.floor((mes.nsteps + timeWidth - 1) / timeWidth);
+  var nsteps = mes.nsteps;
+  for (var y = 0; y < yboxes; y++) {
+    var xboxes = nsteps > timeWidth ? timeWidth : nsteps;
+    for (var x = 0; x < xboxes; x++) {
+      c.fillStyle = t < currentTime ? "orange" : "white";
+      c.fillRect(x * boxSize, y * boxSize, boxSize, boxSize);
+      c.rect(x * boxSize, y * boxSize, boxSize, boxSize);
+      c.stroke();
+      t += 1;
+    }
+    nsteps -= xboxes;
+  }
+  mes.nextstep.innerHTML = "";
+  return t;
+}
+
+function updateStatus(mes) {
+  for (var i = 0; i < mes.contexts.length; i++) {
+    var c = mes.contexts[i];
+    if (c.tid == mes.tid) {
+      if (c.mode == "terminated") {
+        mes.nextstep.innerHTML = "terminated"
+      }
+      else if (c.hasOwnProperty("next")) {
+        switch (c.next.type) {
+        case "Continue":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "stopped in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line;
+          break;
+        case "Store":
+          mes.nextstep.innerHTML = "about to store " + json_string(c.next.value) + " in variable " + c.next.var;
+          break;
+        case "Load":
+          mes.nextstep.innerHTML = "about to load variable " + c.next.var;
+          break;
+        case "Assert":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "assertion failed in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line + ":" + loc.code;
+          mes.nextstep.style.color = "red";
+          break;
+        case "AtomicInc":
+          var loc = getCode(c.pc);
+          mes.nextstep.innerHTML = "about to execute in " + '<a href="' + loc.file + '">' + loc.module + "</a>:" + loc.line + ":" + loc.code;
+          break;
+        case "Print":
+          mes.nextstep.innerHTML = "about to print " + json_string(c.next.value);
+          break;
+        default:
+           mes.nextstep.innerHTML = "about to " + state.hvm.pretty[c.pc][1];
+        }
+      }
+      break;
+    }
+  }
+}
+
+function currentMegaStep() {
+  if (currentTime == totalTime) {
+    return microsteps[currentTime - 1].mesidx;
+  }
+  return microsteps[currentTime].mesidx;
+}
+
+function stringify_vars(obj) {
+  var result = "";
+  for (var k in obj) {
+    if (false && k == "result" && obj[k].type == "address" && !("func" in obj)) {
+      continue;
+    }
+    if (result != "") {
+      result += ", ";
+    }
+    result += k + ": " + json_string(obj[k]);
+  }
+  return result;
+}
+
+function convert_var(obj) {
+  if (obj.type != "dict") {
+    return json_string(obj);
+  }
+  if (obj.value.length == 0) {
+    return "";
+  }
+  var result = {};
+  for (var i = 0; i < obj.value.length; i++) {
+    var kv = obj.value[i];
+    var k = json_string(kv.key);      // TODO.  convert_var???
+    result[k] = convert_var(kv.value);
+  }
+  return result;
+}
+
+function convert_vars(obj) {
+  var result = {};
+  for (var k in obj) {
+    result[k] = convert_var(obj[k]);
+  }
+  return result;
+}
+
+function method_call(m, arg) {
+  var result = "";
+  if (m.type == "atom") {
+    result += m.value;
+  }
+  else {
+    result += json_string(m);
+  }
+  if (arg.type == "list") {
+    result += json_string_tuple(arg.value);
+  }
+  else {
+    result += "(" + json_string(arg) + ")";
+  }
+  return result;
+}
+
+function stackTrace(tid, trace, failure) {
+  var table = threads[tid].tracetable;
+  table.innerHTML = "";
+  if (trace.length == 0) {
+    var row = table.insertRow();
+    var mcell = row.insertCell();
+    mcell.innerHTML = threads[tid].name;
+  }
+  for (var i = 0; i < trace.length; i++) {
+    var row = table.insertRow();
+
+    var mcell = row.insertCell();
+    // mcell.innerHTML = trace[i].method;
+    mcell.innerHTML = method_call(trace[i].method_name, trace[i].method_arg);
+    switch (trace[i].calltype) {
+    case "process":
+        mcell.style.color = "blue";
+        break;
+    case "normal":
+        mcell.style.color = "black";
+        break;
+    case "interrupt":
+        mcell.style.color = "orange";
+        break;
+    default:
+        mcell.style.color = "red";
+    }
+
+    var vcell = row.insertCell();
+    // var vtext = document.createTextNode(stringify_vars(trace[i].vars));
+    var vtext = document.createElement("div");
+    vtext.innerHTML = stringify_vars(trace[i].vars);
+    vcell.appendChild(vtext);
+  }
+  if (false && failure != null) {
+    var row = table.insertRow();
+    var fcell = row.insertCell();
+    fcell.innerHTML = failure;
+    fcell.colSpan = 2;
+    fcell.style.color = "red";
+  }
+}
+
+function addToLog(step, entry) {
+  var table = megasteps[step].log;
+  var row = table.insertRow();
+  var mcell = row.insertCell();
+  mcell.innerHTML = entry;
+}
+
+function handleClick(e, mesIdx) {
+  var x = Math.floor(e.offsetX / boxSize);
+  var y = Math.floor(e.offsetY / boxSize);
+  currentTime = megasteps[mesIdx].startTime + y*timeWidth + x + 1;
+  run_microsteps();
+}
+
+function handleKeyPress(e) {
+  switch (e.key) {
+    case '0':
+      currentTime = 0;
+      run_microsteps();
+      break;
+    case 'ArrowLeft':
+      if (currentTime > 0) {
+        currentTime -= 1;
+      }
+      run_microsteps();
+      break;
+    case 'ArrowRight':
+      if (currentTime < totalTime) {
+        currentTime += 1;
+      }
+      run_microsteps();
+      break;
+    case 'ArrowUp':
+      var mesidx = currentMegaStep();
+      var mes = megasteps[mesidx];
+      if (currentTime == mes.startTime && mesidx > 0) {
+          mes = megasteps[mesidx - 1];
+      }
+      currentTime = mes.startTime;
+      run_microsteps();
+      break;
+    case 'ArrowDown':
+      var mesidx = currentMegaStep();
+      var mes = megasteps[mesidx];
+      currentTime = mes.startTime + mes.nsteps;
+      if (currentTime > totalTime) {
+        currentTime = totalTime;
+      }
+      run_microsteps();
+      break;
+    case 'Enter':
+      if (currentTime < totalTime) {
+        var cloc = getCode(microsteps[currentTime].pc);
+        while (++currentTime < totalTime) {
+          var nloc = getCode(microsteps[currentTime].pc);
+          if (nloc.file != cloc.file || nloc.line != cloc.line || nloc.code != cloc.code) {
+            break;
+          }
+        }
+        run_microsteps();
+      }
+      break;
+    default:
+      // alert("unknown key " + e.code);
+  }
+}
+
+function init_microstep(masidx, misidx) {
+  var mas = state.macrosteps[masidx];
+  var mis = mas.microsteps[misidx];
+  var tid = mas.tid;
+  var t = microsteps.length;
+  megasteps[curMegaStep].contexts = mas.contexts;
+  if (t > 0 && microsteps[t - 1].tid != tid) {
+    curMegaStep++;
+    megasteps[curMegaStep].startTime = t;
+    megasteps[curMegaStep].tid = tid;
+  }
+  var mes = megasteps[curMegaStep];
+  mes.nsteps++;
+  microsteps[t] = {
+    mesidx: curMegaStep,
+    masidx: masidx,
+    misidx: misidx,
+    tid: parseInt(tid),
+    pc: parseInt(mis.pc),
+    // invfails: misidx == mas.microsteps.length - 1 ? mas.invfails : [],
+    contexts: mas.contexts,
+    hvm: mis.code,
+    explain2: mis.explain2
+  };
+  if (misidx != 0) {
+    previous = microsteps[t-1];
+  }
+  else {
+    ctx = mas.context;
+    previous = { mode: ctx.mode, };
+    if (ctx.hasOwnProperty("atomic")) {
+      previous.atomic = ctx["atomic"];
+    }
+    else {
+      previous.atomic = 0;
+    }
+    if (ctx.hasOwnProperty("readonly")) {
+      previous.readonly = ctx["readonly"];
+    }
+    else {
+      previous.readonly = 0;
+    }
+    if (ctx.hasOwnProperty("interruptlevel")) {
+      previous.interruptlevel = ctx["interruptlevel"];
+    }
+    else {
+      previous.interruptlevel = 0;
+    }
+    if (ctx.hasOwnProperty("trace")) {
+      previous.trace = ctx.trace;
+    }
+    else {
+      previous.trace = [];
+    }
+    if (ctx.hasOwnProperty("fp")) {
+      previous.fp = ctx.fp;
+    }
+    else {
+      previous.fp = 0;
+    }
+    if (ctx.hasOwnProperty("stack")) {
+      previous.stack = ctx.stack.map(x => json_string(x));
+    }
+    else {
+      previous.stack = [];
+    }
+    if (mas.hasOwnProperty("shared")) {
+      previous.shared = convert_vars(mas.shared);
+    }
+    else {
+      previous.shared = {};
+    }
+  }
+
+  if (mis.hasOwnProperty("npc")) {
+    microsteps[t].npc = mis.npc;
+  }
+  else {
+    microsteps[t].npc = mis.pc;
+  }
+
+  microsteps[t].code = getCode(microsteps[t].npc);
+
+  microsteps[t].cloc = document.getElementById('C' + microsteps[t].npc);
+  var npc = microsteps[t].npc - 4;
+  if (npc < 0) {
+    npc = 0;
+  }
+  microsteps[t].offset = document.getElementById('P' + npc);
+
+  if (mis.hasOwnProperty("mode")) {
+    microsteps[t].mode = mis.mode;
+  }
+  else {
+    microsteps[t].mode = previous.mode;
+  }
+
+  if (mis.hasOwnProperty("atomic")) {
+    microsteps[t].atomic = mis["atomic"];
+  }
+  else {
+    microsteps[t].atomic = previous.atomic;
+  }
+
+  if (mis.hasOwnProperty("readonly")) {
+    microsteps[t].readonly = mis["readonly"];
+  }
+  else {
+    microsteps[t].readonly = previous.readonly;
+  }
+
+  if (mis.hasOwnProperty("interruptlevel")) {
+    microsteps[t].interruptlevel = mis["interruptlevel"];
+  }
+  else {
+    microsteps[t].interruptlevel = previous.interruptlevel;
+  }
+
+  if (mis.hasOwnProperty("choose")) {
+    microsteps[t].choose = "chose " + json_string(mis["choose"]);
+  }
+  else {
+    microsteps[t].choose = null;
+  }
+  if (mis.hasOwnProperty("print")) {
+    microsteps[t].print = json_string(mis["print"]);
+  }
+  else {
+    microsteps[t].print = null;
+  }
+
+  if (mis.hasOwnProperty("failure")) {
+    microsteps[t].failure = mis.failure;
+    microsteps[t].cloc = null;
+  }
+  else {
+    microsteps[t].failure = null;
+  }
+
+  if (mis.hasOwnProperty("trace")) {
+    microsteps[t].trace = mis.trace;
+  }
+  else {
+    microsteps[t].trace = previous.trace;
+  }
+
+  // Update local variables
+  var trl = microsteps[t].trace.length; 
+  if (trl > 0 && mis.hasOwnProperty("local")) {
+    // deep copy first
+    microsteps[t].trace = JSON.parse(JSON.stringify(microsteps[t].trace));
+    microsteps[t].trace[trl - 1].vars = mis.local;
+  }
+
+  if (mis.hasOwnProperty("shared")) {
+    microsteps[t].shared = convert_vars(mis.shared);
+  }
+  else {
+    microsteps[t].shared = previous.shared;
+  }
+
+  if (mis.hasOwnProperty("fp")) {
+    microsteps[t].fp = mis.fp;
+  }
+  else {
+    microsteps[t].fp = previous.fp;
+  }
+  if (mis.hasOwnProperty("pop")) {
+    var n = parseInt(mis.pop);
+    microsteps[t].stack = previous.stack.slice(0,
+                              previous.stack.length - n);
+  }
+  else {
+    microsteps[t].stack = previous.stack;
+  }
+  if (mis.hasOwnProperty("push")) {
+    var vals = mis.push.map(x => json_string(x));
+    microsteps[t].stack = microsteps[t].stack.concat(vals);
+  }
+}
+
+function init_macrostep(i) {
+  var mas = state.macrosteps[i];
+  for (var j = 0; j < mas.microsteps.length; j++) {
+    init_microstep(i, j);
+  }
+  for (var ctx = 0; ctx < mas.contexts.length; ctx++) {
+    var tid = parseInt(mas.contexts[ctx].tid);
+    threads[tid].name = mas.contexts[ctx].name;
+  }
+}
+
+function dict_convert(d) {
+  if (typeof d === "string") {
+    return d;
+  }
+  result = "";
+  for (var k in d) {
+    if (result != "") {
+      result += ", ";
+    }
+    result += dict_convert(k) + ":" + dict_convert(d[k]);;
+  }
+  return "{" + result + "}";
+}
+
+function get_shared(shared, path) {
+  if (!shared.hasOwnProperty(path[0])) {
+    return "";
+  }
+  if (path.length == 1) {
+    return dict_convert(shared[path[0]]);
+  }
+  return get_shared(shared[path[0]], path.slice(1));
+}
+
+function get_status(ctx) {
+  var status = ctx.mode;
+  if (status != "terminated") {
+    if (ctx.atomic > 0) {
+      status += " atomic";
+    }
+    if (ctx.readonly > 0) {
+      status += " read-only";
+    }
+    if (ctx.interruptlevel > 0) {
+      status += " interrupts-disabled";
+    }
+  }
+  return status;
+}
+
+function escapeHTML(s) {
+  return s
+     .replace(/&/g, "&amp;")
+     .replace(/</g, "&lt;")
+     .replace(/>/g, "&gt;")
+     .replace(/"/g, "&quot;")
+     .replace(/'/g, "&#039;");
+}
+
+function explain_expand(e) {
+    var s = e.text;
+    var result = "";
+    var arg = 0;
+    for (var i = 0; i < s.length; i++) {
+      if (s[i] == '#') {
+        i++;
+        if (i == s.length) {
+          break;
+        }
+        if (s[i] == '#') {
+          result += '#';
+        }
+        else if (s[i] == '+') {
+          result += json_string(e.args[arg++]);
+        }
+        else if (s[i] == '@') {
+          var addr = json_string(e.args[arg++]);
+          result += addr.slice(1);
+        }
+        else {
+          result += json_string(e.args[parseInt(s[i])]);
+        }
+      }
+      else {
+        result += s[i];
+      }
+    }
+    return result;
+}
+
+function run_microstep(t) {
+  var mis = microsteps[t];
+  var mes = megasteps[mis.mesidx];
+  var mesrow = mestable.rows[mis.mesidx];
+  mesrow.cells[3].innerHTML = mis.npc;
+
+  for (var i = 0; i < vardir.length; i++) {
+    mesrow.cells[i + 4].innerHTML = get_shared(mis.shared, vardir[i]);
+  }
+
+  if (mis.failure != null) {
+    stackTrace(mis.tid, mis.trace, mis.failure);
+  }
+  else if (mis.print != null) {
+    stackTrace(mis.tid, mis.trace, "print " + mis.print);
+    addToLog(mis.mesidx, mis.print);
+  }
+  else {
+    stackTrace(mis.tid, mis.trace, mis.choose);
+  }
+
+  for (var ctx = 0; ctx < mis.contexts.length; ctx++) {
+    var cv = mis.contexts[ctx];
+    var tid = parseInt(cv.tid);
+    threads[tid].name = cv.name;
+    threadtable.rows[tid].cells[1].innerHTML = get_status(cv);
+    threadtable.rows[tid].cells[3].innerHTML = cv.stack.slice(cv.fp).map(x => json_string(x));
+  }
+  if (t != mes.startTime + mes.nsteps - 1) {
+    threadtable.rows[mis.tid].cells[1].innerHTML = get_status(mis);
+  }
+  threadtable.rows[mis.tid].cells[3].innerHTML = mis.stack.slice(mis.fp);
+
+//  if (mis.invfails.length > 0) {
+//    var inv = mis.invfails[0];
+//    code = getCode(inv.pc);
+//    coderow.style.color = "red";
+//    coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(code.code) + " (" + inv.reason + ")";
+//    mis.cloc = null;
+//  }
+//  else
+    {
+    coderow.style.color = "blue";
+    if (t+1 < microsteps.length) {
+      var nmis = microsteps[t+1];
+      code = getCode(nmis.pc);
+      var l1 = parseInt(code.line);
+      var l2 = parseInt(code.endline);
+      if (l1 == l2 && l1 == code.stmt[0] && l2 == code.stmt[2]) {
+        var c1 = parseInt(code.column) - 1;
+        var c2 = parseInt(code.endcolumn);
+        var s1 = code.code.slice(0, c1);
+        var s2 = code.code.slice(c1, c2);
+        var s3 = code.code.slice(c2);
+        coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(s1) + "<span style='color:green'>" + escapeHTML(s2) + "</span>" + escapeHTML(s3);
+      }
+      else {
+        coderow.innerHTML = '<a href="' + code.file + '">' + code.module + "</a>:" + code.line + "&nbsp;&nbsp;&nbsp;" + escapeHTML(code.code);
+      }
+    }
+  }
+
+  if (mis.failure != null) {
+    mes.nextstep.innerHTML = '<span style="color:red">' + mis.failure + '</span>';
+  }
+  else if (t+1 < microsteps.length) {
+    var nmis = microsteps[t+1];
+    if (nmis.tid == mis.tid) {
+        mes.nextstep.innerHTML = "next: " + explain_expand(nmis.explain2);
+    }
+    else {
+        updateStatus(mes);
+    }
+
+    // hvmrow.innerHTML = "T" + nmis.tid + "/" + nmis.pc + ": " + nmis.hvm + " (" + explain_expand(nmis.explain2) + ")"
+    currCloc = document.getElementById('C' + nmis.pc);
+    currOffset = document.getElementById('P' + nmis.pc);
+  }
+  else {
+    currCloc = null;
+    currOffset = mis.offset;
+    updateStatus(mes);
+  }
+}
+
+function run_microsteps() {
+  coderow.innerHTML = "";
+  // hvmrow.innerHTML = "";
+  if (currCloc != null) {
+    currCloc.style.color = "black";
+  }
+  currCloc = document.getElementById('C0');
+  currOffset = document.getElementById('P0');
+  for (var i = 0; i < nmegasteps; i++) {
+    mestable.rows[i].cells[3].innerHTML = "";
+    for (var j = 0; j < vardir.length; j++) {
+      mestable.rows[i].cells[j + 4].innerHTML = "";
+    }
+    megasteps[i].log.innerHTML = "";
+  }
+  for (var tid = 0; tid < nthreads; tid++) {
+    threadtable.rows[tid].cells[1].innerHTML = "init";
+    stackTrace(tid, [], null);
+    threadtable.rows[tid].cells[3].innerHTML = threads[tid].stack;
+  }
+
+  for (var i = 0; i < nmegasteps; i++) {
+    drawTimeLine(megasteps[i]);
+  }
+  for (var t = 0; t < currentTime; t++) {
+    run_microstep(t);
+  }
+  if (currentTime < microsteps.length && (currentTime == 0 ||
+            microsteps[currentTime - 1].tid != microsteps[currentTime].tid)) {
+    var mis = microsteps[currentTime];
+    var mes = megasteps[mis.mesidx];
+    mes.nextstep.innerHTML = "next: " + explain_expand(mis.explain2);
+    var mesrow = mestable.rows[mis.mesidx];
+    mesrow.cells[3].innerHTML = mis.pc;
+
+    if (mis.mesidx > 0) {
+      var oldrow = mestable.rows[mis.mesidx - 1];
+      for (var i = 0; i < vardir.length; i++) {
+        mesrow.cells[i + 4].innerHTML = oldrow.cells[i + 4].innerHTML;
+      }
+    }
+  }
+  container.scrollTop = currOffset.offsetTop;
+
+  if (currCloc != null) {
+    currCloc.style.color = "red";
+  }
+
+  var curmes = currentTime < totalTime ? microsteps[currentTime].mesidx : -1;
+  for (var mes = 0; mes < nmegasteps; mes++) {
+    var row = document.getElementById("mes" + mes);
+    if (mes == curmes) {
+      row.style = 'background-color: #A5FF33;';
+    }
+    else {
+      row.style = 'background-color: white;';
+    }
+  }
+
+  var curtid = currentTime < totalTime ? microsteps[currentTime].tid : -1;
+  for (var tid = 0; tid < nthreads; tid++) {
+    var row = document.getElementById("thread" + tid);
+    if (tid == curtid) {
+      row.style = 'background-color: #A5FF33;';
+    }
+    else {
+      row.style = 'background-color: white;';
+    }
+  }
+}
+
+// Initialization starts here
+
+for (var tid = 0; tid < nthreads; tid++) {
+  threads[tid] = {
+    name: "T" + tid,
+    status: "normal",
+    stack: [],
+    stacktrace: [],
+    tracetable: document.getElementById("threadinfo" + tid)
+  };
+}
+threads[0].stack = [ "()" ]
+for (let i = 0; i < nmegasteps; i++) {
+  var canvas = document.getElementById("timeline" + i);
+  var nextstep = document.getElementById("nextstep" + i); 
+  megasteps[i] = {
+    canvas: canvas,
+    nextstep: nextstep,
+    startTime: 0,
+    nsteps: 0,
+    contexts: [],
+    tid: 0,
+    log: document.getElementById("log" + i)
+  };
+  canvas.addEventListener('mousedown', function(e){handleClick(e, i)});
+}
+for (var j = 0; j < state.macrosteps.length; j++) {
+  init_macrostep(j);
+}
+
+currentTime = totalTime = microsteps.length;
+run_microsteps();
+document.addEventListener('keydown', handleKeyPress);
+
+</script>
+</body>
+</html>

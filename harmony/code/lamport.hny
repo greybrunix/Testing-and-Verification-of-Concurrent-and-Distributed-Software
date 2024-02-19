@@ -23,7 +23,6 @@ def Thread tid:
 		counter += 1;
 		Unlock tid;
 		m+=1;
-	print counter
 
 sequential choosing,ticket,counter
 var t = []

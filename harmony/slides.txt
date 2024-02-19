@@ -1,0 +1,76 @@
+Harmony
+
+> Concurrent Programming Language
+> model Checking
+> Python-like
+> Some (optional) quirks
+
+@dekker.png
+
+How does the model checker work?
+
+> What it does 
+           > check for data races
+           > check for non terminating states in the NFA
+           > check for infinite loops
+           > check for active blocks
+           > Provides a Counter Example if one exists
+
+> What it doesn't do
+           > Prove an algorithms safety and liveness properties
+
+> What can we do?
+           > Let's use some SMT theory
+           > We know that Gamma |= b iff Gamma /\ ¬b |= absurd is unsatisfiable
+	   > Let's, then, formalize safety and liveness properties this way
+
+Safety
+
+Mutual Exclusion
+
+FORALL (C1 C2 : Client), Crit(C1) /\ Crit(C2) -> C1 = C2
+or
+Crit_sec_counter IN {0,1}
+
+Liveness
+
+Lack of Deadlocks
+
+Forall (C : Client) . Entering(C) -> Exists! (C1: Client) . Crit(C1)
+note how this can become a safety property very easily
+
+Lack of Starvation or Fairness
+
+Forall (C : Client) . □(Wants(C) -> ◊(Crit(C))
+
+SMT solvers cannot solve temporal operators like always(□) or eventually(◊)
+but we may be able to, somehow, convert this proposition into a First Order Logic
+Then we can use Harmony to prove the property applies to our mutex algorithms
+
+Peterson Algorithm (without) fairness property checking
+
+@pt.png
+
+Alternative for Liveness Proof
+
+Let us consider the NDA finite trace:
+     > The lack of starvation implies a lack of trace where S1 -> ... -> S1
+        without changing variable states
+     > This means if it happened once it can happen again, and thus
+       may happen an infinite amount of times
+
+Thus our proposition looks like
+FORALL S1, S1' : States , S1 = S1' /\ S1 -> ... -> S1' => state(var(S1)) != state(var(S1'))
+       /\ FORALL C: Clients, wanted(C) => entered_once(C)
+
+Summary
+
+Mutex <=> i_var IN { 0 , 1 }
+DeadLock <=> Forall (C : Client) . Entering(C) -> Exists! (C1: Client) . Crit(C1)
+Fainess <=> FORALL S1, S1' : States , S1 = S1' /\ S1 -> ... -> S1' => state(var(S1)) != state(var(S1'))
+       /\ FORALL C: Clients, wanted(C) => entered_once(C)
+
+Harmony model checks through TLA code (TLC checker)
+$ harmony -o Harmony.tla src.hny
+
+

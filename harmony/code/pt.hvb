@@ -46,14 +46,14 @@ Step 4:
   explanation:       jump over invariant definition: set program counter to 15
   start statement:   line=2 column=1
   end statement:     line=2 column=33
-  source code:       invariant not (in_cs in { 0, 1 }) 
+  source code:       invariant not (in_cs in { 0, 1 }) #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
                      ^^^^^^^^^
 
 Step 5:
   program counter:   15
   hvm code:          Invariant 4
   explanation:       test invariant
-  source code:       invariant not (in_cs in { 0, 1 }) 
+  source code:       invariant not (in_cs in { 0, 1 }) #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Step 6:

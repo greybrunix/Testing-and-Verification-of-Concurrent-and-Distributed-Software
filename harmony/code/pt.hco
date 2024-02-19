@@ -7,7 +7,7 @@
             "file": "pt.hny",
             "lines": [
                 "in_cs = 0",
-                "invariant not (in_cs in { 0, 1 }) ",
+                "invariant not (in_cs in { 0, 1 }) #forall (C1 C2: clients) , cs C1 /\\ cs C2 -> C1 = C2",
                 "invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])",
                 "sequential flags, turn",
                 "flags = ( False, False )",
@@ -4826,7 +4826,7 @@
       "name": "__init__()",
       "context": {
         "tid": "0",
-        "hvalue": "557061798dda",
+        "hvalue": "5fc75cda036a",
         "fp": "1",
         "id": "0",
         "name": "__init__()",
@@ -5061,12 +5061,12 @@
 
       ],
       "ctxbag": {
-          "7f929ebfd18a": "1"
+          "7e72b740018a": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7f929ebfd18a",
+          "hvalue": "7e72b740018a",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
@@ -5093,7 +5093,7 @@
       "choice": { "type": "int", "value": "1" },
       "context": {
         "tid": "0",
-        "hvalue": "7f929ebfd18a",
+        "hvalue": "7e72b740018a",
         "fp": "1",
         "id": "0",
         "name": "__init__()",
@@ -5255,13 +5255,13 @@
 
       ],
       "ctxbag": {
-          "7f929ebfd21a": "1",
-          "7f929ebfd26a": "1"
+          "7e72be00007a": "1",
+          "7e72be0000ca": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7f929ebfd29a",
+          "hvalue": "7e72be0000fa",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
@@ -5279,7 +5279,7 @@
         },
         {
           "tid": "1",
-          "hvalue": "7f929ebfd21a",
+          "hvalue": "7e72be00007a",
           "fp": "1",
           "name": "thread(0)",
           "entry": "71",
@@ -5296,7 +5296,7 @@
         },
         {
           "tid": "2",
-          "hvalue": "7f929ebfd26a",
+          "hvalue": "7e72be0000ca",
           "fp": "1",
           "name": "thread(1)",
           "entry": "71",
@@ -5320,7 +5320,7 @@
       "name": "invariant()",
       "context": {
         "tid": "3",
-        "hvalue": "7f929ebfd06a",
+        "hvalue": "7e72b740006a",
         "fp": "1",
         "name": "invariant()",
         "entry": "17",
@@ -5995,13 +5995,13 @@
 
       ],
       "ctxbag": {
-          "7f929ebfd21a": "1",
-          "7f929ebfd26a": "1"
+          "7e72be00007a": "1",
+          "7e72be0000ca": "1"
       },
       "contexts": [
         {
           "tid": "0",
-          "hvalue": "7f929ebfd29a",
+          "hvalue": "7e72be0000fa",
           "fp": "1",
           "id": "0",
           "name": "__init__()",
@@ -6019,7 +6019,7 @@
         },
         {
           "tid": "1",
-          "hvalue": "7f929ebfd21a",
+          "hvalue": "7e72be00007a",
           "fp": "1",
           "name": "thread(0)",
           "entry": "71",
@@ -6036,7 +6036,7 @@
         },
         {
           "tid": "2",
-          "hvalue": "7f929ebfd26a",
+          "hvalue": "7e72be0000ca",
           "fp": "1",
           "name": "thread(1)",
           "entry": "71",
@@ -6053,7 +6053,7 @@
         },
         {
           "tid": "3",
-          "hvalue": "7f929ebfd5ca",
+          "hvalue": "7e72be00042a",
           "fp": "1",
           "name": "invariant()",
           "entry": "17",
