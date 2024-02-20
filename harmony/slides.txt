@@ -83,7 +83,7 @@ DeadLock <=> Forall (C : Client) . Entering(C) -> Exists! (C1: Client) . Crit(C1
 Fainess <=> FORALL S1, S1' : States , S1 = S1' /\ S1 -> ... -> S1' => state(var(S1)) != state(var(S1'))
        /\ FORALL C: Clients, wanted(C) => entered_once(C)
 
-Harmony model checks through chatm model checker
+Harmony model checks through charm model checker
 but it can compile to TLA code (TLC checker)
 $ harmony -o Harmony.tla src.hny
 
