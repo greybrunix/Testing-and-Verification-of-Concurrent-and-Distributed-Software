@@ -1,18 +1,19 @@
 in_cs = 0
-#invariant not (in_cs in { 0, 1 }) #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
-invariant not (any (cs (C_1) and cs (C_2) for (C_1,C_2) in [(0,0),(1,0),(1,1)]) => (C_1 == C_2))
-#invariant not (any [entering tid for tid in [0,1]] => one_entered [0,1])
+invariant (in_cs in { 0, 1 }) #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
+#invariant not (any (cs (C_1) and cs (C_2) for (C_1,C_2) in [(0,0),(1,0),(1,1)]) => (C_1 == C_2))
+#invariant (any [entering tid for tid in [0,1]] => one_entered [0,1])
 sequential flags, turn
 flags = ( False, False )
 turn  = choose { 0, 1 }
 def thread self:
-    while choose { False, True }:
+    while choose {False, True}:
         flags self = True
         turn = 1 - self
         await (not flags (1 - self)) or (turn == self)
         atomically in_cs += 1
         # critical
-        pass
+        print("entr", self);
+        print("sai", self);
         # lv critical
         atomically in_cs -= 1
         flags self = False
@@ -21,15 +22,7 @@ def entering tid returns tst1:
     tst1 = flags (1-tid) and (turn != tid)
 
 def one_entered tids returns tst2:
-    var i = 0
-    tst2 = False
-    while (i < len(tids)) and (not tst2):
-        if cs i:
-            tst2 = True
-        i += 1
-
-def cs tid returns tst3:
-    tst3 =  (not flags (1 - tid)) or (turn == tid)
+    tst2 = in_cs > 0
 
 
 spawn thread 0
