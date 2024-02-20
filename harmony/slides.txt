@@ -26,8 +26,11 @@ How does the model checker work?
            > Propositions must be strong
            > Does not permit propositions 
            > As it is a SMT solver, it does not support temporal operators
+	   > compatible with TLA+
         > Trace
            > Does not allow properties over NDA machines
+
+#@charm.png
 
 > What can we do?
            > Let's use some SMT theory
@@ -57,8 +60,9 @@ SMT solvers cannot solve temporal operators like always(□) or eventually(◊)
 but we may be able to, somehow, convert this proposition into a First Order Logic
 Then we can use Harmony to prove the property applies to our mutex algorithms
 
-
 @peterson.png
+
+@fail.png
 
 Alternative for Liveness Proof
 
