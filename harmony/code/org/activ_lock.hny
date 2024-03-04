@@ -1,0 +1,30 @@
+import fork
+
+counter = 0;
+sequential wants, turn
+wants = [False, False]
+turn = 0
+in_cs = 0;
+invariant in_cs in {0,1}
+
+def incrementer(tid):
+     while choose{False, True}:
+         wants[tid] = True;
+         while wants[1-tid] or (turn == (1 - tid)):
+             wants[tid] = False;
+             await turn == tid
+             wants[tid] = True;
+         atomically:
+             in_cs += 1;print("entrei")
+#counter+=1
+         atomically:
+             in_cs -= 1;print("sai")
+         wants[tid] = False;
+
+
+
+def main():
+        let tids = {fork.fork(?incrementer(tid)) for tid in {0,1}}:
+                 {fork.join(tid) for tid in tids};
+        print(counter);
+spawn main()

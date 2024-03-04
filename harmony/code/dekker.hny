@@ -3,12 +3,10 @@ crit=0
 sequential wants, turn, counter
 wants = (False, False)
 turn = 0
-I=10
 
 def dekk p_q:
 	# while True:
-	var i = 0
-	while i < I:
+	while choose {False, True} :
 	# non critical
 		wants p_q = True
 		# can enter critical section
@@ -19,13 +17,14 @@ def dekk p_q:
 				wants p_q = True
 		# enter critical section
 		atomically crit +=1
+		print("entrou", p_q);
 		# critical
 		# leaving critical
 		atomically crit -=1
+		print("saiu", p_q);
 		turn = 1 - p_q
 		wants p_q = False
 		# post protocol
-		i+=1
 
 spawn dekk 0
 spawn dekk 1

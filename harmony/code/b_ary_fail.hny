@@ -3,7 +3,11 @@
 #invariant   #forall (C1 C2: clients) , cs C1 /\ cs C2 -> C1 = C2
 #invariant  (in_cs in { 0, 1 }) and (any [entering tid for tid in [0,1]] => one_entered [0,1])
 sequential turn, lockTaken, flags
-turn = 0 lockTaken = False
+flags = [False, False]
+in_cs = 0
+invariant in_cs in {0,1}
+turn = 0
+lockTaken = False
 counter = 0
 def fail0 p_q:
 	while choose {False, True}:
@@ -44,11 +48,6 @@ def fail4 p_q:
 		#counter += 1
 		turn = 1 - p_q
 
-sequential turn, lockTaken, flags
-invariant in_cs in {0,1}
-invariant in_cs in {0,1}
-flags = [False, False]
-in_cs = 0
 def fail3 p_q:
 	while choose {False, True}:
 		#entering critical

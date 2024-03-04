@@ -1,0 +1,18 @@
+import fork 
+import list
+I=10;
+counter = 0;
+def incrementer id:
+        for j in {0..I}: 
+                atomically:
+                        print("entrei");
+                counter += 1;
+                atomically:
+                        print("sai");
+
+def main():
+        let tids = {fork.fork(?incrementer(tid)) for tid in {0,1} }:
+                {fork.join(tid) for tid in tids}; 
+        print(counter);
+
+spawn main()
