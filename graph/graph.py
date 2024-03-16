@@ -6,7 +6,7 @@ import subprocess
 def run_harmony(name):
     pid = os.fork()
     if pid ==  0:
-        subprocess.run(["harmony", "--noweb",name])
+        subprocess.run(["harmony", name])
     else:
         os.waitpid(pid, 0)
         name = name[:-3] + "hco"
@@ -14,7 +14,7 @@ def run_harmony(name):
 
 def run_graph(name):
     f = open(name, "r")
-    print(f.read(50))
+#    print(f.read())
     
 
 name = sys.argv[1] 
