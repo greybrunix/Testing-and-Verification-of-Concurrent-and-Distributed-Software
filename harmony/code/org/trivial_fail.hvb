@@ -1,12 +1,12 @@
 Issue: Data race (?counter)
 
 Modules:
-  alloc: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/alloc.hny
-  bag: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/bag.hny
+  alloc: /home/pereirics/venv3.7/lib/python3.7/site-packages/harmony_model_checker/modules/alloc.hny
+  bag: /home/pereirics/venv3.7/lib/python3.7/site-packages/harmony_model_checker/modules/bag.hny
   __main__: trivial_fail.hny
-  synch: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/synch.hny
-  fork: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/fork.hny
-  list: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/list.hny
+  synch: /home/pereirics/venv3.7/lib/python3.7/site-packages/harmony_model_checker/modules/synch.hny
+  fork: /home/pereirics/venv3.7/lib/python3.7/site-packages/harmony_model_checker/modules/fork.hny
+  list: /home/pereirics/venv3.7/lib/python3.7/site-packages/harmony_model_checker/modules/list.hny
 
 ================================================
 Running thread T0: __init__()
@@ -2255,7 +2255,7 @@ shared variables:
   alloc$next: 2
   alloc$pool: [ { "result": None, "sema": True }, { "result": None, "sema": True } ]
   counter: 0
-state id: 25
+state id: 24
 ================================================
 
 Step 250:
