@@ -37,18 +37,26 @@ def run_graph(nt, events):
         time = ev[4]
         lasts_cont[ev[1]] += 1
         dst = f'{ev[1]}{lasts_cont[ev[1]]}'
-        G.add_node(ev[1], pos=(ev[1], time))
+        G.add_node(dst, pos=(ev[1], time))
         G.add_edge(lasts[ev[1]], dst)
-        G.add_edge(src, dst)
+        G.add_edge(src, dst, label=ev[2])
+    
+    for i in range(nt):
+        node = f'{i}n'
+        G.add_node(node, pos=(i, time+0.5))
+        G.add_edge(lasts[i], node)
 
     # Draw the graph
     pos = nx.get_node_attributes(G, 'pos')
     nx.draw(G, pos, with_labels=True, arrows=True)
+    edge_labels = nx.get_edge_attributes(G, 'label')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
     plt.savefig("teste.png")
+    plt.show()
 
-threads = [(0, 1, "ola", 0, 0.5),
-           (1, 2, "adeus", 0.5, 1),
-           (2, 1, "hola", 1, 1.5)
+threads = [(0, 1, "ola", 0.2, 0.5),
+           (1, 2, "adeus", 0.8, 1),
+           (2, 1, "hola", 1.2, 1.5)
         ]
 
 #name = sys.argv[1] 
