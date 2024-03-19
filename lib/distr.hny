@@ -1,0 +1,16 @@
+
+def constructor(flag_cons, dedup, drop) returns object:
+	object = {.network:[]}
+	if flag_cons == 1:
+		object |= {.send:?send1}
+		object |= {.receive:?receive1}
+	
+def send1(obj, src, dst, cont):
+	atomically obj.network |= {(src,dst,cont)}
+def receive1(obj, dst) returns msgs:
+	msgs = { (d, c) for (_, d, c) in obj.network where (d == dst) }
+
+def send2(self, msg):
+	pass
+def receive2(self):
+	pass

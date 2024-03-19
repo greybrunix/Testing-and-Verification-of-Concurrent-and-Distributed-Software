@@ -1,0 +1,34 @@
+import distr
+
+const NIDS = 5      # number of identifiers
+obj = distr.constructor(1,0,0)
+leader = 0
+
+def processor(self, succ):
+	var working = True
+	var func = obj.send
+	func(obj, succ,self,False)
+	while working:
+		atomically when exists (id, found) in obj.receive(obj, self):
+			if id == self:
+				assert self == leader
+				func = obj.send
+				func(obj, (self, id, False))
+			elif id > self:
+				assert self != leader
+				func = obj.send
+				func(obj, succ, id, found)
+			if found:
+				working = False
+
+var ids = { 1 .. NIDS }
+var nprocs = choose({ 1 .. NIDS })
+var procs = []
+for i in { 0 .. nprocs - 1 }:
+    let next = choose(ids):
+        ids -= { next }
+        procs += [ next, ]
+        if next > leader:
+            leader = next
+for i in { 0 .. nprocs - 1 }:
+    spawn processor(procs[i], procs[(i + 1) % nprocs])
