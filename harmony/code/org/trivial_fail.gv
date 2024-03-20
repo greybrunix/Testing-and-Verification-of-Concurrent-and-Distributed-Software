@@ -1,6 +1,0 @@
-digraph {
-  rankdir = "LR"
-  s0 [label="initial",style=filled,fillcolor="#66cc33"]
-  s1 [peripheries=2,label="final"]
-  s0 -> s1 [label="14"]
-}
