@@ -1,0 +1,5 @@
+net = {}
+def send(msg): 
+	atomically net |= {msg}
+def receive(dst) returns msgs:
+	msgs = { (id, c) for (d, id, c) in net where (d == dst) }

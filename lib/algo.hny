@@ -1,29 +1,24 @@
-import distr
+import gen_net
+API=gen_net.construct(True,0,False,False)
 
 const NIDS = 5      # number of identifiers
-obj = distr.constructor(1,0,0)
 leader = 0
-
 def processor(self, succ):
+	API[0](succ,self,False)
 	var working = True
-	var func = obj.send
-	func(obj, succ,self,False)
 	while working:
-		atomically when exists (id, found) in obj.receive(obj, self):
+		atomically when exists (id, found) in API[1](self):
 			if id == self:
 				assert self == leader
-				func = obj.send
-				func(obj, (self, id, False))
+				print(self, "is leader")
+				API[0](succ, id, True)
 			elif id > self:
 				assert self != leader
-				func = obj.send
-				func(obj, succ, id, found)
+				API[0](succ, id, found)
 			if found:
 				working = False
 
-var ids = { 1 .. NIDS }
-var nprocs = choose({ 1 .. NIDS })
-var procs = []
+var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
 for i in { 0 .. nprocs - 1 }:
     let next = choose(ids):
         ids -= { next }

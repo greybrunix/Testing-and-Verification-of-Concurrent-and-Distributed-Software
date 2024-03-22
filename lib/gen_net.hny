@@ -1,0 +1,18 @@
+import unicast_set_nodrop_nodedup#,unicast_set_nodrop_dedup,unicast_set_drop_nodedup
+#import unicast_set_drop_dedup,broadcast_set_nodrop_nodedup,broadcast_set_nodrop_dedup
+#import broadcast_set_drop_nodedup,broadcast_set_drop_dedup,unicast_bag_nodrop_nodedup
+#import unicast_bag_nodrop_dedup,unicast_bag_drop_nodedu,unicast_bag_drop_dedup
+#import broadcast_bag_nodrop_nodedup,broadcast_bag_nodrop_dedu,broadcast_bag_drop_nodedup
+#import broadcast_bag_drop_dedup,unicast_list_nodrop_nodedu,unicast_list_nodrop_nodedup
+#import unicast_list_nodrop_nodedup,unicast_list_nodrop_nodedup,broadcast_list_nodrop_nodedup
+#import broadcast_list_nodrop_dedup,broadcast_list_drop_nodedup,broadcast_list_drop_dedup
+def construct(flags) returns API:
+	if (flags[0] and (flags[1] == 0) and (not flags[2]) and (not flags[3])):
+		API=(unicast_set_nodrop_nodedup.send,
+		     unicast_set_nodrop_nodedup.receive)
+#elif (flags[0] and (flags[1] == 1) and (not flags[2]) and (not flags[3])):
+#		API=(unicast_bag_nodrop_nodedup.send,
+#		     unicast_bag_nodrop_nodedup.receive)
+#	elif (flags[0] and (flags[1] == 2) and (not flags[2]) and (not flags[3])):
+#		API=(unicast_list_nodrop_nodedup.send,
+#		     unicast_list_nodrop_nodedup.receive)
