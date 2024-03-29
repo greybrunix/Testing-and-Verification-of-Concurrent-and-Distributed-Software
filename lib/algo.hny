@@ -1,20 +1,22 @@
 import gen_net
 API=gen_net.construct(True,0,False,False)
+send=API[0]
+receive=API[1]
 
 const NIDS = 5      # number of identifiers
 leader = 0
 def processor(self, succ):
-	API[0](succ,self,False)
+	send(succ,self,False)
 	var working = True
 	while working:
-		atomically when exists (id, found) in API[1](self):
+		atomically when exists (id, found) in receive(self):
 			if id == self:
 				assert self == leader
 				print(self, "is leader")
-				API[0](succ, id, True)
+				send(succ, id, True)
 			elif id > self:
 				assert self != leader
-				API[0](succ, id, found)
+				send(succ, id, found)
 			if found:
 				working = False
 

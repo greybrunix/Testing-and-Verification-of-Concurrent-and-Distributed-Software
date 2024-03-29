@@ -10,7 +10,7 @@ def construct(flags) returns API:
 	if (flags[0] and (flags[1] == 0) and (not flags[2]) and (not flags[3])):
 		API=(unicast_set_nodrop_nodedup.send,
 		     unicast_set_nodrop_nodedup.receive)
-#elif (flags[0] and (flags[1] == 1) and (not flags[2]) and (not flags[3])):
+#	elif (flags[0] and (flags[1] == 1) and (not flags[2]) and (not flags[3])):
 #		API=(unicast_bag_nodrop_nodedup.send,
 #		     unicast_bag_nodrop_nodedup.receive)
 #	elif (flags[0] and (flags[1] == 2) and (not flags[2]) and (not flags[3])):
