@@ -12,7 +12,6 @@ def processor(self, succ):
 		atomically when exists (id, found) in receive(self):
 			if id == self:
 				assert self == leader
-				print(self, "is leader")
 				send(succ, id, True)
 			elif id > self:
 				assert self != leader
