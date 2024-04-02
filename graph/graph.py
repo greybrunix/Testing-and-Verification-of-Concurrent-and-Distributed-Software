@@ -42,6 +42,8 @@ def run_graph(nt, events):
     # (receive, dst, ts, td)
 
     G = nx.DiGraph()
+    figsize = (20, 20)
+    plt.figure(figsize=figsize)
     nodelist = []
     lasts = []
     lasts_cont = []
@@ -158,7 +160,7 @@ for item in data['edges']:
 
 node = initial
 visited = set()
-trace = dfs(edges, node, trace)
+trace = dfs(edges, node, [])
 events = []
 
 for (n, t) in trace[:-1]:
