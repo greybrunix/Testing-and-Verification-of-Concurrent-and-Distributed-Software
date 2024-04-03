@@ -1,0 +1,58 @@
+* Phase 1: compile Harmony program to bytecode
+* Phase 2: run the model checker (nworkers = 8)
+pinning cores
+    * 349949 states (time 0.17s, mem=0.019GB)
+    * 19713/992111 computations/edges
+* Phase 3: analysis
+    * **Safety Violation**
+* Phase 4: write results to algo.hco
+* Phase 5: loading algo.hco
+
+----------------------------------------
+
+**Summary: something went wrong in an execution**
+
+Here is a summary of an execution that exhibits the issue:
+
+* Schedule thread T0: __init__()
+    * Line unicast_bag_nodrop_nodedup/2: Initialize unicast_bag_nodrop_nodedup$net to {:}
+    * Line 2: Initialize API to [ PC(324), PC(371) ]
+    * Line 3: Initialize send to PC(324)
+    * Line 4: Initialize receive to PC(371)
+    * Line 7: Initialize leader to 0
+    * Line 24: Choose 3
+    * Line 26: Choose 4
+    * Line 30: Set leader to 4 (was 0)
+    * Line 26: Choose 5
+    * Line 30: Set leader to 5 (was 4)
+    * Line 26: Choose 1
+    * **Thread terminated**
+* Schedule thread T3: processor(1, 4)
+    * Line unicast_bag_nodrop_nodedup/6: Print [ "send", { "dst": 1, "payload": False, "src": 4 } ]
+    * Line unicast_bag_nodrop_nodedup/8: Set unicast_bag_nodrop_nodedup$net to { { "dst": 1, "payload": False, "src": 4 }: 1 } (was {:})
+    * Line unicast_bag_nodrop_nodedup/12: Choose [ { "dst": 1, "payload": False, "src": 4 }, 1 ]
+    * Preempted in processor(1, 4) --> receive(1)
+      about to print [ "receive", [ { "dst": 1, "payload": False, "src": 4 }, 1 ] ] in line unicast_bag_nodrop_nodedup/13
+* Schedule thread T1: processor(4, 5)
+    * Line unicast_bag_nodrop_nodedup/6: Print [ "send", { "dst": 4, "payload": False, "src": 5 } ]
+    * Line unicast_bag_nodrop_nodedup/8: Set unicast_bag_nodrop_nodedup$net to { { "dst": 1, "payload": False, "src": 4 }: 1, { "dst": 4, "payload": False, "src": 5 }: 1 } (was { { "dst": 1, "payload": False, "src": 4 }: 1 })
+    * Preempted in processor(4, 5)
+      about to load variable receive[4] in line 12
+* Schedule thread T3: processor(1, 4) --> receive(1)
+    * Line unicast_bag_nodrop_nodedup/13: Print [ "receive", [ { "dst": 1, "payload": False, "src": 4 }, 1 ] ]
+    * Line unicast_bag_nodrop_nodedup/6: Print [ "send", { "dst": 4, "payload": False, "src": 4 } ]
+    * Line unicast_bag_nodrop_nodedup/8: Set unicast_bag_nodrop_nodedup$net to { { "dst": 1, "payload": False, "src": 4 }: 1, { "dst": 4, "payload": False, "src": 4 }: 1, { "dst": 4, "payload": False, "src": 5 }: 1 } (was { { "dst": 1, "payload": False, "src": 4 }: 1, { "dst": 4, "payload": False, "src": 5 }: 1 })
+    * Preempted in processor(1, 4)
+      about to load variable receive[1] in line 12
+* Schedule thread T1: processor(4, 5)
+    * Line unicast_bag_nodrop_nodedup/12: Choose [ { "dst": 4, "payload": False, "src": 4 }, 1 ]
+    * Line unicast_bag_nodrop_nodedup/13: Print [ "receive", [ { "dst": 4, "payload": False, "src": 4 }, 1 ] ]
+    * Line 16: Harmony assertion failed
+
+This program uses the following modules:
+
+* __main__: algo.hny
+* bag: /home/bdg/virtual/lib/python3.11/site-packages/harmony_model_checker/modules/bag.hny
+* gen_net: gen_net.hny
+* unicast_bag_nodrop_nodedup: unicast_bag_nodrop_nodedup.hny
+

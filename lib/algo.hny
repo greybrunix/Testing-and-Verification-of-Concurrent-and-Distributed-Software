@@ -9,7 +9,9 @@ def processor(self, succ):
 	send(succ,self,False)
 	var working = True
 	while working:
-		atomically when exists (id, found) in receive(self):
+		var req = receive(self)
+		atomically when req != 0:
+			var id, found, mult = req[0].src,req[0].payload,req[1]
 			if id == self:
 				assert self == leader
 				send(succ, id, True)
