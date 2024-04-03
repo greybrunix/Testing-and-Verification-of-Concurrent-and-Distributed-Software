@@ -6,18 +6,17 @@ receive=API[1]
 const NIDS = 5      # number of identifiers
 leader = 0
 def processor(self, succ):
-	send(succ,self,False)
+	send(self,succ,False)
 	var working = True
 	while working:
-		var req = receive(self)
-		atomically when req != 0:
-			var id, found, mult = req[0].src,req[0].payload,req[1]
+		atomically when exists req in receive(self):
+			var id, found = req[0].src,req[0].payload
 			if id == self:
 				assert self == leader
-				send(succ, id, True)
+				send(id,succ, True)
 			elif id > self:
 				assert self != leader
-				send(succ, id, found)
+				send(id,succ, found)
 			if found:
 				working = False
 

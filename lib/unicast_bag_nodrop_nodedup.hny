@@ -3,13 +3,12 @@ net = bag.empty()
 def send(src, dst, payload):
 	var msg = {.src:src,.dst:dst,.payload:payload}
 	atomically:
-		print("send", msg)
 		if bag.multiplicity(net,msg) == 0:
 			net = bag.add(net, msg)
 def receive(pid) returns msg:
-	let msgs = { (m,c) for m:c in net where (m.dst == pid) }:
+	atomically:
+		var msgs = { (m,c) for m:c in net where (m.dst == pid) }
 		if len(msgs) > 0:
-			msg = choose(msgs)
-			print("receive", msg)
+			msg = choose{msgs}
 		else:
-			msg = 0
+			msg = {}
