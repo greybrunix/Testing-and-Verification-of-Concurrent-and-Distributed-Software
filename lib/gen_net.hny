@@ -4,16 +4,5 @@ def construct(flags) returns API:
 	if (flags[0] and (flags[1] == 0) and (not flags[2]) and (not flags[3])):
 		API=(unicast_bag_nodrop_nodedup.send,
 		     unicast_bag_nodrop_nodedup.receive)
-#	elif (flags[0] and (flags[1] == 0) and (flags[2]) and (not flags[3])):
-#		API=(unicast_set_drop_nodedup.send,
-#		     unicast_set_drop_nodedup.receive)
-#		spawn eternal unicast_set_drop_nodedup.drop()
-#	elif (flags[0] and (flags[1] == 0) and (not flags[2]) and (flags[3])):
-#		API=(unicast_set_nodrop_dedup.send,
-#		     unicast_set_nodrop_dedup.receive)
-#		spawn eternal unicast_set_drop_nodedup.dedup()
-#	elif (flags[0] and (flags[1] == 0) and (flags[2]) and (flags[3])):
-#		API=(unicast_set_drop_dedup.send,
-#		     unicast_set_drop_dedup.receive)
-#		spawn eternal unicast_set_drop_nodedup.drop()
-#		spawn eternal unicast_set_drop_nodedup.dedup()
+#spawn eternal unicast_bag_drop_nodedup.drop()
+#spawn eternal unicast_bag_nodrop_dedup.dedup()
