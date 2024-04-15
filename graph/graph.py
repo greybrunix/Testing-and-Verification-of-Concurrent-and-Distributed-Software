@@ -38,8 +38,8 @@ def dfs(edges, node, trace):
 
 
 def run_graph(nt, events):
-    # (send, src, dst, msg, ts, td)
-    # (receive, dst, ts, td)
+    # (send, src, dst, msg, id)
+    # (receive, dst, id)
 
     G = nx.DiGraph()
     figsize = (20, 20)
@@ -48,27 +48,24 @@ def run_graph(nt, events):
     lasts = []
     lasts_cont = []
 
-    for i in range(1, nt+1):
+    for i in range(0, nt):
         node = f'{i}0'
         G.add_node(node, pos=(i, 0))
         lasts.append(node)
         lasts_cont.append(0)
         plt.text(i-0.12, -0.1, f'Process:{i}', fontsize=12)
     
-    # Time in the future will determine the y coordinate of each node
     time = 0
     for ev in events[:]:
         # Time source and dest
-        #ts = ev[3]
-        #td = ev[4]
         ts = time
         td = time + 1
        
-        if ev[0] == 'send' and ('receive', ev[1]) in events:
-            events.remove(('receive', ev[1]))
+        if ev[0] == 'send' and ('receive', ev[2], ev[4]) in events:
+            events.remove(('receive', ev[2], ev[4]))
             # Update last node in each thread
-            lasts_cont[int(ev[1])-1] += 1
-            lasts_cont[int(ev[2])-1] += 1
+            lasts_cont[int(ev[1])] += 1
+            lasts_cont[int(ev[2])] += 1
         
             # Create node label
             src = f'{ev[1]}{lasts_cont[int(ev[1])-1]}'
@@ -83,14 +80,14 @@ def run_graph(nt, events):
             G.add_node(dst, pos=(int(ev[2]), td))
         
             # Add edge between src and dst, edge to expand each process
-            G.add_edge(lasts[int(ev[1])-1], src)
-            G.add_edge(lasts[int(ev[2])-1], dst)
+            G.add_edge(lasts[int(ev[1])], src)
+            G.add_edge(lasts[int(ev[2])], dst)
             G.add_edge(src, dst, label=ev[3])
 
         # Update global time
         time = td
     
-    for i in range(1, nt+1):
+    for i in range(0, nt):
         node = f'{i}n'
         G.add_node(node, pos=(i, time+1))
         G.add_edge(lasts[i-1], node)        
@@ -120,12 +117,6 @@ def run_graph(nt, events):
     plt.show()
 
 
-
-threads = [(0, 1, "ola", 0.2, 0.5),
-           (1, 2, "adeus", 0.8, 1),
-           (2, 1, "hola", 1.2, 1.5)
-        ]
-
 #name = sys.argv[1] 
 #pattern_hny = r'\.hny$'
 #pattern_hco = r'\.hco$'
@@ -134,36 +125,33 @@ threads = [(0, 1, "ola", 0.2, 0.5),
 #elif re.search(pattern_hco, name):
 #    run_graph(name)
 
-with open("../lib/algo.hfa", "r") as f:
-    data = json.load(f)
+'''
+f = open("../lib/algo.hco", "r")
+pattern_send = r'\"send\[\[(.*?)\]'
+pattern_receive = r'receive\[(\d+)\]'
+pattern = f'{pattern_send}|{pattern_receive}'
+msgs = re.findall(pattern, f.read())
 
-symbols = data.get("symbols")
-symbols_values = [
-    tuple(item['value'][i]['value'] for i in range(len(item['value'])))
-    for item in data['symbols']
-]
+seen = []
+for elem in msgs:
+    if elem in seen:
+        msgs.remove(elem)
+        seen.remove(elem)
+    else:
+        seen.append(elem)
 
-nt = max([int(value) for tup in symbols_values 
-          for value in tup[1:] 
-          if value.isdigit()]
-         )
+f.close
+'''
 
-initial = data.get("initial")
-final = [item["idx"] for item in data['nodes'] if item['type'] == 'final']
-edges = {item['src']: [] for item in data['edges']}
+# (send, src, dst, msg, id)
+# (receive, dst, id)
 
-for item in data['edges']:
-    src = item['src']
-    dst = item['dst']
-    sym = int(item['sym'])
-    edges[src].append((dst, sym))
+nt = 2
+msgs = [('send', 0, 1, 'False', 0),
+        ('receive', 1, 0),
+        ('send', 0, 1, 'True', 1),
+        ('send', 0, 1, 'False', 2),
+        ('receive', 1, 2)
+        ]
 
-node = initial
-visited = set()
-trace = dfs(edges, node, [])
-events = []
-
-for (n, t) in trace[:-1]:
-    events.append(symbols_values[t])
-
-run_graph(nt, events)
+run_graph(nt, msgs)
