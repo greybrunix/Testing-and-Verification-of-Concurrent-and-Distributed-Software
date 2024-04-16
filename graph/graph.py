@@ -56,7 +56,7 @@ def run_graph(nt, events):
         G.add_node(node, pos=(i, 0))
         lasts.append(node)
         lasts_cont.append(0)
-        plt.text(i-0.08, -0.25, f'Process:{i}', fontsize=12)
+        plt.text(i-0.08, -0.35, f'Process:{i}', fontsize=12)
     
     time = 0
     for ev in events[:]:
@@ -171,7 +171,7 @@ def run_graph(nt, events):
     nx.draw_networkx_edges(G_arrows, pos, edgelist=visible_edges, arrows=True, node_size=1)
 
     red_edges = [(u, v) for u, v in G.edges() if u in red_nodes and v in red_nodes]
-    nx.draw_networkx_edges(G_red, pos, edgelist=red_edges, arrows=True, connectionstyle='arc3, rad=0.6')
+    nx.draw_networkx_edges(G_red, pos, edgelist=red_edges, arrows=True, connectionstyle='arc3, rad=0.01', width=0)
 
     plt.savefig("teste.png")
     plt.show()
