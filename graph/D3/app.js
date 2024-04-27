@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 10, bottom: 10, left: 10},
-  width = window.innerWidth - margin.left - margin.right,
-  height = window.innerHeight - margin.top - margin.bottom;
+  width = 1920 - margin.left - margin.right,
+  height = 1080 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -33,10 +33,6 @@ d3.csv("../data.csv", function(data) {
       }
   });
 
-// set the dimensions and margins of the graph
-var margin = {top: 30, right: 10, bottom: 10, left: 10},
-  width = window.innerWidth - margin.left - margin.right,
-  height = rows*10*window.innerHeight - margin.top - margin.bottom;
   //console.log("Max value: " + collumns);
 
   // Extract the list of dimensions we want to keep in the plot. Here I keep all except the column called Species
@@ -248,7 +244,7 @@ svg.selectAll(".myPathCrosses")
         var information = "Source: " + sendRow.src + "\n";
         information += "Dst: " + sendRow.dst + "\n";
         information += "Message: " + sendRow.msg + "\n";
-        information += "Received: Yes"
+        information += "Received: No"
         alert(information);
     });
 
