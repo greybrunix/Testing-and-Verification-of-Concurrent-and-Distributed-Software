@@ -1,0 +1,57 @@
+import bag
+
+net = bag.empty()
+id = 0
+sequential starting_dup,starting_drop
+starting_dup = False
+starting_drop = False
+
+def send(src, dst, payload):
+	var msg = {.src:src,.dst:dst,.payload:payload, .id:id}
+	atomically:
+		net = bag.add(net, msg)
+		id += 1
+
+def receive(pid) returns msg:
+	atomically:
+		var msgs = [ (m,c) for m:c in net where (pid == m.dst) ]
+		if len(msgs) > 0:
+			msg = msgs[0][0]
+			net = bag.remove(net, msg)
+		else:
+			msg = {:}
+
+def dropper():
+	while choose{True,False}:
+		atomically:
+			var net_drop = net
+			await net != net_drop
+			if (not choose {True, False}) and (net != bag.empty()):
+				var msg_drop = bag.bchoose(net)
+				net = bag.remove(net, msg_drop)
+				print(net)
+
+def duplicator():
+	while choose {True, False}:
+		atomically:
+			var net_dup = net
+			await (net != net_dup)
+			if (not choose {True, False}) and (net != bag.empty()):
+				var msg_dup = bag.bchoose(net)
+				net = bag.add(net, msg_dup)
+				print net
+def main():
+	send(1,2,"oi")
+	send(1,1,"pode")
+	send(3,3,"Sim")
+	send(3,4,"Sim")
+	receive(2)
+	receive(1)
+	receive(3)
+	receive(4)
+	assert net != bag.empty()
+
+#spawn eternal duplicator()
+#spawn eternal dropper()
+spawn main()
+
