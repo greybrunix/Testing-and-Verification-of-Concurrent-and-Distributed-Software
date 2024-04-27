@@ -163,7 +163,14 @@ svg.selectAll(".myPathArrows")
     .style("fill", "none")
     .style("stroke", "#69b3a2")
     .style("opacity", 0.5)
-    .attr("marker-end", "url(#arrow)");
+    .attr("marker-end", "url(#arrow)")
+    .on("click", function(sendRow){
+        var information = "Source: " + sendRow.src + "\n";
+        information += "Dst: " + sendRow.dst + "\n";
+        information += "Message: " + sendRow.msg + "\n";
+        information += "Received: Yes"
+        alert(information);
+    });
 
 // Draw the lines with crosses
 svg.selectAll(".myPathCrosses")
@@ -236,7 +243,14 @@ svg.selectAll(".myPathCrosses")
     .style("fill", "none")
     .style("stroke", "#69b3a2")
     .style("opacity", 0.5)
-    .attr("marker-end", "url(#cross)");
+    .attr("marker-end", "url(#cross)")
+    .on("click", function(sendRow){
+        var information = "Source: " + sendRow.src + "\n";
+        information += "Dst: " + sendRow.dst + "\n";
+        information += "Message: " + sendRow.msg + "\n";
+        information += "Received: Yes"
+        alert(information);
+    });
 
 // Draw the axis:
   svg.selectAll("myAxis")
