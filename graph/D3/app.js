@@ -15,7 +15,8 @@ var svg = d3.select("#my_dataviz")
 // Parse the Data
 d3.csv("../data.csv", function(data) {
   // Initialize variables to store number os collumns
-  var collumns = -Infinity;
+  var columnsMax = -Infinity;
+  var columnsMin = +Infinity;
   var rows = 0;
 
   // Iterate over each row
@@ -25,11 +26,16 @@ d3.csv("../data.csv", function(data) {
       var src = parseInt(row.src);
       var dst = parseInt(row.dst);
 
-      if (src > collumns) {
-          collumns = src;
+      if (src > columnsMax) {
+          columnsMax = src;
+      } else if (src < columnsMin) {
+          columnsMin = src;
       }
-      if (dst > collumns) {
+
+      if (dst > columnsMax) {
           collumns = dst;
+      } else if (dst < columnsMin) {
+          columnsMin = dst;
       }
   });
 
@@ -38,12 +44,12 @@ d3.csv("../data.csv", function(data) {
   // Extract the list of dimensions we want to keep in the plot. Here I keep all except the column called Species
   //dimensions = d3.keys(data[0]).filter(function(d) { return d != "Species" })
 
-  var columnNames = d3.range(collumns + 1).map(String);
+  var columnNames = d3.range(columnsMin, columnsMax + 1).map(String);
 
   var y = {};
 columnNames.forEach(function(name) {
     y[name] = d3.scaleLinear()
-        .domain([0, collumns])
+        .domain([columnsMin, columnsMax])
         .range([height, 0]); // Adjust the range to ensure each row corresponds to one height increment
 });
 
