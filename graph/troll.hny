@@ -1,0 +1,51 @@
+import list
+
+net = []
+id = 0
+dup = True
+drop = True
+
+def send(src, dst, payload):
+	var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
+	atomically:
+		var copy_n = net
+		net += [msg,]
+		if (choose {True, False}) and dup:
+			net += [msg,]
+		if (choose {True, False}) and drop:
+			net = remove_last(net)
+		id += 1
+
+def receive(pid) returns msg:
+	atomically:
+		var msgs = [m for m in net where (pid == m.dst)]
+		if len(msgs) > 0:
+			msg = msgs[0]
+			net = remove_elem(msg, net)
+			if (choose {True, False}) and drop:
+				msg = {:}
+		else:
+			msg = {:}
+
+def remove_elem(elem, network) returns l:
+	l = []
+	var reached_first = False
+	atomically:
+		for element in network:
+			if ((element != elem) or reached_first):
+				l += [element,]
+			elif (not reached_first):
+				reached_first = True
+def remove_last(network) returns l:
+	l = []
+	atomically:
+		var n_len = len(network)
+		for element in {0..(n_len-1)}:
+			l += [network[element],]
+def main():
+	send(1,2,"Hiii >_<")
+	receive(2)
+	send(2,1,"Die 😂")
+	receive(1)
+	assert False
+spawn main()
