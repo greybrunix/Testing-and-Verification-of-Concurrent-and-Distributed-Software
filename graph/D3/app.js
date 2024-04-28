@@ -329,7 +329,7 @@ svg.selectAll(".myPathCrosses")
     .append("text")
       .style("text-anchor", "middle")
       .attr("y", -9)
-      .text(function(d) { return "Process" + d; })
+      .text(function(d) { return "Process " + d; })
       .style("fill", "black")
 
 });
