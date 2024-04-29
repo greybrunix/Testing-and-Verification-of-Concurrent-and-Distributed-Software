@@ -64,6 +64,8 @@ columnNames.forEach(function(name) {
       return d3.line()(columnNames.map(function(p) { return [x(p), y[p](d[p])]; }));
   }
 
+var hoverBox;
+
 // Define arrow marker
 svg.append("svg:defs").append("svg:marker")
     .attr("id", "arrow")
@@ -171,7 +173,13 @@ svg.selectAll(".myPathArrows")
     .on("mouseenter", function(sendRow) {
         // Show text box on hover
         var sendRow = d3.select(this).datum();
-        showTextBox(sendRow, this);
+        hoverBox = showTextBox(sendRow, this);
+    })
+    .on("mouseleave", function() {
+       if (hoverBox) {
+           hoverBox.remove();
+           hoverBox = null;
+       } 
     })
     .on("click", function(sendRow) {
         // Show text box on click
@@ -294,10 +302,6 @@ function showTextBox(sendRow, element) {
     }
 
     box.on("dblclick", function() {
-        d3.select(this).remove();
-    });
-
-    box.on("mouseleave", function() {
         d3.select(this).remove();
     });
 }
