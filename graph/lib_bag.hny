@@ -36,18 +36,18 @@ def dropper():
 			when net_cp != net:
 				atomically:
 					if (net != bag.empty()):
-						var msg_drop = bag.bchoose(net)
-							net = bag.remove(net, msg_drop)
+                            var msg_drop = bag.bchoose(net)
+                            net = bag.remove(net, msg_drop)
 
-	def duplicator():
-		while True:
-			if (choose {True, False}):
-				atomically var net_cp = net
-			when net_cp != net:
-				atomically:
-					if (net != bag.empty()):
-						var msg_dup = bag.bchoose(net)
-						net = bag.add(net, msg_dup)
+def duplicator():
+    while True:
+        if (choose {True, False}):
+            atomically var net_cp = net
+            when net_cp != net:
+                atomically:
+                    if (net != bag.empty()):
+                        var msg_dup = bag.bchoose(net)
+                        net = bag.add(net, msg_dup)
 
 def main():
 	send(1,2,"hi");

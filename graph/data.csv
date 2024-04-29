@@ -1,7 +1,1 @@
 type,src,dst,msg,id
-send,1,2,Hiii >_<,0
-send,3,2,Hello,1
-receive,,2,,0
-send,2,1,hii to you too,2
-receive,,2,,1
-receive,,1,,2

@@ -44,7 +44,7 @@ d3.csv("../data.csv", function(data) {
   // Extract the list of dimensions we want to keep in the plot. Here I keep all except the column called Species
   //dimensions = d3.keys(data[0]).filter(function(d) { return d != "Species" })
 
-  var columnNames = d3.range(columnsMin, columnsMax + 2).map(String);
+  var columnNames = d3.range(columnsMin, columnsMax + 1).map(String);
 
   var y = {};
 columnNames.forEach(function(name) {
