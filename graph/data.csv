@@ -1,1 +1,7 @@
 type,src,dst,msg,id
+send,1,2,hi,0
+send,3,2,ola,1
+receive,,2,,0
+send,2,1,wow,2
+receive,,1,,2
+receive,,2,,1

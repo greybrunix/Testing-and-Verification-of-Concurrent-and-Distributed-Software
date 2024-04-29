@@ -24,7 +24,6 @@ def generate_csv(name):
 
     pattern_send = r'\"method\": \"send\((\d+), (\d+), \\\"(.*?)\\\"\)\",.*?\"id\".*?(\d+).*?\"sp\":\s\d+}'
     pattern_receive = r'\"method\": \"receive\((\d+)\)\",.*?\"id\".*?\"(\d+)\"'
-    pattern = f'{pattern_send}|{pattern_receive}'
     
     res = [['type', 'src', 'dst', 'msg', 'id']]
     seen = []
@@ -42,9 +41,9 @@ def generate_csv(name):
             seen.append(matchSend.group())
         elif matchReceive and matchReceive.group() not in seen:
             tmp = ['receive',
-                   '',              # src
+                   '',                     # src
                    matchReceive.group(1),  # dst
-                   '',              # msg
+                   '',                     # msg
                    matchReceive.group(2)   # id
                     ]
             res.append(tmp)
