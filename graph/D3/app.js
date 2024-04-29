@@ -33,7 +33,7 @@ d3.csv("../data.csv", function(data) {
       }
 
       if (dst > columnsMax) {
-          collumns = dst;
+          columnsMax = dst;
       } else if (dst < columnsMin) {
           columnsMin = dst;
       }

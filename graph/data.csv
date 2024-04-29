@@ -1,7 +1,10 @@
 type,src,dst,msg,id
-send,1,2,hi,0
-send,3,2,ola,1
+send,1,2,True,0
+send,1,2,False,1
+send,2,1,True,2
 receive,,2,,0
-send,2,1,wow,2
 receive,,1,,2
-receive,,2,,1
+send,1,1,False,3
+send,1,3,True,4
+receive,,1,,3
+send,1,1,True,5
