@@ -168,41 +168,14 @@ svg.selectAll(".myPathArrows")
     .style("pointer-events", "stroke")
     .style("stroke-width", 2.5)
     .attr("marker-end", "url(#arrow)")
-    .on("click", function(sendRow){
-        var information = "Source: " + sendRow.src + "\n";
-        information += "Dst: " + sendRow.dst + "\n";
-        information += "Message: " + sendRow.msg + "\n";
-        information += "Received: Yes\n";
-        information += "ID: " + sendRow.id + "\n";
-        
-        var mouseCoordinates = d3.mouse(this);
-        var mouseX = mouseCoordinates[0];
-        var mouseY = mouseCoordinates[1];
-
-         // Show a styled box with the information
-        var box = svg.append("g")
-            .attr("class", "info-box")
-            .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
-
-        box.append("rect")
-            .attr("width", 100) // Adjust the width as needed
-            .attr("height", 100) // Adjust the height as needed
-            .style("fill", "#fdf6e3") // Adjust the fill color
-            .style("stroke", "black"); // Adjust the stroke color
-
-        var lines = information.split("\n");
-
-        for (var i=0; i < lines.length; i++) {
-            box.append("text")
-                .attr("x", 10) // Adjust the x position of the text
-                .attr("y", 20 + i * 15) // Adjust the y position of the text
-                .text(lines[i])
-                .style("font-size", "8px"); // Adjust the font size
-        }
-
-        box.on("dblclick", function() {
-            d3.select(this).remove();
-        });
+    .on("mouseenter", function(sendRow) {
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        showTextBox(sendRow, this);
+    })
+    .on("click", function(sendRow) {
+        // Show text box on click
+        showTextBox(sendRow, this);
     });
 
 // Draw the lines with crosses
@@ -278,43 +251,56 @@ svg.selectAll(".myPathCrosses")
     .style("opacity", 0.5)
     .style("stroke-width", 2.5)
     .attr("marker-end", "url(#cross)")
-    .on("click", function(sendRow){
-        var information = "Source: " + sendRow.src + "\n";
-        information += "Dst: " + sendRow.dst + "\n";
-        information += "Message: " + sendRow.msg + "\n";
-        information += "Received: No\n";
-        information += "ID: " + sendRow.id + "\n";
-
-        var mouseCoordinates = d3.mouse(this);
-        var mouseX = mouseCoordinates[0];
-        var mouseY = mouseCoordinates[1];
-
-         // Show a styled box with the information
-        var box = svg.append("g")
-            .attr("class", "info-box")
-            .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
-
-        box.append("rect")
-            .attr("width", 100) // Adjust the width as needed
-            .attr("height", 100) // Adjust the height as needed
-            .style("fill", "#fdf6e3") // Adjust the fill color
-            .style("stroke", "black"); // Adjust the stroke color
-
-        var lines = information.split("\n");
-
-        for (var i=0; i < lines.length; i++) {
-            box.append("text")
-                .attr("x", 10) // Adjust the x position of the text
-                .attr("y", 20 + i * 15) // Adjust the y position of the text
-                .text(lines[i])
-                .style("font-size", "8px"); // Adjust the font size
-        }
-
-        box.on("dblclick", function() {
-            d3.select(this).remove();
-        });
+    .on("mouseenter", function(sendRow) {
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        showTextBox(sendRow, this);
+    })
+    .on("click", function(sendRow) {
+        // Show text box on click
+        showTextBox(sendRow, this);
     });
 
+function showTextBox(sendRow, element) {
+    var information = "Source: " + sendRow.src + "\n";
+    information += "Dst: " + sendRow.dst + "\n";
+    information += "Message: " + sendRow.msg + "\n";
+    information += "Received: Yes\n";
+    information += "ID: " + sendRow.id + "\n";
+
+    var mouseCoordinates = d3.mouse(element);
+    var mouseX = mouseCoordinates[0];
+    var mouseY = mouseCoordinates[1];
+
+    // Show a styled box with the information
+    var box = svg.append("g")
+        .attr("class", "info-box")
+        .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
+
+    box.append("rect")
+        .attr("width", 100) // Adjust the width as needed
+        .attr("height", 100) // Adjust the height as needed
+        .style("fill", "#fdf6e3") // Adjust the fill color
+        .style("stroke", "black"); // Adjust the stroke color
+
+    var lines = information.split("\n");
+
+    for (var i=0; i < lines.length; i++) {
+        box.append("text")
+            .attr("x", 10) // Adjust the x position of the text
+            .attr("y", 20 + i * 15) // Adjust the y position of the text
+            .text(lines[i])
+            .style("font-size", "8px"); // Adjust the font size
+    }
+
+    box.on("dblclick", function() {
+        d3.select(this).remove();
+    });
+
+    box.on("mouseleave", function() {
+        d3.select(this).remove();
+    });
+}
 // Draw the axis:
   svg.selectAll("myAxis")
     // For each dimension of the dataset I add a 'g' element:
