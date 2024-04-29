@@ -22,44 +22,39 @@ def generate_csv(name):
     with open(name, "r") as f:
         data = f.read()
 
-    pattern_send = r'"method": "send\((\d+), (\d+), \\"(.*?)\\"\)",.*?"id".*?"(\d+)"'
-    pattern_receive = r'"method": "receive\((\d+)\)",.*?"id".*?"(\d+)"'
+    pattern_send = r'\"method\": \"send\((\d+), (\d+), \\\"(.*?)\\\"\)\",.*?\"id\".*?(\d+).*?\"sp\":\s\d+}'
+    pattern_receive = r'\"method\": \"receive\((\d+)\)\",.*?\"id\".*?\"(\d+)\"'
     pattern = f'{pattern_send}|{pattern_receive}'
-
-    matches = re.findall(pattern, data)
+    
+    res = [['type', 'src', 'dst', 'msg', 'id']]
+    seen = []
+    for line in data.split('\n'):
+        matchSend = re.match(pattern_send, line)
+        matchReceive = re.match(pattern_receive, line) 
+        if matchSend and matchSend.group() not in seen:
+            tmp = ['send', 
+                   matchSend.group(1), 
+                   matchSend.group(2),
+                   matchSend.group(3),
+                   matchSend.group(4)
+                  ]
+            res.append(tmp)
+            seen.append(matchSend.group())
+        elif matchReceive and matchReceive.group() not in seen:
+            tmp = ['receive',
+                   '',              # src
+                   matchReceive.group(1),  # dst
+                   '',              # msg
+                   matchReceive.group(2)   # id
+                    ]
+            res.append(tmp)
+            seen.append(matchReceive.group())
 
     f.close
 
-    seen = []
-    for elem in matches[:]:
-        if elem in seen:
-            matches.remove(elem)
-        else:
-            seen.append(elem)
-
-
-    data = [['type', 'src', 'dst', 'msg', 'id']]
-
-    for elem in matches:
-        tmp = []
-        if elem[0] != '':
-            tmp.append('send')
-            tmp.append(elem[0]) # src
-            tmp.append(elem[1]) # dst
-            tmp.append(elem[2]) # msg
-            tmp.append(elem[3]) # id
-        else:
-            tmp.append('receive')
-            tmp.append('') # src
-            tmp.append(elem[4]) # dst
-            tmp.append('') # msg
-            tmp.append(elem[5]) # id
-        data.append(tmp)
-
     with open('data.csv', 'w+') as f:
-
         csvwriter = csv.writer(f)
-        csvwriter.writerows(data)
+        csvwriter.writerows(res)
 
 name = sys.argv[1] 
 web = ''
