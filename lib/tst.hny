@@ -1,0 +1,6 @@
+import list
+h = []
+
+h += [1,]
+h = list.reversed(list.reversed(h) + [2,])
+print(h)

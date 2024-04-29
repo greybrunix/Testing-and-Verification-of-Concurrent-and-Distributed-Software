@@ -1,0 +1,15 @@
+import list
+
+net = []
+
+def send(src, dst, payload):
+	var msg = {.src:src, .dst:dst, .payload:payload}
+	atomically net += [msg,]
+
+def receive(pid) returns msg:
+	atomically:
+		var msgs = [m for m in net where (m.dst==pid)]
+		if len(msgs) > 0:
+			msg = {choose{msgs}}
+		else:
+			msg = {}

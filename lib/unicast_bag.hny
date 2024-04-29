@@ -1,0 +1,25 @@
+import bag
+net = bag.empty()
+def send(src, dst, payload):
+	var msg = {.src:src,.dst:dst,.payload:payload}
+	atomically:
+		if bag.multiplicity(net,msg) == 0:
+			net = bag.add(net, msg)
+def receive(pid) returns msg:
+	atomically:
+		var msgs = { (m,c) for m:c in net where (m.dst == pid) }
+		if len(msgs) > 0:
+			msg = choose{msgs}
+		else:
+			msg = {}
+def dropper():
+	while True:
+		atomically:
+			var msgs = { (m,c) for m:c in net }
+			if len(net) > 0:
+				var msg = choose{msgs}
+				bag.remove(net, msg)
+def duplicate():
+    while True:
+    	  atomically:
+		var msgs =
