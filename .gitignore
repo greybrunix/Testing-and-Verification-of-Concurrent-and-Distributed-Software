@@ -5,3 +5,9 @@ harmony/code/*.hvb
 harmony/code/*.hvm
 harmony/code/*.png
 harmony/code/*.tla
+harmony/graph/*.hco
+harmony/graph/*.gv
+harmony/graph/*.htm
+harmony/graph/*.hvb
+harmony/graph/*.hvm
+harmony/graph/*.png
