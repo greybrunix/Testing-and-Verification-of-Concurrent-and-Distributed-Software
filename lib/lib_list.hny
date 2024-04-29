@@ -16,7 +16,8 @@ def receive(pid) returns msg:
 		var msgs = [m for m in net where (pid == m.dst)]
 		if len(msgs) > 0:
 			msg = msgs[0]
-			net = remove_elem(msg, net)
+			msg = list.head(net)
+			net = list.tail(net)
 		else:
 			msg = {:}
 
@@ -27,7 +28,7 @@ def dropper():
 			when net_cp != net:
 				atomically:
 					if net != []:
-						var msg_drop = remove_elem(net[0], net)
+						net = list.tail(net)
 def duplicator():
 	while True:
 		if (choose {True, False}):
@@ -72,3 +73,17 @@ def remove_elem(elem, network) returns l:
 				l += [element,]
 			elif (not reached_first):
 				reached_first = True
+def main():
+    send(1,2,"True")
+    send(1,2,"False")
+    send(2,1,"True")
+    receive(2)
+    receive(1)
+    send(1,1,"False")
+    send(1,3,"True")
+    receive(1)
+    send(1,1,"True")
+    assert net != []
+spawn eternal duplicator()
+spawn eternal dropper()
+spawn main()
