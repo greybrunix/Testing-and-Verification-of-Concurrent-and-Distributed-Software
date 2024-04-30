@@ -262,7 +262,7 @@ svg.selectAll(".myPathCrosses")
         } else if (noCorrespondingReceive) {
             var srcX = x(sendRow.src);
             var srcY = data.indexOf(sendRow) * 100; // Adjust the height increment as necessary
-            var dstX = x(sendRow.dst) - 100;
+            var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
             var dstY = (data.indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
             pathData.push([srcX, srcY], [dstX, dstY]);
