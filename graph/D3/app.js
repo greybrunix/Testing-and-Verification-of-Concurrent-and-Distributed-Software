@@ -64,8 +64,6 @@ columnNames.forEach(function(name) {
       return d3.line()(columnNames.map(function(p) { return [x(p), y[p](d[p])]; }));
   }
 
-var hoverBox;
-
 // Define arrow marker
 svg.append("svg:defs").append("svg:marker")
     .attr("id", "arrow")
@@ -90,6 +88,8 @@ svg.append("marker")
     .attr("d", "M0,0L8,8M8,0L0,8")
     .attr("stroke", "black")
     .attr("stroke-width", 2);
+
+var box;
 
 // Draw the lines with arrows
 svg.selectAll(".myPathArrows")
@@ -173,17 +173,17 @@ svg.selectAll(".myPathArrows")
     .on("mouseenter", function(sendRow) {
         // Show text box on hover
         var sendRow = d3.select(this).datum();
-        hoverBox = showTextBox(sendRow, this);
+        box = showTextBox(sendRow, this, 1);
     })
-    .on("mouseleave", function() {
-       if (hoverBox) {
-           hoverBox.remove();
-           hoverBox = null;
-       } 
+    .on("mouseleave", function(sendRow) {
+        if (box) {
+            box.remove();
+            box = null;
+        }
     })
     .on("click", function(sendRow) {
         // Show text box on click
-        showTextBox(sendRow, this);
+        showTextBox(sendRow, this, 0);
     });
 
 // Draw the lines with crosses
@@ -262,11 +262,17 @@ svg.selectAll(".myPathCrosses")
     .on("mouseenter", function(sendRow) {
         // Show text box on hover
         var sendRow = d3.select(this).datum();
-        showTextBox(sendRow, this);
+        box = showTextBox(sendRow, this, 1);
+    })
+    .on("mouseleave", function(sendRow) {
+        if (box) {
+            box.remove();
+            box = null;
+        }
     })
     .on("click", function(sendRow) {
         // Show text box on click
-        showTextBox(sendRow, this);
+        showTextBox(sendRow, this, 0);
     });
 
 function showTextBox(sendRow, element) {
@@ -300,11 +306,13 @@ function showTextBox(sendRow, element) {
             .text(lines[i])
             .style("font-size", "8px"); // Adjust the font size
     }
-
     box.on("dblclick", function() {
         d3.select(this).remove();
     });
+
+    return box;
 }
+
 // Draw the axis:
   svg.selectAll("myAxis")
     // For each dimension of the dataset I add a 'g' element:
