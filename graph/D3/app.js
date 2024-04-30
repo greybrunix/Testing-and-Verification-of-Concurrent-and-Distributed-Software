@@ -62,7 +62,7 @@ columnNames.forEach(function(name) {
   // Build the X scale -> it find the best position for each Y axis
   var x = d3.scalePoint()
     .range([0, width])
-    .padding(1)
+    .padding(0.1)
     .domain(columnNames);
 
   // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
