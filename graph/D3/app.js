@@ -1,23 +1,9 @@
-// set the dimensions and margins of the graph
-var margin = {top: 30, right: 10, bottom: 10, left: 10},
-  width = window.screen.width - margin.left - margin.right,
-  height = window.screen.height - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
-
 // Parse the Data
 d3.csv("../data.csv", function(data) {
   // Initialize variables to store number os collumns
   var columnsMax = -Infinity;
   var columnsMin = +Infinity;
-  var rows = 0;
+  var rows = 1;
 
   // Iterate over each row
   data.forEach(function(row) {
@@ -38,6 +24,26 @@ d3.csv("../data.csv", function(data) {
           columnsMin = dst;
       }
   });
+
+// set the dimensions and margins of the graph
+if (rows*100 > window.screen.height) {
+    console.log(window.screen.height);
+    var margin = {top: 30, right: 10, bottom: 10, left: 10},
+    width = window.screen.width - margin.left - margin.right,
+    height = rows*100 - margin.top - margin.bottom;
+} else {
+    var margin = {top: 30, right: 10, bottom: 10, left: 10},
+    width = window.screen.width - margin.left - margin.right,
+    height = window.screen.height - margin.top - margin.bottom;
+}
+    // append the svg object to the body of the page
+    svg = d3.select("#my_dataviz")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform",
+                     "translate(" + margin.left + "," + margin.top + ")");
 
   //console.log("Max value: " + collumns);
 
@@ -64,6 +70,9 @@ columnNames.forEach(function(name) {
       return d3.line()(columnNames.map(function(p) { return [x(p), y[p](d[p])]; }));
   }
 
+
+var box;
+
 // Define arrow marker
 svg.append("svg:defs").append("svg:marker")
     .attr("id", "arrow")
@@ -74,7 +83,22 @@ svg.append("svg:defs").append("svg:marker")
     .attr("orient", "auto")
     .append("path")
     .attr("d", "M 0 0 12 6 0 12 3 6")
-    .style("fill", "black");
+    .style("fill", "black")
+    .on("mouseenter", function(sendRow) {
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    })
+    .on("mouseleave", function(sendRow) {
+        if (box) {
+            box.remove();
+            box = null;
+        }
+    })
+    .on("click", function(sendRow) {
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    });
 
 // Define cross marker
 svg.append("marker")
@@ -87,9 +111,22 @@ svg.append("marker")
     .append("path")
     .attr("d", "M0,0L8,8M8,0L0,8")
     .attr("stroke", "black")
-    .attr("stroke-width", 2);
-
-var box;
+    .attr("stroke-width", 2)
+    .on("mouseenter", function(sendRow) {
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    })
+    .on("mouseleave", function(sendRow) {
+        if (box) {
+            box.remove();
+            box = null;
+        }
+    })
+    .on("click", function(sendRow) {
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    });
 
 // Draw the lines with arrows
 svg.selectAll(".myPathArrows")
