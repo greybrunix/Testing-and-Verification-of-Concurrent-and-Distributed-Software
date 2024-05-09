@@ -4,29 +4,24 @@ import bag
 sequential net
 net = bag.empty()
 id = 0
+dup = False
+drop = False
 
 # public functions
 def send(src, dst, payload):
-	var msg = {.src:src,.dst:dst,.payload:payload, .id:id}
 	atomically:
+		var msg = {.src:src,.dst:dst,.payload:payload, .id:id}
 		net = bag.add(net, msg)
-#		if dup and choose({True,False}):
-#			net = bag.add(net, msg)
-#if drop and choose({True, False}):
-#			net = bag.remove(net, msg)
 		id += 1
 
 def receive(pid) returns msg:
 	atomically:
-		var msgs = {(m,c) for m:c in net where (pid == m.dst)}
-		if len(msgs) > 0:
-			msg = (choose(msgs))[0]
+		var msgs = { m:c for m:c in net where (pid == m.dst)}
+		if msgs != {:}:
+			msg = bag.bchoose msgs
 			net = bag.remove(net, msg)
-#			if drop and choose({True,False}):
-#				msg = {:}
 		else:
 			msg = {:}
-
 def dropper():
 	while True:
 		if (choose {True, False}):
@@ -35,14 +30,14 @@ def dropper():
 				atomically:
 					if (net != bag.empty()):
 						var msg_drop = bag.bchoose(net)
-							net = bag.remove(net, msg_drop)
+						net = bag.remove(net, msg_drop)
 
-	def duplicator():
-		while True:
-			if (choose {True, False}):
-				atomically var net_cp = net
-			when net_cp != net:
-				atomically:
-					if (net != bag.empty()):
-						var msg_dup = bag.bchoose(net)
-						net = bag.add(net, msg_dup)
+def duplicator():
+	while True:
+		if (choose {True, False}):
+			atomically var net_cp = net
+		when net_cp != net:
+			atomically:
+				if (net != bag.empty()):
+					var msg_dup = bag.bchoose(net)
+					net = bag.add(net, msg_dup)

@@ -15,6 +15,7 @@ def processor(self, succ):
 				var id, found = req.src,req.payload
 				if id == self:
 					assert self == leader
+					assert self != leader
 					send(id,succ, True)
 				elif id > self:
 					assert self != leader
@@ -22,7 +23,7 @@ def processor(self, succ):
 				if found:
 					working = False
 
-var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
+var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), []
 for i in { 0 .. nprocs - 1 }:
     let next = choose(ids):
         ids -= { next }
