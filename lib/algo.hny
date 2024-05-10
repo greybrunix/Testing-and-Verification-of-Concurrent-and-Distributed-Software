@@ -1,4 +1,4 @@
-from gen_net import construct
+import gen_net
 API=gen_net.construct(0,0,0)
 send=API[0]
 receive=API[1]
@@ -21,8 +21,10 @@ def processor(self, succ):
 					send(id,succ, found)
 				if found:
 					working = False
+	#if nprocs == NIDS:
+		#assert gen_net.get_net() == []
 
-var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
+ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
 for i in { 0 .. nprocs - 1 }:
     let next = choose(ids):
         ids -= { next }
@@ -31,3 +33,4 @@ for i in { 0 .. nprocs - 1 }:
             leader = next
 for i in { 0 .. nprocs - 1 }:
     spawn processor(procs[i], procs[(i + 1) % nprocs])
+

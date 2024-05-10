@@ -1,27 +1,38 @@
 import bag, list
 # private variables
-sequential net
+sequential net, id
 net = {}
 id = 0
+dup = False
+drop = False
 
-
+def get_net() returns n:
+	atomically n = net
 # FL
 def construct(flags) returns API:
 	if (flags[0] == 0):
-		net = bag.empty()
+		atomically net = bag.empty()
 		API = (send1, receive1)
-		if (flags[1] == 1):
+		if (flags[1] == 2):
 			spawn eternal duplicator1()
-		if (flags[2] == 1):
+		elif (flags[1] == 1):
+			dup = True
+		if (flags[2] == 2):
 			spawn eternal dropper1()
+		elif (flags[2] == 1):
+			drop = True
 	else:
 		net = []
 		API = (send2, receive2)
-		if (flags[1] == 1):
+		if (flags[1] == 2):
 			spawn eternal duplicator2()
-		if (flags[2] == 1):
+		elif (flags[1] == 1):
+			dup = True
+		if (flags[2] == 2):
 			spawn eternal dropper2()
-	
+		elif (flags[2] == 1):
+			drop = True
+
 
 # public functions
 def send1(src, dst, payload):
@@ -41,10 +52,10 @@ def receive1(pid) returns msg:
 def dropper1():
 	while True:
 		if (choose {True, False}):
-			atomically var net_cp = net
+			var net_cp = net
 			when net_cp != net:
-				atomically:
-					if (net != bag.empty()):
+				if (net != bag.empty()):
+					atomically:
 						var msg_drop = bag.bchoose(net)
 						net = bag.remove(net, msg_drop)
 
@@ -61,68 +72,23 @@ def duplicator1():
 def send2(src, dst, payload):
 	var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
 	atomically:
-		var copy_n = net
-		net += [msg,]
+		net = net + [msg,]
 		id += 1
 
 def receive2(pid) returns msg:
 	atomically:
 		var msgs = [m for m in net where (pid == m.dst)]
 		if len(msgs) > 0:
-			msg = list.head(net)
-			net = list.tail(net)
+			msg = list.head(msgs)
+			net = remove_msg(net, msg)
 		else:
 			msg = {:}
-
-def dropper2():
-	while True:
-		if (choose {True, False}):
-			atomically var net_cp = net
-			when net_cp != net:
-				atomically:
-					if net != []:
-						net = list.tail(net)
-def duplicator2():
-	while True:
-		if (choose {True, False}):
-			atomically var net_cp = net
-			when net_cp != net:
-				atomically:
-					if net != []:
-						net = dup_hd(net)
-
-def find_next(src, network) returns next:
+def remove_msg(L1, msg) returns L2:
+	L2 = []
 	var found_first = False
-	var found_last = False
-	next = 0
-	for element in network:
-		if (element.src == src) and (not found_first):
+	for elem in L1:
+		if (elem != msg) or (found_first):
+			L2 += [elem,]
+		elif (not found_first):
 			found_first = True
-		elif (found_first):
-			next += 1
-		elif (found_first) and (element.src == src):
-			found_sec = True
 
-def dup_hd(network) returns l:
-	l = []
-	var next = find_next(net[0].src, network)
-	var n = choose {0..next}
-	var found_first = False
-	atomically:
-		for element in network:
-			if (n > 0) and (element.src == net[0].src) and (not found_first):
-				found_first = True
-			elif (n == 0):
-				l += [net[0],]
-			elif (found_first):
-				n -= 1
-			l += [element,]
-def remove_elem(elem, network) returns l:
-	l = []
-	var reached_first = False
-	atomically:
-		for element in network:
-			if ((element != elem) or reached_first):
-				l += [element,]
-			elif (not reached_first):
-				reached_first = True
