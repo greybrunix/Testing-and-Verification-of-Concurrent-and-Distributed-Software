@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+</head>
+<body>
+    <!-- Create a file input element for selecting the JSON file -->
+    <input type="file" id="fileInput" accept=".json" />
+    
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-<script> 
-// Parse the Data
-d3.csv("../data.csv", function(data) {
-  // Initialize variables to store number os collumns
-  var columnsMax = -Infinity;
-  var columnsMin = +Infinity;
-  var rows = 1;
+    <!-- Include your JavaScript code here -->
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
 
-  // Iterate over each row
-  data.forEach(function(row) {
-      rows++;
+            reader.onload = function(event) {
+                var data = JSON.parse(event.target.result);
+                processData(data);
+            };
 
-      var src = parseInt(row.src);
-      var dst = parseInt(row.dst);
+            reader.readAsText(file);
+        });
 
-      if (src > columnsMax) {
-          columnsMax = src;
-      } else if (src < columnsMin) {
-          columnsMin = src;
-      }
+        function processData(data) {
+            // Initialize variables to store number of columns
+            var columnsMax = -Infinity;
+            var columnsMin = +Infinity;
+            var msgs = Object.keys(data).length;
 
-      if (dst > columnsMax) {
-          columnsMax = dst;
-      } else if (dst < columnsMin) {
-          columnsMin = dst;
-      }
-  });
+            // Iterate over each row
+            Object.keys(data).forEach(function(key) {
+                var src = parseInt(data[key]['src']);
+                var dst = parseInt(data[key]['dst']);
+
+                if (src > columnsMax) {
+                    columnsMax = src;
+                } else if (src < columnsMin) {
+                    columnsMin = src;
+                }
+
+                if (dst > columnsMax) {
+                    columnsMax = dst;
+                } else if (dst < columnsMin) {
+                    columnsMin = dst;
+                }
+            });
+
+            console.log("Min: " + columnsMin + " Max: " + columnsMax);
 
 // set the dimensions and margins of the graph
-if (rows*100 > window.screen.height) {
+if (msgs*100 > window.screen.height) {
     console.log(window.screen.height);
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
     width = window.screen.width - margin.left - margin.right,
-    height = rows*100 - margin.top - margin.bottom;
+    height = msgs*100 - margin.top - margin.bottom;
 } else {
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
     width = window.screen.width - margin.left - margin.right,
@@ -73,7 +92,7 @@ columnNames.forEach(function(name) {
     .padding(0.1)
     .domain(columnNames);
 
-  // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+  // The path function take a row of the json as input, and return x and y coordinates of the line to draw for this raw.
   function path(d) {
       return d3.line()(columnNames.map(function(p) { return [x(p), y[p](d[p])]; }));
   }
@@ -138,19 +157,19 @@ svg.append("marker")
 
 // Draw the lines with arrows
 svg.selectAll(".myPathArrows")
-    .data(data.filter(function(d) { return d.type === "send"; }))
+    .data(Object.values(data).filter(function(d) { return d.type === "send"; }))
     .enter()
     .append("path")
     .attr("class", "myPathArrows")
     .attr("d", function(sendRow) {
         var pathData = [];
-        var correspondingReceive = data.find(function(receiveRow) {
+        var correspondingReceive = Object.values(data).find(function(receiveRow) {
             return receiveRow.type === "receive" && 
                    receiveRow.dst === sendRow.dst && 
                    receiveRow.id === sendRow.id && 
                    sendRow.src != sendRow.dst;
         });
-        var selfSendReceive = data.find(function(receiveRow) {
+        var selfSendReceive = Object.values(data).find(function(receiveRow) {
             return receiveRow.type === "receive" &&
                    receiveRow.dst === sendRow.dst &&
                    receiveRow.id === sendRow.id &&
@@ -159,9 +178,9 @@ svg.selectAll(".myPathArrows")
 
         if (correspondingReceive) {
             var srcX = x(sendRow.src);
-            var srcY = data.indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             var dstX = x(correspondingReceive.dst);
-            var dstY = data.indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
+            var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
             pathData.push([srcX, srcY], [dstX, dstY]);
 
             // Calculate angle
@@ -233,13 +252,13 @@ svg.selectAll(".myPathArrows")
 
 // Draw the lines with crosses
 svg.selectAll(".myPathCrosses")
-    .data(data.filter(function(d) { return d.type === "send"; }))
+    .data(Object.values(data).filter(function(d) { return d.type === "send"; }))
     .enter()
     .append("path")
     .attr("class", "myPathCrosses")
     .attr("d", function(sendRow) {
         var pathData = [];
-        var noCorrespondingReceive = !data.some(function(receiveRow) {
+        var noCorrespondingReceive = !Object.values(data).some(function(receiveRow) {
             return receiveRow.type === "receive" && 
                    receiveRow.dst === sendRow.dst && 
                    receiveRow.id === sendRow.id;
@@ -247,9 +266,9 @@ svg.selectAll(".myPathCrosses")
 
         if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {
             var srcX = x(sendRow.src);
-            var srcY = DATA.INDEXoF(SENDrOW) * 100; // aDJUST THE HEIGHT INCREMENt as necessary
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             var dstX = x(sendRow.src) + 20;
-            var dstY = (data.indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
             // Construct path data for the half curve
             pathData.push([srcX, srcY], [srcX + 50, srcY + (dstY - srcY) / 2], [dstX, dstY]);
@@ -269,9 +288,9 @@ svg.selectAll(".myPathCrosses")
             return d3.line().curve(d3.curveBasis)(pathData);
         } else if (noCorrespondingReceive) {
             var srcX = x(sendRow.src);
-            var srcY = data.indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
-            var dstY = (data.indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
             pathData.push([srcX, srcY], [dstX, dstY]);
 
@@ -358,7 +377,7 @@ function showTextBox(sendRow, element) {
     return box;
 }
 
-// Draw the axis:
+ // Draw the axis:
   svg.selectAll("myAxis")
     // For each dimension of the dataset I add a 'g' element:
     .data(columnNames).enter()
@@ -375,8 +394,8 @@ function showTextBox(sendRow, element) {
       .text(function(d) { return "Process " + d; })
       .style("fill", "black")
 
-});
- </script>
+};
+</script>
     </head>
     <body>
 <!-- Create a div where the graph will take place -->

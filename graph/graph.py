@@ -1,5 +1,5 @@
 import re
-import csv
+import json
 import sys
 import os
 import subprocess
@@ -22,44 +22,37 @@ def generate_csv(name):
     with open(name, "r") as f:
         data = f.read()
 
-    pattern_send = r'\"method\": \"send[12].*?\n\s*],\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+)'
-    pattern_receive = r'\"method\": \"receive[12].*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+)'
+    pattern_send = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+)'
+    pattern_receive = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+)'
+    pattern_receive_bags = r'\"method\": \"receive.*?\n\s*],\n\s*\"local\".*?\n\s*\"pop\".*?\n\s*\"push\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+)'
     
-    res = [['type', 'src', 'dst', 'msg', 'id']]
-    '''
-    seen = []
-    for line in data.split('\n'):
-        matchSend = re.match(pattern_send, line)
-        matchReceive = re.match(pattern_receive, line) 
-        if matchSend and matchSend.group() not in seen:
-            tmp = ['send', 
-                   matchSend.group(4),
-                   matchSend.group(1), 
-                   matchSend.group(3),
-                   matchSend.group(2)
-                  ]
-            res.append(tmp)
-            seen.append(matchSend.group())
-        elif matchReceive and matchReceive.group() not in seen:
-            tmp = ['receive',
-                   '',                     # src
-                   matchReceive.group(1),  # dst
-                   '',                     # msg
-                   matchReceive.group(2)   # id
-                    ]
-            res.append(tmp)
-            seen.append(matchReceive.group())
-    '''
-    
-    pattern = f'{pattern_send}|{pattern_receive}'
-    match = re.findall(pattern, data);
-    print(match)
+    pattern = f'{pattern_send}|{pattern_receive}|{pattern_receive_bags}'
+    matches = re.findall(pattern, data);
+
+    res = {}
+    i = 0
+    for match in matches:
+        res[f'{i}'] = {}
+        if match[0] != "":
+            res[f'{i}']['type'] = 'send'
+            res[f'{i}']['src'] = match[4]
+            res[f'{i}']['dst'] = match[0]
+            res[f'{i}']['msg'] = match[2]
+            res[f'{i}']['id'] = match[1]
+        else:
+            res[f'{i}']['type'] = 'receive'
+            res[f'{i}']['src'] = match[4]
+            res[f'{i}']['dst'] = match[7]
+            res[f'{i}']['msg'] = match[6]
+            res[f'{i}']['id'] = match[5]
+        i += 1
 
     f.close
 
-    with open('data.csv', 'w+') as f:
-        csvwriter = csv.writer(f)
-        csvwriter.writerows(res)
+    print(res)
+
+    with open('data.json', 'w+', encoding='utf-8') as f:
+        json.dump(res, f, ensure_ascii=False, indent=4)
 
 name = sys.argv[1] 
 web = ''

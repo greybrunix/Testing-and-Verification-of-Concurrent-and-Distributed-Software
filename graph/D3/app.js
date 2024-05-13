@@ -1,29 +1,27 @@
-// Parse the Data
-d3.csv("../data.csv", function(data) {
-  // Initialize variables to store number os collumns
-  var columnsMax = -Infinity;
-  var columnsMin = +Infinity;
-  var rows = 1;
+// Load the JSON file
+d3.json("../data.json", function(data) {
+    // Initialize variables to store number os collumns
+    var columnsMax = -Infinity;
+    var columnsMin = +Infinity;
+    var rows = Object.keys(data).length;
 
-  // Iterate over each row
-  data.forEach(function(row) {
-      rows++;
+    // Iterate over each row
+    Object.values(data).forEach(function(row) {
+        var src = parseInt(row.src);
+        var dst = parseInt(row.dst);
 
-      var src = parseInt(row.src);
-      var dst = parseInt(row.dst);
+        if (src > columnsMax) {
+            columnsMax = src;
+        } else if (src < columnsMin) {
+            columnsMin = src;
+        }
 
-      if (src > columnsMax) {
-          columnsMax = src;
-      } else if (src < columnsMin) {
-          columnsMin = src;
-      }
-
-      if (dst > columnsMax) {
-          columnsMax = dst;
-      } else if (dst < columnsMin) {
-          columnsMin = dst;
-      }
-  });
+        if (dst > columnsMax) {
+            columnsMax = dst;
+        } else if (dst < columnsMin) {
+            columnsMin = dst;
+        }
+    });
 
 // set the dimensions and margins of the graph
 if (rows*100 > window.screen.height) {

@@ -1,28 +1,28 @@
 import gen_net
-API=gen_net.construct(1,0,0)
+API=gen_net.construct(0,0,0)
 send=API[0]
 receive=API[1]
 
 const NIDS = 2      # number of identifiers
 leader = 0
 def processor(self, succ):
-	send(self,succ,False)
-	var working = True
-	while working:
-		atomically:
-			var req = receive(self)
-			if (req != {:}):
-				var id, found = req.src,req.payload
-				if id == self:
-					assert self == leader
-					send(id,succ, True)
-				elif id > self:
-					assert self != leader
-					send(id,succ, found)
-				if found:
-					working = False
-	if nprocs == NIDS:
-		assert gen_net.get_net() == []
+    send(self,succ,False)
+    var working = True
+    while working:
+        atomically:
+            var req = receive(self)
+            if (req != {:}):
+                var id, found = req.src,req.payload
+                if id == self:
+                    assert self == leader
+                    send(id,succ, True)
+                elif id > self:
+                    assert self != leader
+                    send(id,succ, found)
+                if found:
+                    working = False
+    if nprocs == NIDS:
+        assert gen_net.get_net() == []
 
 ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
 for i in { 0 .. nprocs - 1 }:
@@ -33,4 +33,3 @@ for i in { 0 .. nprocs - 1 }:
             leader = next
 for i in { 0 .. nprocs - 1 }:
     spawn processor(procs[i], procs[(i + 1) % nprocs])
-
