@@ -154,6 +154,8 @@ svg.append("marker")
         showTextBox(sendRow, this, 0);
     });
 
+var lastID = -1;
+
 // Draw the lines with arrows
 svg.selectAll(".myPathArrows")
     .data(Object.values(data).filter(function(d) { return d.type === "send"; }))
@@ -177,9 +179,14 @@ svg.selectAll(".myPathArrows")
 
         if (correspondingReceive) {
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (lastID == sendRow.id) {
+                var srcY = (Object.values(data).indexOf(sendRow) - 1) * 100; // Adjust the height increment as necessary
+                var dstY = (Object.values(data).indexOf(correspondingReceive) + 1) * 100; // Adjust the height increment as necessary
+            } else {
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
+            }
             var dstX = x(correspondingReceive.dst);
-            var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
             pathData.push([srcX, srcY], [dstX, dstY]);
 
             // Calculate angle
@@ -203,10 +210,18 @@ svg.selectAll(".myPathArrows")
                 .style("font-size", "10px") // Adjust font size as needed
                 .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
             
+            lastID = sendRow.id;
+
             return d3.line()(pathData);
         } else if (selfSendReceive) {
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (lastID == sendRow.id) {
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+                var dstY = (Object.values(data).indexOf(selfSendReceive) + 1) * 100; // Adjust the destination Y-coordinate for the curved line
+            } else {
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
+            }
             var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
             // Construct path data for the curved line
@@ -222,6 +237,8 @@ svg.selectAll(".myPathArrows")
                 .style("fill", "black")
                 .style("font-size", "10px")
                 .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
+
+            lastID = sendRow.id;
 
             // Return the path data with curve interpolation
             return d3.line().curve(d3.curveBasis)(pathData);
@@ -265,7 +282,11 @@ svg.selectAll(".myPathCrosses")
 
         if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (lastID == sendRow.id) {
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+            } else {
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }
             var dstX = x(sendRow.src) + 20;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -283,11 +304,16 @@ svg.selectAll(".myPathCrosses")
                 .style("font-size", "10px")
                 .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
 
+            lastID = sendRow.id;
             
             return d3.line().curve(d3.curveBasis)(pathData);
         } else if (noCorrespondingReceive) {
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (lastID == sendRow.id) {
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+            } else {
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }
             var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -313,6 +339,8 @@ svg.selectAll(".myPathCrosses")
                 .style("fill", "black")
                 .style("font-size", "10px") // Adjust font size as needed
                 .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
+
+            lastID = sendRow.id;
 
             return d3.line().curve(d3.curveBasis)(pathData);
         }
