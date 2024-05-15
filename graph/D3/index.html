@@ -54,10 +54,9 @@
 
 // set the dimensions and margins of the graph
 if (msgs*100 > window.screen.height) {
-    console.log(window.screen.height);
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
     width = window.screen.width - margin.left - margin.right,
-    height = msgs*100 - margin.top - margin.bottom;
+    height = msgs*120 - margin.top - margin.bottom;
 } else {
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
     width = window.screen.width - margin.left - margin.right,
@@ -207,8 +206,8 @@ svg.selectAll(".myPathArrows")
             return d3.line()(pathData);
         } else if (selfSendReceive) {
             var srcX = x(sendRow.src);
-            var srcY = data.indexOf(sendRow) * 100; // Adjust the height increment as necessary
-            var dstY = data.indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
             // Construct path data for the curved line
             pathData.push([srcX, srcY], [srcX + 50, (srcY + dstY) / 2], [srcX, dstY]); // Start, control, and end points of the curve
