@@ -21,10 +21,11 @@ def processor(self, succ):
 					send(id,succ, found)
 				if found:
 					working = False
-	#if nprocs == NIDS:
+	if nprocs == NIDS:
 		#assert gen_net.get_net() == []
+		assert working == True
 
-ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [] 
+ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), []
 for i in { 0 .. nprocs - 1 }:
     let next = choose(ids):
         ids -= { next }

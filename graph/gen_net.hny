@@ -45,10 +45,9 @@ def receive1(pid) returns msg:
 	atomically:
 		var msgs = { m:c for m:c in net where (pid == m.dst)}
 		if msgs != {:}:
-			msg = bag.bchoose msgs
-			net = bag.remove(net, msg)
+			msg = {bag.bchoose msgs}
 		else:
-			msg = {:}
+			msg = {}
 def dropper1():
 	while True:
 		if (choose {True, False}):
