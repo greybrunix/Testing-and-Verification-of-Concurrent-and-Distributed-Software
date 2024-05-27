@@ -1,0 +1,61 @@
+import bag
+# private variables
+sequential id, net, dup, drop
+net = bag.empty();
+id = 0
+dup = False
+drop = False
+hist = False
+
+def get_net() returns n:
+	atomically n = net
+def construct(flags):
+	atomically:
+		if (flags[0] == 1):
+			dup = True
+		if (flags[1] == 1):
+			drop = True
+		if (flags[2] == 1):
+			hist = True
+
+def send(src, dst, payload):
+	var msg = {.src:src,.dst:dst,.payload:payload,.id:id}
+	atomically:
+		net = bag.add(net, msg)
+		id += 1
+
+def receive(pid) returns msg:
+	msg = {:}
+	atomically:
+		var msgs = {(m,c) for m:c in net where (pid == m.dst)}
+		if len(msgs) > 0:
+			msg = (choose(msgs))
+			if (not hist):
+				net = bag.remove(net, msg[0])
+			if (dup and choose{True, False}):
+				var r = {1..5}
+				var ran = choose r
+				for i in {1..ran}:
+					net = bag.add(net,msg[0])
+			if drop and choose{True, False}:
+				msg = {:}
+
+def dropper():
+	while True:
+		if (choose {True, False}):
+			var net_cp = net
+			when net_cp != net:
+				if (net != bag.empty()):
+					atomically:
+						var msg_drop = bag.bchoose(net)
+						net = bag.remove(net, msg_drop)
+
+def duplicator():
+	while choose {True, False}:
+		if (choose {True, False}):
+			atomically var net_cp = net
+			when net_cp != net:
+				atomically:
+					if (net != bag.empty()):
+						var msg_dup = bag.bchoose(net)
+						net = bag.add(net, msg_dup)

@@ -1,9 +1,8 @@
-import gen_net
-API=gen_net.construct(0,0,0)
-send=API[0]
-receive=API[1]
+from bag_net import *
+construct(0,0,0)
 
-const NIDS = 2      # number of identifiers
+
+const NIDS = 3   # number of identifiers
 leader = 0
 def processor(self, succ):
 	send(self,succ,False)
@@ -11,8 +10,8 @@ def processor(self, succ):
 	while working:
 		atomically:
 			var req = receive(self)
-			if (req != {:}):
-				var id, found = req.src,req.payload
+			if (len(req) > 0):
+				var id, found = req[0].src,req[0].payload
 				if id == self:
 					assert self == leader
 					send(id,succ, True)
@@ -21,9 +20,8 @@ def processor(self, succ):
 					send(id,succ, found)
 				if found:
 					working = False
-	if nprocs == NIDS:
-		#assert gen_net.get_net() == []
-		assert working == True
+	if NIDS == nprocs:
+			assert working == True
 
 ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), []
 for i in { 0 .. nprocs - 1 }:
@@ -34,4 +32,3 @@ for i in { 0 .. nprocs - 1 }:
             leader = next
 for i in { 0 .. nprocs - 1 }:
     spawn processor(procs[i], procs[(i + 1) % nprocs])
-

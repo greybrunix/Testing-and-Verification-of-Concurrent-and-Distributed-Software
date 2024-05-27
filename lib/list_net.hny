@@ -1,0 +1,49 @@
+import list
+# private variables
+sequential net, id
+net = []
+id = 0
+dup = False
+drop = False
+
+def get_net() returns n:
+	atomically n = net
+# FL
+def construct(flags) returns API:
+		if (flags[1] == 1):
+			dup = True
+		if (flags[2] == 2):
+			drop = True
+
+
+# public functions
+def send(src, dst, payload):
+	var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
+	atomically:
+		net = net + [msg,]
+		id += 1
+
+def receive(pid) returns msg:
+	msg = {:}
+	atomically:
+		var msgs = [m for m in net where (pid == m.dst)]
+		if len(msgs) > 0:
+			msg = (choose(msgs))
+			if (not hist):
+				net = bag.remove(net, msg[0])
+			if (dup and choose{True, False}):
+				var r = {1..5}
+				var ran = choose r
+				for i in {1..ran}:
+					net = bag.add(net,msg[0])
+			if drop and choose{True, False}:
+				msg = {:}
+def remove_msg(L1, msg) returns L2:
+	L2 = []
+	var found_first = False
+	for elem in L1:
+		if (elem != msg) or (found_first):
+			L2 += [elem,]
+		elif (not found_first):
+			found_first = True
+
