@@ -25,7 +25,6 @@ def send(src, dst, payload):
 		id += 1
 
 def receive(pid) returns msg:
-	msg = {:}
 	atomically:
 		var msgs = {(m,c) for m:c in net where (pid == m.dst)}
 		if len(msgs) > 0:
@@ -39,6 +38,10 @@ def receive(pid) returns msg:
 					net = bag.add(net,msg[0])
 			if drop and choose{True, False}:
 				msg = {:}
+				if (hist):
+					net = bag.remove(net, msg[0])
+		else:
+			msg = {:}
 
 def dropper():
 	while True:
