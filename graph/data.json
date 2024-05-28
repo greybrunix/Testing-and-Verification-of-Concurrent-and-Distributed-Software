@@ -8,17 +8,17 @@
     },
     "1": {
         "type": "send",
-        "src": "2",
-        "dst": "1",
-        "msg": "False",
-        "id": "0"
-    },
-    "2": {
-        "type": "send",
         "src": "1",
         "dst": "3",
         "msg": "False",
         "id": "1"
+    },
+    "2": {
+        "type": "send",
+        "src": "2",
+        "dst": "1",
+        "msg": "False",
+        "id": "2"
     },
     "3": {
         "type": "send",
@@ -43,30 +43,16 @@
     },
     "6": {
         "type": "send",
-        "src": "2",
-        "dst": "3",
-        "msg": "False",
+        "src": "3",
+        "dst": "2",
+        "msg": "True",
         "id": "5"
     },
     "7": {
         "type": "send",
         "src": "3",
-        "dst": "2",
-        "msg": "True",
-        "id": "6"
-    },
-    "8": {
-        "type": "send",
-        "src": "3",
         "dst": "1",
         "msg": "True",
-        "id": "7"
-    },
-    "9": {
-        "type": "send",
-        "src": "3",
-        "dst": "3",
-        "msg": "True",
-        "id": "8"
+        "id": "6"
     }
 }

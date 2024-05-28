@@ -448,7 +448,7 @@ function showTextBox(sendRow, element) {{
         .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
 
     box.append("rect")
-        .attr("width", 100) // Adjust the width as needed
+        .attr("width", 20 * sendRow.msg.length) // Adjust the width as needed
         .attr("height", 100) // Adjust the height as needed
         .style("fill", "#fdf6e3") // Adjust the fill color
         .style("stroke", "black"); // Adjust the stroke color
