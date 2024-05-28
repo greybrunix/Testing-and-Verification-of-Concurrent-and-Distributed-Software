@@ -1,0 +1,11 @@
+from list_net import *
+construct(1,0,0)
+
+def main():
+	send(1,2,"Ola")
+	send(2,1,"Ola")
+	receive(2)
+	receive(1)
+
+
+spawn eternal main()

@@ -1,5 +1,5 @@
 from bag_net import *
-construct(0,1,0)
+construct(0,0,0)
 
 const NIDS = 3   # number of identifiers
 leader = 0
@@ -19,6 +19,8 @@ def processor(self, succ):
 					send(id,succ, found)
 				if found:
 					working = False
+	if NIDS == nprocs:
+			assert False
 
 ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), []
 for i in { 0 .. nprocs - 1 }:

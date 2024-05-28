@@ -1,0 +1,11 @@
+from bag_net import *
+construct(1,0,0)
+
+def  main():
+	send(1,2,"Olá!")
+	send(2,1, "Viva!")
+	receive(2)
+	receive(1)
+
+	assert get_net() != {:}
+spawn eternal main()
