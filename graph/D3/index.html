@@ -6,25 +6,15 @@
     <script src="https://d3js.org/d3.v4.js"></script>
 </head>
 <body>
-    <!-- Create a file input element for selecting the JSON file -->
-    <input type="file" id="fileInput" accept=".json" />
-    
     <!-- Create a div where the graph will take place -->
     <div id="my_dataviz"></div>
 
     <!-- Include your JavaScript code here -->
     <script>
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(event) {
-                var data = JSON.parse(event.target.result);
-                processData(data);
-            };
-
-            reader.readAsText(file);
-        });
+        fetch('/data.json')
+            .then(response => response.json())
+            .then(data => processData(data))
+            .catch(error => console.error('Error fetching the data:', error));
 
         function processData(data) {
             // Initialize variables to store number of columns

@@ -3,10 +3,11 @@ import json
 import sys
 import os
 import subprocess
+import webbrowser
 
 def run_harmony(name, web):
     pid = os.fork()
-    if pid ==  0:
+    if pid == 0:
         if web:
             subprocess.run(["harmony", name])
         else:
@@ -16,14 +17,13 @@ def run_harmony(name, web):
         name = name[:-3] + "hco"
         generate_csv(name)
 
-
 def generate_csv(name):
 
     with open(name, "r") as f:
         data = f.read()
 
     pattern_send = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
-    pattern_send_bags = r'\"method\": \"send.*?\n\s*],\n\s*\"pop\".*?\n\s*\"push\".*?\n\s*\"pc\".*?\n\s*.*?\n\n\s*.*?{\n\s*\"code\": \"Frame send1.*?[\s\S]*?\"StoreVar msg\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+)'
+    pattern_send_bags = r'\"method\": \"send.*?\n\s*],\n\s*\"pop\".*?\n\s*\"push\".*?\n\s*\"pc\".*?\n\s*.*?\n\n\s*.*?{\n\s*\"code\": \"Frame send.*?[\s\S]*?\"StoreVar msg\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+)'
     pattern_receive = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     pattern_receive_bags = r'\"method\": \"receive.*?\n\s*],\n\s*\"local\".*?\n\s*\"pop\".*?\n\s*\"push\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     
@@ -67,11 +67,448 @@ def generate_csv(name):
 
     with open('data.json', 'w+', encoding='utf-8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
+    with open('data.json', 'r') as file:
+        json_data = json.load(file)
+
+    newline = "{newline}"
+    html_content = f'''
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+</head>
+<body>
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
+
+    <!-- Include your JavaScript code here -->
+    <script>
+
+        var data = '{json.dumps(json_data)}';
+        data = JSON.parse(data);
+
+        processData(data);
+
+        function processData(data) {{
+            // Initialize variables to store number of columns
+            var columnsMax = -Infinity;
+            var columnsMin = +Infinity;
+            var msgs = Object.keys(data).length;
+
+            // Iterate over each row
+            Object.keys(data).forEach(function(key) {{
+                var src = parseInt(data[key]['src']);
+                var dst = parseInt(data[key]['dst']);
+
+                if (src > columnsMax) {{
+                    columnsMax = src;
+                }} else if (src < columnsMin) {{
+                    columnsMin = src;
+                }}
+
+                if (dst > columnsMax) {{
+                    columnsMax = dst;
+                }} else if (dst < columnsMin) {{
+                    columnsMin = dst;
+                }}
+            }});
+
+            console.log("Min: " + columnsMin + " Max: " + columnsMax);
+
+// set the dimensions and margins of the graph
+if (msgs*100 > window.screen.height) {{
+    var margin = {{top: 30, right: 10, bottom: 10, left: 10}},
+    width = window.screen.width - margin.left - margin.right,
+    height = msgs*120 - margin.top - margin.bottom;
+}} else {{
+    var margin = {{top: 30, right: 10, bottom: 10, left: 10}},
+    width = window.screen.width - margin.left - margin.right,
+    height = window.screen.height - margin.top - margin.bottom;
+}}
+    // append the svg object to the body of the page
+    svg = d3.select("#my_dataviz")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform",
+                     "translate(" + margin.left + "," + margin.top + ")");
+
+  //console.log("Max value: " + collumns);
+
+  // Extract the list of dimensions we want to keep in the plot. Here I keep all except the column called Species
+  //dimensions = d3.keys(data[0]).filter(function(d) {{ return d != "Species" }})
+
+  var columnNames = d3.range(columnsMin, columnsMax + 1).map(String);
+
+  var y = {{}};
+columnNames.forEach(function(name) {{
+    y[name] = d3.scaleLinear()
+        .domain([columnsMin, columnsMax])
+        .range([height, 0]); // Adjust the range to ensure each row corresponds to one height increment
+}});
+
+  // Build the X scale -> it find the best position for each Y axis
+  var x = d3.scalePoint()
+    .range([0, width])
+    .padding(0.1)
+    .domain(columnNames);
+
+  // The path function take a row of the json as input, and return x and y coordinates of the line to draw for this raw.
+  function path(d) {{
+      return d3.line()(columnNames.map(function(p) {{ return [x(p), y[p](d[p])]; }}));
+  }}
+
+
+var box;
+
+// Define arrow marker
+svg.append("svg:defs").append("svg:marker")
+    .attr("id", "arrow")
+    .attr("refX", 12)
+    .attr("refY", 6)
+    .attr("markerWidth", 30)
+    .attr("markerHeight", 30)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M 0 0 12 6 0 12 3 6")
+    .style("fill", "black")
+    .on("mouseenter", function(sendRow) {{
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    }})
+    .on("mouseleave", function(sendRow) {{
+        if (box) {{
+            box.remove();
+            box = null;
+        }}
+    }})
+    .on("click", function(sendRow) {{
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    }});
+
+// Define cross marker
+svg.append("marker")
+    .attr("id", "cross")
+    .attr("markerWidth", 50)
+    .attr("markerHeight", 50)
+    .attr("refX", 6)
+    .attr("refY", 4)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,0L8,8M8,0L0,8")
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .on("mouseenter", function(sendRow) {{
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    }})
+    .on("mouseleave", function(sendRow) {{
+        if (box) {{
+            box.remove();
+            box = null;
+        }}
+    }})
+    .on("click", function(sendRow) {{
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    }});
+
+var lastID = -1;
+
+// Draw the lines with arrows
+svg.selectAll(".myPathArrows")
+    .data(Object.values(data).filter(function(d) {{ return d.type === "send"; }}))
+    .enter()
+    .append("path")
+    .attr("class", "myPathArrows")
+    .attr("d", function(sendRow) {{
+        var pathData = [];
+        var correspondingReceive = Object.values(data).find(function(receiveRow) {{
+            return receiveRow.type === "receive" && 
+                   receiveRow.dst === sendRow.dst && 
+                   receiveRow.id === sendRow.id && 
+                   sendRow.src != sendRow.dst;
+        }});
+        var selfSendReceive = Object.values(data).find(function(receiveRow) {{
+            return receiveRow.type === "receive" &&
+                   receiveRow.dst === sendRow.dst &&
+                   receiveRow.id === sendRow.id &&
+                   sendRow.src === sendRow.dst;
+        }});
+
+        if (correspondingReceive) {{
+            var srcX = x(sendRow.src);
+            if (lastID == sendRow.id) {{
+                var srcY = (Object.values(data).indexOf(sendRow) - 1) * 100; // Adjust the height increment as necessary
+                var dstY = (Object.values(data).indexOf(correspondingReceive) + 1) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
+            }}
+            var dstX = x(correspondingReceive.dst);
+            pathData.push([srcX, srcY], [dstX, dstY]);
+
+            // Calculate angle
+            var dx = dstX - srcX;
+            var dy = dstY - srcY;
+            var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+            // Adjust angle based on quadrant
+            if (angle > 90 || angle < -90) {{
+                angle -= 180;
+            }}
+
+            // Add label
+            svg.append("text")
+                .attr("x", (srcX + dstX) / 2)
+                .attr("y", (srcY + dstY) / 2)
+                .text(sendRow.msg)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "middle")
+                .style("fill", "black")
+                .style("font-size", "10px") // Adjust font size as needed
+                .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
+            
+            lastID = sendRow.id;
+
+            return d3.line()(pathData);
+        }} else if (selfSendReceive) {{
+            var srcX = x(sendRow.src);
+            if (lastID == sendRow.id) {{
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+                var dstY = (Object.values(data).indexOf(selfSendReceive) + 1) * 100; // Adjust the destination Y-coordinate for the curved line
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
+            }}
+            var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
+
+            // Construct path data for the curved line
+            pathData.push([srcX, srcY], [srcX + 50, (srcY + dstY) / 2], [srcX, dstY]); // Start, control, and end points of the curve
+
+            // Adjust label positioning and rotation angle
+            svg.append("text")
+                .attr("x", srcX + 35) // Adjust x position of the label
+                .attr("y", (srcY + dstY) / 2)
+                .text(sendRow.msg)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "middle")
+                .style("fill", "black")
+                .style("font-size", "10px")
+                .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
+
+            lastID = sendRow.id;
+
+            // Return the path data with curve interpolation
+            return d3.line().curve(d3.curveBasis)(pathData);
+        }}
+    }})
+    .style("fill", "none")
+    .style("stroke", "#69b3a2")
+    .style("opacity", 0.5)
+    .style("pointer-events", "stroke")
+    .style("stroke-width", 2.5)
+    .attr("marker-end", "url(#arrow)")
+    .on("mouseenter", function(sendRow) {{
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    }})
+    .on("mouseleave", function(sendRow) {{
+        if (box) {{
+            box.remove();
+            box = null;
+        }}
+    }})
+    .on("click", function(sendRow) {{
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    }});
+
+// Draw the lines with crosses
+svg.selectAll(".myPathCrosses")
+    .data(Object.values(data).filter(function(d) {{ return d.type === "send"; }}))
+    .enter()
+    .append("path")
+    .attr("class", "myPathCrosses")
+    .attr("d", function(sendRow) {{
+        var pathData = [];
+        var noCorrespondingReceive = !Object.values(data).some(function(receiveRow) {{
+            return receiveRow.type === "receive" && 
+                   receiveRow.dst === sendRow.dst && 
+                   receiveRow.id === sendRow.id;
+        }});
+
+        if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {{
+            var srcX = x(sendRow.src);
+            if (lastID == sendRow.id) {{
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
+            var dstX = x(sendRow.src) + 20;
+            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            
+            // Construct path data for the half curve
+            pathData.push([srcX, srcY], [srcX + 50, srcY + (dstY - srcY) / 2], [dstX, dstY]);
+            
+            // Adjust label positioning and rotation angle
+            svg.append("text")
+                .attr("x", srcX + 35) // Adjust x position of the label
+                .attr("y", (srcY + dstY) / 2)
+                .text(sendRow.msg)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "middle")
+                .style("fill", "black")
+                .style("font-size", "10px")
+                .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
+
+            lastID = sendRow.id;
+            
+            return d3.line().curve(d3.curveBasis)(pathData);
+        }} else if (noCorrespondingReceive) {{
+            var srcX = x(sendRow.src);
+            if (lastID == sendRow.id) {{
+                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
+            var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
+            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            
+            pathData.push([srcX, srcY], [dstX, dstY]);
+
+            // Calculate angle
+            var dx = dstX - srcX;
+            var dy = dstY - srcY;
+            var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+            // Adjust angle based on quadrant
+            if (angle > 90 || angle < -90) {{
+                angle -= 180;
+            }}
+
+            // Add label
+            svg.append("text")
+                .attr("x", (srcX + dstX) / 2)
+                .attr("y", (srcY + dstY) / 2)
+                .text(sendRow.msg)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "middle")
+                .style("fill", "black")
+                .style("font-size", "10px") // Adjust font size as needed
+                .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
+
+            lastID = sendRow.id;
+
+            return d3.line().curve(d3.curveBasis)(pathData);
+        }}
+    }})
+    .style("fill", "none")
+    .style("stroke", "#69b3a2")
+    .style("opacity", 0.5)
+    .style("stroke-width", 2.5)
+    .attr("marker-end", "url(#cross)")
+    .on("mouseenter", function(sendRow) {{
+        // Show text box on hover
+        var sendRow = d3.select(this).datum();
+        box = showTextBox(sendRow, this, 1);
+    }})
+    .on("mouseleave", function(sendRow) {{
+        if (box) {{
+            box.remove();
+            box = null;
+        }}
+    }})
+    .on("click", function(sendRow) {{
+        // Show text box on click
+        showTextBox(sendRow, this, 0);
+    }});
+
+function showTextBox(sendRow, element) {{
+    var information = "Source: " + sendRow.src + "{newline}";
+    information += "Dst: " + sendRow.dst + "{newline}";
+    information += "Message: " + sendRow.msg + "{newline}";
+    information += "Received: Yes{newline}";
+    information += "ID: " + sendRow.id + "{newline}";
+
+    var mouseCoordinates = d3.mouse(element);
+    var mouseX = mouseCoordinates[0];
+    var mouseY = mouseCoordinates[1];
+
+    // Show a styled box with the information
+    var box = svg.append("g")
+        .attr("class", "info-box")
+        .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
+
+    box.append("rect")
+        .attr("width", 100) // Adjust the width as needed
+        .attr("height", 100) // Adjust the height as needed
+        .style("fill", "#fdf6e3") // Adjust the fill color
+        .style("stroke", "black"); // Adjust the stroke color
+
+    var lines = information.split("{newline}");
+
+    for (var i=0; i < lines.length; i++) {{
+        box.append("text")
+            .attr("x", 10) // Adjust the x position of the text
+            .attr("y", 20 + i * 15) // Adjust the y position of the text
+            .text(lines[i])
+            .style("font-size", "8px"); // Adjust the font size
+    }}
+    box.on("dblclick", function() {{
+        d3.select(this).remove();
+    }});
+
+    return box;
+}}
+
+ // Draw the axis:
+  svg.selectAll("myAxis")
+    // For each dimension of the dataset I add a 'g' element:
+    .data(columnNames).enter()
+    .append("g")
+    // I translate this element to its right position on the x axis
+    .attr("transform", function(d) {{ return "translate(" + x(d) + ")"; }})
+    // And I build the axis with the call function
+    .each(function(d) {{ 
+        d3.select(this).call(d3.axisLeft().scale(y[d]).tickSize(0).tickFormat(function() {{ return null; }}));  }})
+    // Add axis title
+    .append("text")
+      .style("text-anchor", "middle")
+      .attr("y", -9)
+      .text(function(d) {{ return "Process " + d; }})
+      .style("fill", "black")
+
+}};
+</script>
+    </head>
+    <body>
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+    </body>
+</html>
+'''
+
+# Write the HTML content to a file
+    with open('index.html', 'w') as file:
+        file.write(html_content)
+
+    webbrowser.open('index.html')
+
+    print("HTML file generated successfully.")
 
 name = sys.argv[1] 
 web = ''
-if (len(sys.argv) > 2):
+if len(sys.argv) > 2:
     web = sys.argv[2]
+
 pattern_hny = r'\.hny$'
 pattern_hco = r'\.hco$'
 if re.search(pattern_hny, name):
