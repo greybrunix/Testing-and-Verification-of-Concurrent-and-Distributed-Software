@@ -4,6 +4,7 @@ import sys
 import os
 import subprocess
 import webbrowser
+from pathlib import Path
 
 def run_harmony(name, web):
     pid = os.fork()
@@ -22,50 +23,69 @@ def generate_csv(name):
     with open(name, "r") as f:
         data = f.read()
 
+    lists = False
+    bags = False
+
+    pattern_list = r'modules\/list.hny'
+    pattern_bag = r'modules\/bag.hny'
+
     pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
-    pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }\)'
+    pattern_send_dup_lists = r'StoreVar msg\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
+    pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
     pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
-    pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }, \d+'
-    pattern_receive_drop_bags = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }, (\d+)\]\)'
+    pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
+    pattern_receive_drop_bags = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, (\d+)\]\)'
     
-    #pattern = f'{pattern_send}|{pattern_send_bags}|{pattern_receive}|{pattern_receive_bags}'
-    pattern = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop_bags}'
+    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}'
+    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop_bags}'
+
+    pattern = ''
+
+    if re.search(pattern_list, data):
+        lists = True
+        pattern = pattern_lists
+    elif re.search(pattern_bag, data):
+        bags = True
+        pattern = pattern_bags
+
     matches = re.findall(pattern, data);
 
     res = {}
     i = 0
     for match in matches:
-        print(match)
         res[f'{i}'] = {}
-        if match[0] != "":
+        if match[0] != "" and lists:
             res[f'{i}']['type'] = 'send'
             res[f'{i}']['src'] = match[3]
             res[f'{i}']['dst'] = match[0]
             res[f'{i}']['msg'] = match[2]
             res[f'{i}']['id'] = match[1]
-        elif match[4] != "":
+        elif match[4] != "" and lists:
             res[f'{i}']['type'] = 'receive'
             res[f'{i}']['dst'] = match[4]
             res[f'{i}']['id'] = match[5]
-        elif match[8] != "":
+        elif match[0] != "" and bags:
             res[f'{i}']['type'] = 'send'
-            res[f'{i}']['src'] = match[11]
-            res[f'{i}']['dst'] = match[8]
-            res[f'{i}']['msg'] = match[10]
-            res[f'{i}']['id'] = match[9]
-        elif match[12] != "":
+            res[f'{i}']['src'] = match[3]
+            res[f'{i}']['dst'] = match[0]
+            res[f'{i}']['msg'] = match[2]
+            res[f'{i}']['id'] = match[1]
+        elif match[4] != "" and bags:
             res[f'{i}']['type'] = 'receive'
-            res[f'{i}']['dst'] = match[12]
-            res[f'{i}']['id'] = match[13]
-        elif match[16] != "":
+            res[f'{i}']['dst'] = match[4]
+            res[f'{i}']['id'] = match[5]
+        elif match[8] != "" and bags:
             for j in range(i):
-                if (res[f'{j}']['id'] == match[17] and res[f'{j}']['type'] == 'receive'):
+                if (res[f'{j}']['id'] == match[8] and res[f'{j}']['type'] == 'receive'):
                     del res[f'{j}']
         i += 1
 
     f.close
-
+    
+    print('\n' + '-'*40 + '\n')
+    print('**JSON for visualization**' + '\n')
     print(res)
+    print()
 
     with open('data.json', 'w+', encoding='utf-8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
@@ -246,13 +266,8 @@ svg.selectAll(".myPathArrows")
 
         if (correspondingReceive) {{
             var srcX = x(sendRow.src);
-            if (lastID == sendRow.id) {{
-                var srcY = (Object.values(data).indexOf(sendRow) - 1) * 100; // Adjust the height increment as necessary
-                var dstY = (Object.values(data).indexOf(correspondingReceive) + 1) * 100; // Adjust the height increment as necessary
-            }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
-                var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
-            }}
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
             var dstX = x(correspondingReceive.dst);
             pathData.push([srcX, srcY], [dstX, dstY]);
 
@@ -282,13 +297,8 @@ svg.selectAll(".myPathArrows")
             return d3.line()(pathData);
         }} else if (selfSendReceive) {{
             var srcX = x(sendRow.src);
-            if (lastID == sendRow.id) {{
-                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
-                var dstY = (Object.values(data).indexOf(selfSendReceive) + 1) * 100; // Adjust the destination Y-coordinate for the curved line
-            }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
-                var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
-            }}
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
             var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
             // Construct path data for the curved line
@@ -349,11 +359,7 @@ svg.selectAll(".myPathCrosses")
 
         if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {{
             var srcX = x(sendRow.src);
-            if (lastID == sendRow.id) {{
-                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
-            }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
-            }}
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             var dstX = x(sendRow.src) + 20;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -376,11 +382,7 @@ svg.selectAll(".myPathCrosses")
             return d3.line().curve(d3.curveBasis)(pathData);
         }} else if (noCorrespondingReceive) {{
             var srcX = x(sendRow.src);
-            if (lastID == sendRow.id) {{
-                var srcY = (Object.values(data).indexOf(sendRow)-1) * 100; // Adjust the height increment as necessary
-            }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
-            }}
+            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -450,7 +452,7 @@ function showTextBox(sendRow, element) {{
         .attr("transform", "translate(" + (mouseX) + "," + (mouseY + 10) + ")");
 
     box.append("rect")
-        .attr("width", 20 * sendRow.msg.length) // Adjust the width as needed
+        .attr("width", 40 + 10 * sendRow.msg.length) // Adjust the width as needed
         .attr("height", 100) // Adjust the height as needed
         .style("fill", "#fdf6e3") // Adjust the fill color
         .style("stroke", "black"); // Adjust the stroke color
@@ -498,13 +500,16 @@ function showTextBox(sendRow, element) {{
 </html>
 '''
 
-# Write the HTML content to a file
-    with open('index.html', 'w') as file:
-        file.write(html_content)
+    # Write the HTML content to a file
+    if res:
+        file_name = f'{name}_visualization.html'
+        with open(file_name, 'w') as file:
+            file.write(html_content)
 
-    webbrowser.open('index.html')
-
-    print("HTML file generated successfully.")
+        webbrowser.open(file_name)
+        
+        path = Path(file_name).absolute()
+        print(f"open file://{path} for visualization")
 
 name = sys.argv[1] 
 web = ''
