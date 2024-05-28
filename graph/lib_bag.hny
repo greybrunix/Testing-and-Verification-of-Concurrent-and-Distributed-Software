@@ -12,10 +12,6 @@ def send(src, dst, payload):
 	var msg = {.src:src,.dst:dst,.payload:payload, .id:id}
 	atomically:
 		net = bag.add(net, msg)
-#		if dup and choose({True,False}):
-#			net = bag.add(net, msg)
-#if drop and choose({True, False}):
-#			net = bag.remove(net, msg)
 		id += 1
 
 def receive(pid) returns msg:
@@ -24,8 +20,6 @@ def receive(pid) returns msg:
 		if len(msgs) > 0:
 			msg = (choose(msgs))[0]
 			net = bag.remove(net, msg)
-#			if drop and choose({True,False}):
-#				msg = {:}
 		else:
 			msg = {:}
 

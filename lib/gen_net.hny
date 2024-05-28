@@ -42,12 +42,11 @@ def send1(src, dst, payload):
 		id += 1
 
 def receive1(pid) returns msg:
-	atomically:
-		var msgs = { m:c for m:c in net where (pid == m.dst)}
-		if msgs != {:}:
-			msg = bag.bchoose msgs
-		else:
-			msg = {:}
+	atomically let msgs = { m:c for m:c in net where (pid == m.dst)}:
+			if msgs != {:}:
+				msg = bag.bchoose msgs
+			else:
+				msg = {:}
 def dropper1():
 	while True:
 		if (choose {True, False}):
