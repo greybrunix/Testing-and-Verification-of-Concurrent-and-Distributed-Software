@@ -1,57 +1,70 @@
 {
     "0": {
         "type": "send",
-        "src": "3",
-        "dst": "2",
+        "src": "2",
+        "dst": "3",
         "msg": "False",
         "id": "0"
     },
     "1": {
         "type": "send",
-        "src": "1",
-        "dst": "3",
+        "src": "3",
+        "dst": "1",
         "msg": "False",
         "id": "1"
     },
     "2": {
         "type": "send",
-        "src": "2",
-        "dst": "1",
+        "src": "1",
+        "dst": "2",
         "msg": "False",
         "id": "2"
     },
     "3": {
-        "type": "send",
-        "src": "3",
-        "dst": "2",
-        "msg": "False",
-        "id": "0"
+        "type": "receive",
+        "dst": "1",
+        "id": "1"
     },
     "4": {
         "type": "send",
         "src": "3",
-        "dst": "1",
+        "dst": "2",
         "msg": "False",
         "id": "3"
     },
     "5": {
+        "type": "receive",
+        "dst": "2",
+        "id": "3"
+    },
+    "6": {
         "type": "send",
         "src": "3",
         "dst": "3",
         "msg": "False",
         "id": "4"
     },
-    "6": {
-        "type": "send",
-        "src": "3",
-        "dst": "2",
-        "msg": "True",
-        "id": "5"
-    },
     "7": {
+        "type": "receive",
+        "dst": "3",
+        "id": "4"
+    },
+    "8": {
         "type": "send",
         "src": "3",
         "dst": "1",
+        "msg": "True",
+        "id": "5"
+    },
+    "9": {
+        "type": "receive",
+        "dst": "1",
+        "id": "5"
+    },
+    "10": {
+        "type": "send",
+        "src": "3",
+        "dst": "2",
         "msg": "True",
         "id": "6"
     }
