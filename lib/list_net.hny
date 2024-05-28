@@ -27,20 +27,21 @@ def send(src, dst, payload):
 		id += 1
 
 def receive(pid) returns msg:
-	msg = []
 	atomically:
-		var msgs = [(m,c) for m in net where (pid == m.dst)]
+		var msgs = [m for m in net where (pid == m.dst)]
 		if len(msgs) > 0:
 			msg = msgs[0]
 			if (not hist):
-				net = remove_msg(net, msg[0])
+				net = remove_msg(net, msg)
 			if (dup and choose{True, False}):
 				var r = {1..5}
 				var ran = choose r
 				for i in {1..ran}:
-					net = add_msg(net, msg[0])
+					net = add_msg(net, msg)
 			if drop and choose{True, False}:
 				msg = []
+		else:
+			msg = []
 def remove_msg(L1, msg) returns L2:
 	L2 = []
 	var found_first = False
