@@ -22,13 +22,14 @@ def generate_csv(name):
     with open(name, "r") as f:
         data = f.read()
 
-    #pattern_send = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
+    pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
     pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }\)'
-    #pattern_receive = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
-    pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }, (\d+)'
+    pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
+    pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }, \d+'
+    pattern_receive_drop_bags = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (\w+), \\\"src\\\": (\d+) }, (\d+)\]\)'
     
     #pattern = f'{pattern_send}|{pattern_send_bags}|{pattern_receive}|{pattern_receive_bags}'
-    pattern = f'{pattern_send_bags}|{pattern_receive_bags}'
+    pattern = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop_bags}'
     matches = re.findall(pattern, data);
 
     res = {}
@@ -42,28 +43,24 @@ def generate_csv(name):
             res[f'{i}']['dst'] = match[0]
             res[f'{i}']['msg'] = match[2]
             res[f'{i}']['id'] = match[1]
-            '''
         elif match[4] != "":
-            res[f'{i}']['type'] = 'send'
-            res[f'{i}']['src'] = match[7]
-            res[f'{i}']['dst'] = match[4]
-            res[f'{i}']['msg'] = match[6]
-            res[f'{i}']['id'] = match[5]
-        '''
-        elif match[8] != "":
             res[f'{i}']['type'] = 'receive'
-            #res[f'{i}']['src'] = match[11]
             res[f'{i}']['dst'] = match[4]
-            #res[f'{i}']['msg'] = match[10]
             res[f'{i}']['id'] = match[5]
-            '''
+        elif match[8] != "":
+            res[f'{i}']['type'] = 'send'
+            res[f'{i}']['src'] = match[11]
+            res[f'{i}']['dst'] = match[8]
+            res[f'{i}']['msg'] = match[10]
+            res[f'{i}']['id'] = match[9]
         elif match[12] != "":
             res[f'{i}']['type'] = 'receive'
-            #res[f'{i}']['src'] = match[11]
             res[f'{i}']['dst'] = match[12]
-            #res[f'{i}']['msg'] = match[10]
             res[f'{i}']['id'] = match[13]
-            '''
+        elif match[16] != "":
+            for j in range(i):
+                if (res[f'{j}']['id'] == match[17] and res[f'{j}']['type'] == 'receive'):
+                    del res[f'{j}']
         i += 1
 
     f.close
