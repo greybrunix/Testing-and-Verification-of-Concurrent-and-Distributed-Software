@@ -31,8 +31,7 @@ def receive(pid) returns msg:
 			if (not hist):
 				net = bag.remove(net, msg[0])
 			if (dup and choose{True, False}):
-				var r = {1..5}
-				var ran = choose r
+				var ran, msg_dup = choose {1..5},msg
 				for i in {1..ran}:
 					net = bag.add(net,msg[0])
 			if drop and choose{True, False}:

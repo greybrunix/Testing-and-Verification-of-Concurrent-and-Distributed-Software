@@ -1,5 +1,5 @@
 from list_net import *
-construct(0,0,1)
+construct(0,1,1)
 
 const NREPLICAS = 3     
 const NOPS = 2          
@@ -15,8 +15,8 @@ def replica(self, immortal):
     while True:
         atomically when len(get_net()) > delivered:
             let msg = receive(delivered):
-                print(self, msg)
-                delivered += 1
+                if msg != []:
+                   delivered += 1
 
 def client(self):
     print(self)

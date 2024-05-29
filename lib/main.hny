@@ -7,5 +7,5 @@ def  main():
 	receive(2)
 	receive(1)
 
-	assert get_net() != {:}
+	assert get_net() == {:}
 spawn eternal main()

@@ -33,13 +33,14 @@ def receive(pid) returns msg:
 			if (not hist):
 				net = remove_msg(net, msg)
 			if (dup and choose{True, False}):
-				var r = {1..5}
-				var ran = choose r
+				var ran,msg_dup = choose {1..5}, msg
 				for i in {1..ran}:
 					net = add_msg(net, msg)
 			if drop and choose{True, False}:
 				var msg_drop = msg
 				msg = []
+				if (hist):
+					net = remove_msg(net,msg)
 		else:
 			msg = []
 def remove_msg(L1, msg) returns L2:
