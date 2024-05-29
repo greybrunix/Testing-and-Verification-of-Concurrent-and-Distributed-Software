@@ -1,0 +1,31 @@
+from list_net import *
+construct(0,0,1)
+
+const NREPLICAS = 3     
+const NOPS = 2          
+l = 0
+
+def crash():
+    stop()
+
+def replica(self, immortal):
+    if not immortal:
+        trap crash()
+    var delivered = 0
+    while True:
+        atomically when len(get_net()) > delivered:
+            let msg = receive(delivered):
+                print(self, msg)
+                delivered += 1
+
+def client(self):
+    print(self)
+    atomically:
+        send(self, l, self)
+        l+=1
+
+let immortal = choose {1..NREPLICAS}:
+    for i in {1..NREPLICAS}:
+        spawn eternal replica(i, i == immortal)
+for i in {1..NOPS}:
+    spawn client(i)
