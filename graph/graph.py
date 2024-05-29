@@ -34,11 +34,10 @@ def generate_csv(name):
     pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
     pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
-    pattern_receive_drop_lists = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }'
-    pattern_receive_drop_bags = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, (\d+)\]\)'
+    pattern_receive_drop = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }'
     
-    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop_lists}'
-    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop_bags}'
+    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop}'
+    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop}'
 
     pattern = ''
 
@@ -54,7 +53,7 @@ def generate_csv(name):
     res = {}
     i = 0
     for match in matches:
-        res[f'{i}'] = {}
+        print(match)
         if match[0] != "" and lists:
             res[f'{i}']['type'] = 'send'
             res[f'{i}']['src'] = match[3]
