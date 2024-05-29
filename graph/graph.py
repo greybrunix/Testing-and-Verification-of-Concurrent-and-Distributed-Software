@@ -54,6 +54,7 @@ def generate_csv(name):
     i = 0
     for match in matches:
         print(match)
+        res[f'{i}'] = {}
         if match[0] != "" and lists:
             res[f'{i}']['type'] = 'send'
             res[f'{i}']['src'] = match[3]
@@ -284,14 +285,14 @@ svg.selectAll(".myPathArrows")
 
             // Add label
             svg.append("text")
-                .attr("x", (srcX + dstX) / 2)
-                .attr("y", (srcY + dstY) / 2)
+                .attr("x", srcX + dx / 5)
+                .attr("y", srcY + dy / 5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px") // Adjust font size as needed
-                .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
+                .attr("transform", "rotate(" + angle + "," + (srcX + dx / 5) + "," + (srcY + dy / 5) + ")");
             
             lastID = sendRow.id;
 
@@ -308,13 +309,13 @@ svg.selectAll(".myPathArrows")
             // Adjust label positioning and rotation angle
             svg.append("text")
                 .attr("x", srcX + 35) // Adjust x position of the label
-                .attr("y", (srcY + dstY) / 2)
+                .attr("y", srcY + (dstY - srcY) / 5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px")
-                .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
+                .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + d) / 5) + ")");
 
             lastID = sendRow.id;
 
@@ -370,13 +371,13 @@ svg.selectAll(".myPathCrosses")
             // Adjust label positioning and rotation angle
             svg.append("text")
                 .attr("x", srcX + 35) // Adjust x position of the label
-                .attr("y", (srcY + dstY) / 2)
+                .attr("y", srcY + (dstY - srcY) / 5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px")
-                .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + ((srcY + dstY) / 2) + ")");
+                .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + (srcY + (dstY - srcY) / 5) + ")");
 
             lastID = sendRow.id;
             
@@ -401,14 +402,14 @@ svg.selectAll(".myPathCrosses")
 
             // Add label
             svg.append("text")
-                .attr("x", (srcX + dstX) / 2)
-                .attr("y", (srcY + dstY) / 2)
+                .attr("x", srcX + (dstX - srcX) / 5)
+                .attr("y", srcY + (dstY - srcY) / 5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px") // Adjust font size as needed
-                .attr("transform", "rotate(" + angle + "," + ((srcX + dstX) / 2) + "," + ((srcY + dstY) / 2) + ")");
+                .attr("transform", "rotate(" + angle + "," + (srcX + (dstX - srcX) / 5) + "," + (srcY + (dstY - srcY) / 5) + ")");
 
             lastID = sendRow.id;
 
