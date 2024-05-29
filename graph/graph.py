@@ -34,9 +34,10 @@ def generate_csv(name):
     pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
     pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
+    pattern_receive_drop_lists = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }'
     pattern_receive_drop_bags = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, (\d+)\]\)'
     
-    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}'
+    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop_lists}'
     pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop_bags}'
 
     pattern = ''
@@ -64,6 +65,11 @@ def generate_csv(name):
             res[f'{i}']['type'] = 'receive'
             res[f'{i}']['dst'] = match[4]
             res[f'{i}']['id'] = match[5]
+        elif match[8] != "" and lists:
+            for j in range(i):
+                if (res[f'{j}']['id'] == match[9] and res[f'{j}']['type'] == 'receive'):
+                    del res[f'{j}']
+                    del res[f'{i}']
         elif match[0] != "" and bags:
             res[f'{i}']['type'] = 'send'
             res[f'{i}']['src'] = match[3]
@@ -76,17 +82,13 @@ def generate_csv(name):
             res[f'{i}']['id'] = match[5]
         elif match[8] != "" and bags:
             for j in range(i):
-                if (res[f'{j}']['id'] == match[8] and res[f'{j}']['type'] == 'receive'):
+                if (res[f'{j}']['id'] == match[9] and res[f'{j}']['type'] == 'receive'):
                     del res[f'{j}']
+                    del res[f'{i}']
         i += 1
 
     f.close
     
-    print('\n' + '-'*40 + '\n')
-    print('**JSON for visualization**' + '\n')
-    print(res)
-    print()
-
     with open('data.json', 'w+', encoding='utf-8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
     with open('data.json', 'r') as file:
@@ -502,6 +504,11 @@ function showTextBox(sendRow, element) {{
 
     # Write the HTML content to a file
     if res:
+        print('\n' + '-'*40 + '\n')
+        print('**JSON for visualization**' + '\n')
+        print(res)
+        print()
+
         file_name = f'{name}_visualization.html'
         with open(file_name, 'w') as file:
             file.write(html_content)
