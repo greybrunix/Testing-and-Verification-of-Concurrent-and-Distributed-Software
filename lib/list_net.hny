@@ -1,6 +1,5 @@
 import list
 # private variables
-sequential net, id
 net = []
 id = 0
 dup = False
@@ -21,8 +20,8 @@ def construct(flags):
 
 # public functions
 def send(src, dst, payload):
-	var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
 	atomically:
+		var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
 		net = net + [msg,]
 		id += 1
 
@@ -39,6 +38,7 @@ def receive(pid) returns msg:
 				for i in {1..ran}:
 					net = add_msg(net, msg)
 			if drop and choose{True, False}:
+				var msg_drop = msg
 				msg = []
 		else:
 			msg = []

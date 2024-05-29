@@ -1,6 +1,5 @@
 import bag
 # private variables
-sequential id, net, dup, drop
 net = bag.empty();
 id = 0
 dup = False
@@ -19,8 +18,8 @@ def construct(flags):
 			hist = True
 
 def send(src, dst, payload):
-	var msg = {.src:src,.dst:dst,.payload:payload,.id:id}
 	atomically:
+		var msg = {.src:src,.dst:dst,.payload:payload,.id:id}
 		net = bag.add(net, msg)
 		id += 1
 
