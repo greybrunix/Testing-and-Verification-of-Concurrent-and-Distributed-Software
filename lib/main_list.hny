@@ -1,12 +1,13 @@
 from list_net import *
-construct(0,1,0)
+construct(1,0,0)
 
 def main():
     send(1,2,"Ola")
     send(2,1,"Ola")
-    var wow = receive(2)
-    var nice = receive(1)
+    receive(2)
+    receive(1)
 
-    assert (wow != []) and (nice != [])
+    assert (get_net() == [])
+    print(get_net())
 
 spawn eternal main()
