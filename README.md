@@ -7,9 +7,9 @@
     a function that receives a triple and alters the state of the program,
     allowing duplications, drops or keeping history (not deleting messages on receives)
     - Examples:
-        `construct(1,0,1)` will activate duplications and preserve history
-        `construct(0,0,0)` will run on default settings with no dups, drops or history
-        `construct(0,1,0)` will activate drops
+        `construct(1,0,1)` will activate duplications and preserve history</br>
+        `construct(0,0,0)` will run on default settings with no dups, drops or history</br>
+        `construct(0,1,0)` will activate drops</br>
         `construct(0,1,1)` will activate drops and history resulting in drops also removing
         from the history
  - get\_net() -> net
