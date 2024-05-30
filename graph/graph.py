@@ -16,91 +16,53 @@ def run_harmony(name, web):
     else:
         os.waitpid(pid, 0)
         name = name[:-3] + "hco"
-        generate_csv(name)
+        generate_html(name)
 
-def generate_csv(name):
+def generate_html(name):
 
     with open(name, "r") as f:
         data = f.read()
 
-    lists = False
-    bags = False
-
-    pattern_list = r'modules\/list.hny'
-    pattern_bag = r'modules\/bag.hny'
-
-    pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s(.*?) } }.*?(\d+).*?'
-    pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
-    pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
-    pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
-    pattern_receive_drop = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }'
-    pattern_send_dup = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+)'
+    pattern_send = r'StoreVar msg_send\",\n\s*\"explain\":.*?\\\"dst\\\":\s(\d+),\s\\\"id\\\":\s(\d+),\s\\\"payload\\\":\s(.*?),\s\\\"src\\\":\s(\d+)'
+    pattern_receive = r'StoreVar msg_rcv\",\n\s*\"explain\":.*?\\\"dst\\\":\s(\d+),\s\\\"id\\\":\s(\d+)'
+    pattern_drop = r'StoreVar msg_drop\",\n\s*\"explain\":.*?\\\"id\\\":\s(\d+)'
+    pattern_dup = r'StoreVar msg_dup\",\n\s*\"explain\":.*?\\\"dst\\\":\s(\d+),\s\\\"id\\\":\s(\d+),\s\\\"payload\\\":\s(.*?),\s\\\"src\\\":\s(\d+)'
     
-    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop}|{pattern_send_dup}'
-    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop}|{pattern_send_dup}'
-
-    pattern = ''
-
-    if re.search(pattern_list, data):
-        lists = True
-        pattern = pattern_lists
-    elif re.search(pattern_bag, data):
-        bags = True
-        pattern = pattern_bags
+    pattern = f'{pattern_send}|{pattern_receive}|{pattern_drop}|{pattern_dup}'
 
     matches = re.findall(pattern, data);
 
     res = {}
     i = 0
     for match in matches:
-        print(match)
         res[f'{i}'] = {}
-        if match[0] != "" and lists:
+        # Send
+        if match[0] != "":
             res[f'{i}']['type'] = 'send'
             res[f'{i}']['src'] = match[3]
             res[f'{i}']['dst'] = match[0]
             res[f'{i}']['msg'] = match[2]
             res[f'{i}']['id'] = match[1]
-        elif match[4] != "" and lists:
+        # Receive
+        elif match[4] != "":
             res[f'{i}']['type'] = 'receive'
             res[f'{i}']['dst'] = match[4]
             res[f'{i}']['id'] = match[5]
-        elif match[8] != "" and lists:
+        # Drop
+        elif match[6] != "" and lists:
             for j in range(i):
-                if (res[f'{j}']['id'] == match[9] and res[f'{j}']['type'] == 'receive'):
+                if (res[f'{j}']['id'] == match[6] and res[f'{j}']['type'] == 'receive'):
                     del res[f'{j}']
                     del res[f'{i}']
-        elif match[12] != "" and lists:
+        # Dup
+        elif match[7] != "":
             for j in range(i):
-                if (res[f'{j}']['id'] == match[13] and res[f'{j}']['type'] == 'send'):
+                if (res[f'{j}']['id'] == match[8] and res[f'{j}']['type'] == 'send'):
                     res[f'{i}']['type'] = 'send'
-                    res[f'{i}']['src'] = match[15]
-                    res[f'{i}']['dst'] = match[12]
-                    res[f'{i}']['msg'] = match[14]
-                    res[f'{i}']['id'] = match[13]
-        elif match[0] != "" and bags:
-            res[f'{i}']['type'] = 'send'
-            res[f'{i}']['src'] = match[3]
-            res[f'{i}']['dst'] = match[0]
-            res[f'{i}']['msg'] = match[2]
-            res[f'{i}']['id'] = match[1]
-        elif match[4] != "" and bags:
-            res[f'{i}']['type'] = 'receive'
-            res[f'{i}']['dst'] = match[4]
-            res[f'{i}']['id'] = match[5]
-        elif match[8] != "" and bags:
-            for j in range(i):
-                if (res[f'{j}']['id'] == match[9] and res[f'{j}']['type'] == 'receive'):
-                    del res[f'{j}']
-                    del res[f'{i}']
-        elif match[12] != "" and bags:
-            for j in range(i):
-                if (res[f'{j}']['id'] == match[13] and res[f'{j}']['type'] == 'send'):
-                    res[f'{i}']['type'] = 'send'
-                    res[f'{i}']['src'] = match[15]
-                    res[f'{i}']['dst'] = match[12]
-                    res[f'{i}']['msg'] = match[14]
-                    res[f'{i}']['id'] = match[13]
+                    res[f'{i}']['src'] = match[10]
+                    res[f'{i}']['dst'] = match[7]
+                    res[f'{i}']['msg'] = match[9]
+                    res[f'{i}']['id'] = match[8]
         i += 1
 
     f.close
@@ -159,11 +121,11 @@ def generate_csv(name):
 
 // set the dimensions and margins of the graph
 if (msgs*100 > window.screen.height) {{
-    var margin = {{top: 30, right: 10, bottom: 10, left: 10}},
+    var margin = {{top: 30, right: 30, bottom: 30, left: 30}},
     width = window.screen.width - margin.left - margin.right,
     height = msgs*120 - margin.top - margin.bottom;
 }} else {{
-    var margin = {{top: 30, right: 10, bottom: 10, left: 10}},
+    var margin = {{top: 30, right: 30, bottom: 30, left: 30}},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
 }}
@@ -297,11 +259,11 @@ svg.selectAll(".myPathArrows")
         if (correspondingReceive) {{
             var srcX = x(sendRow.src);
             if (isIdInSeen(sendRow.id)) {{
-                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
             }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             }}
-            var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
+            var dstY = 10 + Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
             var dstX = x(correspondingReceive.dst);
             pathData.push([srcX, srcY], [dstX, dstY]);
 
@@ -338,11 +300,11 @@ svg.selectAll(".myPathArrows")
         }} else if (selfSendReceive) {{
             var srcX = x(sendRow.src);
             if (isIdInSeen(sendRow.id)) {{
-                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
             }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             }}
-            var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
+            var dstY = 10 + Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
             // Construct path data for the curved line
             pathData.push([srcX, srcY], [srcX + 50, (srcY + dstY) / 2], [srcX, dstY]); // Start, control, and end points of the curve
@@ -409,12 +371,12 @@ svg.selectAll(".myPathCrosses")
         if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {{
             var srcX = x(sendRow.src);
             if (isIdInSeen(sendRow.id)) {{
-                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
             }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             }}
             var dstX = x(sendRow.src) + 20;
-            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            var dstY = 10 + (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
             // Construct path data for the half curve
             pathData.push([srcX, srcY], [srcX + 50, srcY + (dstY - srcY) / 2], [dstX, dstY]);
@@ -442,12 +404,12 @@ svg.selectAll(".myPathCrosses")
         }} else if (noCorrespondingReceive) {{
             var srcX = x(sendRow.src);
             if (isIdInSeen(sendRow.id)) {{
-                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
             }} else {{
-                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+                var srcY = 10 + Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             }}
             var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
-            var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
+            var dstY = 10 + (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
             pathData.push([srcX, srcY], [dstX, dstY]);
 
@@ -600,6 +562,6 @@ def main():
         else:
             run_harmony(name, 1)
     elif re.search(pattern_hco, name):
-        generate_csv(name)
+        generate_html(name)
 if __name__ == '__main__':
     main()
