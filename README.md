@@ -3,7 +3,7 @@
 ## API
 
  - construct(dup,drop,hist)
-    $$ construct: {0,1}^3 \rightarrow S()$$
+    $$construct: {0,1}^3 \rightarrow S()$$
     a function that receives a triple and alters the state of the program,
     allowing duplications, drops or keeping history (not deleting messages on receives)
  - get\_net() -> net
