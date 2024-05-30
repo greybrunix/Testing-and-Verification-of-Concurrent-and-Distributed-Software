@@ -1,0 +1,1808 @@
+Issue: Active busy waiting
+
+Modules:
+  __main__: dekker.hny
+
+================================================
+Running thread T0: __init__()
+mode:  runnable atomic
+stack: ['[]']
+state id: 1
+================================================
+
+Step 1:
+  program counter:   0
+  hvm code:          Frame __init__()
+  explanation:       pop argument () and run method "__init__"
+  module:            __main__
+  start statement:   line=2 column=1
+  end statement:     line=31 column=7
+  source code:       crit=0
+  call trace:        __init__()
+  stack:             [{:}]
+
+Step 2:
+  program counter:   1
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=2 column=1
+  end statement:     line=2 column=6
+  source code:       crit=0
+                          ^
+  stack:             [{:}, 0]
+
+Step 3:
+  program counter:   2
+  hvm code:          Store crit
+  explanation:       pop value (0) and store into variable crit
+  source code:       crit=0
+                     ^^^^^
+  shared variables:  { crit: 0 }
+  stack:             [{:}]
+
+Step 4:
+  program counter:   3
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=3 column=1
+  end statement:     line=3 column=31
+  source code:       sequential wants, turn, counter
+                                ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 5:
+  program counter:   4
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential wants, turn, counter
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 6:
+  program counter:   5
+  hvm code:          Push ?turn
+  explanation:       push constant ?turn
+  source code:       sequential wants, turn, counter
+                                       ^^^^
+  stack:             [{:}, ?turn]
+
+Step 7:
+  program counter:   6
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential wants, turn, counter
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 8:
+  program counter:   7
+  hvm code:          Push ?counter
+  explanation:       push constant ?counter
+  source code:       sequential wants, turn, counter
+                                             ^^^^^^^
+  stack:             [{:}, ?counter]
+
+Step 9:
+  program counter:   8
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential wants, turn, counter
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 10:
+  program counter:   9
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=4 column=1
+  end statement:     line=4 column=22
+  source code:       wants = (False, False)
+                              ^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 11:
+  program counter:   10
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       wants = (False, False)
+                              ^^^^^
+  stack:             [{:}, [], False]
+
+Step 12:
+  program counter:   11
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, []); insert first value into the second; push result ([False])
+  source code:       wants = (False, False)
+                              ^^^^^^^^^^^^
+  stack:             [{:}, [ False ]]
+
+Step 13:
+  program counter:   12
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       wants = (False, False)
+                                     ^^^^^
+  stack:             [{:}, [ False ], False]
+
+Step 14:
+  program counter:   13
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, [False]); insert first value into the second; push result ([False, False])
+  source code:       wants = (False, False)
+                              ^^^^^^^^^^^^
+  stack:             [{:}, [ False, False ]]
+
+Step 15:
+  program counter:   14
+  hvm code:          Store wants
+  explanation:       pop value ([False, False]) and store into variable wants
+  source code:       wants = (False, False)
+                     ^^^^^^^
+  shared variables:  { crit: 0, wants: [ False, False ] }
+  stack:             [{:}]
+
+Step 16:
+  program counter:   15
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=5 column=1
+  end statement:     line=5 column=8
+  source code:       turn = 0
+                            ^
+  stack:             [{:}, 0]
+
+Step 17:
+  program counter:   16
+  hvm code:          Store turn
+  explanation:       pop value (0) and store into variable turn
+  source code:       turn = 0
+                     ^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ False, False ] }
+  stack:             [{:}]
+
+Step 18:
+  program counter:   17
+  hvm code:          Jump 91
+  explanation:       jump over method definition: set program counter to 91
+  start statement:   line=7 column=1
+  end statement:     line=7 column=13
+  source code:       def dekk p_q:
+                     ^^^
+
+Step 19:
+  program counter:   91
+  hvm code:          Push ?PC(18)
+  explanation:       push constant ?PC(18)
+  start statement:   line=29 column=1
+  end statement:     line=29 column=12
+  source code:       spawn dekk 0
+                           ^^^^
+  stack:             [{:}, ?PC(18)]
+
+Step 20:
+  program counter:   92
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       spawn dekk 0
+                                ^
+  stack:             [{:}, ?PC(18), 0]
+
+Step 21:
+  program counter:   93
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?PC(18)); push result (?PC(18)[0])
+  source code:       spawn dekk 0
+                           ^^^^^^
+  stack:             [{:}, ?PC(18)[0]]
+
+Step 22:
+  program counter:   94
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn dekk 0
+                     ^^^^^^^^^^^^
+  stack:             [{:}, ?PC(18)[0], {:}]
+
+Step 23:
+  program counter:   95
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (0), and pc (18: "dekk"), and spawn thread
+  start expression:  line=29 column=1
+  end expression:    line=29 column=12
+  stack:             [{:}]
+
+Step 24:
+  program counter:   96
+  hvm code:          Push ?PC(18)
+  explanation:       push constant ?PC(18)
+  start statement:   line=30 column=1
+  end statement:     line=30 column=12
+  source code:       spawn dekk 1
+                           ^^^^
+  stack:             [{:}, ?PC(18)]
+
+Step 25:
+  program counter:   97
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       spawn dekk 1
+                                ^
+  stack:             [{:}, ?PC(18), 1]
+
+Step 26:
+  program counter:   98
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?PC(18)); push result (?PC(18)[1])
+  source code:       spawn dekk 1
+                           ^^^^^^
+  stack:             [{:}, ?PC(18)[1]]
+
+Step 27:
+  program counter:   99
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn dekk 1
+                     ^^^^^^^^^^^^
+  stack:             [{:}, ?PC(18)[1], {:}]
+
+Step 28:
+  program counter:   100
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (1), and pc (18: "dekk"), and spawn thread
+  start expression:  line=30 column=1
+  end expression:    line=30 column=12
+  stack:             [{:}]
+
+Step 29:
+  program counter:   101
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=2 column=1
+  end statement:     line=31 column=7
+  source code:       crit=0
+  new mode:          terminated
+  stack:             [None]
+
+================================================
+Running thread T1: dekk(0)
+mode:  runnable
+stack: ['0']
+other threads:
+  T0: pc=101 terminated atomic __init__()
+  T2: pc=18 runnable dekk(1)
+    about to run method dekk with argument 1
+shared variables:
+  crit: 0
+  turn: 0
+  wants: [ False, False ]
+state id: 2
+================================================
+
+Step 30:
+  program counter:   18
+  hvm code:          Frame dekk(p_q)
+  explanation:       pop argument (0), assign to p_q, and run method "dekk"
+  start statement:   line=7 column=1
+  end statement:     line=7 column=13
+  source code:       def dekk p_q:
+                     ^^^^^^^^^^^^^
+  method variables:  { p_q: 0 }
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 31:
+  program counter:   19
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=9 column=2
+  end statement:     line=9 column=29
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 32:
+  program counter:   20
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True} :
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 33:
+  program counter:   21
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 34:
+  program counter:   22
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True} :
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 35:
+  program counter:   23
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 36:
+  program counter:   24
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True} :
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(0)
+  stack:             [{:}, True]
+
+Step 37:
+  program counter:   25
+  hvm code:          JumpCond False 89
+  explanation:       pop value (True), compare to False, and jump to 89 if the same
+  source code:       	while choose {False, True} :
+                      ^^^^^
+  stack:             [{:}]
+
+Step 38:
+  program counter:   26
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=11 column=3
+  end statement:     line=11 column=18
+  source code:       		wants p_q = True
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 39:
+  program counter:   27
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		wants p_q = True
+                             ^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 40:
+  program counter:   28
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       		wants p_q = True
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 41:
+  program counter:   29
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       		wants p_q = True
+                                   ^^^^
+  stack:             [{:}, ?wants[0], True]
+
+Step 42:
+  program counter:   30
+  hvm code:          Store
+  explanation:       pop value (True) and address (?wants[0]) and store
+  source code:       		wants p_q = True
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, False ] }
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 43:
+  program counter:   31
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=13 column=3
+  end statement:     line=13 column=24
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants]
+
+Step 44:
+  program counter:   32
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		while wants (1 - p_q):
+                                    ^
+  stack:             [{:}, ?wants, 1]
+
+Step 45:
+  program counter:   33
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		while wants (1 - p_q):
+                                        ^^^
+  stack:             [{:}, ?wants, 1, 0]
+
+Step 46:
+  program counter:   34
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       		while wants (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 47:
+  program counter:   35
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 48:
+  program counter:   36
+  hvm code:          Load
+  explanation:       pop address (?wants[1]) and push value (False)
+  start expression:  line=13 column=9
+  end expression:    line=13 column=23
+  call trace:        dekk(0)
+  stack:             [{:}, False]
+
+Step 49:
+  program counter:   37
+  hvm code:          JumpCond False 55
+  explanation:       pop value (False), compare to False, and jump to 55 if the same
+  source code:       		while wants (1 - p_q):
+                       ^^^^^
+  stack:             [{:}]
+
+Step 50:
+  program counter:   55
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=19 column=14
+  end statement:     line=19 column=21
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+  call trace:        dekk(0)
+
+Step 51:
+  program counter:   56
+  hvm code:          Load crit
+  explanation:       push value (0) of variable crit
+  start expression:  line=19 column=14
+  end expression:    line=19 column=21
+  stack:             [{:}, 0]
+
+Step 52:
+  program counter:   57
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically crit +=1
+                                         ^
+  stack:             [{:}, 0, 1]
+
+Step 53:
+  program counter:   58
+  hvm code:          2-ary +
+  explanation:       pop 2 values (1, 0); add the integers; push result (1)
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+  stack:             [{:}, 1]
+
+Step 54:
+  program counter:   59
+  hvm code:          Store crit
+  explanation:       pop value (1) and store into variable crit
+  source code:       		atomically crit +=1
+                                  ^^^^^^^
+  shared variables:  { crit: 1, turn: 0, wants: [ True, False ] }
+  stack:             [{:}]
+
+Step 55:
+  program counter:   60
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+
+Step 56:
+  program counter:   61
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=20 column=3
+  end statement:     line=20 column=22
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 57:
+  program counter:   62
+  hvm code:          Push "entrou"
+  explanation:       push constant "entrou"
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^
+  stack:             [{:}, [], "entrou"]
+
+Step 58:
+  program counter:   63
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values ("entrou", []); insert first value into the second; push result (["entrou"])
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, [ "entrou" ]]
+
+Step 59:
+  program counter:   64
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		print("entrou", p_q);
+                                       ^^^
+  stack:             [{:}, [ "entrou" ], 0]
+
+Step 60:
+  program counter:   65
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (0, ["entrou"]); insert first value into the second; push result (["entrou", 0])
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, [ "entrou", 0 ]]
+
+Step 61:
+  program counter:   66
+  hvm code:          Print
+  explanation:       pop value (["entrou", 0]) and add to print log
+  source code:       		print("entrou", p_q);
+                       ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 62:
+  program counter:   67
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=23 column=14
+  end statement:     line=23 column=21
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+  call trace:        dekk(0)
+
+Step 63:
+  program counter:   68
+  hvm code:          Load crit
+  explanation:       push value (1) of variable crit
+  start expression:  line=23 column=14
+  end expression:    line=23 column=21
+  stack:             [{:}, 1]
+
+Step 64:
+  program counter:   69
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically crit -=1
+                                         ^
+  stack:             [{:}, 1, 1]
+
+Step 65:
+  program counter:   70
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+  stack:             [{:}, 0]
+
+Step 66:
+  program counter:   71
+  hvm code:          Store crit
+  explanation:       pop value (0) and store into variable crit
+  source code:       		atomically crit -=1
+                                  ^^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, False ] }
+  stack:             [{:}]
+
+Step 67:
+  program counter:   72
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+
+Step 68:
+  program counter:   73
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=24 column=3
+  end statement:     line=24 column=20
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 69:
+  program counter:   74
+  hvm code:          Push "saiu"
+  explanation:       push constant "saiu"
+  source code:       		print("saiu", p_q);
+                             ^^^^^^
+  stack:             [{:}, [], "saiu"]
+
+Step 70:
+  program counter:   75
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values ("saiu", []); insert first value into the second; push result (["saiu"])
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, [ "saiu" ]]
+
+Step 71:
+  program counter:   76
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		print("saiu", p_q);
+                                     ^^^
+  stack:             [{:}, [ "saiu" ], 0]
+
+Step 72:
+  program counter:   77
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (0, ["saiu"]); insert first value into the second; push result (["saiu", 0])
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, [ "saiu", 0 ]]
+
+Step 73:
+  program counter:   78
+  hvm code:          Print
+  explanation:       pop value (["saiu", 0]) and add to print log
+  source code:       		print("saiu", p_q);
+                       ^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 74:
+  program counter:   79
+  hvm code:          Push 1
+  explanation:       push constant 1
+  start statement:   line=25 column=3
+  end statement:     line=25 column=16
+  source code:       		turn = 1 - p_q
+                              ^
+  stack:             [{:}, 1]
+
+Step 75:
+  program counter:   80
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		turn = 1 - p_q
+                                  ^^^
+  stack:             [{:}, 1, 0]
+
+Step 76:
+  program counter:   81
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       		turn = 1 - p_q
+                              ^^^^^^^
+  stack:             [{:}, 1]
+
+Step 77:
+  program counter:   82
+  hvm code:          Store turn
+  explanation:       pop value (1) and store into variable turn
+  source code:       		turn = 1 - p_q
+                       ^^^^^^
+  shared variables:  { crit: 0, turn: 1, wants: [ True, False ] }
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 78:
+  program counter:   83
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=26 column=3
+  end statement:     line=26 column=19
+  source code:       		wants p_q = False
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 79:
+  program counter:   84
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		wants p_q = False
+                             ^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 80:
+  program counter:   85
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       		wants p_q = False
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 81:
+  program counter:   86
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       		wants p_q = False
+                                   ^^^^^
+  stack:             [{:}, ?wants[0], False]
+
+Step 82:
+  program counter:   87
+  hvm code:          Store
+  explanation:       pop value (False) and address (?wants[0]) and store
+  source code:       		wants p_q = False
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 1, wants: [ False, False ] }
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 83:
+  program counter:   88
+  hvm code:          Jump 19
+  explanation:       set program counter to 19
+  start statement:   line=9 column=2
+  end statement:     line=9 column=29
+  source code:       	while choose {False, True} :
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 84:
+  program counter:   19
+  hvm code:          Push {}
+  explanation:       push constant {}
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 85:
+  program counter:   20
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True} :
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 86:
+  program counter:   21
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 87:
+  program counter:   22
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True} :
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 88:
+  program counter:   23
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 89:
+  program counter:   24
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True} :
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(0)
+  stack:             [{:}, True]
+
+Step 90:
+  program counter:   25
+  hvm code:          JumpCond False 89
+  explanation:       pop value (True), compare to False, and jump to 89 if the same
+  source code:       	while choose {False, True} :
+                      ^^^^^
+  stack:             [{:}]
+
+Step 91:
+  program counter:   26
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=11 column=3
+  end statement:     line=11 column=18
+  source code:       		wants p_q = True
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 92:
+  program counter:   27
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		wants p_q = True
+                             ^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 93:
+  program counter:   28
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       		wants p_q = True
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 94:
+  program counter:   29
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       		wants p_q = True
+                                   ^^^^
+  stack:             [{:}, ?wants[0], True]
+
+================================================
+Running thread T2: dekk(1)
+mode:  runnable
+stack: ['1']
+other threads:
+  T0: pc=101 terminated atomic __init__()
+  T1: pc=30 runnable dekk(0)
+    about to store True into variable wants[0]
+shared variables:
+  crit: 0
+  turn: 1
+  wants: [ False, False ]
+state id: 113
+================================================
+
+Step 95:
+  program counter:   18
+  hvm code:          Frame dekk(p_q)
+  explanation:       pop argument (1), assign to p_q, and run method "dekk"
+  start statement:   line=7 column=1
+  end statement:     line=7 column=13
+  source code:       def dekk p_q:
+                     ^^^^^^^^^^^^^
+  method variables:  { p_q: 1 }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 96:
+  program counter:   19
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=9 column=2
+  end statement:     line=9 column=29
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 97:
+  program counter:   20
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True} :
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 98:
+  program counter:   21
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 99:
+  program counter:   22
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True} :
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 100:
+  program counter:   23
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 101:
+  program counter:   24
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True} :
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(1)
+  stack:             [{:}, True]
+
+Step 102:
+  program counter:   25
+  hvm code:          JumpCond False 89
+  explanation:       pop value (True), compare to False, and jump to 89 if the same
+  source code:       	while choose {False, True} :
+                      ^^^^^
+  stack:             [{:}]
+
+Step 103:
+  program counter:   26
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=11 column=3
+  end statement:     line=11 column=18
+  source code:       		wants p_q = True
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 104:
+  program counter:   27
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		wants p_q = True
+                             ^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 105:
+  program counter:   28
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       		wants p_q = True
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 106:
+  program counter:   29
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       		wants p_q = True
+                                   ^^^^
+  stack:             [{:}, ?wants[1], True]
+
+Step 107:
+  program counter:   30
+  hvm code:          Store
+  explanation:       pop value (True) and address (?wants[1]) and store
+  source code:       		wants p_q = True
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 1, wants: [ False, True ] }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 108:
+  program counter:   31
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=13 column=3
+  end statement:     line=13 column=24
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants]
+
+Step 109:
+  program counter:   32
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		while wants (1 - p_q):
+                                    ^
+  stack:             [{:}, ?wants, 1]
+
+Step 110:
+  program counter:   33
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		while wants (1 - p_q):
+                                        ^^^
+  stack:             [{:}, ?wants, 1, 1]
+
+Step 111:
+  program counter:   34
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		while wants (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 112:
+  program counter:   35
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 113:
+  program counter:   36
+  hvm code:          Load
+  explanation:       pop address (?wants[0]) and push value (False)
+  start expression:  line=13 column=9
+  end expression:    line=13 column=23
+  call trace:        dekk(1)
+  stack:             [{:}, False]
+
+Step 114:
+  program counter:   37
+  hvm code:          JumpCond False 55
+  explanation:       pop value (False), compare to False, and jump to 55 if the same
+  source code:       		while wants (1 - p_q):
+                       ^^^^^
+  stack:             [{:}]
+
+================================================
+Running thread T1: dekk(0)
+method variables:
+  p_q: 0
+mode:  runnable
+stack: ['{:}', '?wants[0]', 'True']
+other threads:
+  T0: pc=101 terminated atomic __init__()
+  T2: pc=55 runnable dekk(1)
+    about to execute __main__:19: 		atomically crit +=1
+shared variables:
+  crit: 0
+  turn: 1
+  wants: [ False, True ]
+state id: 153
+================================================
+
+Step 115:
+  program counter:   30
+  hvm code:          Store
+  explanation:       pop value (True) and address (?wants[0]) and store
+  start statement:   line=11 column=3
+  end statement:     line=11 column=18
+  source code:       		wants p_q = True
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 1, wants: [ True, True ] }
+  call trace:        dekk(0)
+  stack:             [{:}]
+
+Step 116:
+  program counter:   31
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=13 column=3
+  end statement:     line=13 column=24
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants]
+
+Step 117:
+  program counter:   32
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		while wants (1 - p_q):
+                                    ^
+  stack:             [{:}, ?wants, 1]
+
+Step 118:
+  program counter:   33
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       		while wants (1 - p_q):
+                                        ^^^
+  stack:             [{:}, ?wants, 1, 0]
+
+Step 119:
+  program counter:   34
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       		while wants (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 120:
+  program counter:   35
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 121:
+  program counter:   36
+  hvm code:          Load
+  explanation:       pop address (?wants[1]) and push value (True)
+  start expression:  line=13 column=9
+  end expression:    line=13 column=23
+  call trace:        dekk(0)
+  stack:             [{:}, True]
+
+Step 122:
+  program counter:   37
+  hvm code:          JumpCond False 55
+  explanation:       pop value (True), compare to False, and jump to 55 if the same
+  source code:       		while wants (1 - p_q):
+                       ^^^^^
+  stack:             [{:}]
+
+Step 123:
+  program counter:   38
+  hvm code:          Load turn
+  explanation:       push value (1) of variable turn
+  start statement:   line=14 column=4
+  end statement:     line=14 column=24
+  source code:       			if turn == (1 - p_q):
+                           ^^^^
+  call trace:        dekk(0)
+  stack:             [{:}, 1]
+
+Step 124:
+  program counter:   39
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       			if turn == (1 - p_q):
+                                    ^
+  stack:             [{:}, 1, 1]
+
+Step 125:
+  program counter:   40
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       			if turn == (1 - p_q):
+                                        ^^^
+  stack:             [{:}, 1, 1, 0]
+
+Step 126:
+  program counter:   41
+  hvm code:          2-ary -
+  explanation:       pop 2 values (0, 1); the second integer minus the first; push result (1)
+  source code:       			if turn == (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, 1, 1]
+
+Step 127:
+  program counter:   42
+  hvm code:          2-ary ==
+  explanation:       pop 2 values (1, 1); check if both values are the same; push result (True)
+  source code:       			if turn == (1 - p_q):
+                           ^^^^^^^^^^^^^^^^^
+  stack:             [{:}, True]
+
+Step 128:
+  program counter:   43
+  hvm code:          JumpCond False 31
+  explanation:       pop value (True), compare to False, and jump to 31 if the same
+  source code:       			if turn == (1 - p_q):
+                        ^^
+  stack:             [{:}]
+
+Step 129:
+  program counter:   44
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=15 column=5
+  end statement:     line=15 column=21
+  source code:       				wants p_q = False
+                         ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 130:
+  program counter:   45
+  hvm code:          LoadVar p_q
+  explanation:       push value (0) of variable "p_q"
+  source code:       				wants p_q = False
+                               ^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 131:
+  program counter:   46
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       				wants p_q = False
+                         ^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 132:
+  program counter:   47
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       				wants p_q = False
+                                     ^^^^^
+  stack:             [{:}, ?wants[0], False]
+
+================================================
+Running thread T2: dekk(1)
+method variables:
+  p_q: 1
+mode:  runnable
+stack: ['{:}']
+other threads:
+  T0: pc=101 terminated atomic __init__()
+  T1: pc=48 runnable dekk(0)
+    about to store False into variable wants[0]
+shared variables:
+  crit: 0
+  turn: 1
+  wants: [ True, True ]
+state id: 196
+================================================
+
+Step 133:
+  program counter:   55
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=19 column=14
+  end statement:     line=19 column=21
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+  call trace:        dekk(1)
+
+Step 134:
+  program counter:   56
+  hvm code:          Load crit
+  explanation:       push value (0) of variable crit
+  start expression:  line=19 column=14
+  end expression:    line=19 column=21
+  stack:             [{:}, 0]
+
+Step 135:
+  program counter:   57
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically crit +=1
+                                         ^
+  stack:             [{:}, 0, 1]
+
+Step 136:
+  program counter:   58
+  hvm code:          2-ary +
+  explanation:       pop 2 values (1, 0); add the integers; push result (1)
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+  stack:             [{:}, 1]
+
+Step 137:
+  program counter:   59
+  hvm code:          Store crit
+  explanation:       pop value (1) and store into variable crit
+  source code:       		atomically crit +=1
+                                  ^^^^^^^
+  shared variables:  { crit: 1, turn: 1, wants: [ True, True ] }
+  stack:             [{:}]
+
+Step 138:
+  program counter:   60
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically crit +=1
+                                  ^^^^^^^^
+
+Step 139:
+  program counter:   61
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=20 column=3
+  end statement:     line=20 column=22
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 140:
+  program counter:   62
+  hvm code:          Push "entrou"
+  explanation:       push constant "entrou"
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^
+  stack:             [{:}, [], "entrou"]
+
+Step 141:
+  program counter:   63
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values ("entrou", []); insert first value into the second; push result (["entrou"])
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, [ "entrou" ]]
+
+Step 142:
+  program counter:   64
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		print("entrou", p_q);
+                                       ^^^
+  stack:             [{:}, [ "entrou" ], 1]
+
+Step 143:
+  program counter:   65
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (1, ["entrou"]); insert first value into the second; push result (["entrou", 1])
+  source code:       		print("entrou", p_q);
+                             ^^^^^^^^^^^^^
+  stack:             [{:}, [ "entrou", 1 ]]
+
+Step 144:
+  program counter:   66
+  hvm code:          Print
+  explanation:       pop value (["entrou", 1]) and add to print log
+  source code:       		print("entrou", p_q);
+                       ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 145:
+  program counter:   67
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=23 column=14
+  end statement:     line=23 column=21
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+  call trace:        dekk(1)
+
+Step 146:
+  program counter:   68
+  hvm code:          Load crit
+  explanation:       push value (1) of variable crit
+  start expression:  line=23 column=14
+  end expression:    line=23 column=21
+  stack:             [{:}, 1]
+
+Step 147:
+  program counter:   69
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically crit -=1
+                                         ^
+  stack:             [{:}, 1, 1]
+
+Step 148:
+  program counter:   70
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+  stack:             [{:}, 0]
+
+Step 149:
+  program counter:   71
+  hvm code:          Store crit
+  explanation:       pop value (0) and store into variable crit
+  source code:       		atomically crit -=1
+                                  ^^^^^^^
+  shared variables:  { crit: 0, turn: 1, wants: [ True, True ] }
+  stack:             [{:}]
+
+Step 150:
+  program counter:   72
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically crit -=1
+                                  ^^^^^^^^
+
+Step 151:
+  program counter:   73
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=24 column=3
+  end statement:     line=24 column=20
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 152:
+  program counter:   74
+  hvm code:          Push "saiu"
+  explanation:       push constant "saiu"
+  source code:       		print("saiu", p_q);
+                             ^^^^^^
+  stack:             [{:}, [], "saiu"]
+
+Step 153:
+  program counter:   75
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values ("saiu", []); insert first value into the second; push result (["saiu"])
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, [ "saiu" ]]
+
+Step 154:
+  program counter:   76
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		print("saiu", p_q);
+                                     ^^^
+  stack:             [{:}, [ "saiu" ], 1]
+
+Step 155:
+  program counter:   77
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (1, ["saiu"]); insert first value into the second; push result (["saiu", 1])
+  source code:       		print("saiu", p_q);
+                             ^^^^^^^^^^^
+  stack:             [{:}, [ "saiu", 1 ]]
+
+Step 156:
+  program counter:   78
+  hvm code:          Print
+  explanation:       pop value (["saiu", 1]) and add to print log
+  source code:       		print("saiu", p_q);
+                       ^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 157:
+  program counter:   79
+  hvm code:          Push 1
+  explanation:       push constant 1
+  start statement:   line=25 column=3
+  end statement:     line=25 column=16
+  source code:       		turn = 1 - p_q
+                              ^
+  stack:             [{:}, 1]
+
+Step 158:
+  program counter:   80
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		turn = 1 - p_q
+                                  ^^^
+  stack:             [{:}, 1, 1]
+
+Step 159:
+  program counter:   81
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		turn = 1 - p_q
+                              ^^^^^^^
+  stack:             [{:}, 0]
+
+Step 160:
+  program counter:   82
+  hvm code:          Store turn
+  explanation:       pop value (0) and store into variable turn
+  source code:       		turn = 1 - p_q
+                       ^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, True ] }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 161:
+  program counter:   83
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=26 column=3
+  end statement:     line=26 column=19
+  source code:       		wants p_q = False
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 162:
+  program counter:   84
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		wants p_q = False
+                             ^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 163:
+  program counter:   85
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       		wants p_q = False
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 164:
+  program counter:   86
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       		wants p_q = False
+                                   ^^^^^
+  stack:             [{:}, ?wants[1], False]
+
+Step 165:
+  program counter:   87
+  hvm code:          Store
+  explanation:       pop value (False) and address (?wants[1]) and store
+  source code:       		wants p_q = False
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, False ] }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 166:
+  program counter:   88
+  hvm code:          Jump 19
+  explanation:       set program counter to 19
+  start statement:   line=9 column=2
+  end statement:     line=9 column=29
+  source code:       	while choose {False, True} :
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 167:
+  program counter:   19
+  hvm code:          Push {}
+  explanation:       push constant {}
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 168:
+  program counter:   20
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True} :
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 169:
+  program counter:   21
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 170:
+  program counter:   22
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True} :
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 171:
+  program counter:   23
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True} :
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 172:
+  program counter:   24
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True} :
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        dekk(1)
+  stack:             [{:}, True]
+
+Step 173:
+  program counter:   25
+  hvm code:          JumpCond False 89
+  explanation:       pop value (True), compare to False, and jump to 89 if the same
+  source code:       	while choose {False, True} :
+                      ^^^^^
+  stack:             [{:}]
+
+Step 174:
+  program counter:   26
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=11 column=3
+  end statement:     line=11 column=18
+  source code:       		wants p_q = True
+                       ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 175:
+  program counter:   27
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		wants p_q = True
+                             ^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 176:
+  program counter:   28
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       		wants p_q = True
+                       ^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 177:
+  program counter:   29
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       		wants p_q = True
+                                   ^^^^
+  stack:             [{:}, ?wants[1], True]
+
+Step 178:
+  program counter:   30
+  hvm code:          Store
+  explanation:       pop value (True) and address (?wants[1]) and store
+  source code:       		wants p_q = True
+                       ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, True ] }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 179:
+  program counter:   31
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=13 column=3
+  end statement:     line=13 column=24
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants]
+
+Step 180:
+  program counter:   32
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		while wants (1 - p_q):
+                                    ^
+  stack:             [{:}, ?wants, 1]
+
+Step 181:
+  program counter:   33
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       		while wants (1 - p_q):
+                                        ^^^
+  stack:             [{:}, ?wants, 1, 1]
+
+Step 182:
+  program counter:   34
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       		while wants (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, ?wants, 0]
+
+Step 183:
+  program counter:   35
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?wants); push result (?wants[0])
+  source code:       		while wants (1 - p_q):
+                             ^^^^^^^^^^^^^^^
+  stack:             [{:}, ?wants[0]]
+
+Step 184:
+  program counter:   36
+  hvm code:          Load
+  explanation:       pop address (?wants[0]) and push value (True)
+  start expression:  line=13 column=9
+  end expression:    line=13 column=23
+  call trace:        dekk(1)
+  stack:             [{:}, True]
+
+Step 185:
+  program counter:   37
+  hvm code:          JumpCond False 55
+  explanation:       pop value (True), compare to False, and jump to 55 if the same
+  source code:       		while wants (1 - p_q):
+                       ^^^^^
+  stack:             [{:}]
+
+Step 186:
+  program counter:   38
+  hvm code:          Load turn
+  explanation:       push value (0) of variable turn
+  start statement:   line=14 column=4
+  end statement:     line=14 column=24
+  source code:       			if turn == (1 - p_q):
+                           ^^^^
+  call trace:        dekk(1)
+  stack:             [{:}, 0]
+
+Step 187:
+  program counter:   39
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       			if turn == (1 - p_q):
+                                    ^
+  stack:             [{:}, 0, 1]
+
+Step 188:
+  program counter:   40
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       			if turn == (1 - p_q):
+                                        ^^^
+  stack:             [{:}, 0, 1, 1]
+
+Step 189:
+  program counter:   41
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       			if turn == (1 - p_q):
+                                    ^^^^^^^
+  stack:             [{:}, 0, 0]
+
+Step 190:
+  program counter:   42
+  hvm code:          2-ary ==
+  explanation:       pop 2 values (0, 0); check if both values are the same; push result (True)
+  source code:       			if turn == (1 - p_q):
+                           ^^^^^^^^^^^^^^^^^
+  stack:             [{:}, True]
+
+Step 191:
+  program counter:   43
+  hvm code:          JumpCond False 31
+  explanation:       pop value (True), compare to False, and jump to 31 if the same
+  source code:       			if turn == (1 - p_q):
+                        ^^
+  stack:             [{:}]
+
+Step 192:
+  program counter:   44
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=15 column=5
+  end statement:     line=15 column=21
+  source code:       				wants p_q = False
+                         ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 193:
+  program counter:   45
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       				wants p_q = False
+                               ^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 194:
+  program counter:   46
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       				wants p_q = False
+                         ^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 195:
+  program counter:   47
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       				wants p_q = False
+                                     ^^^^^
+  stack:             [{:}, ?wants[1], False]
+
+Step 196:
+  program counter:   48
+  hvm code:          Store
+  explanation:       pop value (False) and address (?wants[1]) and store
+  source code:       				wants p_q = False
+                         ^^^^^^^^^^^
+  shared variables:  { crit: 0, turn: 0, wants: [ True, False ] }
+  call trace:        dekk(1)
+  stack:             [{:}]
+
+Step 197:
+  program counter:   49
+  hvm code:          Push ?wants
+  explanation:       push constant ?wants
+  start statement:   line=17 column=5
+  end statement:     line=17 column=20
+  source code:       				wants p_q = True
+                         ^^^^^
+  stack:             [{:}, ?wants]
+
+Step 198:
+  program counter:   50
+  hvm code:          LoadVar p_q
+  explanation:       push value (1) of variable "p_q"
+  source code:       				wants p_q = True
+                               ^^^
+  stack:             [{:}, ?wants, 1]
+
+Step 199:
+  program counter:   51
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?wants); push result (?wants[1])
+  source code:       				wants p_q = True
+                         ^^^^^^^^^
+  stack:             [{:}, ?wants[1]]
+
+Step 200:
+  program counter:   52
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       				wants p_q = True
+                                     ^^^^
+  stack:             [{:}, ?wants[1], True]
+
+================================================
+Final state
+================================================
+Threads:
+  T0: pc=101 terminated atomic __init__()
+  T1: pc=48 runnable dekk(0)
+    about to store False into variable wants[0]
+  T2: pc=53 runnable dekk(1)
+    about to store True into variable wants[1]
+Variables:
+  crit: 0
+  turn: 0
+  wants: [ True, False ]

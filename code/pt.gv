@@ -1,0 +1,10 @@
+digraph {
+  rankdir = "LR"
+  s0 [label=""]
+  s1 [label=""]
+  s2 [label="initial",style=filled,peripheries=2,fillcolor="#66cc33"]
+  s2 -> s1 [label="[ \"entrou\", 0 ]"]
+  s2 -> s0 [label="[ \"entrou\", 1 ]"]
+  s1 -> s2 [label="[ \"saiu\", 0 ]"]
+  s0 -> s2 [label="[ \"saiu\", 1 ]"]
+}

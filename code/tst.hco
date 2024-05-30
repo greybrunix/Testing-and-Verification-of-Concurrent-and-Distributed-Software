@@ -1,0 +1,3383 @@
+{
+  "nstates": 174,
+  "issue": "Non-terminating state",
+  "hvm": {
+    "modules": {
+        "__main__": {
+            "file": "tst.hny",
+            "lines": [
+                "sequential flags, turn",
+                "flags = ( False, False )",
+                "turn  = choose { 0, 1 }",
+                "",
+                "def peterson self:",
+                "  while choose {False, True}:",
+                "    flags self = True",
+                "    turn = 1 - self",
+                "    await (flags[1-self])",
+                "           or (turn==self)",
+                "",
+                "    print(\"Entered\", self);",
+                "    print(\"Left\", self);",
+                "    flags self = False",
+                "",
+                "spawn peterson 0",
+                "spawn peterson 1"
+              ],
+            "identifiers": {
+                "self": "local-const",
+                "flags": "global",
+                "this": "local-var",
+                "turn": "global",
+                "peterson": "constant",
+                "___": "___"
+              }
+          }
+      },
+    "labels": {
+        "__end__": 83
+      },
+    "pretty": [
+        [
+            "Frame __init__()",
+            "start of method __init__"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?turn",
+            "push constant ?turn"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ()",
+            "building a tuple: push constant ()"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Store flags",
+            "pop a value and store it in shared variable flags"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Jump 71",
+            "jump over method definition: set program counter to 71"
+          ],
+        [
+            "Frame peterson(self)",
+            "start of method peterson"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 69",
+            "pop a value and jump to 69 if the value is False"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "JumpCond True 47",
+            "pop a value and jump to 47 if the value is True"
+          ],
+        [
+            "Load turn",
+            "push value of shared variable turn"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "Jump 48",
+            "set program counter to 48"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "JumpCond False 36",
+            "pop a value and jump to 36 if the value is False"
+          ],
+        [
+            "Jump 51",
+            "set program counter to 51"
+          ],
+        [
+            "Jump 36",
+            "set program counter to 36"
+          ],
+        [
+            "Push ()",
+            "building a tuple: push constant ()"
+          ],
+        [
+            "Push \"Entered\"",
+            "push constant \"Entered\""
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Print",
+            "pop a value and add to print history"
+          ],
+        [
+            "Push ()",
+            "building a tuple: push constant ()"
+          ],
+        [
+            "Push \"Left\"",
+            "push constant \"Left\""
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Print",
+            "pop a value and add to print history"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "LoadVar self",
+            "push the value of self"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Jump 20",
+            "set program counter to 20"
+          ],
+        [
+            "DelVar self",
+            "delete method variable self"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Push ?PC(19)",
+            "push constant ?PC(19)"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "Push ?PC(19)",
+            "push constant ?PC(19)"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "DelVar result",
+            "delete method variable result"
+          ]
+      ],
+    "locs": [
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                1,
+                1,
+                18,
+                7
+              ],
+            "line": 1,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 1,
+            "stmt": [
+                1,
+                1,
+                1,
+                22
+              ],
+            "line": 1,
+            "endcolumn": 16,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 1,
+            "stmt": [
+                1,
+                1,
+                1,
+                22
+              ],
+            "line": 1,
+            "endcolumn": 22,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 1,
+            "stmt": [
+                1,
+                1,
+                1,
+                22
+              ],
+            "line": 1,
+            "endcolumn": 22,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 1,
+            "stmt": [
+                1,
+                1,
+                1,
+                22
+              ],
+            "line": 1,
+            "endcolumn": 22,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 15,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 22,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 2,
+            "stmt": [
+                2,
+                1,
+                2,
+                24
+              ],
+            "line": 2,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 21,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 18,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 21,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 21,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 21,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 23,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 3,
+            "stmt": [
+                3,
+                1,
+                3,
+                23
+              ],
+            "line": 3,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                18
+              ],
+            "line": 5,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                18
+              ],
+            "line": 5,
+            "endcolumn": 18,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 27,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 21,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 27,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 27,
+            "column": 24
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 27,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 28,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                5,
+                7,
+                21
+              ],
+            "line": 7,
+            "endcolumn": 9,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                5,
+                7,
+                21
+              ],
+            "line": 7,
+            "endcolumn": 14,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                5,
+                7,
+                21
+              ],
+            "line": 7,
+            "endcolumn": 14,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                5,
+                7,
+                21
+              ],
+            "line": 7,
+            "endcolumn": 21,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                5,
+                7,
+                21
+              ],
+            "line": 7,
+            "endcolumn": 16,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                5,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 12,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                5,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 19,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                5,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 19,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                5,
+                8,
+                19
+              ],
+            "line": 8,
+            "endcolumn": 10,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 24,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 18,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 23,
+            "column": 20
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 23,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 24,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 24,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 26,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 19,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 25,
+            "column": 22
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 25,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 13,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 26,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 9,
+            "endcolumn": 26,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 26,
+            "column": 26
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                9,
+                5,
+                10,
+                26
+              ],
+            "line": 10,
+            "endcolumn": 26,
+            "column": 26
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 25,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 19,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 25,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 25,
+            "column": 22
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 25,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                5,
+                12,
+                26
+              ],
+            "line": 12,
+            "endcolumn": 26,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 16,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 22,
+            "column": 19
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 22,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                5,
+                13,
+                23
+              ],
+            "line": 13,
+            "endcolumn": 23,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                5,
+                14,
+                22
+              ],
+            "line": 14,
+            "endcolumn": 9,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                5,
+                14,
+                22
+              ],
+            "line": 14,
+            "endcolumn": 14,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                5,
+                14,
+                22
+              ],
+            "line": 14,
+            "endcolumn": 14,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                5,
+                14,
+                22
+              ],
+            "line": 14,
+            "endcolumn": 22,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 14,
+            "stmt": [
+                14,
+                5,
+                14,
+                22
+              ],
+            "line": 14,
+            "endcolumn": 16,
+            "column": 5
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                3,
+                6,
+                29
+              ],
+            "line": 6,
+            "endcolumn": 29,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                18
+              ],
+            "line": 5,
+            "endcolumn": 18,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                18
+              ],
+            "line": 5,
+            "endcolumn": 18,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                16
+              ],
+            "line": 16,
+            "endcolumn": 14,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                16
+              ],
+            "line": 16,
+            "endcolumn": 16,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                16
+              ],
+            "line": 16,
+            "endcolumn": 16,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                16
+              ],
+            "line": 16,
+            "endcolumn": 16,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 16,
+            "stmt": [
+                16,
+                1,
+                16,
+                16
+              ],
+            "line": 16,
+            "endcolumn": 16,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                1,
+                17,
+                16
+              ],
+            "line": 17,
+            "endcolumn": 14,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                1,
+                17,
+                16
+              ],
+            "line": 17,
+            "endcolumn": 16,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                1,
+                17,
+                16
+              ],
+            "line": 17,
+            "endcolumn": 16,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                1,
+                17,
+                16
+              ],
+            "line": 17,
+            "endcolumn": 16,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                1,
+                17,
+                16
+              ],
+            "line": 17,
+            "endcolumn": 16,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                1,
+                1,
+                18,
+                7
+              ],
+            "line": 1,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                1,
+                1,
+                18,
+                7
+              ],
+            "line": 1,
+            "endcolumn": 7,
+            "column": 1
+          }
+      ],
+    "code": [
+        {
+            "args": "()",
+            "name": "__init__",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "turn"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "flags"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "71",
+            "op": "Jump"
+          },
+        {
+            "args": "self",
+            "name": "peterson",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "69",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "pc": "47",
+            "cond": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "48",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "pc": "36",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "51",
+            "op": "Jump"
+          },
+        {
+            "pc": "36",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "atom",
+                "value": "Entered"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Print"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "atom",
+                "value": "Left"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Print"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "self",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "pc": "20",
+            "op": "Jump"
+          },
+        {
+            "value": "self",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "19"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "19"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": "result",
+            "op": "DelVar"
+          }
+      ]
+  },
+  "macrosteps": [
+    {
+      "id": "1",
+      "tid": "0",
+      "shared": { },
+      "name": "__init__()",
+      "context": {
+        "tid": "0",
+        "hvalue": "5f77727389ca",
+        "fp": "1",
+        "id": "0",
+        "name": "__init__()",
+        "entry": "0",
+        "pc": "0",
+        "sp": "1",
+        "stack": [{ "type": "list", "value": [] }],
+        "trace": [
+{"pc": "0","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "atomic": "1",
+        "next": { "type": "Frame", "name": "__init__", "args": "()", "value": { "type": "list", "value": [] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame __init__()",
+          "explain": "pop argument () and run method \"__init__\"",
+          "explain2": { "text": "pop argument () and run method #+", "args": [ { "type": "atom", "value": "__init__" } ] },
+          "npc": "1",
+          "fp": "1",
+          "trace": [
+{"pc": "1","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "0"
+        },
+
+        {
+          "code": "Push ?flags",
+          "explain": "push constant ?flags",
+          "explain2": { "text": "push constant ?flags", "args": [] },
+          "npc": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ],
+          "pc": "1"
+        },
+
+        {
+          "code": "Sequential",
+          "explain": "sequential consistency for variable on top of stack",
+          "explain2": { "text": "sequential consistency for variable on top of stack", "args": [] },
+          "npc": "3",
+          "pop": "1",
+          "push": [ ],
+          "pc": "2"
+        },
+
+        {
+          "code": "Push ?turn",
+          "explain": "push constant ?turn",
+          "explain2": { "text": "push constant ?turn", "args": [] },
+          "npc": "4",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ],
+          "pc": "3"
+        },
+
+        {
+          "code": "Sequential",
+          "explain": "sequential consistency for variable on top of stack",
+          "explain2": { "text": "sequential consistency for variable on top of stack", "args": [] },
+          "npc": "5",
+          "pop": "1",
+          "push": [ ],
+          "pc": "4"
+        },
+
+        {
+          "code": "Push ()",
+          "explain": "building a tuple: push constant ()",
+          "explain2": { "text": "building a tuple: push constant ()", "args": [] },
+          "npc": "6",
+          "push": [ { "type": "list", "value": [] } ],
+          "pc": "5"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "7",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "6"
+        },
+
+        {
+          "code": "2-ary ListAdd",
+          "explain": "pop 2 values (False, []); insert first value into the second; push result ([False])",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "list", "value": [] }, { "type": "list", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "8",
+          "pop": "2",
+          "push": [ { "type": "list", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "7"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "9",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "8"
+        },
+
+        {
+          "code": "2-ary ListAdd",
+          "explain": "pop 2 values (False, [False]); insert first value into the second; push result ([False, False])",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "list", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } ] },
+          "npc": "10",
+          "pop": "2",
+          "push": [ { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } ],
+          "pc": "9"
+        },
+
+        {
+          "code": "Store flags",
+          "explain": "pop value ([False, False]) and store into variable flags",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } },
+          "npc": "11",
+          "pop": "1",
+          "push": [ ],
+          "pc": "10"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "12",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "11"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "13",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "12"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (0, {}); insert first value into the second; push result ({ 0 })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "int", "value": "0" } ] } ] },
+          "npc": "14",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "int", "value": "0" } ] } ],
+          "pc": "13"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "15",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "14"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (1, { 0 }); insert first value into the second; push result ({ 0, 1 })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "set", "value": [{ "type": "int", "value": "0" } ] }, { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } ] },
+          "npc": "16",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } ],
+          "pc": "15"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae748000fa": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748000fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "16",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] }],
+          "trace": [
+{"pc": "16","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } },
+          "mode": "choosing"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "tid": "0",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } },
+      "name": "__init__()",
+      "choice": { "type": "int", "value": "0" },
+      "context": {
+        "tid": "0",
+        "hvalue": "77ae748000fa",
+        "fp": "1",
+        "id": "0",
+        "name": "__init__()",
+        "entry": "0",
+        "pc": "16",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] }],
+        "trace": [
+{"pc": "16","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "atomic": "1",
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ 0, 1 }) with choice (0)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] }, { "type": "int", "value": "0" } ] },
+          "choose": { "type": "int", "value": "0" },
+          "npc": "17",
+          "fp": "1",
+          "trace": [
+{"pc": "17","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "16"
+        },
+
+        {
+          "code": "Store turn",
+          "explain": "pop value (0) and store into variable turn",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+          "npc": "18",
+          "pop": "1",
+          "push": [ ],
+          "pc": "17"
+        },
+
+        {
+          "code": "Jump 71",
+          "explain": "jump over method definition: set program counter to 71",
+          "explain2": { "text": "jump over method definition: set program counter to 71", "args": [] },
+          "npc": "71",
+          "push": [ ],
+          "pc": "18"
+        },
+
+        {
+          "code": "Push ?PC(19)",
+          "explain": "push constant ?PC(19)",
+          "explain2": { "text": "push constant ?PC(19)", "args": [] },
+          "npc": "72",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [ ] } ],
+          "pc": "71"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "73",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "72"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (0, ?PC(19)); push result (?PC(19)[0])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [{ "type": "int", "value": "0" } ] } ] },
+          "npc": "74",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [{ "type": "int", "value": "0" } ] } ],
+          "pc": "73"
+        },
+
+        {
+          "code": "Push {:}",
+          "explain": "push constant {:}",
+          "explain2": { "text": "push constant {:}", "args": [] },
+          "npc": "75",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "74"
+        },
+
+        {
+          "code": "Spawn",
+          "explain": "pop local state ({:}), arg (0), and pc (19: \"peterson\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (19: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "0" }, { "type": "atom", "value": "peterson" } ] },
+          "npc": "76",
+          "pop": "2",
+          "push": [ ],
+          "pc": "75"
+        },
+
+        {
+          "code": "Push ?PC(19)",
+          "explain": "push constant ?PC(19)",
+          "explain2": { "text": "push constant ?PC(19)", "args": [] },
+          "npc": "77",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [ ] } ],
+          "pc": "76"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "78",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "77"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (1, ?PC(19)); push result (?PC(19)[1])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [{ "type": "int", "value": "1" } ] } ] },
+          "npc": "79",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "19" }, "args": [{ "type": "int", "value": "1" } ] } ],
+          "pc": "78"
+        },
+
+        {
+          "code": "Push {:}",
+          "explain": "push constant {:}",
+          "explain2": { "text": "push constant {:}", "args": [] },
+          "npc": "80",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "79"
+        },
+
+        {
+          "code": "Spawn",
+          "explain": "pop local state ({:}), arg (1), and pc (19: \"peterson\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (19: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "1" }, { "type": "atom", "value": "peterson" } ] },
+          "npc": "81",
+          "pop": "2",
+          "push": [ ],
+          "pc": "80"
+        },
+
+        {
+          "code": "ReturnOp(result. None)",
+          "explain": "pop caller's method variables and pc and push result (%+), or terminate if no caller",
+          "explain2": { "text": "pop caller's method variables and pc and push result (%+), or terminate if no caller", "args": [ { "type": "address" } ] },
+          "npc": "81",
+          "mode": "terminated",
+          "pop": "1",
+          "push": [ { "type": "address" } ],
+          "pc": "81"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae7480017a": "1",
+          "77ae748001ca": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480017a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "19",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae748001ca",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "19",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "1" }],
+          "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "1" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "tid": "1",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "77ae7480017a",
+        "fp": "1",
+        "name": "peterson(0)",
+        "entry": "19",
+        "pc": "19",
+        "sp": "1",
+        "stack": [{ "type": "int", "value": "0" }],
+        "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "0" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame peterson(self)",
+          "explain": "pop argument (0), assign to self, and run method \"peterson\"",
+          "explain2": { "text": "pop argument (#+), assign to self, and run method #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "peterson" } ] },
+          "npc": "20",
+          "fp": "1",
+          "trace": [
+{"pc": "20","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ "self": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "local": { "self": { "type": "int", "value": "0" } },
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "19"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "21",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "20"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "22",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "21"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "23",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "22"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "24",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "23"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "25",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "24"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae748001ca": "1",
+          "77ae7480029a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480029a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "25",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "25","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ "self": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae748001ca",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "19",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "1" }],
+          "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "1" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "tid": "1",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(0)",
+      "choice": { "type": "bool", "value": "False" },
+      "context": {
+        "tid": "1",
+        "hvalue": "77ae7480029a",
+        "fp": "1",
+        "name": "peterson(0)",
+        "entry": "19",
+        "pc": "25",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "25","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ "self": { "type": "int", "value": "0" } },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (False)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "False" } ] },
+          "choose": { "type": "bool", "value": "False" },
+          "npc": "26",
+          "fp": "1",
+          "trace": [
+{"pc": "26","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ "self": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "25"
+        },
+
+        {
+          "code": "JumpCond False 69",
+          "explain": "pop value (False), compare to False, and jump to 69 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 69 if the same", "args": [ { "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] },
+          "npc": "69",
+          "pop": "1",
+          "push": [ ],
+          "pc": "26"
+        },
+
+        {
+          "code": "DelVar self",
+          "explain": "delete method variable self",
+          "explain2": { "text": "delete method variable self", "args": [] },
+          "npc": "70",
+          "local": { },
+          "push": [ ],
+          "pc": "69"
+        },
+
+        {
+          "code": "ReturnOp(result. None)",
+          "explain": "pop caller's method variables and pc and push result (%+), or terminate if no caller",
+          "explain2": { "text": "pop caller's method variables and pc and push result (%+), or terminate if no caller", "args": [ { "type": "address" } ] },
+          "npc": "70",
+          "mode": "terminated",
+          "pop": "1",
+          "push": [ { "type": "address" } ],
+          "pc": "70"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae748001ca": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae748001ca",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "19",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "1" }],
+          "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "1" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "tid": "2",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "77ae748001ca",
+        "fp": "1",
+        "name": "peterson(1)",
+        "entry": "19",
+        "pc": "19",
+        "sp": "1",
+        "stack": [{ "type": "int", "value": "1" }],
+        "trace": [
+{"pc": "19","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Frame", "name": "peterson", "args": "self", "value": { "type": "int", "value": "1" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame peterson(self)",
+          "explain": "pop argument (1), assign to self, and run method \"peterson\"",
+          "explain2": { "text": "pop argument (#+), assign to self, and run method #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "peterson" } ] },
+          "npc": "20",
+          "fp": "1",
+          "trace": [
+{"pc": "20","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "local": { "self": { "type": "int", "value": "1" } },
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "19"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "21",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "20"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "22",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "21"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "23",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "22"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "24",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "23"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "25",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "24"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae748002ea": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae748002ea",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "25",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "25","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "tid": "2",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(1)",
+      "choice": { "type": "bool", "value": "True" },
+      "context": {
+        "tid": "2",
+        "hvalue": "77ae748002ea",
+        "fp": "1",
+        "name": "peterson(1)",
+        "entry": "19",
+        "pc": "25",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "25","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (True)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
+          "choose": { "type": "bool", "value": "True" },
+          "npc": "26",
+          "fp": "1",
+          "trace": [
+{"pc": "26","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "25"
+        },
+
+        {
+          "code": "JumpCond False 69",
+          "explain": "pop value (True), compare to False, and jump to 69 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 69 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
+          "npc": "27",
+          "pop": "1",
+          "push": [ ],
+          "pc": "26"
+        },
+
+        {
+          "code": "Push ?flags",
+          "explain": "push constant ?flags",
+          "explain2": { "text": "push constant ?flags", "args": [] },
+          "npc": "28",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ],
+          "pc": "27"
+        },
+
+        {
+          "code": "LoadVar self",
+          "explain": "push value (1) of variable \"self\"",
+          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "self" } ] },
+          "npc": "29",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "28"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (1, ?flags); push result (?flags[1])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "1" } ] } ] },
+          "npc": "30",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "1" } ] } ],
+          "pc": "29"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "31",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "30"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae748003ea": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae748003ea",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "31",
+          "sp": "3",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "1" } ] }, { "type": "bool", "value": "True" }],
+          "trace": [
+{"pc": "31","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "next": { "type": "Store", "var": "flags[1]", "value": { "type": "bool", "value": "True" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "tid": "2",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "77ae748003ea",
+        "fp": "1",
+        "name": "peterson(1)",
+        "entry": "19",
+        "pc": "31",
+        "sp": "3",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "1" } ] }, { "type": "bool", "value": "True" }],
+        "trace": [
+{"pc": "31","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+        ],
+        "next": { "type": "Store", "var": "flags[1]", "value": { "type": "bool", "value": "True" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Store",
+          "explain": "pop value (True) and address (?flags[1]) and store",
+          "explain2": { "text": "pop value (#+) and address (#+) and store", "args": [ { "type": "bool", "value": "True" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "1" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, "turn": { "type": "int", "value": "0" } },
+          "npc": "32",
+          "fp": "1",
+          "trace": [
+{"pc": "32","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "pop": "2",
+          "push": [ ],
+          "pc": "31"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "33",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "32"
+        },
+
+        {
+          "code": "LoadVar self",
+          "explain": "push value (1) of variable \"self\"",
+          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "self" } ] },
+          "npc": "34",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "33"
+        },
+
+        {
+          "code": "2-ary -",
+          "explain": "pop 2 values (1, 1); the second integer minus the first; push result (0)",
+          "explain2": { "text": "pop 2 values (#+, #+); the second integer minus the first; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "1" }, { "type": "int", "value": "0" } ] },
+          "npc": "35",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "34"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae76c000ca": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae76c000ca",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "35",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "35","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "57",
+      "tid": "2",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "77ae76c000ca",
+        "fp": "1",
+        "name": "peterson(1)",
+        "entry": "19",
+        "pc": "35",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "int", "value": "0" }],
+        "trace": [
+{"pc": "35","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+        ],
+        "next": { "type": "Store", "var": "turn", "value": { "type": "int", "value": "0" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Store turn",
+          "explain": "pop value (0) and store into variable turn",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ] },
+          "npc": "36",
+          "fp": "1",
+          "trace": [
+{"pc": "36","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ ],
+          "pc": "35"
+        },
+
+        {
+          "code": "Push ?flags",
+          "explain": "push constant ?flags",
+          "explain2": { "text": "push constant ?flags", "args": [] },
+          "npc": "37",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ],
+          "pc": "36"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "38",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "37"
+        },
+
+        {
+          "code": "LoadVar self",
+          "explain": "push value (1) of variable \"self\"",
+          "explain2": { "text": "push value (#+) of variable #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "self" } ] },
+          "npc": "39",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "38"
+        },
+
+        {
+          "code": "2-ary -",
+          "explain": "pop 2 values (1, 1); the second integer minus the first; push result (0)",
+          "explain2": { "text": "pop 2 values (#+, #+); the second integer minus the first; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "1" }, { "type": "int", "value": "0" } ] },
+          "npc": "40",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "39"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (0, ?flags); push result (?flags[0])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "0" } ] } ] },
+          "npc": "41",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "0" } ] } ],
+          "pc": "40"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae7480045a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae7480045a",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "41",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "0" } ] }],
+          "trace": [
+{"pc": "41","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "next": { "type": "Load", "var": "flags[0]" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "tid": "2",
+      "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, "turn": { "type": "int", "value": "0" } },
+      "name": "peterson(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "77ae7480045a",
+        "fp": "1",
+        "name": "peterson(1)",
+        "entry": "19",
+        "pc": "41",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "0" } ] }],
+        "trace": [
+{"pc": "41","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+        ],
+        "next": { "type": "Load", "var": "flags[0]" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Load",
+          "explain": "pop address (?flags[0]) and push value (False)",
+          "explain2": { "text": "pop address (#+) and push value (#+)", "args": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" }, { "type": "int", "value": "0" } ] }, { "type": "bool", "value": "False" } ] },
+          "npc": "42",
+          "fp": "1",
+          "trace": [
+{"pc": "42","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "41"
+        },
+
+        {
+          "code": "JumpCond True 47",
+          "explain": "pop value (False), compare to True, and jump to 47 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 47 if the same", "args": [ { "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] },
+          "npc": "43",
+          "pop": "1",
+          "push": [ ],
+          "pc": "42"
+        }
+
+      ],
+      "ctxbag": {
+          "77ae8200001a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "77ae748001fa",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "81",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "81","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "77ae7480031a",
+          "fp": "1",
+          "name": "peterson(0)",
+          "entry": "19",
+          "pc": "70",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "70","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "peterson(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "mode": "terminated"
+        },
+        {
+          "tid": "2",
+          "hvalue": "77ae8200001a",
+          "fp": "1",
+          "name": "peterson(1)",
+          "entry": "19",
+          "pc": "43",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "43","xpc": "19","method_name": { "type": "atom", "value": "peterson" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "peterson(1)","calltype": "process","vars":{ "self": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "next": { "type": "Load", "var": "turn" },
+          "mode": "runnable"
+        }
+      ]
+    }
+
+  ]
+}

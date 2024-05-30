@@ -1,0 +1,600 @@
+Issue: Non-terminating state
+
+Modules:
+  __main__: tst.hny
+
+================================================
+Running thread T0: __init__()
+mode:  runnable atomic
+stack: ['[]']
+state id: 1
+================================================
+
+Step 1:
+  program counter:   0
+  hvm code:          Frame __init__()
+  explanation:       pop argument () and run method "__init__"
+  module:            __main__
+  start statement:   line=1 column=1
+  end statement:     line=18 column=7
+  source code:       sequential flags, turn
+  call trace:        __init__()
+  stack:             [{:}]
+
+Step 2:
+  program counter:   1
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=1 column=1
+  end statement:     line=1 column=22
+  source code:       sequential flags, turn
+                                ^^^^^
+  stack:             [{:}, ?flags]
+
+Step 3:
+  program counter:   2
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential flags, turn
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 4:
+  program counter:   3
+  hvm code:          Push ?turn
+  explanation:       push constant ?turn
+  source code:       sequential flags, turn
+                                       ^^^^
+  stack:             [{:}, ?turn]
+
+Step 5:
+  program counter:   4
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential flags, turn
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 6:
+  program counter:   5
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=2 column=1
+  end statement:     line=2 column=24
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 7:
+  program counter:   6
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = ( False, False )
+                               ^^^^^
+  stack:             [{:}, [], False]
+
+Step 8:
+  program counter:   7
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, []); insert first value into the second; push result ([False])
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, [ False ]]
+
+Step 9:
+  program counter:   8
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = ( False, False )
+                                      ^^^^^
+  stack:             [{:}, [ False ], False]
+
+Step 10:
+  program counter:   9
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, [False]); insert first value into the second; push result ([False, False])
+  source code:       flags = ( False, False )
+                               ^^^^^^^^^^^^
+  stack:             [{:}, [ False, False ]]
+
+Step 11:
+  program counter:   10
+  hvm code:          Store flags
+  explanation:       pop value ([False, False]) and store into variable flags
+  source code:       flags = ( False, False )
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ] }
+  stack:             [{:}]
+
+Step 12:
+  program counter:   11
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=3 column=1
+  end statement:     line=3 column=23
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, {}]
+
+Step 13:
+  program counter:   12
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       turn  = choose { 0, 1 }
+                                      ^
+  stack:             [{:}, {}, 0]
+
+Step 14:
+  program counter:   13
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (0, {}); insert first value into the second; push result ({ 0 })
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, { 0 }]
+
+Step 15:
+  program counter:   14
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       turn  = choose { 0, 1 }
+                                         ^
+  stack:             [{:}, { 0 }, 1]
+
+Step 16:
+  program counter:   15
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (1, { 0 }); insert first value into the second; push result ({ 0, 1 })
+  source code:       turn  = choose { 0, 1 }
+                                      ^^^^
+  stack:             [{:}, { 0, 1 }]
+
+Step 17:
+  program counter:   16
+  hvm code:          Choose
+  explanation:       replace top of stack ({ 0, 1 }) with choice (0)
+  source code:       turn  = choose { 0, 1 }
+                             ^^^^^^^^^^^^^^^
+  call trace:        __init__()
+  stack:             [{:}, 0]
+
+Step 18:
+  program counter:   17
+  hvm code:          Store turn
+  explanation:       pop value (0) and store into variable turn
+  source code:       turn  = choose { 0, 1 }
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ], turn: 0 }
+  stack:             [{:}]
+
+Step 19:
+  program counter:   18
+  hvm code:          Jump 71
+  explanation:       jump over method definition: set program counter to 71
+  start statement:   line=5 column=1
+  end statement:     line=5 column=18
+  source code:       def peterson self:
+                     ^^^
+
+Step 20:
+  program counter:   71
+  hvm code:          Push ?PC(19)
+  explanation:       push constant ?PC(19)
+  start statement:   line=16 column=1
+  end statement:     line=16 column=16
+  source code:       spawn peterson 0
+                           ^^^^^^^^
+  stack:             [{:}, ?PC(19)]
+
+Step 21:
+  program counter:   72
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       spawn peterson 0
+                                    ^
+  stack:             [{:}, ?PC(19), 0]
+
+Step 22:
+  program counter:   73
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?PC(19)); push result (?PC(19)[0])
+  source code:       spawn peterson 0
+                           ^^^^^^^^^^
+  stack:             [{:}, ?PC(19)[0]]
+
+Step 23:
+  program counter:   74
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn peterson 0
+                     ^^^^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(19)[0], {:}]
+
+Step 24:
+  program counter:   75
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (0), and pc (19: "peterson"), and spawn thread
+  start expression:  line=16 column=1
+  end expression:    line=16 column=16
+  stack:             [{:}]
+
+Step 25:
+  program counter:   76
+  hvm code:          Push ?PC(19)
+  explanation:       push constant ?PC(19)
+  start statement:   line=17 column=1
+  end statement:     line=17 column=16
+  source code:       spawn peterson 1
+                           ^^^^^^^^
+  stack:             [{:}, ?PC(19)]
+
+Step 26:
+  program counter:   77
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       spawn peterson 1
+                                    ^
+  stack:             [{:}, ?PC(19), 1]
+
+Step 27:
+  program counter:   78
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?PC(19)); push result (?PC(19)[1])
+  source code:       spawn peterson 1
+                           ^^^^^^^^^^
+  stack:             [{:}, ?PC(19)[1]]
+
+Step 28:
+  program counter:   79
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn peterson 1
+                     ^^^^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(19)[1], {:}]
+
+Step 29:
+  program counter:   80
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (1), and pc (19: "peterson"), and spawn thread
+  start expression:  line=17 column=1
+  end expression:    line=17 column=16
+  stack:             [{:}]
+
+Step 30:
+  program counter:   81
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=1 column=1
+  end statement:     line=18 column=7
+  source code:       sequential flags, turn
+  new mode:          terminated
+  stack:             [None]
+
+================================================
+Running thread T1: peterson(0)
+mode:  runnable
+stack: ['0']
+other threads:
+  T0: pc=81 terminated atomic __init__()
+  T2: pc=19 runnable peterson(1)
+    about to run method peterson with argument 1
+shared variables:
+  flags: [ False, False ]
+  turn: 0
+state id: 4
+================================================
+
+Step 31:
+  program counter:   19
+  hvm code:          Frame peterson(self)
+  explanation:       pop argument (0), assign to self, and run method "peterson"
+  start statement:   line=5 column=1
+  end statement:     line=5 column=18
+  source code:       def peterson self:
+                     ^^^^^^^^^^^^^^^^^^
+  method variables:  { self: 0 }
+  call trace:        peterson(0)
+  stack:             [{:}]
+
+Step 32:
+  program counter:   20
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=6 column=3
+  end statement:     line=6 column=29
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 33:
+  program counter:   21
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       while choose {False, True}:
+                                   ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 34:
+  program counter:   22
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 35:
+  program counter:   23
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       while choose {False, True}:
+                                          ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 36:
+  program counter:   24
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 37:
+  program counter:   25
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (False)
+  source code:       while choose {False, True}:
+                           ^^^^^^^^^^^^^^^^^^^^
+  call trace:        peterson(0)
+  stack:             [{:}, False]
+
+Step 38:
+  program counter:   26
+  hvm code:          JumpCond False 69
+  explanation:       pop value (False), compare to False, and jump to 69 if the same
+  source code:       while choose {False, True}:
+                     ^^^^^
+  stack:             [{:}]
+
+Step 39:
+  program counter:   69
+  hvm code:          DelVar self
+  explanation:       delete method variable self
+  start statement:   line=5 column=1
+  end statement:     line=5 column=18
+  source code:       def peterson self:
+                     ^^^^^^^^^^^^^^^^^^
+  method variables:  { }
+
+Step 40:
+  program counter:   70
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start expression:  line=5 column=1
+  end expression:    line=5 column=18
+  new mode:          terminated
+  stack:             [None]
+
+================================================
+Running thread T2: peterson(1)
+mode:  runnable
+stack: ['1']
+other threads:
+  T0: pc=81 terminated atomic __init__()
+  T1: pc=70 terminated peterson(0)
+shared variables:
+  flags: [ False, False ]
+  turn: 0
+state id: 16
+================================================
+
+Step 41:
+  program counter:   19
+  hvm code:          Frame peterson(self)
+  explanation:       pop argument (1), assign to self, and run method "peterson"
+  start expression:  line=5 column=1
+  end expression:    line=5 column=18
+  method variables:  { self: 1 }
+  call trace:        peterson(1)
+  stack:             [{:}]
+
+Step 42:
+  program counter:   20
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start statement:   line=6 column=3
+  end statement:     line=6 column=29
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, {}]
+
+Step 43:
+  program counter:   21
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       while choose {False, True}:
+                                   ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 44:
+  program counter:   22
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 45:
+  program counter:   23
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       while choose {False, True}:
+                                          ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 46:
+  program counter:   24
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       while choose {False, True}:
+                                   ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 47:
+  program counter:   25
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       while choose {False, True}:
+                           ^^^^^^^^^^^^^^^^^^^^
+  call trace:        peterson(1)
+  stack:             [{:}, True]
+
+Step 48:
+  program counter:   26
+  hvm code:          JumpCond False 69
+  explanation:       pop value (True), compare to False, and jump to 69 if the same
+  source code:       while choose {False, True}:
+                     ^^^^^
+  stack:             [{:}]
+
+Step 49:
+  program counter:   27
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=7 column=5
+  end statement:     line=7 column=21
+  source code:       flags self = True
+                     ^^^^^
+  stack:             [{:}, ?flags]
+
+Step 50:
+  program counter:   28
+  hvm code:          LoadVar self
+  explanation:       push value (1) of variable "self"
+  source code:       flags self = True
+                           ^^^^
+  stack:             [{:}, ?flags, 1]
+
+Step 51:
+  program counter:   29
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?flags); push result (?flags[1])
+  source code:       flags self = True
+                     ^^^^^^^^^^
+  stack:             [{:}, ?flags[1]]
+
+Step 52:
+  program counter:   30
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       flags self = True
+                                  ^^^^
+  stack:             [{:}, ?flags[1], True]
+
+Step 53:
+  program counter:   31
+  hvm code:          Store
+  explanation:       pop value (True) and address (?flags[1]) and store
+  source code:       flags self = True
+                     ^^^^^^^^^^^^
+  shared variables:  { flags: [ False, True ], turn: 0 }
+  call trace:        peterson(1)
+  stack:             [{:}]
+
+Step 54:
+  program counter:   32
+  hvm code:          Push 1
+  explanation:       push constant 1
+  start statement:   line=8 column=5
+  end statement:     line=8 column=19
+  source code:       turn = 1 - self
+                            ^
+  stack:             [{:}, 1]
+
+Step 55:
+  program counter:   33
+  hvm code:          LoadVar self
+  explanation:       push value (1) of variable "self"
+  source code:       turn = 1 - self
+                                ^^^^
+  stack:             [{:}, 1, 1]
+
+Step 56:
+  program counter:   34
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       turn = 1 - self
+                            ^^^^^^^^
+  stack:             [{:}, 0]
+
+Step 57:
+  program counter:   35
+  hvm code:          Store turn
+  explanation:       pop value (0) and store into variable turn
+  source code:       turn = 1 - self
+                     ^^^^^^
+  call trace:        peterson(1)
+  stack:             [{:}]
+
+Step 58:
+  program counter:   36
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  start statement:   line=9 column=5
+  end statement:     line=10 column=26
+  source code:       await (flags[1-self])
+  stack:             [{:}, ?flags]
+
+Step 59:
+  program counter:   37
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       await (flags[1-self])
+  stack:             [{:}, ?flags, 1]
+
+Step 60:
+  program counter:   38
+  hvm code:          LoadVar self
+  explanation:       push value (1) of variable "self"
+  source code:       await (flags[1-self])
+  stack:             [{:}, ?flags, 1, 1]
+
+Step 61:
+  program counter:   39
+  hvm code:          2-ary -
+  explanation:       pop 2 values (1, 1); the second integer minus the first; push result (0)
+  source code:       await (flags[1-self])
+  stack:             [{:}, ?flags, 0]
+
+Step 62:
+  program counter:   40
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?flags); push result (?flags[0])
+  source code:       await (flags[1-self])
+  stack:             [{:}, ?flags[0]]
+
+Step 63:
+  program counter:   41
+  hvm code:          Load
+  explanation:       pop address (?flags[0]) and push value (False)
+  start expression:  line=9 column=12
+  end expression:    line=9 column=24
+  call trace:        peterson(1)
+  stack:             [{:}, False]
+
+Step 64:
+  program counter:   42
+  hvm code:          JumpCond True 47
+  explanation:       pop value (False), compare to True, and jump to 47 if the same
+  source code:       await (flags[1-self])
+  stack:             [{:}]
+
+================================================
+Final state
+================================================
+Threads:
+  T0: pc=81 terminated atomic __init__()
+  T1: pc=70 terminated peterson(0)
+  T2: pc=43 runnable peterson(1)
+    about to load variable turn
+Variables:
+  flags: [ False, True ]
+  turn: 0

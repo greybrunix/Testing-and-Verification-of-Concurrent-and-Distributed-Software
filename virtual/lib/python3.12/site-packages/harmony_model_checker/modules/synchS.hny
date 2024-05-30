@@ -1,0 +1,100 @@
+def atomic_load(p):
+    atomically result = !p
+
+def atomic_store(p, v):
+    atomically !p = v
+
+def tas(lk):
+    atomically:
+        result = !lk
+        !lk = True
+
+def cas(p, old, new):
+    atomically:
+        result = !p == old
+        if result:
+            !p = new
+
+def BinSema(initial):
+    result = { .acquired: initial, .suspended: [] }
+
+def Lock():
+    result = BinSema(False)
+
+def acquire(binsema):
+    atomically:
+        if binsema->acquired:
+            stop ?binsema->suspended[len binsema->suspended]
+            assert binsema->acquired
+        else:
+            binsema->acquired = True
+
+def release(binsema):
+    atomically:
+        assert binsema->acquired
+        if binsema->suspended == []:
+            binsema->acquired = False
+        else:
+            go (binsema->suspended[0]) ()
+            del binsema->suspended[0]
+
+def held(binsema):
+    result = binsema->acquired
+
+def Condition():
+    result = []
+
+def wait(c, lk):
+    atomically:
+        release(lk)
+        stop ?(!c)[len !c]
+    acquire(lk)
+
+def notify(c):
+    atomically if !c != []:
+        go ((!c)[0]) ()
+        del (!c)[0]
+        
+def notifyAll(c):
+    atomically:
+        for ctx in !c:
+            go ctx ()
+        !c = []
+        
+def Semaphore(cnt):
+    result = { .count: cnt, .waiters: [] }
+
+def P(sema):
+    atomically:
+        if sema->count > 0:
+            sema->count -= 1
+        else:
+            stop ?sema->waiters[len sema->waiters]
+        
+def V(sema):
+    atomically:
+        if sema->waiters != []:
+            assert sema->count == 0
+            go (sema->waiters[0]) ()
+            del sema->waiters[0]
+        else:
+            sema->count += 1
+
+def Queue():
+    result = { .list: [], .waiters: [] }
+
+def get(q) returns next:
+    atomically:
+        if q->list == []:
+            next = stop ?q->waiters[len q->waiters]
+        else:
+            next = q->list[0]
+            del q->list[0]
+
+def put(q, item):
+    atomically:
+        if q->waiters == []:
+            q->list += [item,]
+        else:
+            go (q->waiters[0]) item
+            del q->waiters[0]

@@ -1,0 +1,723 @@
+Issue: Safety violation
+
+Modules:
+  __main__: b_ary_fail.hny
+
+================================================
+Running thread T0: __init__()
+mode:  runnable atomic
+stack: ['[]']
+state id: 1
+================================================
+
+Step 1:
+  program counter:   0
+  hvm code:          Frame __init__()
+  explanation:       pop argument () and run method "__init__"
+  module:            __main__
+  start statement:   line=5 column=1
+  end statement:     line=65 column=7
+  source code:       sequential turn, lockTaken, flags
+  call trace:        __init__()
+  stack:             [{:}]
+
+Step 2:
+  program counter:   1
+  hvm code:          Push ?turn
+  explanation:       push constant ?turn
+  start statement:   line=5 column=1
+  end statement:     line=5 column=33
+  source code:       sequential turn, lockTaken, flags
+                                ^^^^
+  stack:             [{:}, ?turn]
+
+Step 3:
+  program counter:   2
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential turn, lockTaken, flags
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 4:
+  program counter:   3
+  hvm code:          Push ?lockTaken
+  explanation:       push constant ?lockTaken
+  source code:       sequential turn, lockTaken, flags
+                                      ^^^^^^^^^
+  stack:             [{:}, ?lockTaken]
+
+Step 5:
+  program counter:   4
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential turn, lockTaken, flags
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 6:
+  program counter:   5
+  hvm code:          Push ?flags
+  explanation:       push constant ?flags
+  source code:       sequential turn, lockTaken, flags
+                                                 ^^^^^
+  stack:             [{:}, ?flags]
+
+Step 7:
+  program counter:   6
+  hvm code:          Sequential
+  explanation:       sequential consistency for variable on top of stack
+  source code:       sequential turn, lockTaken, flags
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  stack:             [{:}]
+
+Step 8:
+  program counter:   7
+  hvm code:          Push ()
+  explanation:       building a tuple: push constant ()
+  start statement:   line=6 column=1
+  end statement:     line=6 column=22
+  source code:       flags = [False, False]
+                              ^^^^^^^^^^^^
+  stack:             [{:}, []]
+
+Step 9:
+  program counter:   8
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = [False, False]
+                              ^^^^^
+  stack:             [{:}, [], False]
+
+Step 10:
+  program counter:   9
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, []); insert first value into the second; push result ([False])
+  source code:       flags = [False, False]
+                              ^^^^^^^^^^^^
+  stack:             [{:}, [ False ]]
+
+Step 11:
+  program counter:   10
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       flags = [False, False]
+                                     ^^^^^
+  stack:             [{:}, [ False ], False]
+
+Step 12:
+  program counter:   11
+  hvm code:          2-ary ListAdd
+  explanation:       pop 2 values (False, [False]); insert first value into the second; push result ([False, False])
+  source code:       flags = [False, False]
+                              ^^^^^^^^^^^^
+  stack:             [{:}, [ False, False ]]
+
+Step 13:
+  program counter:   12
+  hvm code:          Store flags
+  explanation:       pop value ([False, False]) and store into variable flags
+  source code:       flags = [False, False]
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ] }
+  stack:             [{:}]
+
+Step 14:
+  program counter:   13
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=7 column=1
+  end statement:     line=7 column=9
+  source code:       in_cs = 0
+                             ^
+  stack:             [{:}, 0]
+
+Step 15:
+  program counter:   14
+  hvm code:          Store in_cs
+  explanation:       pop value (0) and store into variable in_cs
+  source code:       in_cs = 0
+                     ^^^^^^^
+  shared variables:  { flags: [ False, False ], in_cs: 0 }
+  stack:             [{:}]
+
+Step 16:
+  program counter:   15
+  hvm code:          Jump 26
+  explanation:       jump over invariant definition: set program counter to 26
+  start statement:   line=8 column=1
+  end statement:     line=8 column=24
+  source code:       invariant in_cs in {0,1}
+                     ^^^^^^^^^
+
+Step 17:
+  program counter:   26
+  hvm code:          Invariant 16
+  explanation:       test invariant
+  source code:       invariant in_cs in {0,1}
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 18:
+  program counter:   27
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=9 column=1
+  end statement:     line=9 column=8
+  source code:       turn = 0
+                            ^
+  stack:             [{:}, 0]
+
+Step 19:
+  program counter:   28
+  hvm code:          Store turn
+  explanation:       pop value (0) and store into variable turn
+  source code:       turn = 0
+                     ^^^^^^
+  shared variables:  { flags: [ False, False ], in_cs: 0, turn: 0 }
+  stack:             [{:}]
+
+Step 20:
+  program counter:   29
+  hvm code:          Push False
+  explanation:       push constant False
+  start statement:   line=10 column=1
+  end statement:     line=10 column=17
+  source code:       lockTaken = False
+                                 ^^^^^
+  stack:             [{:}, False]
+
+Step 21:
+  program counter:   30
+  hvm code:          Store lockTaken
+  explanation:       pop value (False) and store into variable lockTaken
+  source code:       lockTaken = False
+                     ^^^^^^^^^^^
+  shared variables:  { flags: [ False, False ], in_cs: 0, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 22:
+  program counter:   31
+  hvm code:          Push 0
+  explanation:       push constant 0
+  start statement:   line=11 column=1
+  end statement:     line=11 column=11
+  source code:       counter = 0
+                               ^
+  stack:             [{:}, 0]
+
+Step 23:
+  program counter:   32
+  hvm code:          Store counter
+  explanation:       pop value (0) and store into variable counter
+  source code:       counter = 0
+                     ^^^^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 0, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 24:
+  program counter:   33
+  hvm code:          Jump 205
+  explanation:       jump over method definition: set program counter to 205
+  start statement:   line=12 column=1
+  end statement:     line=12 column=14
+  source code:       def fail0 p_q:
+                     ^^^
+
+Step 25:
+  program counter:   205
+  hvm code:          Push ?PC(34)
+  explanation:       push constant ?PC(34)
+  start statement:   line=63 column=1
+  end statement:     line=63 column=13
+  source code:       spawn fail0 0;
+                           ^^^^^
+  stack:             [{:}, ?PC(34)]
+
+Step 26:
+  program counter:   206
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       spawn fail0 0;
+                                 ^
+  stack:             [{:}, ?PC(34), 0]
+
+Step 27:
+  program counter:   207
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (0, ?PC(34)); push result (?PC(34)[0])
+  source code:       spawn fail0 0;
+                           ^^^^^^^
+  stack:             [{:}, ?PC(34)[0]]
+
+Step 28:
+  program counter:   208
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn fail0 0;
+                     ^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(34)[0], {:}]
+
+Step 29:
+  program counter:   209
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (0), and pc (34: "fail0"), and spawn thread
+  start expression:  line=63 column=1
+  end expression:    line=63 column=13
+  stack:             [{:}]
+
+Step 30:
+  program counter:   210
+  hvm code:          Push ?PC(34)
+  explanation:       push constant ?PC(34)
+  start statement:   line=64 column=1
+  end statement:     line=64 column=13
+  source code:       spawn fail0 1;
+                           ^^^^^
+  stack:             [{:}, ?PC(34)]
+
+Step 31:
+  program counter:   211
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       spawn fail0 1;
+                                 ^
+  stack:             [{:}, ?PC(34), 1]
+
+Step 32:
+  program counter:   212
+  hvm code:          2-ary AddArg
+  explanation:       pop 2 values (1, ?PC(34)); push result (?PC(34)[1])
+  source code:       spawn fail0 1;
+                           ^^^^^^^
+  stack:             [{:}, ?PC(34)[1]]
+
+Step 33:
+  program counter:   213
+  hvm code:          Push {:}
+  explanation:       push constant {:}
+  source code:       spawn fail0 1;
+                     ^^^^^^^^^^^^^
+  stack:             [{:}, ?PC(34)[1], {:}]
+
+Step 34:
+  program counter:   214
+  hvm code:          Spawn
+  explanation:       pop local state ({:}), arg (1), and pc (34: "fail0"), and spawn thread
+  start expression:  line=64 column=1
+  end expression:    line=64 column=13
+  stack:             [{:}]
+
+Step 35:
+  program counter:   215
+  hvm code:          ReturnOp(result. None)
+  explanation:       pop caller's method variables and pc and push result (%+), or terminate if no caller
+  start statement:   line=5 column=1
+  end statement:     line=65 column=7
+  source code:       sequential turn, lockTaken, flags
+  new mode:          terminated
+  stack:             [None]
+
+================================================
+Running thread T2: fail0(1)
+mode:  runnable
+stack: ['1']
+other threads:
+  T0: pc=215 terminated atomic __init__()
+  T1: pc=34 runnable fail0(0)
+    about to run method fail0 with argument 0
+shared variables:
+  counter: 0
+  flags: [ False, False ]
+  in_cs: 0
+  lockTaken: False
+  turn: 0
+state id: 3
+================================================
+
+Step 36:
+  program counter:   34
+  hvm code:          Frame fail0(p_q)
+  explanation:       pop argument (1), assign to p_q, and run method "fail0"
+  start statement:   line=12 column=1
+  end statement:     line=12 column=14
+  source code:       def fail0 p_q:
+                     ^^^^^^^^^^^^^^
+  method variables:  { p_q: 1 }
+  call trace:        fail0(1)
+  stack:             [{:}]
+
+Step 37:
+  program counter:   35
+  hvm code:          DelVar p_q
+  explanation:       delete method variable p_q
+  start statement:   line=13 column=2
+  end statement:     line=13 column=28
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  method variables:  { }
+
+Step 38:
+  program counter:   36
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start expression:  line=13 column=16
+  end expression:    line=13 column=26
+  stack:             [{:}, {}]
+
+Step 39:
+  program counter:   37
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True}:
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 40:
+  program counter:   38
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 41:
+  program counter:   39
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True}:
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 42:
+  program counter:   40
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 43:
+  program counter:   41
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True}:
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        fail0(1)
+  stack:             [{:}, True]
+
+Step 44:
+  program counter:   42
+  hvm code:          JumpCond False 56
+  explanation:       pop value (True), compare to False, and jump to 56 if the same
+  source code:       	while choose {False, True}:
+                      ^^^^^
+  stack:             [{:}]
+
+Step 45:
+  program counter:   43
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=17 column=14
+  end statement:     line=17 column=23
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  call trace:        fail0(1)
+
+Step 46:
+  program counter:   44
+  hvm code:          Load in_cs
+  explanation:       push value (0) of variable in_cs
+  start expression:  line=17 column=14
+  end expression:    line=17 column=23
+  stack:             [{:}, 0]
+
+Step 47:
+  program counter:   45
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically in_cs += 1
+                                           ^
+  stack:             [{:}, 0, 1]
+
+Step 48:
+  program counter:   46
+  hvm code:          2-ary +
+  explanation:       pop 2 values (1, 0); add the integers; push result (1)
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  stack:             [{:}, 1]
+
+Step 49:
+  program counter:   47
+  hvm code:          Store in_cs
+  explanation:       pop value (1) and store into variable in_cs
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 1, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 50:
+  program counter:   48
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+
+================================================
+Running thread T1: fail0(0)
+mode:  runnable
+stack: ['0']
+other threads:
+  T0: pc=215 terminated atomic __init__()
+  T2: pc=49 runnable fail0(1)
+    about to execute __main__:18: 		atomically in_cs -= 1
+shared variables:
+  counter: 0
+  flags: [ False, False ]
+  in_cs: 1
+  lockTaken: False
+  turn: 0
+state id: 15
+================================================
+
+Step 51:
+  program counter:   34
+  hvm code:          Frame fail0(p_q)
+  explanation:       pop argument (0), assign to p_q, and run method "fail0"
+  start statement:   line=12 column=1
+  end statement:     line=12 column=14
+  source code:       def fail0 p_q:
+                     ^^^^^^^^^^^^^^
+  method variables:  { p_q: 0 }
+  call trace:        fail0(0)
+  stack:             [{:}]
+
+Step 52:
+  program counter:   35
+  hvm code:          DelVar p_q
+  explanation:       delete method variable p_q
+  start statement:   line=13 column=2
+  end statement:     line=13 column=28
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  method variables:  { }
+
+Step 53:
+  program counter:   36
+  hvm code:          Push {}
+  explanation:       push constant {}
+  start expression:  line=13 column=16
+  end expression:    line=13 column=26
+  stack:             [{:}, {}]
+
+Step 54:
+  program counter:   37
+  hvm code:          Push False
+  explanation:       push constant False
+  source code:       	while choose {False, True}:
+                                    ^^^^^
+  stack:             [{:}, {}, False]
+
+Step 55:
+  program counter:   38
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (False, {}); insert first value into the second; push result ({ False })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False }]
+
+Step 56:
+  program counter:   39
+  hvm code:          Push True
+  explanation:       push constant True
+  source code:       	while choose {False, True}:
+                                           ^^^^
+  stack:             [{:}, { False }, True]
+
+Step 57:
+  program counter:   40
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })
+  source code:       	while choose {False, True}:
+                                    ^^^^^^^^^^^
+  stack:             [{:}, { False, True }]
+
+Step 58:
+  program counter:   41
+  hvm code:          Choose
+  explanation:       replace top of stack ({ False, True }) with choice (True)
+  source code:       	while choose {False, True}:
+                            ^^^^^^^^^^^^^^^^^^^^
+  call trace:        fail0(0)
+  stack:             [{:}, True]
+
+Step 59:
+  program counter:   42
+  hvm code:          JumpCond False 56
+  explanation:       pop value (True), compare to False, and jump to 56 if the same
+  source code:       	while choose {False, True}:
+                      ^^^^^
+  stack:             [{:}]
+
+Step 60:
+  program counter:   43
+  hvm code:          AtomicInc(eager)
+  explanation:       increment atomic counter from 0 to 1: becomes atomic
+  start statement:   line=17 column=14
+  end statement:     line=17 column=23
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  call trace:        fail0(0)
+
+Step 61:
+  program counter:   44
+  hvm code:          Load in_cs
+  explanation:       push value (1) of variable in_cs
+  start expression:  line=17 column=14
+  end expression:    line=17 column=23
+  stack:             [{:}, 1]
+
+Step 62:
+  program counter:   45
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       		atomically in_cs += 1
+                                           ^
+  stack:             [{:}, 1, 1]
+
+Step 63:
+  program counter:   46
+  hvm code:          2-ary +
+  explanation:       pop 2 values (1, 1); add the integers; push result (2)
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+  stack:             [{:}, 2]
+
+Step 64:
+  program counter:   47
+  hvm code:          Store in_cs
+  explanation:       pop value (2) and store into variable in_cs
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^
+  shared variables:  { counter: 0, flags: [ False, False ], in_cs: 2, lockTaken: False, turn: 0 }
+  stack:             [{:}]
+
+Step 65:
+  program counter:   48
+  hvm code:          AtomicDec
+  explanation:       decrement atomic counter from 1 to 0: no longer atomic
+  source code:       		atomically in_cs += 1
+                                  ^^^^^^^^^^
+
+================================================
+Running thread T3: invariant()
+mode:  runnable atomic readonly
+stack: ['[]']
+other threads:
+  T0: pc=215 terminated atomic __init__()
+  T1: pc=49 runnable fail0(0)
+    about to execute __main__:18: 		atomically in_cs -= 1
+  T2: pc=49 runnable fail0(1)
+    about to execute __main__:18: 		atomically in_cs -= 1
+shared variables:
+  counter: 0
+  flags: [ False, False ]
+  in_cs: 2
+  lockTaken: False
+  turn: 0
+state id: 18
+================================================
+
+Step 66:
+  program counter:   16
+  hvm code:          Frame invariant()
+  explanation:       pop argument () and run method "invariant"
+  start statement:   line=8 column=1
+  end statement:     line=8 column=24
+  source code:       invariant in_cs in {0,1}
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  call trace:        invariant()
+  stack:             [{:}]
+
+Step 67:
+  program counter:   17
+  hvm code:          Load in_cs
+  explanation:       push value (2) of variable in_cs
+  source code:       invariant in_cs in {0,1}
+                               ^^^^^
+  stack:             [{:}, 2]
+
+Step 68:
+  program counter:   18
+  hvm code:          Push {}
+  explanation:       push constant {}
+  source code:       invariant in_cs in {0,1}
+                                         ^^^
+  stack:             [{:}, 2, {}]
+
+Step 69:
+  program counter:   19
+  hvm code:          Push 0
+  explanation:       push constant 0
+  source code:       invariant in_cs in {0,1}
+                                         ^
+  stack:             [{:}, 2, {}, 0]
+
+Step 70:
+  program counter:   20
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (0, {}); insert first value into the second; push result ({ 0 })
+  source code:       invariant in_cs in {0,1}
+                                         ^^^
+  stack:             [{:}, 2, { 0 }]
+
+Step 71:
+  program counter:   21
+  hvm code:          Push 1
+  explanation:       push constant 1
+  source code:       invariant in_cs in {0,1}
+                                           ^
+  stack:             [{:}, 2, { 0 }, 1]
+
+Step 72:
+  program counter:   22
+  hvm code:          2-ary SetAdd
+  explanation:       pop 2 values (1, { 0 }); insert first value into the second; push result ({ 0, 1 })
+  source code:       invariant in_cs in {0,1}
+                                         ^^^
+  stack:             [{:}, 2, { 0, 1 }]
+
+Step 73:
+  program counter:   23
+  hvm code:          2-ary in
+  explanation:       pop 2 values ({ 0, 1 }, 2); check if the second value is a member of the first; push result (False)
+  source code:       invariant in_cs in {0,1}
+                               ^^^^^^^^^^^^^^
+  stack:             [{:}, False]
+
+Step 74:
+  program counter:   24
+  hvm code:          Assert
+  explanation:       pop a value (False) and raise exception
+  source code:       invariant in_cs in {0,1}
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  new mode:          failed
+  stack:             [{:}]
+  operation failed:  Harmony assertion failed
+
+================================================
+Final state
+================================================
+Threads:
+  T0: pc=215 terminated atomic __init__()
+  T1: pc=49 runnable fail0(0)
+    about to execute __main__:18: 		atomically in_cs -= 1
+  T2: pc=49 runnable fail0(1)
+    about to execute __main__:18: 		atomically in_cs -= 1
+  T3: pc=24 failed atomic readonly invariant()
+Variables:
+  counter: 0
+  flags: [ False, False ]
+  in_cs: 2
+  lockTaken: False
+  turn: 0

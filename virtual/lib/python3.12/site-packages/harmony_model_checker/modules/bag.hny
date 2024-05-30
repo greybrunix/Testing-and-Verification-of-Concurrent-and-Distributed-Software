@@ -1,0 +1,71 @@
+def empty() returns bg:
+    bg = {:}
+
+def fromSet(s) returns bg:
+    bg = { elt:1 for elt in s }
+
+def fromList(a) returns bg:
+    bg = {:}
+    for v in a:
+        if v in bg:
+            bg[v] += 1
+        else:
+            bg[v] = 1
+
+builtin multiplicity "bag$multiplicity"
+def multiplicity(bg, elt) returns count:
+    if elt in bg:
+        count = bg[elt]
+    else:
+        count = 0
+
+builtin size "bag$size"
+def size(bg) returns count:
+    count = 0
+    for _:c in bg:
+        count += c
+
+builtin bmin "bag$bmin"
+def bmin(bg) returns count:
+    assert bg != {:}
+    count = min(keys(bg))
+
+builtin bmax "bag$bmax"
+def bmax(bg) returns count:
+    assert bg != {:}
+    count = max(keys(bg))
+
+def bchoose(bg) returns elt:
+    elt = choose(keys(bg))
+
+builtin add "bag$add"
+def add(bg, elt) returns result:
+    result = bg
+    if elt in result:
+        result[elt] += 1
+    else:
+        result[elt] = 1
+
+builtin remove "bag$remove"
+def remove(bg, elt) returns result:
+    result = bg
+    if elt in result:
+        assert result[elt] > 0
+        result[elt] -= 1
+        if result[elt] == 0:
+            del result[elt]
+
+# Return set of all subbags of bg of size k
+def combinations(bg, k) returns result:
+    if k == 0:
+        result = { {:} }
+    else:
+        let n = size(bg):
+            if k > n:
+                result = {}
+            elif k == n:
+                result = { bg }
+            else:
+                let hd = bmin(bg) let tl = remove(bg, hd):
+                    result = { add(x, hd) for x in combinations(tl, k - 1) }
+                                | combinations(tl, k)

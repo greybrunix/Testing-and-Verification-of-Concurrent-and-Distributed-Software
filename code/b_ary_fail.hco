@@ -1,0 +1,6613 @@
+{
+  "nstates": 19,
+  "issue": "Safety violation",
+  "hvm": {
+    "modules": {
+        "__main__": {
+            "file": "b_ary_fail.hny",
+            "lines": [
+                "#critical reached?",
+                "#invariant reached_crit in {0, 1} # safety",
+                "#invariant   #forall (C1 C2: clients) , cs C1 /\\ cs C2 -> C1 = C2",
+                "#invariant  (in_cs in { 0, 1 }) and (any [entering tid for tid in [0,1]] => one_entered [0,1])",
+                "sequential turn, lockTaken, flags",
+                "flags = [False, False]",
+                "in_cs = 0",
+                "invariant in_cs in {0,1}",
+                "turn = 0",
+                "lockTaken = False",
+                "counter = 0",
+                "def fail0 p_q:",
+                "	while choose {False, True}:",
+                "		# non crit",
+                "		#entering crit",
+                "		#crit",
+                "		atomically in_cs += 1",
+                "		atomically in_cs -= 1",
+                "",
+                "		#leave crit",
+                "def fail1 p_q:",
+                "	while choose {False, True}:",
+                "		# Enter cs",
+                "		await not lockTaken",
+                "		lockTaken = True",
+                "		#cs",
+                "		atomically in_cs += 1",
+                "		atomically in_cs -= 1",
+                "		#leaving cs",
+                "		lockTaken = False",
+                "def fail2 p_q:",
+                "	while choose {False, True}:",
+                "		# enter critical",
+                "		turn = 1 - p_q",
+                "		await turn == p_q",
+                "		# critical",
+                "		atomically in_cs += 1",
+                "		atomically in_cs -= 1",
+                "		# leaving critical",
+                "		# post protocol",
+                "def fail4 p_q:",
+                "	while choose {False, True}:",
+                "		while not (turn == p_q):",
+                "			pass",
+                "		#cs",
+                "		atomically in_cs += 1",
+                "		atomically in_cs -= 1",
+                "		#counter += 1",
+                "		turn = 1 - p_q",
+                "",
+                "def fail3 p_q:",
+                "	while choose {False, True}:",
+                "		#entering critical",
+                "		flags p_q = True",
+                "		await not flags (1 - p_q)",
+                "		#crit",
+                "		atomically in_cs += 1",
+                "		print(\"entrei\");",
+                "		print(\"sai\");",
+                "		atomically in_cs -= 1",
+                "		#leaving",
+                "		flags p_q = False",
+                "spawn fail0 0;",
+                "spawn fail0 1;"
+              ],
+            "identifiers": {
+                "lockTaken": "global",
+                "flags": "global",
+                "in_cs": "global",
+                "fail4": "constant",
+                "this": "local-var",
+                "turn": "global",
+                "fail0": "constant",
+                "fail2": "constant",
+                "fail1": "constant",
+                "fail3": "constant",
+                "p_q": "local-const",
+                "counter": "global",
+                "___": "___"
+              }
+          }
+      },
+    "labels": {
+        "__end__": 217
+      },
+    "pretty": [
+        [
+            "Frame __init__()",
+            "start of method __init__"
+          ],
+        [
+            "Push ?turn",
+            "push constant ?turn"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?lockTaken",
+            "push constant ?lockTaken"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "Sequential",
+            "sequential consistency for variable on top of stack"
+          ],
+        [
+            "Push ()",
+            "building a tuple: push constant ()"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary ListAdd",
+            "pop 2 values and push the result of applying ListAdd"
+          ],
+        [
+            "Store flags",
+            "pop a value and store it in shared variable flags"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "Jump 26",
+            "jump over invariant definition: set program counter to 26"
+          ],
+        [
+            "Frame invariant()",
+            "start of method invariant"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "2-ary in",
+            "pop 2 values and push the result of applying in"
+          ],
+        [
+            "Assert",
+            "pop a condition and raise exception if condition is false"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Invariant 16",
+            "test invariant"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store lockTaken",
+            "pop a value and store it in shared variable lockTaken"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "Store counter",
+            "pop a value and store it in shared variable counter"
+          ],
+        [
+            "Jump 205",
+            "jump over method definition: set program counter to 205"
+          ],
+        [
+            "Frame fail0(p_q)",
+            "start of method fail0"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 56",
+            "pop a value and jump to 56 if the value is False"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Jump 35",
+            "set program counter to 35"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 205",
+            "jump over method definition: set program counter to 205"
+          ],
+        [
+            "Frame fail1(p_q)",
+            "start of method fail1"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 89",
+            "pop a value and jump to 89 if the value is False"
+          ],
+        [
+            "Load lockTaken",
+            "push value of shared variable lockTaken"
+          ],
+        [
+            "1-ary not",
+            "pop 1 value and push the result of applying not"
+          ],
+        [
+            "JumpCond False 67",
+            "pop a value and jump to 67 if the value is False"
+          ],
+        [
+            "Jump 72",
+            "set program counter to 72"
+          ],
+        [
+            "Jump 67",
+            "set program counter to 67"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store lockTaken",
+            "pop a value and store it in shared variable lockTaken"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store lockTaken",
+            "pop a value and store it in shared variable lockTaken"
+          ],
+        [
+            "Jump 59",
+            "set program counter to 59"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 205",
+            "jump over method definition: set program counter to 205"
+          ],
+        [
+            "Frame fail2(p_q)",
+            "start of method fail2"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 122",
+            "pop a value and jump to 122 if the value is False"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Load turn",
+            "push value of shared variable turn"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "JumpCond False 103",
+            "pop a value and jump to 103 if the value is False"
+          ],
+        [
+            "Jump 109",
+            "set program counter to 109"
+          ],
+        [
+            "Jump 103",
+            "set program counter to 103"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Jump 92",
+            "set program counter to 92"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 205",
+            "jump over method definition: set program counter to 205"
+          ],
+        [
+            "Frame fail4(p_q)",
+            "start of method fail4"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 155",
+            "pop a value and jump to 155 if the value is False"
+          ],
+        [
+            "Load turn",
+            "push value of shared variable turn"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary ==",
+            "pop 2 values and push the result of applying =="
+          ],
+        [
+            "JumpCond True 138",
+            "pop a value and jump to 138 if the value is True"
+          ],
+        [
+            "Jump 133",
+            "set program counter to 133"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store turn",
+            "pop a value and store it in shared variable turn"
+          ],
+        [
+            "Jump 126",
+            "set program counter to 126"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Jump 205",
+            "jump over method definition: set program counter to 205"
+          ],
+        [
+            "Frame fail3(p_q)",
+            "start of method fail3"
+          ],
+        [
+            "Push {}",
+            "push constant {}"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "2-ary SetAdd",
+            "pop 2 values and push the result of applying SetAdd"
+          ],
+        [
+            "Choose",
+            "pop a set value and push one of its elements"
+          ],
+        [
+            "JumpCond False 203",
+            "pop a value and jump to 203 if the value is False"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push True",
+            "push constant True"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Load",
+            "pop an address and push the value at the address"
+          ],
+        [
+            "1-ary not",
+            "pop 1 value and push the result of applying not"
+          ],
+        [
+            "JumpCond False 171",
+            "pop a value and jump to 171 if the value is False"
+          ],
+        [
+            "Jump 181",
+            "set program counter to 181"
+          ],
+        [
+            "Jump 171",
+            "set program counter to 171"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary +",
+            "pop 2 values and push the result of applying +"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Push \"entrei\"",
+            "push constant \"entrei\""
+          ],
+        [
+            "Print",
+            "pop a value and add to print history"
+          ],
+        [
+            "Push \"sai\"",
+            "push constant \"sai\""
+          ],
+        [
+            "Print",
+            "pop a value and add to print history"
+          ],
+        [
+            "AtomicInc(eager)",
+            "increment atomic counter of context; thread runs uninterrupted if larger than 0"
+          ],
+        [
+            "Load in_cs",
+            "push value of shared variable in_cs"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary -",
+            "pop 2 values and push the result of applying -"
+          ],
+        [
+            "Store in_cs",
+            "pop a value and store it in shared variable in_cs"
+          ],
+        [
+            "AtomicDec",
+            "decrement atomic counter of context"
+          ],
+        [
+            "Push ?flags",
+            "push constant ?flags"
+          ],
+        [
+            "LoadVar p_q",
+            "push the value of p_q"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push False",
+            "push constant False"
+          ],
+        [
+            "Store",
+            "pop a value and an address and store the value at the address"
+          ],
+        [
+            "Jump 159",
+            "set program counter to 159"
+          ],
+        [
+            "DelVar p_q",
+            "delete method variable p_q"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "Push ?PC(34)",
+            "push constant ?PC(34)"
+          ],
+        [
+            "Push 0",
+            "push constant 0"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "Push ?PC(34)",
+            "push constant ?PC(34)"
+          ],
+        [
+            "Push 1",
+            "push constant 1"
+          ],
+        [
+            "2-ary AddArg",
+            "pop 2 values and push the result of applying AddArg"
+          ],
+        [
+            "Push {:}",
+            "push constant {:}"
+          ],
+        [
+            "Spawn",
+            "pop thread-local state, argument, and pc and spawn a new thread"
+          ],
+        [
+            "ReturnOp(result. None)",
+            "restore caller method state and push result"
+          ],
+        [
+            "DelVar result",
+            "delete method variable result"
+          ]
+      ],
+    "locs": [
+        {
+            "module": "__main__",
+            "endline": 65,
+            "stmt": [
+                5,
+                1,
+                65,
+                7
+              ],
+            "line": 5,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 15,
+            "column": 12
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 33,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 26,
+            "column": 18
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 33,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 33,
+            "column": 29
+          },
+        {
+            "module": "__main__",
+            "endline": 5,
+            "stmt": [
+                5,
+                1,
+                5,
+                33
+              ],
+            "line": 5,
+            "endcolumn": 33,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 14,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 21,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 21,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 6,
+            "stmt": [
+                6,
+                1,
+                6,
+                22
+              ],
+            "line": 6,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                1,
+                7,
+                9
+              ],
+            "line": 7,
+            "endcolumn": 9,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 7,
+            "stmt": [
+                7,
+                1,
+                7,
+                9
+              ],
+            "line": 7,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 9,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 24,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 15,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 23,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 21,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 23,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 23,
+            "column": 21
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 24,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 24,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 24,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 8,
+            "stmt": [
+                8,
+                1,
+                8,
+                24
+              ],
+            "line": 8,
+            "endcolumn": 24,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                8
+              ],
+            "line": 9,
+            "endcolumn": 8,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 9,
+            "stmt": [
+                9,
+                1,
+                9,
+                8
+              ],
+            "line": 9,
+            "endcolumn": 6,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                1,
+                10,
+                17
+              ],
+            "line": 10,
+            "endcolumn": 17,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 10,
+            "stmt": [
+                10,
+                1,
+                10,
+                17
+              ],
+            "line": 10,
+            "endcolumn": 11,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                11,
+                1,
+                11,
+                11
+              ],
+            "line": 11,
+            "endcolumn": 11,
+            "column": 11
+          },
+        {
+            "module": "__main__",
+            "endline": 11,
+            "stmt": [
+                11,
+                1,
+                11,
+                11
+              ],
+            "line": 11,
+            "endcolumn": 9,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                1,
+                12,
+                14
+              ],
+            "line": 12,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                1,
+                12,
+                14
+              ],
+            "line": 12,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 26,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 27,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 17,
+            "stmt": [
+                17,
+                14,
+                17,
+                23
+              ],
+            "line": 17,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 18,
+            "stmt": [
+                18,
+                14,
+                18,
+                23
+              ],
+            "line": 18,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 13,
+            "stmt": [
+                13,
+                2,
+                13,
+                28
+              ],
+            "line": 13,
+            "endcolumn": 28,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 12,
+            "stmt": [
+                12,
+                1,
+                12,
+                14
+              ],
+            "line": 12,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                1,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                1,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 26,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 27,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                21
+              ],
+            "line": 24,
+            "endcolumn": 21,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                21
+              ],
+            "line": 24,
+            "endcolumn": 21,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                21
+              ],
+            "line": 24,
+            "endcolumn": 21,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                21
+              ],
+            "line": 24,
+            "endcolumn": 21,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 24,
+            "stmt": [
+                24,
+                3,
+                24,
+                21
+              ],
+            "line": 24,
+            "endcolumn": 21,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                18
+              ],
+            "line": 25,
+            "endcolumn": 18,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 25,
+            "stmt": [
+                25,
+                3,
+                25,
+                18
+              ],
+            "line": 25,
+            "endcolumn": 13,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 27,
+            "stmt": [
+                27,
+                14,
+                27,
+                23
+              ],
+            "line": 27,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 28,
+            "stmt": [
+                28,
+                14,
+                28,
+                23
+              ],
+            "line": 28,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                19
+              ],
+            "line": 30,
+            "endcolumn": 19,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 30,
+            "stmt": [
+                30,
+                3,
+                30,
+                19
+              ],
+            "line": 30,
+            "endcolumn": 13,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 22,
+            "stmt": [
+                22,
+                2,
+                22,
+                28
+              ],
+            "line": 22,
+            "endcolumn": 28,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 21,
+            "stmt": [
+                21,
+                1,
+                21,
+                14
+              ],
+            "line": 21,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                14
+              ],
+            "line": 31,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                14
+              ],
+            "line": 31,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 26,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 27,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                3,
+                34,
+                16
+              ],
+            "line": 34,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                3,
+                34,
+                16
+              ],
+            "line": 34,
+            "endcolumn": 16,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                3,
+                34,
+                16
+              ],
+            "line": 34,
+            "endcolumn": 16,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 34,
+            "stmt": [
+                34,
+                3,
+                34,
+                16
+              ],
+            "line": 34,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 12,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 19,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 19,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 19,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 19,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 35,
+            "stmt": [
+                35,
+                3,
+                35,
+                19
+              ],
+            "line": 35,
+            "endcolumn": 19,
+            "column": 17
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 37,
+            "stmt": [
+                37,
+                14,
+                37,
+                23
+              ],
+            "line": 37,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 38,
+            "stmt": [
+                38,
+                14,
+                38,
+                23
+              ],
+            "line": 38,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 32,
+            "stmt": [
+                32,
+                2,
+                32,
+                28
+              ],
+            "line": 32,
+            "endcolumn": 28,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                14
+              ],
+            "line": 31,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 31,
+            "stmt": [
+                31,
+                1,
+                31,
+                14
+              ],
+            "line": 31,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                1,
+                41,
+                14
+              ],
+            "line": 41,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                1,
+                41,
+                14
+              ],
+            "line": 41,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 26,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 27,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                26
+              ],
+            "line": 43,
+            "endcolumn": 17,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                26
+              ],
+            "line": 43,
+            "endcolumn": 24,
+            "column": 22
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                26
+              ],
+            "line": 43,
+            "endcolumn": 24,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                26
+              ],
+            "line": 43,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 43,
+            "stmt": [
+                43,
+                3,
+                43,
+                26
+              ],
+            "line": 43,
+            "endcolumn": 26,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 46,
+            "stmt": [
+                46,
+                14,
+                46,
+                23
+              ],
+            "line": 46,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 47,
+            "stmt": [
+                47,
+                14,
+                47,
+                23
+              ],
+            "line": 47,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 49,
+            "stmt": [
+                49,
+                3,
+                49,
+                16
+              ],
+            "line": 49,
+            "endcolumn": 10,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 49,
+            "stmt": [
+                49,
+                3,
+                49,
+                16
+              ],
+            "line": 49,
+            "endcolumn": 16,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 49,
+            "stmt": [
+                49,
+                3,
+                49,
+                16
+              ],
+            "line": 49,
+            "endcolumn": 16,
+            "column": 10
+          },
+        {
+            "module": "__main__",
+            "endline": 49,
+            "stmt": [
+                49,
+                3,
+                49,
+                16
+              ],
+            "line": 49,
+            "endcolumn": 8,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 42,
+            "stmt": [
+                42,
+                2,
+                42,
+                28
+              ],
+            "line": 42,
+            "endcolumn": 28,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                1,
+                41,
+                14
+              ],
+            "line": 41,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 41,
+            "stmt": [
+                41,
+                1,
+                41,
+                14
+              ],
+            "line": 41,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 51,
+            "stmt": [
+                51,
+                1,
+                51,
+                14
+              ],
+            "line": 51,
+            "endcolumn": 3,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 51,
+            "stmt": [
+                51,
+                1,
+                51,
+                14
+              ],
+            "line": 51,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 20,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 26,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 26,
+            "column": 16
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 27,
+            "column": 8
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 6,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 54,
+            "stmt": [
+                54,
+                3,
+                54,
+                18
+              ],
+            "line": 54,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 54,
+            "stmt": [
+                54,
+                3,
+                54,
+                18
+              ],
+            "line": 54,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 54,
+            "stmt": [
+                54,
+                3,
+                54,
+                18
+              ],
+            "line": 54,
+            "endcolumn": 11,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 54,
+            "stmt": [
+                54,
+                3,
+                54,
+                18
+              ],
+            "line": 54,
+            "endcolumn": 18,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 54,
+            "stmt": [
+                54,
+                3,
+                54,
+                18
+              ],
+            "line": 54,
+            "endcolumn": 13,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 20,
+            "column": 20
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 26,
+            "column": 24
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 26,
+            "column": 20
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 27
+          },
+        {
+            "module": "__main__",
+            "endline": 55,
+            "stmt": [
+                55,
+                3,
+                55,
+                27
+              ],
+            "line": 55,
+            "endcolumn": 27,
+            "column": 27
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 57,
+            "stmt": [
+                57,
+                14,
+                57,
+                23
+              ],
+            "line": 57,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 58,
+            "stmt": [
+                58,
+                3,
+                58,
+                17
+              ],
+            "line": 58,
+            "endcolumn": 16,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 58,
+            "stmt": [
+                58,
+                3,
+                58,
+                17
+              ],
+            "line": 58,
+            "endcolumn": 17,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 59,
+            "stmt": [
+                59,
+                3,
+                59,
+                14
+              ],
+            "line": 59,
+            "endcolumn": 13,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 59,
+            "stmt": [
+                59,
+                3,
+                59,
+                14
+              ],
+            "line": 59,
+            "endcolumn": 14,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 23,
+            "column": 23
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 21,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 60,
+            "stmt": [
+                60,
+                14,
+                60,
+                23
+              ],
+            "line": 60,
+            "endcolumn": 23,
+            "column": 14
+          },
+        {
+            "module": "__main__",
+            "endline": 62,
+            "stmt": [
+                62,
+                3,
+                62,
+                19
+              ],
+            "line": 62,
+            "endcolumn": 7,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 62,
+            "stmt": [
+                62,
+                3,
+                62,
+                19
+              ],
+            "line": 62,
+            "endcolumn": 11,
+            "column": 9
+          },
+        {
+            "module": "__main__",
+            "endline": 62,
+            "stmt": [
+                62,
+                3,
+                62,
+                19
+              ],
+            "line": 62,
+            "endcolumn": 11,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 62,
+            "stmt": [
+                62,
+                3,
+                62,
+                19
+              ],
+            "line": 62,
+            "endcolumn": 19,
+            "column": 15
+          },
+        {
+            "module": "__main__",
+            "endline": 62,
+            "stmt": [
+                62,
+                3,
+                62,
+                19
+              ],
+            "line": 62,
+            "endcolumn": 13,
+            "column": 3
+          },
+        {
+            "module": "__main__",
+            "endline": 52,
+            "stmt": [
+                52,
+                2,
+                52,
+                28
+              ],
+            "line": 52,
+            "endcolumn": 28,
+            "column": 2
+          },
+        {
+            "module": "__main__",
+            "endline": 51,
+            "stmt": [
+                51,
+                1,
+                51,
+                14
+              ],
+            "line": 51,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 51,
+            "stmt": [
+                51,
+                1,
+                51,
+                14
+              ],
+            "line": 51,
+            "endcolumn": 14,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 63,
+            "stmt": [
+                63,
+                1,
+                63,
+                13
+              ],
+            "line": 63,
+            "endcolumn": 11,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 63,
+            "stmt": [
+                63,
+                1,
+                63,
+                13
+              ],
+            "line": 63,
+            "endcolumn": 13,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 63,
+            "stmt": [
+                63,
+                1,
+                63,
+                13
+              ],
+            "line": 63,
+            "endcolumn": 13,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 63,
+            "stmt": [
+                63,
+                1,
+                63,
+                13
+              ],
+            "line": 63,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 63,
+            "stmt": [
+                63,
+                1,
+                63,
+                13
+              ],
+            "line": 63,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 64,
+            "stmt": [
+                64,
+                1,
+                64,
+                13
+              ],
+            "line": 64,
+            "endcolumn": 11,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 64,
+            "stmt": [
+                64,
+                1,
+                64,
+                13
+              ],
+            "line": 64,
+            "endcolumn": 13,
+            "column": 13
+          },
+        {
+            "module": "__main__",
+            "endline": 64,
+            "stmt": [
+                64,
+                1,
+                64,
+                13
+              ],
+            "line": 64,
+            "endcolumn": 13,
+            "column": 7
+          },
+        {
+            "module": "__main__",
+            "endline": 64,
+            "stmt": [
+                64,
+                1,
+                64,
+                13
+              ],
+            "line": 64,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 64,
+            "stmt": [
+                64,
+                1,
+                64,
+                13
+              ],
+            "line": 64,
+            "endcolumn": 13,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 65,
+            "stmt": [
+                5,
+                1,
+                65,
+                7
+              ],
+            "line": 5,
+            "endcolumn": 7,
+            "column": 1
+          },
+        {
+            "module": "__main__",
+            "endline": 65,
+            "stmt": [
+                5,
+                1,
+                65,
+                7
+              ],
+            "line": 5,
+            "endcolumn": 7,
+            "column": 1
+          }
+      ],
+    "code": [
+        {
+            "args": "()",
+            "name": "__init__",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "turn"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "lockTaken"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Sequential"
+          },
+        {
+            "value": {
+                "type": "list",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "ListAdd",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "flags"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "26",
+            "op": "Jump"
+          },
+        {
+            "args": "()",
+            "name": "invariant",
+            "op": "Frame"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "in",
+            "op": "Nary"
+          },
+        {
+            "op": "Assert"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "16",
+            "op": "Invariant",
+            "pre": "False"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "lockTaken"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "counter"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "205",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "fail0",
+            "op": "Frame"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "56",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "pc": "35",
+            "op": "Jump"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "205",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "fail1",
+            "op": "Frame"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "89",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "lockTaken"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "arity": 1,
+            "value": "not",
+            "op": "Nary"
+          },
+        {
+            "pc": "67",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "72",
+            "op": "Jump"
+          },
+        {
+            "pc": "67",
+            "op": "Jump"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "lockTaken"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "lockTaken"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "59",
+            "op": "Jump"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "205",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "fail2",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "122",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "103",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "109",
+            "op": "Jump"
+          },
+        {
+            "pc": "103",
+            "op": "Jump"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "pc": "92",
+            "op": "Jump"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "205",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "fail4",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "155",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "==",
+            "op": "Nary"
+          },
+        {
+            "pc": "138",
+            "cond": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "133",
+            "op": "Jump"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "turn"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "pc": "126",
+            "op": "Jump"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "pc": "205",
+            "op": "Jump"
+          },
+        {
+            "args": "p_q",
+            "name": "fail3",
+            "op": "Frame"
+          },
+        {
+            "value": {
+                "type": "set",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "SetAdd",
+            "op": "Nary"
+          },
+        {
+            "op": "Choose"
+          },
+        {
+            "pc": "203",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "True"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "op": "Load"
+          },
+        {
+            "arity": 1,
+            "value": "not",
+            "op": "Nary"
+          },
+        {
+            "pc": "171",
+            "cond": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "JumpCond"
+          },
+        {
+            "pc": "181",
+            "op": "Jump"
+          },
+        {
+            "pc": "171",
+            "op": "Jump"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "+",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": {
+                "type": "atom",
+                "value": "entrei"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Print"
+          },
+        {
+            "value": {
+                "type": "atom",
+                "value": "sai"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Print"
+          },
+        {
+            "lazy": "False",
+            "op": "AtomicInc"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Load"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "-",
+            "op": "Nary"
+          },
+        {
+            "value": [
+                {
+                    "type": "atom",
+                    "value": "in_cs"
+                  }
+              ],
+            "op": "Store"
+          },
+        {
+            "op": "AtomicDec"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+                    {
+                        "type": "atom",
+                        "value": "flags"
+                      }
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "-1"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": "p_q",
+            "op": "LoadVar"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "bool",
+                "value": "False"
+              },
+            "op": "Push"
+          },
+        {
+            "op": "Store"
+          },
+        {
+            "pc": "159",
+            "op": "Jump"
+          },
+        {
+            "value": "p_q",
+            "op": "DelVar"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "34"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 0
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "value": {
+                "type": "address",
+                "args": [
+
+                  ],
+                "func": {
+                    "type": "pc",
+                    "value": "34"
+                  }
+              },
+            "op": "Push"
+          },
+        {
+            "value": {
+                "type": "int",
+                "value": 1
+              },
+            "op": "Push"
+          },
+        {
+            "arity": 2,
+            "value": "AddArg",
+            "op": "Nary"
+          },
+        {
+            "value": {
+                "type": "dict",
+                "value": [
+
+                  ]
+              },
+            "op": "Push"
+          },
+        {
+            "eternal": "False",
+            "op": "Spawn"
+          },
+        {
+            "result": "result",
+            "default": {
+                "type": "address"
+              },
+            "op": "Return"
+          },
+        {
+            "value": "result",
+            "op": "DelVar"
+          }
+      ]
+  },
+  "macrosteps": [
+    {
+      "id": "1",
+      "tid": "0",
+      "shared": { },
+      "name": "__init__()",
+      "context": {
+        "tid": "0",
+        "hvalue": "57c50766117a",
+        "fp": "1",
+        "id": "0",
+        "name": "__init__()",
+        "entry": "0",
+        "pc": "0",
+        "sp": "1",
+        "stack": [{ "type": "list", "value": [] }],
+        "trace": [
+{"pc": "0","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "atomic": "1",
+        "next": { "type": "Frame", "name": "__init__", "args": "()", "value": { "type": "list", "value": [] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame __init__()",
+          "explain": "pop argument () and run method \"__init__\"",
+          "explain2": { "text": "pop argument () and run method #+", "args": [ { "type": "atom", "value": "__init__" } ] },
+          "npc": "1",
+          "fp": "1",
+          "trace": [
+{"pc": "1","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "0"
+        },
+
+        {
+          "code": "Push ?turn",
+          "explain": "push constant ?turn",
+          "explain2": { "text": "push constant ?turn", "args": [] },
+          "npc": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ],
+          "pc": "1"
+        },
+
+        {
+          "code": "Sequential",
+          "explain": "sequential consistency for variable on top of stack",
+          "explain2": { "text": "sequential consistency for variable on top of stack", "args": [] },
+          "npc": "3",
+          "pop": "1",
+          "push": [ ],
+          "pc": "2"
+        },
+
+        {
+          "code": "Push ?lockTaken",
+          "explain": "push constant ?lockTaken",
+          "explain2": { "text": "push constant ?lockTaken", "args": [] },
+          "npc": "4",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "lockTaken" } ] } ],
+          "pc": "3"
+        },
+
+        {
+          "code": "Sequential",
+          "explain": "sequential consistency for variable on top of stack",
+          "explain2": { "text": "sequential consistency for variable on top of stack", "args": [] },
+          "npc": "5",
+          "pop": "1",
+          "push": [ ],
+          "pc": "4"
+        },
+
+        {
+          "code": "Push ?flags",
+          "explain": "push constant ?flags",
+          "explain2": { "text": "push constant ?flags", "args": [] },
+          "npc": "6",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ],
+          "pc": "5"
+        },
+
+        {
+          "code": "Sequential",
+          "explain": "sequential consistency for variable on top of stack",
+          "explain2": { "text": "sequential consistency for variable on top of stack", "args": [] },
+          "npc": "7",
+          "pop": "1",
+          "push": [ ],
+          "pc": "6"
+        },
+
+        {
+          "code": "Push ()",
+          "explain": "building a tuple: push constant ()",
+          "explain2": { "text": "building a tuple: push constant ()", "args": [] },
+          "npc": "8",
+          "push": [ { "type": "list", "value": [] } ],
+          "pc": "7"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "9",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "8"
+        },
+
+        {
+          "code": "2-ary ListAdd",
+          "explain": "pop 2 values (False, []); insert first value into the second; push result ([False])",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "list", "value": [] }, { "type": "list", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "10",
+          "pop": "2",
+          "push": [ { "type": "list", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "9"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "11",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "10"
+        },
+
+        {
+          "code": "2-ary ListAdd",
+          "explain": "pop 2 values (False, [False]); insert first value into the second; push result ([False, False])",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "list", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } ] },
+          "npc": "12",
+          "pop": "2",
+          "push": [ { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } ],
+          "pc": "11"
+        },
+
+        {
+          "code": "Store flags",
+          "explain": "pop value ([False, False]) and store into variable flags",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "flags" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] } },
+          "npc": "13",
+          "pop": "1",
+          "push": [ ],
+          "pc": "12"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "14",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "13"
+        },
+
+        {
+          "code": "Store in_cs",
+          "explain": "pop value (0) and store into variable in_cs",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "in_cs" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" } },
+          "npc": "15",
+          "pop": "1",
+          "push": [ ],
+          "pc": "14"
+        },
+
+        {
+          "code": "Jump 26",
+          "explain": "jump over invariant definition: set program counter to 26",
+          "explain2": { "text": "jump over invariant definition: set program counter to 26", "args": [] },
+          "npc": "26",
+          "push": [ ],
+          "pc": "15"
+        },
+
+        {
+          "code": "Invariant 16",
+          "explain": "test invariant",
+          "explain2": { "text": "test invariant", "args": [] },
+          "npc": "27",
+          "push": [ ],
+          "pc": "26"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "28",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "27"
+        },
+
+        {
+          "code": "Store turn",
+          "explain": "pop value (0) and store into variable turn",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "turn" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "29",
+          "pop": "1",
+          "push": [ ],
+          "pc": "28"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "30",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "29"
+        },
+
+        {
+          "code": "Store lockTaken",
+          "explain": "pop value (False) and store into variable lockTaken",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "bool", "value": "False" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "lockTaken" } ] } ] },
+          "shared": { "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "31",
+          "pop": "1",
+          "push": [ ],
+          "pc": "30"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "32",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "31"
+        },
+
+        {
+          "code": "Store counter",
+          "explain": "pop value (0) and store into variable counter",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "counter" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "33",
+          "pop": "1",
+          "push": [ ],
+          "pc": "32"
+        },
+
+        {
+          "code": "Jump 205",
+          "explain": "jump over method definition: set program counter to 205",
+          "explain2": { "text": "jump over method definition: set program counter to 205", "args": [] },
+          "npc": "205",
+          "push": [ ],
+          "pc": "33"
+        },
+
+        {
+          "code": "Push ?PC(34)",
+          "explain": "push constant ?PC(34)",
+          "explain2": { "text": "push constant ?PC(34)", "args": [] },
+          "npc": "206",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [ ] } ],
+          "pc": "205"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "207",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "206"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (0, ?PC(34)); push result (?PC(34)[0])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [{ "type": "int", "value": "0" } ] } ] },
+          "npc": "208",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [{ "type": "int", "value": "0" } ] } ],
+          "pc": "207"
+        },
+
+        {
+          "code": "Push {:}",
+          "explain": "push constant {:}",
+          "explain2": { "text": "push constant {:}", "args": [] },
+          "npc": "209",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "208"
+        },
+
+        {
+          "code": "Spawn",
+          "explain": "pop local state ({:}), arg (0), and pc (34: \"fail0\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (34: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "0" }, { "type": "atom", "value": "fail0" } ] },
+          "npc": "210",
+          "pop": "2",
+          "push": [ ],
+          "pc": "209"
+        },
+
+        {
+          "code": "Push ?PC(34)",
+          "explain": "push constant ?PC(34)",
+          "explain2": { "text": "push constant ?PC(34)", "args": [] },
+          "npc": "211",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [ ] } ],
+          "pc": "210"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "212",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "211"
+        },
+
+        {
+          "code": "2-ary AddArg",
+          "explain": "pop 2 values (1, ?PC(34)); push result (?PC(34)[1])",
+          "explain2": { "text": "pop 2 values (#+, #+); push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [ ] }, { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [{ "type": "int", "value": "1" } ] } ] },
+          "npc": "213",
+          "pop": "2",
+          "push": [ { "type": "address", "func": { "type": "pc", "value": "34" }, "args": [{ "type": "int", "value": "1" } ] } ],
+          "pc": "212"
+        },
+
+        {
+          "code": "Push {:}",
+          "explain": "push constant {:}",
+          "explain2": { "text": "push constant {:}", "args": [] },
+          "npc": "214",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "213"
+        },
+
+        {
+          "code": "Spawn",
+          "explain": "pop local state ({:}), arg (1), and pc (34: \"fail0\"), and spawn thread",
+          "explain2": { "text": "pop local state (#+), arg (#+), and pc (34: #+), and spawn thread", "args": [ { "type": "dict", "value": [] }, { "type": "int", "value": "1" }, { "type": "atom", "value": "fail0" } ] },
+          "npc": "215",
+          "pop": "2",
+          "push": [ ],
+          "pc": "214"
+        },
+
+        {
+          "code": "ReturnOp(result. None)",
+          "explain": "pop caller's method variables and pc and push result (%+), or terminate if no caller",
+          "explain2": { "text": "pop caller's method variables and pc and push result (%+), or terminate if no caller", "args": [ { "type": "address" } ] },
+          "npc": "215",
+          "mode": "terminated",
+          "pop": "1",
+          "push": [ { "type": "address" } ],
+          "pc": "215"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7ca440025a": "1",
+          "7f7ca44002aa": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7ca440025a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "34",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7ca44002aa",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "34",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "1" }],
+          "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "1" } },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "tid": "2",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "7f7ca44002aa",
+        "fp": "1",
+        "name": "fail0(1)",
+        "entry": "34",
+        "pc": "34",
+        "sp": "1",
+        "stack": [{ "type": "int", "value": "1" }],
+        "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "1" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame fail0(p_q)",
+          "explain": "pop argument (1), assign to p_q, and run method \"fail0\"",
+          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "1" }, { "type": "atom", "value": "fail0" } ] },
+          "npc": "35",
+          "fp": "1",
+          "trace": [
+{"pc": "35","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "1" } },"sp": 0}
+          ],
+          "local": { "p_q": { "type": "int", "value": "1" } },
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "34"
+        },
+
+        {
+          "code": "DelVar p_q",
+          "explain": "delete method variable p_q",
+          "explain2": { "text": "delete method variable p_q", "args": [] },
+          "npc": "36",
+          "local": { },
+          "push": [ ],
+          "pc": "35"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "37",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "36"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "38",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "37"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "39",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "38"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "40",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "39"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "41",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "40"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7ca440025a": "1",
+          "7f7ca440034a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7ca440025a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "34",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7ca440034a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "41",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "41","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "tid": "2",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(1)",
+      "choice": { "type": "bool", "value": "True" },
+      "context": {
+        "tid": "2",
+        "hvalue": "7f7ca440034a",
+        "fp": "1",
+        "name": "fail0(1)",
+        "entry": "34",
+        "pc": "41",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "41","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (True)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
+          "choose": { "type": "bool", "value": "True" },
+          "npc": "42",
+          "fp": "1",
+          "trace": [
+{"pc": "42","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "41"
+        },
+
+        {
+          "code": "JumpCond False 56",
+          "explain": "pop value (True), compare to False, and jump to 56 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 56 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
+          "npc": "43",
+          "pop": "1",
+          "push": [ ],
+          "pc": "42"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7ca440025a": "1",
+          "7f7caf80004a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7ca440025a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "34",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7caf80004a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "43",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "43","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "tid": "2",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "0" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(1)",
+      "context": {
+        "tid": "2",
+        "hvalue": "7f7caf80004a",
+        "fp": "1",
+        "name": "fail0(1)",
+        "entry": "34",
+        "pc": "43",
+        "sp": "1",
+        "stack": [{ "type": "dict", "value": [] }],
+        "trace": [
+{"pc": "43","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "AtomicInc" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "AtomicInc(eager)",
+          "explain": "increment atomic counter from 0 to 1: becomes atomic",
+          "explain2": { "text": "increment atomic counter from 0 to 1: becomes atomic", "args": [ ] },
+          "npc": "44",
+          "fp": "1",
+          "trace": [
+{"pc": "44","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "push": [ ],
+          "pc": "43"
+        },
+
+        {
+          "code": "Load in_cs",
+          "explain": "push value (0) of variable in_cs",
+          "explain2": { "text": "push value (#+) of variable in_cs", "args": [ { "type": "int", "value": "0" } ] },
+          "npc": "45",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "44"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "46",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "45"
+        },
+
+        {
+          "code": "2-ary +",
+          "explain": "pop 2 values (1, 0); add the integers; push result (1)",
+          "explain2": { "text": "pop 2 values (#+, #+); add the integers; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] },
+          "npc": "47",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "46"
+        },
+
+        {
+          "code": "Store in_cs",
+          "explain": "pop value (1) and store into variable in_cs",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "1" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "in_cs" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "48",
+          "pop": "1",
+          "push": [ ],
+          "pc": "47"
+        },
+
+        {
+          "code": "AtomicDec",
+          "explain": "decrement atomic counter from 1 to 0: no longer atomic",
+          "explain2": { "text": "decrement atomic counter from 1 to 0: no longer atomic", "args": [ ] },
+          "npc": "49",
+          "atomic": "0",
+          "push": [ ],
+          "pc": "48"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7ca440025a": "1",
+          "7f7cad40007a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7ca440025a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "34",
+          "sp": "1",
+          "stack": [{ "type": "int", "value": "0" }],
+          "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "0" } },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7f7ca440025a",
+        "fp": "1",
+        "name": "fail0(0)",
+        "entry": "34",
+        "pc": "34",
+        "sp": "1",
+        "stack": [{ "type": "int", "value": "0" }],
+        "trace": [
+{"pc": "34","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Frame", "name": "fail0", "args": "p_q", "value": { "type": "int", "value": "0" } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame fail0(p_q)",
+          "explain": "pop argument (0), assign to p_q, and run method \"fail0\"",
+          "explain2": { "text": "pop argument (#+), assign to p_q, and run method #+", "args": [ { "type": "int", "value": "0" }, { "type": "atom", "value": "fail0" } ] },
+          "npc": "35",
+          "fp": "1",
+          "trace": [
+{"pc": "35","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ "p_q": { "type": "int", "value": "0" } },"sp": 0}
+          ],
+          "local": { "p_q": { "type": "int", "value": "0" } },
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "34"
+        },
+
+        {
+          "code": "DelVar p_q",
+          "explain": "delete method variable p_q",
+          "explain2": { "text": "delete method variable p_q", "args": [] },
+          "npc": "36",
+          "local": { },
+          "push": [ ],
+          "pc": "35"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "37",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "36"
+        },
+
+        {
+          "code": "Push False",
+          "explain": "push constant False",
+          "explain2": { "text": "push constant False", "args": [] },
+          "npc": "38",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "37"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (False, {}); insert first value into the second; push result ({ False })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "False" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ] },
+          "npc": "39",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" } ] } ],
+          "pc": "38"
+        },
+
+        {
+          "code": "Push True",
+          "explain": "push constant True",
+          "explain2": { "text": "push constant True", "args": [] },
+          "npc": "40",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "39"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (True, { False }); insert first value into the second; push result ({ False, True })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "bool", "value": "True" }, { "type": "set", "value": [{ "type": "bool", "value": "False" } ] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ] },
+          "npc": "41",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } ],
+          "pc": "40"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7ca440034a": "1",
+          "7f7cad40007a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7ca440034a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "41",
+          "sp": "2",
+          "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+          "trace": [
+{"pc": "41","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+          "mode": "choosing"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(0)",
+      "choice": { "type": "bool", "value": "True" },
+      "context": {
+        "tid": "1",
+        "hvalue": "7f7ca440034a",
+        "fp": "1",
+        "name": "fail0(0)",
+        "entry": "34",
+        "pc": "41",
+        "sp": "2",
+        "stack": [{ "type": "dict", "value": [] }, { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }],
+        "trace": [
+{"pc": "41","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "Choose", "value": { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Choose",
+          "explain": "replace top of stack ({ False, True }) with choice (True)",
+          "explain2": { "text": "replace top of stack (#+) with choice (#+)", "args": [ { "type": "set", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "True" } ] }, { "type": "bool", "value": "True" } ] },
+          "choose": { "type": "bool", "value": "True" },
+          "npc": "42",
+          "fp": "1",
+          "trace": [
+{"pc": "42","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "bool", "value": "True" } ],
+          "pc": "41"
+        },
+
+        {
+          "code": "JumpCond False 56",
+          "explain": "pop value (True), compare to False, and jump to 56 if the same",
+          "explain2": { "text": "pop value (#+), compare to #+, and jump to 56 if the same", "args": [ { "type": "bool", "value": "True" }, { "type": "bool", "value": "False" } ] },
+          "npc": "43",
+          "pop": "1",
+          "push": [ ],
+          "pc": "42"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7cad40007a": "1",
+          "7f7caf80004a": "1"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7caf80004a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "43",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "43","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "tid": "1",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "1" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "fail0(0)",
+      "context": {
+        "tid": "1",
+        "hvalue": "7f7caf80004a",
+        "fp": "1",
+        "name": "fail0(0)",
+        "entry": "34",
+        "pc": "43",
+        "sp": "1",
+        "stack": [{ "type": "dict", "value": [] }],
+        "trace": [
+{"pc": "43","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "next": { "type": "AtomicInc" },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "AtomicInc(eager)",
+          "explain": "increment atomic counter from 0 to 1: becomes atomic",
+          "explain2": { "text": "increment atomic counter from 0 to 1: becomes atomic", "args": [ ] },
+          "npc": "44",
+          "fp": "1",
+          "trace": [
+{"pc": "44","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "push": [ ],
+          "pc": "43"
+        },
+
+        {
+          "code": "Load in_cs",
+          "explain": "push value (1) of variable in_cs",
+          "explain2": { "text": "push value (#+) of variable in_cs", "args": [ { "type": "int", "value": "1" } ] },
+          "npc": "45",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "44"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "46",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "45"
+        },
+
+        {
+          "code": "2-ary +",
+          "explain": "pop 2 values (1, 1); add the integers; push result (2)",
+          "explain2": { "text": "pop 2 values (#+, #+); add the integers; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "int", "value": "1" }, { "type": "int", "value": "2" } ] },
+          "npc": "47",
+          "pop": "2",
+          "push": [ { "type": "int", "value": "2" } ],
+          "pc": "46"
+        },
+
+        {
+          "code": "Store in_cs",
+          "explain": "pop value (2) and store into variable in_cs",
+          "explain2": { "text": "pop value (#+) and store into variable #@", "args": [ { "type": "int", "value": "2" }, { "type": "address", "func": { "type": "pc", "value": "-1" }, "args": [{ "type": "atom", "value": "in_cs" } ] } ] },
+          "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "2" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+          "npc": "48",
+          "pop": "1",
+          "push": [ ],
+          "pc": "47"
+        },
+
+        {
+          "code": "AtomicDec",
+          "explain": "decrement atomic counter from 1 to 0: no longer atomic",
+          "explain2": { "text": "decrement atomic counter from 1 to 0: no longer atomic", "args": [ ] },
+          "npc": "49",
+          "atomic": "0",
+          "push": [ ],
+          "pc": "48"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7cad40007a": "2"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "tid": "3",
+      "shared": { "counter": { "type": "int", "value": "0" }, "flags": { "type": "list", "value": [{ "type": "bool", "value": "False" }, { "type": "bool", "value": "False" } ] }, "in_cs": { "type": "int", "value": "2" }, "lockTaken": { "type": "bool", "value": "False" }, "turn": { "type": "int", "value": "0" } },
+      "name": "invariant()",
+      "context": {
+        "tid": "3",
+        "hvalue": "7f7ca440011a",
+        "fp": "1",
+        "name": "invariant()",
+        "entry": "16",
+        "pc": "16",
+        "sp": "1",
+        "stack": [{ "type": "list", "value": [] }],
+        "trace": [
+{"pc": "16","xpc": "16","method_name": { "type": "atom", "value": "invariant" },
+"method_arg": { "type": "list", "value": [] },
+"method": "invariant()","calltype": "process","vars":{ },"sp": 0}
+        ],
+        "atomic": "1",
+        "readonly": "1",
+        "next": { "type": "Frame", "name": "invariant", "args": "()", "value": { "type": "list", "value": [] } },
+        "mode": "runnable"
+      },
+      "microsteps": [
+        {
+          "code": "Frame invariant()",
+          "explain": "pop argument () and run method \"invariant\"",
+          "explain2": { "text": "pop argument () and run method #+", "args": [ { "type": "atom", "value": "invariant" } ] },
+          "npc": "17",
+          "fp": "1",
+          "trace": [
+{"pc": "17","xpc": "16","method_name": { "type": "atom", "value": "invariant" },
+"method_arg": { "type": "list", "value": [] },
+"method": "invariant()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "pop": "1",
+          "push": [ { "type": "dict", "value": [] } ],
+          "pc": "16"
+        },
+
+        {
+          "code": "Load in_cs",
+          "explain": "push value (2) of variable in_cs",
+          "explain2": { "text": "push value (#+) of variable in_cs", "args": [ { "type": "int", "value": "2" } ] },
+          "npc": "18",
+          "push": [ { "type": "int", "value": "2" } ],
+          "pc": "17"
+        },
+
+        {
+          "code": "Push {}",
+          "explain": "push constant {}",
+          "explain2": { "text": "push constant {}", "args": [] },
+          "npc": "19",
+          "push": [ { "type": "set", "value": [] } ],
+          "pc": "18"
+        },
+
+        {
+          "code": "Push 0",
+          "explain": "push constant 0",
+          "explain2": { "text": "push constant 0", "args": [] },
+          "npc": "20",
+          "push": [ { "type": "int", "value": "0" } ],
+          "pc": "19"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (0, {}); insert first value into the second; push result ({ 0 })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "int", "value": "0" }, { "type": "set", "value": [] }, { "type": "set", "value": [{ "type": "int", "value": "0" } ] } ] },
+          "npc": "21",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "int", "value": "0" } ] } ],
+          "pc": "20"
+        },
+
+        {
+          "code": "Push 1",
+          "explain": "push constant 1",
+          "explain2": { "text": "push constant 1", "args": [] },
+          "npc": "22",
+          "push": [ { "type": "int", "value": "1" } ],
+          "pc": "21"
+        },
+
+        {
+          "code": "2-ary SetAdd",
+          "explain": "pop 2 values (1, { 0 }); insert first value into the second; push result ({ 0, 1 })",
+          "explain2": { "text": "pop 2 values (#+, #+); insert first value into the second; push result (#+)", "args": [ { "type": "int", "value": "1" }, { "type": "set", "value": [{ "type": "int", "value": "0" } ] }, { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } ] },
+          "npc": "23",
+          "pop": "2",
+          "push": [ { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] } ],
+          "pc": "22"
+        },
+
+        {
+          "code": "2-ary in",
+          "explain": "pop 2 values ({ 0, 1 }, 2); check if the second value is a member of the first; push result (False)",
+          "explain2": { "text": "pop 2 values (#+, #+); check if the second value is a member of the first; push result (#+)", "args": [ { "type": "set", "value": [{ "type": "int", "value": "0" }, { "type": "int", "value": "1" } ] }, { "type": "int", "value": "2" }, { "type": "bool", "value": "False" } ] },
+          "npc": "24",
+          "pop": "2",
+          "push": [ { "type": "bool", "value": "False" } ],
+          "pc": "23"
+        },
+
+        {
+          "code": "Assert",
+          "explain": "pop a value (False) and raise exception",
+          "explain2": { "text": "pop a value (False) and raise exception", "args": [ ] },
+          "npc": "24",
+          "failure": "Harmony assertion failed",
+          "mode": "failed",
+          "pop": "1",
+          "push": [ ],
+          "pc": "24"
+        }
+
+      ],
+      "ctxbag": {
+          "7f7cad40007a": "2"
+      },
+      "contexts": [
+        {
+          "tid": "0",
+          "hvalue": "7f7ca44002da",
+          "fp": "1",
+          "id": "0",
+          "name": "__init__()",
+          "entry": "0",
+          "pc": "215",
+          "sp": "1",
+          "stack": [{ "type": "address" }],
+          "trace": [
+{"pc": "215","xpc": "0","method_name": { "type": "atom", "value": "__init__" },
+"method_arg": { "type": "list", "value": [] },
+"method": "__init__()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "atomic": "1",
+          "mode": "terminated"
+        },
+        {
+          "tid": "1",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(0)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "0" },
+"method": "fail0(0)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "2",
+          "hvalue": "7f7cad40007a",
+          "fp": "1",
+          "name": "fail0(1)",
+          "entry": "34",
+          "pc": "49",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "49","xpc": "34","method_name": { "type": "atom", "value": "fail0" },
+"method_arg": { "type": "int", "value": "1" },
+"method": "fail0(1)","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "next": { "type": "AtomicInc" },
+          "mode": "runnable"
+        },
+        {
+          "tid": "3",
+          "hvalue": "7f7cad4000da",
+          "fp": "1",
+          "name": "invariant()",
+          "entry": "16",
+          "pc": "24",
+          "sp": "1",
+          "stack": [{ "type": "dict", "value": [] }],
+          "trace": [
+{"pc": "24","xpc": "16","method_name": { "type": "atom", "value": "invariant" },
+"method_arg": { "type": "list", "value": [] },
+"method": "invariant()","calltype": "process","vars":{ },"sp": 0}
+          ],
+          "failure": "Harmony assertion failed",
+          "this": { "type": "dict", "value": [] },
+          "atomic": "1",
+          "readonly": "1",
+          "mode": "failed"
+        }
+      ]
+    }
+
+  ]
+}

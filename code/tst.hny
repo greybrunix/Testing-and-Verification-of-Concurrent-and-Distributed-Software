@@ -1,0 +1,17 @@
+sequential flags, turn
+flags = ( False, False )
+turn  = choose { 0, 1 }
+
+def peterson self:
+  while choose {False, True}:
+    flags self = True
+    turn = 1 - self
+    await (flags[1-self])
+           or (turn==self)
+
+    print("Entered", self);
+    print("Left", self);
+    flags self = False
+
+spawn peterson 0
+spawn peterson 1
