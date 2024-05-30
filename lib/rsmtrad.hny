@@ -16,6 +16,7 @@ def replica(self, immortal):
         atomically when len(get_net()) > delivered:
             let msg = receive(delivered):
                 if msg != []:
+                   print(self, msg.payload)
                    delivered += 1
 
 def client(self):

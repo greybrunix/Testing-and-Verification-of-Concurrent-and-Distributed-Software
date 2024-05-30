@@ -29,7 +29,7 @@ def receive(pid) returns msg:
 	atomically:
 		var msgs = [m for m in net where (pid == m.dst)]
 		if len(msgs) > 0:
-			msg = msgs[0]
+			msg = msgs[len(msgs)-1]
 			if (not hist):
 				net = remove_msg(net, msg)
 			if (dup and choose{True, False}):
@@ -45,16 +45,17 @@ def receive(pid) returns msg:
 def remove_msg(L1, msg) returns L2:
 	L2 = []
 	var found_first = False
-	for elem in L1:
+	for elem in list.sorted(L1):
 		if (elem != msg) or (found_first):
 			L2 += [elem,]
 		elif (not found_first):
 			found_first = True
+	L2 = list.sorted(L2)
 def add_msg(L1, msg) returns L2:
 	L2 = []
 	var found_first = False
 	var placed = False
-	for elem in L1:
+	for elem in list.sorted(L1):
 		if (elem != msg) or (found_first):
 			L2 += [elem,]
 			if (not placed) and choose {True, False}:
@@ -64,3 +65,4 @@ def add_msg(L1, msg) returns L2:
 		if (elem == msg) and (found_first) and (not placed):
 			placed = True
 			L2 += [msg,]
+	L2 = list.sorted(L2)
