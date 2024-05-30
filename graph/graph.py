@@ -29,17 +29,15 @@ def generate_csv(name):
     pattern_list = r'modules\/list.hny'
     pattern_bag = r'modules\/bag.hny'
 
-    pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
-    pattern_send_dup_lists = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+) }\)'
+    pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s(.*?) } }.*?(\d+).*?'
     pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
     pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
     pattern_receive_drop = r'code\": \"StoreVar msg_drop\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }'
-    pattern_send_dups_bags = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \(\[{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+)'
-    pattern_send_dups_lists = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+)'
+    pattern_send_dup = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \(\[?{ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+)'
     
-    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop}|{pattern_send_dups_lists}'
-    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop}|{pattern_send_dups_bags}'
+    pattern_lists = f'{pattern_send_lists}|{pattern_receive_lists}|{pattern_receive_drop}|{pattern_send_dup}'
+    pattern_bags = f'{pattern_send_bags}|{pattern_receive_bags}|{pattern_receive_drop}|{pattern_send_dup}'
 
     pattern = ''
 
@@ -319,14 +317,14 @@ svg.selectAll(".myPathArrows")
 
             // Add label
             svg.append("text")
-                .attr("x", srcX + dx / 4.5)
-                .attr("y", srcY + dy / 4.5)
+                .attr("x", srcX + dx / 5)
+                .attr("y", srcY + dy / 5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px") // Adjust font size as needed
-                .attr("transform", "rotate(" + angle + "," + (srcX + dx / 4.5) + "," + (srcY + dy / 4.5) + ")");
+                .attr("transform", "rotate(" + angle + "," + (srcX + dx / 5) + "," + (srcY + dy / 5) + ")");
             
             Object.keys(data).forEach(function(key) {{
                 if (data[key] === correspondingReceive) {{
@@ -345,7 +343,6 @@ svg.selectAll(".myPathArrows")
                 var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
             }}
             var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
-            var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
             // Construct path data for the curved line
             pathData.push([srcX, srcY], [srcX + 50, (srcY + dstY) / 2], [srcX, dstY]); // Start, control, and end points of the curve
@@ -353,13 +350,13 @@ svg.selectAll(".myPathArrows")
             // Adjust label positioning and rotation angle
             svg.append("text")
                 .attr("x", srcX + 35) // Adjust x position of the label
-                .attr("y", srcY + (dstY - srcY) / 5)
+                .attr("y", srcY + (dstY - srcY) / 2)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px")
-                .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + d) / 5) + ")");
+                .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + (srcY + (dstY - srcY) / 2) + ")");
 
             Object.keys(data).forEach(function(key) {{
                 if (data[key] === correspondingReceive) {{
@@ -425,13 +422,13 @@ svg.selectAll(".myPathCrosses")
             // Adjust label positioning and rotation angle
             svg.append("text")
                 .attr("x", srcX + 35) // Adjust x position of the label
-                .attr("y", srcY + (dstY - srcY) / 5)
+                .attr("y", srcY + (dstY - srcY) / 2)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px")
-                .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + (srcY + (dstY - srcY) / 5) + ")");
+                .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + (srcY + (dstY - srcY) / 2) + ")");
 
             Object.keys(data).forEach(function(key) {{
                 if (data[key] === noCorrespondingReceive) {{
