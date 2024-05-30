@@ -310,14 +310,14 @@ svg.selectAll(".myPathArrows")
 
             // Add label
             svg.append("text")
-                .attr("x", srcX + dx / 5)
-                .attr("y", srcY + dy / 5)
+                .attr("x", srcX + dx / 4.5)
+                .attr("y", srcY + dy / 4.5)
                 .text(sendRow.msg)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .style("fill", "black")
                 .style("font-size", "10px") // Adjust font size as needed
-                .attr("transform", "rotate(" + angle + "," + (srcX + dx / 5) + "," + (srcY + dy / 5) + ")");
+                .attr("transform", "rotate(" + angle + "," + (srcX + dx / 4.5) + "," + (srcY + dy / 4.5) + ")");
             
             Object.keys(data).forEach(function(key) {{
                 if (data[key] === correspondingReceive) {{
