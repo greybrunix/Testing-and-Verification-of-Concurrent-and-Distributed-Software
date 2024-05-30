@@ -6,6 +6,12 @@
     $$construct: \mathbb{B}^3 \rightarrow S()$$
     a function that receives a triple and alters the state of the program,
     allowing duplications, drops or keeping history (not deleting messages on receives)
+    - Examples:
+        `construct(1,0,1)` will activate duplications and preserve history
+        `construct(0,0,0)` will run on default settings with no dups, drops or history
+        `construct(0,1,0)` will activate drops
+        `construct(0,1,1)` will activate drops and history resulting in drops also removing
+        from the history
  - get\_net() -> net
     $$get\_{net}: () \rightarrow S(MSet + List)$$
     Function that returns the current state of the network
