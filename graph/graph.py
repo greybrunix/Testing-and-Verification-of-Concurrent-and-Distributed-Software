@@ -589,17 +589,20 @@ function showTextBox(sendRow, element) {{
 
         print(f"open file://{file_path} for visualization")
 
-name = sys.argv[1] 
-web = ''
-if len(sys.argv) > 2:
-    web = sys.argv[2]
+def main():
+    name = sys.argv[1] 
+    web = ''
+    if len(sys.argv) > 2:
+        web = sys.argv[2]
 
-pattern_hny = r'\.hny$'
-pattern_hco = r'\.hco$'
-if re.search(pattern_hny, name):
-    if web == '--noweb':
-        run_harmony(name, 0)
-    else:
-        run_harmony(name, 1)
-elif re.search(pattern_hco, name):
-    generate_csv(name)
+    pattern_hny = r'\.hny$'
+    pattern_hco = r'\.hco$'
+    if re.search(pattern_hny, name):
+        if web == '--noweb':
+            run_harmony(name, 0)
+        else:
+            run_harmony(name, 1)
+    elif re.search(pattern_hco, name):
+        generate_csv(name)
+if __name__ == '__main__':
+    main()
