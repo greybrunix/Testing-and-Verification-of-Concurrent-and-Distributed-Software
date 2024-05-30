@@ -89,8 +89,11 @@ def generate_csv(name):
         elif match[12] != "" and bags:
             for j in range(i):
                 if (res[f'{j}']['id'] == match[13] and res[f'{j}']['type'] == 'send'):
-                    del res[f'{i}']
-                    res[f'{j}']['dup'] = 'True'
+                    res[f'{i}']['type'] = 'send'
+                    res[f'{i}']['src'] = match[15]
+                    res[f'{i}']['dst'] = match[12]
+                    res[f'{i}']['msg'] = match[14]
+                    res[f'{i}']['id'] = match[13]
         i += 1
 
     f.close
@@ -249,7 +252,19 @@ svg.append("marker")
         showTextBox(sendRow, this, 0);
     }});
 
-var lastID = -1;
+var seen = [];
+
+function isIdInSeen(id) {{
+    return seen.some(function(entry) {{
+        return entry[0] === id;
+    }});
+}}
+
+function getIndexOfId(id) {{
+    return seen.findIndex(function(entry) {{
+        return entry[0] === id;
+    }});
+}}
 
 // Draw the lines with arrows
 svg.selectAll(".myPathArrows")
@@ -274,7 +289,11 @@ svg.selectAll(".myPathArrows")
 
         if (correspondingReceive) {{
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (isIdInSeen(sendRow.id)) {{
+                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
             var dstY = Object.values(data).indexOf(correspondingReceive) * 100; // Adjust the height increment as necessary
             var dstX = x(correspondingReceive.dst);
             pathData.push([srcX, srcY], [dstX, dstY]);
@@ -300,12 +319,22 @@ svg.selectAll(".myPathArrows")
                 .style("font-size", "10px") // Adjust font size as needed
                 .attr("transform", "rotate(" + angle + "," + (srcX + dx / 5) + "," + (srcY + dy / 5) + ")");
             
-            lastID = sendRow.id;
+            Object.keys(data).forEach(function(key) {{
+                if (data[key] === correspondingReceive) {{
+                    data[key] = {{}};
+                }}
+            }});
+            seen.push([sendRow.id, Object.values(data).indexOf(sendRow)])
+            data[Object.values(data).indexOf(sendRow)] = {{}}
 
             return d3.line()(pathData);
         }} else if (selfSendReceive) {{
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (isIdInSeen(sendRow.id)) {{
+                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
             var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
             var dstY = Object.values(data).indexOf(selfSendReceive) * 100; // Adjust the destination Y-coordinate for the curved line
 
@@ -323,7 +352,13 @@ svg.selectAll(".myPathArrows")
                 .style("font-size", "10px")
                 .attr("transform", "rotate(" + 90 + "," + (srcX + 35) + "," + ((srcY + d) / 5) + ")");
 
-            lastID = sendRow.id;
+            Object.keys(data).forEach(function(key) {{
+                if (data[key] === correspondingReceive) {{
+                    data[key] = {{}};
+                }}
+            }});
+            seen.push([sendRow.id, Object.values(data).indexOf(sendRow)])
+            data[Object.values(data).indexOf(sendRow)] = {{}}
 
             // Return the path data with curve interpolation
             return d3.line().curve(d3.curveBasis)(pathData);
@@ -367,7 +402,11 @@ svg.selectAll(".myPathCrosses")
 
         if (noCorrespondingReceive && (sendRow.src === sendRow.dst)) {{
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (isIdInSeen(sendRow.id)) {{
+                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
             var dstX = x(sendRow.src) + 20;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -385,12 +424,22 @@ svg.selectAll(".myPathCrosses")
                 .style("font-size", "10px")
                 .attr("transform", "rotate(" + 80 + "," + (srcX + 35) + "," + (srcY + (dstY - srcY) / 5) + ")");
 
-            lastID = sendRow.id;
+            Object.keys(data).forEach(function(key) {{
+                if (data[key] === noCorrespondingReceive) {{
+                    data[key] = {{}};
+                }}
+            }});
+            seen.push([sendRow.id, Object.values(data).indexOf(sendRow)])
+            data[Object.values(data).indexOf(sendRow)] = {{}}
             
             return d3.line().curve(d3.curveBasis)(pathData);
         }} else if (noCorrespondingReceive) {{
             var srcX = x(sendRow.src);
-            var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            if (isIdInSeen(sendRow.id)) {{
+                var srcY = getIndexOfId(sendRow.id) * 100; // Adjust the height increment as necessary
+            }} else {{
+                var srcY = Object.values(data).indexOf(sendRow) * 100; // Adjust the height increment as necessary
+            }}
             var dstX = srcX + (x(sendRow.dst) - x(sendRow.src)) * 0.85;
             var dstY = (Object.values(data).indexOf(sendRow) + 1) * 100; // Adjust the height increment as necessary
             
@@ -417,7 +466,13 @@ svg.selectAll(".myPathCrosses")
                 .style("font-size", "10px") // Adjust font size as needed
                 .attr("transform", "rotate(" + angle + "," + (srcX + (dstX - srcX) / 5) + "," + (srcY + (dstY - srcY) / 5) + ")");
 
-            lastID = sendRow.id;
+            Object.keys(data).forEach(function(key) {{
+                if (data[key] === noCorrespondingReceive) {{
+                    data[key] = {{}};
+                }}
+            }});
+            seen.push([sendRow.id, Object.values(data).indexOf(sendRow)])
+            data[Object.values(data).indexOf(sendRow)] = {{}}
 
             return d3.line().curve(d3.curveBasis)(pathData);
         }}
@@ -515,14 +570,15 @@ function showTextBox(sendRow, element) {{
         print(res)
         print()
 
-        file_name = f'{name}_visualization.html'
-        with open(file_name, 'w') as file:
+        file_name = f'{name[:-4]}_visualization.html'
+        file_path = os.path.abspath(file_name)
+        
+        with open(file_path, 'w') as file:
             file.write(html_content)
 
-        webbrowser.open(file_name)
-        
-        path = Path(file_name).absolute()
-        print(f"open file://{path} for visualization")
+        webbrowser.open(file_path)
+
+        print(f"open file://{file_path} for visualization")
 
 name = sys.argv[1] 
 web = ''
