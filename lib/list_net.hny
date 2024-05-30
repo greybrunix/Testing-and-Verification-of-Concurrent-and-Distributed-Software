@@ -21,27 +21,27 @@ def construct(flags):
 # public functions
 def send(src, dst, payload):
 	atomically:
-		var msg = {.src:src, .dst:dst, .payload:payload, .id:id}
-		net = net + [msg,]
+		var msg_send = {.src:src, .dst:dst, .payload:payload, .id:id}
+		net = net + [msg_send,]
 		id += 1
 
-def receive(pid) returns msg:
+def receive(pid) returns msg_rcv:
 	atomically:
 		var msgs = [m for m in net where (pid == m.dst)]
 		if len(msgs) > 0:
-			msg = msgs[len(msgs)-1]
+			msg_rcv = msgs[len(msgs)-1]
 			if (not hist):
-				net = remove_msg(net, msg)
+				net = remove_msg(net, msg_rcv)
 			if (dup and choose{True, False}):
-				var msg_dup = msg
+				var msg_dup = msg_rcv
 				net = add_msg(net, msg_dup)
 			if drop and choose{True, False}:
-				var msg_drop = msg
+				var msg_drop = msg_rcv
 				msg = []
 				if (hist):
-					net = remove_msg(net,msg)
+					net = remove_msg(net,msg_drop)
 		else:
-			msg = []
+			msg_rcv = []
 def remove_msg(L1, msg) returns L2:
 	L2 = []
 	var found_first = False
