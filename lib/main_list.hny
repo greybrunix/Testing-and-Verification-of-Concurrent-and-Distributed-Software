@@ -2,12 +2,11 @@ from list_net import *
 construct(0,1,0)
 
 def main():
-	send(1,2,"Ola")
-	send(2,1,"Ola")
-	var wow = receive(2)
-	var nice = receive(1)
+    send(1,2,"Ola")
+    send(2,1,"Ola")
+    var wow = receive(2)
+    var nice = receive(1)
 
-	assert (wow != []) and (nice != [])
-
+    assert (wow != []) and (nice != [])
 
 spawn eternal main()
