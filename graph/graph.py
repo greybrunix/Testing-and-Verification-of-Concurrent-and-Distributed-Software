@@ -30,7 +30,7 @@ def generate_csv(name):
     pattern_bag = r'modules\/bag.hny'
 
     pattern_send_lists = r'\"method\": \"send.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*\n.*\n.*\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\":\s\"(\w+)\".*?(\d+).*?'
-    pattern_send_dup_lists = r'StoreVar msg\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
+    pattern_send_dup_lists = r'StoreVar msg_dup\",\n\s*\"explain\": \"pop value \({ \\\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*?), \\\"src\\\": (\d+) }\)'
     pattern_send_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }\)'
     pattern_receive_lists = r'\"method\": \"receive.*?\n\s*],\n\s*\"atomic\".*?\n\s*\"push\".*?\n\s*\"pc\".*?[\s\S]*?\"StoreVar msg\".*?\n.*?\n.*?\n.*?\n\s*\"local\":.*?(\d+).*?(\d+).*?\"payload\".*?\"value\":.*?\"value\": \"(\w+)\".*?(\d+).*?'
     pattern_receive_bags = r'code\": \"StoreVar msg\",\n\s*\"explain\":.*?\"dst\\\": (\d+), \\\"id\\\": (\d+), \\\"payload\\\": (.*), \\\"src\\\": (\d+) }, \d+'
