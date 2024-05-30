@@ -1,10 +1,9 @@
 from list_net import *
-construct(0,1,1)
+construct(0,0,1)
 
 const NREPLICAS = 3     
 const NOPS = 2          
-l = 0
-
+whois = 0
 def crash():
     stop()
 
@@ -12,18 +11,17 @@ def replica(self, immortal):
     if not immortal:
         trap crash()
     var delivered = 0
+    atomically whois = self
     while True:
         atomically when len(get_net()) > delivered:
-            let msg = receive(delivered):
+            let msg = receive(self):
                 if msg != []:
-                   print(self, msg.payload)
-                   delivered += 1
+                    print(self, msg.payload)
+                    delivered += 1
 
 def client(self):
     print(self)
-    atomically:
-        send(self, l, self)
-        l+=1
+    atomically send(self, whois, self)
 
 let immortal = choose {1..NREPLICAS}:
     for i in {1..NREPLICAS}:
