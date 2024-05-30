@@ -4,7 +4,6 @@ import sys
 import os
 import subprocess
 import webbrowser
-from pathlib import Path
 
 def run_harmony(name, web):
     pid = os.fork()
