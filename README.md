@@ -7,10 +7,10 @@
     a function that receives a triple and alters the state of the program,
     allowing duplications, drops or keeping history (not deleting messages on receives)
  - get\_net() -> net
-    $$get \_ net: () \rightarrow S(MSet + List)$$
+    $$get\_{net}: () \rightarrow S(MSet + List)$$
     Function that returns the current state of the network
  - send(src, dst, payload)
-    $$send: Src \timex Dst \times Payload \rightarrow S()$$
+    $$send: Src \times Dst \times Payload \rightarrow S()$$
     a function that receives three arguments of arbitrary types that correspond to the
     node the sent the message (src), who is intended to receive the message (dst)
     and the contents of the message itself (payload)
