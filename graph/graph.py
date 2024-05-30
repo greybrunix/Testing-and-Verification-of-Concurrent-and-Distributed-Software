@@ -471,7 +471,6 @@ function showTextBox(sendRow, element) {{
     information += "Dst: " + sendRow.dst + "{newline}";
     information += "Message: " + sendRow.msg + "{newline}";
     information += "Received: Yes{newline}";
-    information += "ID: " + sendRow.id + "{newline}";
 
     var mouseCoordinates = d3.mouse(element);
     var mouseX = mouseCoordinates[0];
@@ -484,7 +483,7 @@ function showTextBox(sendRow, element) {{
 
     box.append("rect")
         .attr("width", 40 + 10 * sendRow.msg.length) // Adjust the width as needed
-        .attr("height", 100) // Adjust the height as needed
+        .attr("height", 80) // Adjust the height as needed
         .style("fill", "#fdf6e3") // Adjust the fill color
         .style("stroke", "black"); // Adjust the stroke color
 
