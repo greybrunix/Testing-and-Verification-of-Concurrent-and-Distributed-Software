@@ -37,11 +37,11 @@ def receive(pid) returns msg_rcv:
 				net = add_msg(net, msg_dup)
 			if drop and choose{True, False}:
 				var msg_drop = msg_rcv
-				msg = []
+				msg_rcv = {:}
 				if (hist):
 					net = remove_msg(net,msg_drop)
 		else:
-			msg_rcv = []
+			msg_rcv ={:} 
 def remove_msg(L1, msg) returns L2:
 	L2 = []
 	var found_first = False

@@ -35,7 +35,7 @@ def receive(pid) returns msg_rcv:
 				net = bag.add(net,msg_dup[0])
 			if drop and choose{True, False}:
 				var msg_drop = msg_rcv
-				msg = {:}
+				msg_rcv = {:}
 				if (hist):
 					net = bag.remove(net, msg_drop[0])
 		else:
