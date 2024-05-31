@@ -2,7 +2,7 @@ from list_net import *
 construct(0,0,1)
 
 const NREPLICAS = 3     
-const NOPS = 2          
+const NOPS = 2
 whois = 0
 def crash():
     stop()
@@ -15,7 +15,7 @@ def replica(self, immortal):
     while True:
         atomically when len(get_net()) > delivered:
             let msg = receive(self):
-                if msg != []:
+                if msg != {:}:
                     print(self, msg.payload)
                     delivered += 1
 
