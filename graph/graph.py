@@ -35,6 +35,7 @@ def generate_html(name):
     i = 0
     for match in matches:
         res[f'{i}'] = {}
+        print(match)
         # Send
         if match[0] != "":
             res[f'{i}']['type'] = 'send'
@@ -48,7 +49,7 @@ def generate_html(name):
             res[f'{i}']['dst'] = match[4]
             res[f'{i}']['id'] = match[5]
         # Drop
-        elif match[6] != "" and lists:
+        elif match[6] != "":
             for j in range(i):
                 if (res[f'{j}']['id'] == match[6] and res[f'{j}']['type'] == 'receive'):
                     del res[f'{j}']
