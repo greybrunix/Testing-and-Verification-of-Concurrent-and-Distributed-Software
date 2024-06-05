@@ -29,4 +29,7 @@
     If there are no messages addressed to dst in the network, then the function returns an empty
     dictionary.
 
+## Visualization
 
+ - python graph.py filename.(hny|hco) (--noweb)?  
+   Runs either the .hny or the .hco file, it can also have the --noweb flag just as in harmony.
